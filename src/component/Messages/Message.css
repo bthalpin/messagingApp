@@ -73,11 +73,11 @@
     
 }
 
-@media screen and (max-width:700px){
+/* @media screen and (max-width:700px){
     .smallbox{
-        min-width: auto;
+        min-width: 40vw;
     }
-}
+} */
 
 .messageArea{
     display:flex;
@@ -89,6 +89,7 @@
 .deleteContainer{
     display:flex;
     justify-content: flex-end;
+    max-width: 30%;
     
 }
 .deleteButton{
@@ -102,13 +103,29 @@
 
 .text{
     padding:2rem;
-    max-width:20rem;
+    max-width:70%;
     
 }
 
 .textmessage{
     word-wrap:break-word;
     white-space: pre-wrap;
+}
+
+@media screen and (max-width:700px){
+    .text{
+        min-width: 20vw;
+    }
+    .smallbox{
+        min-width: 40vw;
+    }
+}
+
+
+@media screen and (max-width:500px){
+    .messageArea{
+        display:block;
+    }
 }
 
 .submitbutton{
