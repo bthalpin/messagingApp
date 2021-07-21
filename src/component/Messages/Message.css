@@ -1,0 +1,157 @@
+.maincomment{
+    margin:auto;
+}
+.inputbox{
+    padding:1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-items: top;
+    margin-left:auto;
+}
+
+.textarea{
+    /* padding:1rem; */
+    /* resize:none; */
+    height:1.5rem;
+    transition:0.25s ease-in-out;
+    border-radius: 1rem;
+    margin:0 0.5rem;
+    width:20rem;
+}
+
+@media (max-width:700px) {
+    .textarea{
+        width: 30vw;
+    }
+    
+}
+.textarea:focus{
+    /* height:35vh; */
+    border:none;
+    
+    height:20vh;
+}
+
+.submitbutton{
+    position: relative;
+    top:0;
+    height:2rem;
+}
+
+.filter{
+    /* display: flex; */
+    /* width:20vw; */
+}
+
+.filterLabel{
+    padding:0.25rem;
+}
+.commentsection{
+    display:block;
+    /* justify-content: center; */
+}
+
+.box{
+    display:flex;
+    justify-content: center;
+    
+    /* height:5rem; */
+    /* width:40vw; */
+    margin:0;
+}
+
+.smallbox{
+    margin:0.5rem;
+    /* border-top:2px solid black; */
+    
+    border-radius:0.2rem;
+    width:40vw;
+    min-width:400px;
+    /* overflow-wrap: break-word; */
+    /* word-wrap: break-word; */
+    
+}
+
+@media screen and (max-width:700px){
+    .smallbox{
+        min-width: auto;
+    }
+}
+
+.messageArea{
+    display:flex;
+    background:#ededed;
+    justify-content: space-between;
+    border:2px solid darkblue;
+    border-radius: 0.25rem;
+}
+.deleteContainer{
+    display:flex;
+    justify-content: flex-end;
+    
+}
+.deleteButton{
+    background:transparent;
+    border:none;
+    font-weight: bold;
+    font-size:1rem;
+    color:darkred;
+    padding:0.4rem 0.7rem;
+}
+
+.text{
+    padding:2rem;
+    max-width:20rem;
+    
+}
+
+.textmessage{
+    word-wrap:break-word;
+    white-space: pre-wrap;
+}
+
+.submitbutton{
+    background:#00a2ff;
+    border-radius: 0.5rem;
+    color:white;
+    font-weight: bold;
+}
+.user{
+    background:#ededed;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0.1rem 0.3rem;
+    margin:0;
+    font-size: 0.8rem;
+    border:2px solid darkblue;
+    border-radius: 0.25rem;
+}
+
+.user > p{
+    padding:0;
+    margin:0;
+    
+    
+}
+
+
+.date{
+    font-size:0.6rem;
+}
+
+.likes{
+    display:flex;
+    justify-content: space-between;
+    padding:0rem 0.5rem 0rem 0rem;
+    font-size:0.75rem;
+    height:1.3rem;
+    /* background:tra; */
+}
+
+.likeButton{
+    padding:0;
+    border:1px solid darkblue;
+    border-radius: 0.2rem;
+}

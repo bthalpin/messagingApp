@@ -1,0 +1,40 @@
+ul {
+    list-style-type: none;
+    margin:0;
+    padding:0.5rem 0.3rem;
+}
+
+li{
+    cursor:pointer;
+}
+
+.friendtitlebox{
+    
+    font-size:1.5rem;
+}
+
+.friendtitle{
+    margin:0;
+    background: darkgray;
+    padding:0.5rem 0;
+    font-size:1.5rem;
+    border:1px solid gray;
+    color:white;
+    
+    /* border-top-left-radius: 0.35rem;
+    
+    border-top-right-radius: 0.35rem; */
+    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
+}
+
+
+.mainfriend{
+    /* position: absolute;
+    left:0; */
+    height:100%;
+    background:white;
+    border:1px solid gray;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    /* padding:0.3rem */
+}
