@@ -1,6 +1,8 @@
 import React from 'react';
 import "./Message.css";
 import Picture from './Picture';
+import Like from '../../images/like.png';
+import Liked from '../../images/liked.png';
 
 const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply, addLike, count, currentUser,pastMessages}) => {
     return (
@@ -37,7 +39,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                 <div className="likes">
                         {route === 'home'
                             // ?(count.includes(user)?<button onClick = {()=>addLike(i)}>Unlike</button>:<button onClick = {()=>addLike(i)}>Like</button>)
-                            ?<button className = "likeButton" onClick = {()=>addLike(i)}>{(count.includes(currentUser)?<img src = "/assets/images/liked.png" alt="Unlike" width="20rem"></img>:<img src = "/assets/images/like.png" alt="like" width = "20rem"></img>)}</button>
+                            ?<button className = "likeButton" onClick = {()=>addLike(i)}>{(count.includes(currentUser)?<img src = {Liked} alt="Unlike" width="20rem"></img>:<img src = {Like} alt="like" width = "20rem"></img>)}</button>
                             :<button className = "likeButton" onClick = {()=>reply(username)}>Reply</button>
                             }
                         
