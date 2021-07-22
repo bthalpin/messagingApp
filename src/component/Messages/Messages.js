@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import Messagebox from './Messagebox';
 import './Message.css';
 
@@ -7,6 +7,8 @@ import './Message.css';
  
 
 const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,deletePost,route}) => {
+    const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
+
     useEffect(()=>{
         if (currentMessage.message!==''){
             setPastMessages([...pastMessages,currentMessage])
@@ -17,6 +19,14 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         // console.log(pastMessages)
     },[currentMessage.time])
 
+    // useEffect(()=>{
+    //     setFilteredMessages(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
+    // },[user.friends])
+
+    useEffect(()=>{
+        setFilteredMessages(()=>{
+            return pastMessages.filter((message)=>user.friends.indexOf(message.email)>-1||user.email===message.email)})
+    },[user.friends,pastMessages])
     // useEffect(()=>{
     //     console.log(pastMessages)
     //     setPastMessages(pastMessages)
@@ -30,7 +40,8 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     // },[])
     
     
-
+    // let filteredMessages = 
+    console.log('filtered',filteredMessages,pastMessages,'user',user.email)
     const onSubmit = () => {
         // console.log(currentObject)
         setCurrentMessage((prevCurrentMessage)=>{
@@ -88,13 +99,13 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         // }
 
 
-        if (!newArr[i].count.includes(user)){
-            let counting = [...newArr[i].count,user]
+        if (!newArr[i].count.includes(user.email)){
+            let counting = [...newArr[i].count,user.email]
             newArr[i]={...newArr[i],count:counting}
             console.log(counting)
             setPastMessages(newArr)
         }else{
-            let counting = newArr[i].count.filter((currentuser)=>currentuser!==user)
+            let counting = newArr[i].count.filter((currentuser)=>currentuser!==user.email)
             newArr[i]={...newArr[i],count:counting}
             // console.log(filteredArr)
             setPastMessages(newArr)
@@ -135,11 +146,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <label name="filter" className = "filterLabel">Filter Messages</label>
                 <input name = "filter" ></input>
                 </div> */}
+                
                 <div>
-                {pastMessages.map((msg,i)=>{
-                    const currentUser = pastMessages.length-1-i
+                {filteredMessages.map((msg,i)=>{
+                    const currentUser = filteredMessages.length-1-i
                     // console.log('current',pastMessages[currentUser])
-                    return <div><Messagebox pastMessages = {pastMessages} currentUser = {user} username = {pastMessages[currentUser].email} text ={pastMessages[currentUser].message} time = {pastMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {pastMessages[currentUser].count}/></div>
+                    return <div><Messagebox filteredMessages = {filteredMessages} currentUser = {user.email} username = {filteredMessages[currentUser].email} text ={filteredMessages[currentUser].message} time = {filteredMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {filteredMessages[currentUser].count}/></div>
                 
                 })}
                 </div>

@@ -65,7 +65,7 @@ function App() {
         <Friends user = {user} setUser = {setUser} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage}/>
         <div className = "mainMessage">
         <Messages 
-            user = {user.email} 
+            user = {user} 
             // setCurrentMessage = {setCurrentMessage} 
             // setPastMessages = {setPastMessages} 
             route = {route}

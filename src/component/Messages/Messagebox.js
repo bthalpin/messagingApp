@@ -4,7 +4,7 @@ import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
-const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply, addLike, count, currentUser,pastMessages}) => {
+const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply, addLike, count, currentUser,filteredMessages}) => {
     return (
         <div className = "box">
             <div className = "smallbox">
@@ -12,11 +12,11 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                 <div className = "messageArea">
                 <div className = "text">
                         <div className = "textmessage">{text.includes('img')?<Picture source = {text.substr(3,text.length-1)}/>:text}</div>
-                        {console.log(text.substr(3,text.length-1))}
+                        {/* {console.log(text.substr(3,text.length-1))} */}
                     </div>
                     <div className = "deleteContainer">
                     {route === "home"
-                    ?<div>{pastMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i)}>x</button>:<></>}</div>
+                    ?<div>{filteredMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i)}>x</button>:<></>}</div>
                             
                         
                             :<div><button className = "deleteButton" id = {i} onClick = {deleteMail}>X</button></div>
@@ -35,7 +35,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                     <p >{username}</p>
                     <p className='date'>{ time.substr(0,24) }</p>
                     
-                </div>{console.log(route)}
+                </div>
                 <div className="likes">
                         {route === 'home'
                             // ?(count.includes(user)?<button onClick = {()=>addLike(i)}>Unlike</button>:<button onClick = {()=>addLike(i)}>Like</button>)
