@@ -27,7 +27,9 @@ li{
     /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
 }
 
-
+.fixed{
+    
+}
 
 .mainfriend{
     /* position: fixed; */
@@ -66,6 +68,7 @@ li{
 }
 
 .showFriend{
+    position:absolute;
     margin-top: 20vh;
     height:3rem;
     background: rgb(4, 113, 255);
