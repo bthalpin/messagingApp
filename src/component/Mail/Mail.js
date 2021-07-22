@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Messagebox from '../Messages/Messagebox';
 import './Mail.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost}) => {
+    useEffect(()=>{
+        if (privateMessage.message!==''){
+            setPrivateMessages((prevPrivateMessages)=>{
+                return [...prevPrivateMessages,privateMessage]
+            })
+            setPrivateMessage((prevPrivateMessage)=>{
+                return {...prevPrivateMessage,username:'',recipientEmail:'',message:'',time:''}})
+        
+        }
+        
+        // console.log(pastMessages)
+    },[privateMessage.time])
+
     const onChanges= (event) =>{
         switch (event.target.id){
             case 'recipientEmail':
@@ -35,11 +48,10 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
       }
 
       const onSend = () => {
-          setPrivateMessages((prevPrivateMessages)=>{
-              return [...prevPrivateMessages,privateMessage]
-          })
-          setPrivateMessage((prevPrivateMessage)=>{
-              return {...prevPrivateMessage,username:'',recipientEmail:'',message:'',time:''}})
+        setPrivateMessage((prevPrivateMessage)=>{
+            return {...prevPrivateMessage,time:Date().toLocaleString()}
+        })
+          
           console.log(privateMessages)
       }
 
@@ -70,7 +82,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
             
             {privateMessages.map((message,i)=>{
                     const currentMessage = privateMessages.length-1-i
-                    console.log(privateMessages[currentMessage].recipientEmail,user.email)
+                    console.log(privateMessages[currentMessage].time,'time')
                     if (privateMessages[currentMessage].recipientEmail === user.email){
                         return <div><Messagebox username = {privateMessages[currentMessage].senderEmail} text ={privateMessages[currentMessage].message} time = {privateMessages[currentMessage].time} i = {i} deleteMail = {deleteMail} reply = {reply} /></div>
                     }
