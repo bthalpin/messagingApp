@@ -20,7 +20,7 @@ const Friends = ({user,setUser,setPrivateMessage,setRoute}) => {
 
     const addFriend = () => {
         const newFriend = prompt('Enter the email address of your friend ')
-        const newFriends = [...friends,newFriend]
+        const newFriends = [...friends,newFriend.toUpperCase()]
         setUser((prevUser)=> {
             return {...prevUser,friends:newFriends}
         })

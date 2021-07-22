@@ -10,7 +10,7 @@ import Picture from './component/Messages/Picture';
 
 
 function App() {
-  const [user,setUser] = useState({username:'',email:'',password:'',friends:['brian@gmail.com']})
+  const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
   const [route,setRoute] = useState('Sign In')
   const [isSignedIn,setIsSignedIn] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
@@ -28,7 +28,7 @@ function App() {
     console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
-    setUser({username:'',email:'',password:'',friends:['brian@gmail.com']})
+    setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
     setErrorMessage('')
     // console.log(pastMessages)
     setCurrentMessage({username:'',email:'',message:'',time:'',count:[]})

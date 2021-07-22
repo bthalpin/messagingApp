@@ -25,7 +25,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
     useEffect(()=>{
         setFilteredMessages(()=>{
-            return pastMessages.filter((message)=>user.friends.indexOf(message.email)>-1||user.email===message.email)})
+            return pastMessages.filter((message)=>user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email)})
     },[user.friends,pastMessages])
     // useEffect(()=>{
     //     console.log(pastMessages)
