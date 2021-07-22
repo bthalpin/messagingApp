@@ -33,7 +33,7 @@ const Friends = ({user,setUser,setPrivateMessage,setRoute}) => {
 
     const { friends } = user
     return(
-            <div>
+            <div className="fixed">
             {/* {console.log(visibleFriends)} */}
             {friendList?
             <div className = "friendList">

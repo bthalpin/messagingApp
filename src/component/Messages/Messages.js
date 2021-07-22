@@ -8,6 +8,7 @@ import './Message.css';
 
 const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,deletePost,route}) => {
     const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
+    const [publicStatus,setPublicStatus] = useState(true);
 
     useEffect(()=>{
         if (currentMessage.message!==''){
@@ -135,12 +136,51 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     //      }
 
     // render(){
+    
+    const changePublicStatus = () => {
+        publicStatus?setPublicStatus(false):setPublicStatus(true)
+    }
+
         return(
             <div className = "maincomment">
             <div className = "inputbox">
                 <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentMessage.message}></input>
                 <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
             </div>
+            
+            {publicStatus?
+            <>
+            <div className = "publicButton">
+                <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
+            </div>
+            
+            <div className="commentsection">
+            {/* <div className="filter">
+            <label name="filter" className = "filterLabel">Filter Messages</label>
+            <input name = "filter" ></input>
+            </div> */}
+            
+            <div>
+            {pastMessages.map((msg,i)=>{
+                const currentUser = pastMessages.length-1-i
+                // console.log('current',pastMessages[currentUser])
+                return <div><Messagebox filteredMessages = {pastMessages} currentUser = {user.email} username = {pastMessages[currentUser].email} text ={pastMessages[currentUser].message} time = {pastMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {pastMessages[currentUser].count}/></div>
+            
+            })}
+            </div>
+            {console.log('message',pastMessages)}
+            
+            {/* {pastMessages.map((message,i)=>{
+                return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
+            })} */}
+        </div>
+        </>
+            :
+            <>
+            <div className = "publicButton">
+                <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
+            </div>
+            
             <div className="commentsection">
                 {/* <div className="filter">
                 <label name="filter" className = "filterLabel">Filter Messages</label>
@@ -161,6 +201,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
                 })} */}
             </div>
+            </>
+            }
+            
             </div>
         )
     }

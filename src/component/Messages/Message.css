@@ -39,14 +39,40 @@
     height:2rem;
 }
 
-.filter{
+/* .filter{ */
     /* display: flex; */
     /* width:20vw; */
-}
-
+/* } */
+/* 
 .filterLabel{
     padding:0.25rem;
+} */
+
+.publicButton{
+    display: flex;
+    justify-content: space-around;
+    
 }
+
+.publicButtons{
+    background:#315d77;
+    color:rgb(170, 170, 170);
+    
+    border-radius: 0.2rem;
+    
+    font-weight: bold;
+}
+
+.disabledButtons{
+    background:#65c7ff;
+    color:white;
+    border-radius: 0.2rem;
+    font-weight: bold;
+}
+.disabledButtons:active{ 
+    border-style: outset;
+}
+
 .commentsection{
     display:block;
     /* justify-content: center; */
@@ -105,7 +131,7 @@
 
 .text{
     padding:2rem;
-    max-width:70%;
+    width:70%;
     
 }
 
