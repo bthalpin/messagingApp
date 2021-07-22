@@ -143,6 +143,7 @@
 @media screen and (max-width:700px){
     .text{
         min-width: 20vw;
+        /* padding:2rem 1rem; */
     }
     .smallbox{
         min-width: 60vw;
@@ -161,7 +162,8 @@
         /* min-width: 40vw; */
     }
     .text{
-        /* width:15vw; */
+        padding:0.5rem;
+        margin:auto;
     }
     .deleteContainer{
         width:5vw;

@@ -6,7 +6,7 @@ import Home from "../../images/home.png";
 const Navigation = ({onRouteChange, isSignedIn,route})=>{
     if (isSignedIn){
         return (
-            <div>
+            <div className = "navroot">
                 {route==='home'
                 ?<div className = 'navLeft'> 
                 <p onClick = {() => onRouteChange('mail')}><img src = {Mail} alt="Mail" width = "30rem" ></img></p>
@@ -29,9 +29,12 @@ const Navigation = ({onRouteChange, isSignedIn,route})=>{
         )
     }else {
         return (
-            <div className = "headcontainer">
+            <div className = "navroot">
+                <div className = "headcontainer">
                     <h1 className = "title">SOCIALLY DISTANCED</h1>
             </div>
+            </div>
+            
             // <nav className = "nav">
             //     <p onClick = {() => onRouteChange('Sign In')} className = 'navElement'>Sign In</p>
             //     <p onClick = {() => onRouteChange('Register')} className = 'navElement'>Register</p>
