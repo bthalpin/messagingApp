@@ -160,7 +160,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             <input name = "filter" ></input>
             </div> */}
             
-            <div>
+            <div className="bigbox">
             {pastMessages.map((msg,i)=>{
                 const currentUser = pastMessages.length-1-i
                 // console.log('current',pastMessages[currentUser])
@@ -187,7 +187,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <input name = "filter" ></input>
                 </div> */}
                 
-                <div>
+                <div className="bigbox">
                 {filteredMessages.map((msg,i)=>{
                     const currentUser = filteredMessages.length-1-i
                     // console.log('current',pastMessages[currentUser])

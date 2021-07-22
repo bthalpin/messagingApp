@@ -145,14 +145,37 @@
         min-width: 20vw;
     }
     .smallbox{
-        min-width: 40vw;
+        min-width: 60vw;
     }
 }
 
 
 @media screen and (max-width:500px){
     .messageArea{
-        display:block;
+        /* min-width: 40vw; */
+    }
+    .smallbox{
+        min-width: 50vw;
+    }
+    .box{
+        /* min-width: 40vw; */
+    }
+    .text{
+        /* width:15vw; */
+    }
+    .deleteContainer{
+        width:5vw;
+    }
+}
+
+@media screen and (max-width:270px){
+    
+    .deleteContainer{
+        margin:0;
+    }
+    .text{
+        font-size: 0.8rem;
+        padding:0;
     }
 }
 
