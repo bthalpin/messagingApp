@@ -131,10 +131,10 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
             </div>
             <div className="commentsection">
-                <div className="filter">
+                {/* <div className="filter">
                 <label name="filter" className = "filterLabel">Filter Messages</label>
                 <input name = "filter" ></input>
-                </div>
+                </div> */}
                 <div>
                 {pastMessages.map((msg,i)=>{
                     const currentUser = pastMessages.length-1-i

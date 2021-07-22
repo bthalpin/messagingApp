@@ -16,7 +16,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                     </div>
                     <div className = "deleteContainer">
                     {route === "home"
-                    ?<div>{pastMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i)}>X</button>:<></>}</div>
+                    ?<div>{pastMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i)}>x</button>:<></>}</div>
                             
                         
                             :<div><button className = "deleteButton" id = {i} onClick = {deleteMail}>X</button></div>

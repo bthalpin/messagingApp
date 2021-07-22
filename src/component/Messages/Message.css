@@ -81,10 +81,12 @@
 
 .messageArea{
     display:flex;
-    background:#ededed;
+    background:white;
     justify-content: space-between;
-    border:2px solid darkblue;
-    border-radius: 0.25rem;
+    border:5px solid #00a2ff;
+    border-bottom: none;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
 }
 .deleteContainer{
     display:flex;
@@ -135,15 +137,17 @@
     font-weight: bold;
 }
 .user{
-    background:#ededed;
+    background:#00a2ff;
+    color:white;
     display:flex;
     align-items: center;
     justify-content: space-between;
     padding:0.1rem 0.3rem;
     margin:0;
     font-size: 0.8rem;
-    border:2px solid darkblue;
-    border-radius: 0.25rem;
+    border:3px solid #00a2ff;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
 }
 
 .user > p{
@@ -169,6 +173,6 @@
 
 .likeButton{
     padding:0;
-    border:1px solid darkblue;
+    border:1px solid #00a2ff;
     border-radius: 0.2rem;
 }

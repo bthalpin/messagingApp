@@ -15,7 +15,7 @@ li{
 
 .friendtitle{
     margin:0;
-    background: darkgray;
+    background: rgb(4, 113, 255);
     padding:0.5rem 0;
     font-size:1.5rem;
     border:1px solid gray;
@@ -29,12 +29,41 @@ li{
 
 
 .mainfriend{
-    /* position: absolute;
-    left:0; */
-    height:100%;
+    /* position: fixed; */
+    /* left:0; */
+    height:100vh;
     background:white;
     border:1px solid gray;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    /* border-bottom-left-radius: 0.5rem; */
+    /* border-bottom-right-radius: 0.5rem; */
     /* padding:0.3rem */
+}
+
+.addFriend{
+    background: rgb(4, 113, 255);
+    color:white;
+    font-weight: bold;
+    border-radius: 0.5rem;
+}
+
+.friendList{
+    display:flex;
+    align-items: center;
+    height:100vh;
+}
+
+.hideFriend{
+    height:100%;
+    background: rgb(4, 113, 255);
+    color:white;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.showFriend{
+    margin-top: 20vh;
+    height:3rem;
+    background: rgb(4, 113, 255);
+    color:white;
+    border-radius: 0.5rem;
 }
