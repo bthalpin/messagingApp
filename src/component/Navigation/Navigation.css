@@ -82,13 +82,15 @@
     .title{
         font-size: 1.5rem;
     }
-    
+    .homemail{
+        width:1.7rem;
+    }
   }
 
 @media screen and (max-width:450px) {
     .headcontainer{
       /* min-width: 100vw; */
-      height:8vh;
+      height:3rem;
       
     }
     .title{
@@ -97,20 +99,37 @@
     .navElement{
         font-size: 0.5rem;
     }
+    .homemail{
+        width:1.4rem;
+        
+    }
+    .navhomemail{
+        margin:0.6rem;
+    }
     
   }
 
   @media screen and (max-width:325px) {
-    .headcontainer{
-      /* min-width: 100vw; */
-      height:10vh;
-      
-    }
-    .title{
-        /* font-size: 0.8rem; */
-    }
+   
     .navElement{
         font-size: 0.35rem;
     }
     
   }
+
+  @media screen and (max-width:280px) {
+   
+    .headcontainer{
+        /* min-width: 100vw; */
+        height:4rem;
+        
+      }
+    .navhomemail{
+        margin:1.4rem 1rem;
+    }
+    .navElement{
+        margin-top:0.5rem;
+    }
+
+  }
+  

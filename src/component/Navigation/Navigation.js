@@ -9,10 +9,10 @@ const Navigation = ({onRouteChange, isSignedIn,route})=>{
             <div className = "navroot">
                 {route==='home'
                 ?<div className = 'navLeft'> 
-                <p onClick = {() => onRouteChange('mail')}><img src = {Mail} alt="Mail" width = "30rem" ></img></p>
+                <p className="navhomemail" onClick = {() => onRouteChange('mail')}><img className = "homemail" src = {Mail} alt="Mail" width = "30rem" ></img></p>
                 </div>
                 :<div className = 'navLeft'> 
-                <p onClick = {() => onRouteChange('home')}><img src = {Home} alt="Home" width = "30rem" ></img></p>
+                <p className="navhomemail" onClick = {() => onRouteChange('home')}><img className = "homemail" src = {Home} alt="Home" width = "30rem" ></img></p>
                 </div>
                 }
               
