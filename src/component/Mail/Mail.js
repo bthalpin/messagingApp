@@ -3,7 +3,11 @@ import Messagebox from '../Messages/Messagebox';
 import './Mail.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation}) => {
+    const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
+    let background=''
+
+
     useEffect(()=>{
         if (privateMessage.message!==''){
             setPrivateMessages((prevPrivateMessages)=>{
@@ -18,17 +22,17 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
     },[privateMessage.time])
 
     const onChanges= (event) =>{
-        switch (event.target.id){
-            case 'recipientEmail':
-                setPrivateMessage((prevPrivateMessage)=>{
-                    return {...prevPrivateMessage,recipientEmail:event.target.value}
-                })
-                break;
-            case 'messageBody':
+        // switch (event.target.id){
+        //     case 'recipientEmail':
+        //         setPrivateMessage((prevPrivateMessage)=>{
+        //             return {...prevPrivateMessage,recipientEmail:event.target.value}
+        //         })
+        //         break;
+        //     case 'messageBody':
                 setPrivateMessage((prevPrivateMessage)=>{
                     return {...prevPrivateMessage,message:event.target.value}
                 })
-                break;
+                // break;
         }
         // switch (event.target.id){
         //   case 'Name':
@@ -46,10 +50,10 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
         //     default:
         //         console.log(event.target.value)
         // }
-      }
+      
 
       const onSend = (picture) => {
-          if(picture){
+          if(picture &&(privateMessage.message!=='')){
             setPrivateMessage((prevPrivateMessage)=>{
                 return {...prevPrivateMessage,message:'#img#'+privateMessage.message}
             })
@@ -58,12 +62,13 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
             return {...prevPrivateMessage,time:Date().toLocaleString()}
         })
           
-          console.log(privateMessages)
+          console.log(privateMessages,"private")
+          setHiddenMailStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
       }
 
       const deleteMail = (event) => {
         const currentIndex = privateMessages.length-1-event.target.id
-        // console.log(pastMessages[currentIndex].email)
+        
         setPrivateMessages(privateMessages.filter((message)=>message!==privateMessages[currentIndex]))
       }
 
@@ -74,13 +79,25 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
         })
       }
 
-    //   const offsetMail = (mail) => {
-    //         let offsetClass;
-    //         mail===user.email?offsetClass="recipient":offsetClass="sender";
-    //         console.log(offsetClass)
-    //         setOffset(offsetClass)
-             
-    //   }
+      const changeHidden = (picture) => {
+        if(picture){
+           setHiddenMailStatus({picture:"",message:"textareahide",button:"textareahide",submit:""})
+        }else{
+            setHiddenMailStatus({picture:"textareahide",message:"",button:"textareahide",submit:""})
+        }
+        
+        // console.log(hideMessageText,hidePictureText)
+        
+    }
+
+    const goBack = () => {
+        setHiddenMailStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
+        
+        setPrivateMessage((prevCurrentPrivateMessage)=>{
+            return {...prevCurrentPrivateMessage,message:''}})
+        
+    }
+
     return (
         <div className = "mailbox">
             <h1>{conversation.you}</h1>
@@ -91,9 +108,18 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                 </div> */}
             
             {/* <label name="body">Message</label> */}
-            <button type="submit" onClick ={()=>onSend(true)}>Picture</button>
+{/*             
             <input name = "body"  id = "messageBody" placeholder = "Enter Message " onChange = {onChanges} value = {privateMessage.message}></input>
-            <button type="submit" onClick ={()=>onSend(false)}>Send</button>
+            <button className = "buttons" type="submit" onClick ={()=>onSend(false)}>Send</button>
+            <button className = "buttons" type="submit" onClick ={()=>onSend(true)}>Picture</button> */}
+
+                <input className = {"textarea "+hiddenMailStatus.picture} cols="40" rows="6" onChange = {onChanges} placeholder = "Enter Picture URL" value = {privateMessage.message}></input>
+                <input className = {"textarea "+hiddenMailStatus.message} cols="40" rows="6" onChange = {onChanges} value = {privateMessage.message}></input>
+                
+                <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
+                <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
+                <button className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</button>
+                <button className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</button>
             </div>
             <div className = "messages">
                 {privateMessages.map((message,i)=>{
@@ -103,8 +129,9 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                     // if ((privateMessages[currentMessage].recipientEmail === user.email||privateMessages[currentMessage].senderEmail===user.email)||(privateMessages[currentMessage].senderEmail===privateMessage.senderEmail||privateMessages[currentMessage].recipientEmail===privateMessage.recipientEmail)){
                         if ((privateMessages[currentMessage].recipientEmail.toUpperCase() === conversation.you&&privateMessages[currentMessage].senderEmail===conversation.me)||(privateMessages[currentMessage].recipientEmail=== conversation.me.toUpperCase()&&privateMessages[currentMessage].senderEmail.toUpperCase() ===conversation.you)){    
                             privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
+                            privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
                             console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
-                            return <div className = {offset}><Messagebox username = {privateMessages[currentMessage].senderEmail} text ={privateMessages[currentMessage].message} time = {privateMessages[currentMessage].time} i = {i} deleteMail = {deleteMail} reply = {reply} /></div>
+                            return <div className = {offset}><Messagebox username = {privateMessages[currentMessage].senderEmail} text ={privateMessages[currentMessage].message} time = {privateMessages[currentMessage].time} i = {i} deleteMail = {deleteMail} reply = {reply} background = {background} /></div>
                     }
                     
                 })}

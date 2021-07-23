@@ -1,5 +1,14 @@
 .mailbox{
     padding:1rem;
+    background:white;
+    background-image: url('../../images/mailhome.png');
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+    border:2px solid black;
+    border-radius: 1rem;
+    min-height: 100vh;
+    min-width: 50vw;
     /* display:block; */
     /* margin-right:20vw;
     margin-left:auto; */
@@ -16,4 +25,15 @@
 
 .recipient{
     margin-left:-5rem;
+}
+
+.textarea{
+    height:1rem;
+}
+
+.buttons {
+    background:#00a2ff;
+    border-radius: 0.5rem;
+    color:white;
+    font-weight: bold;
 }

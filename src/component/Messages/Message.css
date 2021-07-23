@@ -3,40 +3,51 @@
 }
 .inputbox{
     padding:1rem;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
-    align-items: top;
     margin-left:auto;
 }
 
-.textarea{
+.textarea,.textareapic{
     /* padding:1rem; */
     /* resize:none; */
     height:1.5rem;
     transition:0.25s ease-in-out;
     border-radius: 1rem;
-    margin:0 0.5rem;
+    margin:1rem 0.5rem;
     width:20rem;
+    padding-left: 0.5rem;
 }
 
 @media (max-width:700px) {
-    .textarea{
+    .textarea,.textareapic{
         width: 30vw;
     }
     
 }
 .textarea:focus{
     /* height:35vh; */
-    border:none;
+    /* border:none; */
+    /* border-radius: 1rem; */
+    outline:none;
+    height:5rem;
+}
+
+.textareapic:focus{
+    outline:none;
     
-    height:20vh;
+}
+
+.textareahide{
+    display:none;
 }
 
 .submitbutton{
     position: relative;
     top:0;
     height:2rem;
+    margin:0rem 0.5rem;
 }
 
 /* .filter{ */
@@ -83,6 +94,10 @@
 .commentsection{
     display:block;
     background:#65c7ff;
+    /* background-image: url('../../images/mainbackground2.png'); */
+    /* background-size: 40%; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center; */
     min-height: 100vh;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
@@ -254,4 +269,12 @@
     padding:0;
     border:1px solid #00a2ff;
     border-radius: 0.2rem;
+}
+
+.senderbackground{
+    border:5px solid #83d1ff;
+}
+
+.user.senderbackground{
+    background:#83d1ff;
 }

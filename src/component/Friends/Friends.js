@@ -27,7 +27,11 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             const newFriends = [...friends,newFriend.toUpperCase()]
             setUser((prevUser)=> {
             return {...prevUser,friends:newFriends}
-        })
+            
+            })
+            // setMyFriends((prevMyFriends)=>{
+            //     return {...prevMyFriends,email:user.email,friends:newFriends}
+        
         }
         
     }
@@ -40,7 +44,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     const { friends } = user
     return(
             <div className="fixed">
-            {/* {console.log(visibleFriends)} */}
+            {console.log(friends,"friendlsist",user)}
             {friendList?
             <div className = "friendList">
                 <div  className="mainfriend">

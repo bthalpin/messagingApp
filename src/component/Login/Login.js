@@ -25,6 +25,11 @@ const Login = ({user,route,errorMessage,setRoute,setUser, setErrorMessage,setIsS
       }
     
       const verifyLogin = () => {
+        // const oldFriends = Object.keys(myOldFriends).filter(key=>myOldFriends[key].email===user.email)
+        // console.log(oldFriends)
+        // const oldFriends = myOldFriends.filter((username)=>username.email===user.email);
+        // if(oldFriends.length){setUser((prevUser)=>{
+        //   return {...prevUser,friends:oldFriends.friends}})}
         setRoute('home')
         setIsSignedIn(true)
         console.log(user)

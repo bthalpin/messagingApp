@@ -11,6 +11,8 @@ import Picture from './component/Messages/Picture';
 
 function App() {
   const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
+  // const [myFriends,setMyFriends] = useState({email:'',friends:[]})
+  // const [myOldFriends, setMyOldFriends] = useState([])
   const [route,setRoute] = useState('Sign In')
   const [isSignedIn,setIsSignedIn] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
@@ -36,7 +38,11 @@ function App() {
     setCurrentMessage({username:'',email:'',message:'',time:'',count:[]})
     setPrivateMessage({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
     setConversation({me:'',you:''})
-    // console.log(pastMessages)
+    
+    // setMyOldFriends((prevMyOldFriends)=>{
+      // return {...prevMyOldFriends,}
+    // })
+    // console.log(myOldFriends,'logout')
   }
 
   const onRouteChange = (route) => {
@@ -46,14 +52,24 @@ function App() {
     // console.log(route)
   }
   
-  const deletePost = (currentIndex) => {
+  const deletePost = (currentIndex,publicStatus) => {
+    console.log(publicStatus,'error')
     // const currentIndex = pastMessages.length-1-event.target.id
-    console.log(pastMessages[currentIndex].email)
-    if (pastMessages[currentIndex].email===user.email){
-      setPastMessages(pastMessages.filter((message)=>message!==pastMessages[currentIndex]))
+    // console.log(pastMessages[currentIndex].email)
+    if (publicStatus){
+      if (pastPublicMessages[currentIndex].email===user.email){
+        setPastPublicMessages(pastPublicMessages.filter((message)=>message!==pastPublicMessages[currentIndex]))
+      }else{
+        alert('You can only delete your own messages')
+      }    
     }else{
-      alert('You can only delete your own messages')
-    }    
+      if (pastMessages[currentIndex].email===user.email){
+        setPastMessages(pastMessages.filter((message)=>message!==pastMessages[currentIndex]))
+      }else{
+        alert('You can only delete your own messages')
+      }   
+    }
+     
   }
 
   return (
@@ -65,7 +81,7 @@ function App() {
         ?
         <div className = "main">
         {/* {console.log(pastMessages)} */}
-        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}/>
+        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}  />
         <div className = "mainMessage">
         <Messages 
             user = {user} 
@@ -86,7 +102,7 @@ function App() {
         </div>
         :
         <div className = "main">
-        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}/>
+        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}  />
         <div className = "mainMessage">
         <Mail user ={user} privateMessage = {privateMessage} setPrivateMessage = {setPrivateMessage} privateMessages = {privateMessages} setPrivateMessages = {setPrivateMessages} deletePost = {deletePost} conversation = {conversation} />
         </div>
@@ -112,6 +128,8 @@ function App() {
             // setPastMessages = {setPastMessages}
             setCurrentPublicMessage = {setCurrentPublicMessage}
             // setPrivatePublicMessage = {setPrivatePublicMessage}
+            
+          
             />          
         </>
         )
