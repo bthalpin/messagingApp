@@ -53,8 +53,16 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     
     // let filteredMessages = 
     console.log('filtered',filteredMessages,pastMessages,'user',user.email)
-    const onSubmit = () => {
+
+    const onSubmit = (picture) => {
         // console.log(currentObject)
+        if (picture){
+            publicStatus?setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                return {...prevCurrentPublicMessage,message:"#img#"+currentPublicMessage.message}})
+            :setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,message:"#img#"+currentMessage.message}})
+        }
+        console.log(currentPublicMessage,'public')
         publicStatus?setCurrentPublicMessage((prevCurrentPublicMessage)=>{
             return {...prevCurrentPublicMessage,time:Date().toLocaleString()}})
         :setCurrentMessage((prevCurrentMessage)=>{
@@ -179,8 +187,10 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             {publicStatus?
             <>
             <div className = "inputbox">
+            <button className = "submitbutton" onClick = {()=>onSubmit(true)}>Picture</button>
+            <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentPublicMessage.message}></input>
                 <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentPublicMessage.message}></input>
-                <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
+                <button className = "submitbutton" onClick = {()=>onSubmit(false)}>Submit</button>
             </div>
             <div className = "publicButton">
                 <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>

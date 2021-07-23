@@ -11,7 +11,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                 {/* {console.log(username,'user')} */}
                 <div className = "messageArea">
                 <div className = "text">
-                        <div className = "textmessage">{text.includes('img')?<Picture source = {text.substr(3,text.length-1)}/>:text}</div>
+                        <div className = "textmessage">{text.includes('#img#')?<Picture source = {text.substr(5,text.length-1)}/>:text}</div>
                         {/* {console.log(text.substr(3,text.length-1))} */}
                     </div>
                     <div className = "deleteContainer">

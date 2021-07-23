@@ -58,23 +58,37 @@
     background:#315d77;
     color:rgb(170, 170, 170);
     
-    border-radius: 0.2rem;
-    
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
     font-weight: bold;
+    border:2px solid #315d77;
+    border-bottom:2px solid #1e3847;
+    outline: none;
+    padding:0.3rem 0.5rem;
 }
 
 .disabledButtons{
     background:#65c7ff;
     color:white;
-    border-radius: 0.2rem;
     font-weight: bold;
-}
-.disabledButtons:active{ 
-    border-style: outset;
+    border:none;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    padding:0.3rem 0.5rem;
 }
 
+.publicButtons:active{
+    border-style:outset;
+}
 .commentsection{
     display:block;
+    background:#65c7ff;
+    min-height: 100vh;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    min-width: 60vw;
+    /* border-top:4px dashed black; */
+    /* background-attachment: scroll; */
     /* justify-content: center; */
 }
 
@@ -108,7 +122,7 @@
 .messageArea{
     display:flex;
     background:white;
-    justify-content: space-between;
+    justify-content: center;
     border:5px solid #00a2ff;
     border-bottom: none;
     border-top-right-radius: 0.5rem;
@@ -130,9 +144,10 @@
 }
 
 .text{
-    padding:2rem;
-    width:70%;
+    padding:1rem;
     
+    width:70%;
+    min-height: 4rem;
 }
 
 .textmessage{
@@ -140,6 +155,17 @@
     white-space: pre-wrap;
 }
 
+@media screen and (min-width:1200px) {
+    .smallbox{
+        max-width:30rem;
+    }
+    .text{
+        /* max-width: 35rem; */
+    }
+    .messageArea{
+        /* max-width: 25rem; */
+    }
+}
 @media screen and (max-width:700px){
     .text{
         min-width: 20vw;
@@ -148,12 +174,13 @@
     .smallbox{
         min-width: 60vw;
     }
+    
 }
 
 
 @media screen and (max-width:500px){
-    .messageArea{
-        /* min-width: 40vw; */
+    .commentsection{
+        min-width: 40vw;
     }
     .smallbox{
         min-width: 50vw;
@@ -168,6 +195,7 @@
     .deleteContainer{
         width:5vw;
     }
+
 }
 
 @media screen and (max-width:270px){

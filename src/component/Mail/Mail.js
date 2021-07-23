@@ -48,7 +48,12 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
         // }
       }
 
-      const onSend = () => {
+      const onSend = (picture) => {
+          if(picture){
+            setPrivateMessage((prevPrivateMessage)=>{
+                return {...prevPrivateMessage,message:'#img#'+privateMessage.message}
+            })
+          }
         setPrivateMessage((prevPrivateMessage)=>{
             return {...prevPrivateMessage,time:Date().toLocaleString()}
         })
@@ -86,8 +91,9 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                 </div> */}
             
             {/* <label name="body">Message</label> */}
+            <button type="submit" onClick ={()=>onSend(true)}>Picture</button>
             <input name = "body"  id = "messageBody" placeholder = "Enter Message " onChange = {onChanges} value = {privateMessage.message}></input>
-            <button type="submit" onClick ={onSend}>Send</button>
+            <button type="submit" onClick ={()=>onSend(false)}>Send</button>
             </div>
             <div className = "messages">
                 {privateMessages.map((message,i)=>{
