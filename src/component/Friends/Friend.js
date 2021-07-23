@@ -1,10 +1,11 @@
 import React from 'react';
+import './Friends.css';
 
-const Friend = ({friend,messageFriend}) => {
+const Friend = ({friend,converse, route}) => {
     console.log(friend)
     return(
-        <div>
-             <li onClick = {()=>messageFriend(friend)}>{friend}</li>
+        <div className = "radioButton">
+             <li><input type = "radio" name = "friend" id={friend} onClick = {()=>converse(friend)}/><label for={friend}>{friend}</label></li>
         </div>
     )
 }

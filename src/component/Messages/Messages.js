@@ -6,7 +6,7 @@ import './Message.css';
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,deletePost,route}) => {
+const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route}) => {
     const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
 
@@ -19,6 +19,16 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         
         // console.log(pastMessages)
     },[currentMessage.time])
+
+    useEffect(()=>{
+        if (currentPublicMessage.message!==''){
+            setPastPublicMessages([...pastPublicMessages,currentPublicMessage])
+        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+            return {...prevCurrentPublicMessage,message:''}})
+        }
+        
+        // console.log(pastMessages)
+    },[currentPublicMessage.time])
 
     // useEffect(()=>{
     //     setFilteredMessages(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
@@ -45,7 +55,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     console.log('filtered',filteredMessages,pastMessages,'user',user.email)
     const onSubmit = () => {
         // console.log(currentObject)
-        setCurrentMessage((prevCurrentMessage)=>{
+        publicStatus?setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+            return {...prevCurrentPublicMessage,time:Date().toLocaleString()}})
+        :setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,time:Date().toLocaleString()}})
         // console.log('submit',currentObject)
             
@@ -62,7 +74,10 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     }
     const onInputChange = (event) => {
         // setCurrentMessage(event.target.value)
-        setCurrentMessage((prevCurrentMessage)=>{
+        publicStatus?
+        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+            return {...prevCurrentPublicMessage,message:event.target.value}})
+        :setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,message:event.target.value}})
             // setCurrentObject((prevCurrentObject)=>{
             //     return {...prevCurrentObject,time:Date().toLocaleString()}})
@@ -74,6 +89,20 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         // x.push(user)
         // console.log(x,pastMessages[i])
         // setPastMessages([...pastMessages.slice,pastMessages[i].count=x])
+        if (publicStatus){
+        const newArr = [...pastPublicMessages]
+        if (!newArr[i].count.includes(user.email)){
+            let counting = [...newArr[i].count,user.email]
+            newArr[i]={...newArr[i],count:counting}
+            console.log(counting)
+            setPastPublicMessages(newArr)
+        }else{
+            let counting = newArr[i].count.filter((currentuser)=>currentuser!==user.email)
+            newArr[i]={...newArr[i],count:counting}
+            // console.log(filteredArr)
+            setPastPublicMessages(newArr)
+            
+        }}else{
         const newArr = [...pastMessages]
         // setPastMessages(pastMessages.map(object=>{
         //     return (object.count.includes(user)
@@ -119,6 +148,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         // setPastMessages((prevPastMessages)=>{
             // return [...prevPastMessages,{PastMessages[i].count:PastMessages[i].count++}]
     }
+}
 
     // componentDidUpdate=()=>{
     //     fetch('http:localhost:3000/',{
@@ -143,13 +173,15 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
         return(
             <div className = "maincomment">
-            <div className = "inputbox">
-                <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentMessage.message}></input>
-                <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
-            </div>
+                <h1>Message Board</h1>
+            
             
             {publicStatus?
             <>
+            <div className = "inputbox">
+                <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentPublicMessage.message}></input>
+                <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
+            </div>
             <div className = "publicButton">
                 <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
             </div>
@@ -161,14 +193,14 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             </div> */}
             
             <div className="bigbox">
-            {pastMessages.map((msg,i)=>{
-                const currentUser = pastMessages.length-1-i
-                // console.log('current',pastMessages[currentUser])
-                return <div><Messagebox filteredMessages = {pastMessages} currentUser = {user.email} username = {pastMessages[currentUser].email} text ={pastMessages[currentUser].message} time = {pastMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {pastMessages[currentUser].count}/></div>
+            {pastPublicMessages.map((msg,i)=>{
+                const currentUser = pastPublicMessages.length-1-i
+                console.log('username',pastPublicMessages[currentUser])
+                return <div><Messagebox filteredMessages = {pastPublicMessages} currentUser = {user.email} username = {pastPublicMessages[currentUser].email} text ={pastPublicMessages[currentUser].message} time = {pastPublicMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {pastPublicMessages[currentUser].count}/></div>
             
             })}
             </div>
-            {console.log('message',pastMessages)}
+            {/* {console.log('message',pastMessages)} */}
             
             {/* {pastMessages.map((message,i)=>{
                 return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
@@ -177,6 +209,10 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         </>
             :
             <>
+            <div className = "inputbox">
+                <input className = "textarea" cols="40" rows="6" onChange = {onInputChange} value = {currentMessage.message}></input>
+                <button className = "submitbutton" onClick = {onSubmit}>Submit</button>
+            </div>
             <div className = "publicButton">
                 <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
             </div>

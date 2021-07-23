@@ -17,5 +17,6 @@ html{
   
   background:#e6f6ff;
   /* min-width:100%; */
+  z-index: 0;
 }
 

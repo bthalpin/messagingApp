@@ -18,9 +18,11 @@ function App() {
   // const [pastMessages,setPastMessages] = useState([])
   const [pastMessages,setPastMessages] = useState([])
   const [currentMessage, setCurrentMessage] = useState({username:'',email:'',message:'',time:'',count:[]})
+  const [pastPublicMessages,setPastPublicMessages] = useState([])
+  const [currentPublicMessage, setCurrentPublicMessage] = useState({username:'',email:'',message:'',time:'',count:[]})
   const [privateMessages,setPrivateMessages] = useState([])
   const [privateMessage, setPrivateMessage] = useState({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
-
+  const [conversation,setConversation] = useState({me:'',you:''})
   
  
 
@@ -33,6 +35,7 @@ function App() {
     // console.log(pastMessages)
     setCurrentMessage({username:'',email:'',message:'',time:'',count:[]})
     setPrivateMessage({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
+    setConversation({me:'',you:''})
     // console.log(pastMessages)
   }
 
@@ -62,7 +65,7 @@ function App() {
         ?
         <div className = "main">
         {/* {console.log(pastMessages)} */}
-        <Friends user = {user} setUser = {setUser} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage}/>
+        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}/>
         <div className = "mainMessage">
         <Messages 
             user = {user} 
@@ -74,19 +77,25 @@ function App() {
             setCurrentMessage = {setCurrentMessage}
             pastMessages = {pastMessages}
             setPastMessages = {setPastMessages}
+            currentPublicMessage = {currentPublicMessage}
+            setCurrentPublicMessage = {setCurrentPublicMessage}
+            pastPublicMessages = {pastPublicMessages}
+            setPastPublicMessages = {setPastPublicMessages}
             />
             </div>
         </div>
         :
         <div className = "main">
-        <Friends user = {user} setUser = {setUser} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage}/>
+        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}/>
         <div className = "mainMessage">
-        <Mail user ={user} privateMessage = {privateMessage} setPrivateMessage = {setPrivateMessage} privateMessages = {privateMessages} setPrivateMessages = {setPrivateMessages} deletePost = {deletePost} />
+        <Mail user ={user} privateMessage = {privateMessage} setPrivateMessage = {setPrivateMessage} privateMessages = {privateMessages} setPrivateMessages = {setPrivateMessages} deletePost = {deletePost} conversation = {conversation} />
         </div>
+        {console.log(privateMessages,privateMessage)}
         </div>)
+        
       :(
         <>
-        {/* {console.log(pastMessages)} */}
+        {console.log(privateMessages,privateMessage)}
         <Login 
             user = {user}
             route = {route} 
@@ -101,6 +110,8 @@ function App() {
             pastMessages = {pastMessages}
             setPrivateMessage = {setPrivateMessage}
             // setPastMessages = {setPastMessages}
+            setCurrentPublicMessage = {setCurrentPublicMessage}
+            // setPrivatePublicMessage = {setPrivatePublicMessage}
             />          
         </>
         )

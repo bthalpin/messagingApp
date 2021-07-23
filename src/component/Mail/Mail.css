@@ -5,3 +5,15 @@
     margin-left:auto; */
     /* margin:auto; */
 }
+
+.messages{
+    /* display:flex; */
+}
+
+.sender{
+    margin-left:5rem;
+}
+
+.recipient{
+    margin-left:-5rem;
+}

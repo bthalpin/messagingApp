@@ -6,10 +6,13 @@ import friendpicture from "../../images/friend.png";
 
 const arrow = "<<";
 
-const Friends = ({user,setUser,setPrivateMessage,setRoute}) => {
+const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation}) => {
     const [friendList,setFriendList] = useState(false)
 
-    const messageFriend = (friend) => {
+    const converse = (friend) => {
+        setConversation((prevConversation)=>{
+            return {...prevConversation,you:friend,me:user.email}
+        })
         setPrivateMessage((prevPrivateMessage)=>{
             return {...prevPrivateMessage,recipientEmail:friend}
         })
@@ -20,10 +23,13 @@ const Friends = ({user,setUser,setPrivateMessage,setRoute}) => {
 
     const addFriend = () => {
         const newFriend = prompt('Enter the email address of your friend ')
-        const newFriends = [...friends,newFriend.toUpperCase()]
-        setUser((prevUser)=> {
+        if (newFriend){
+            const newFriends = [...friends,newFriend.toUpperCase()]
+            setUser((prevUser)=> {
             return {...prevUser,friends:newFriends}
         })
+        }
+        
     }
 
     const toggleFriends = () => {
@@ -39,12 +45,13 @@ const Friends = ({user,setUser,setPrivateMessage,setRoute}) => {
             <div className = "friendList">
                 <div  className="mainfriend">
                     <div >
-                        <div className="friendtitlebox"><p className="friendtitle">Friends List</p></div>
-                        <div>
+                        {console.log(route,'route')}
+                        <div className="friendtitlebox"><p className="friendtitle">{route==="home"?"Friends List":"Contacts"}</p></div>
+                        <div className = "scroll">
                             <ul>
                                 {console.log(friends)}
                                 {friends.map((friend)=>{
-                                    return <Friend messageFriend = {messageFriend} friend = {friend} />
+                                    return <Friend converse = {converse} friend = {friend} route = {route} />
                                 })}
                                 {/* <Friend messageFriend = {messageFriend} /> */}
                                 {/* <li onClick = {()=>messageFriend(friends[0])}>{friends}</li> */}

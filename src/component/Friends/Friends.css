@@ -34,12 +34,41 @@ li{
 .mainfriend{
     /* position: fixed; */
     /* left:0; */
-    height:80vh;
+    height:74vh;
     background:white;
     border:1px solid gray;
+    
     /* border-bottom-left-radius: 0.5rem; */
     /* border-bottom-right-radius: 0.5rem; */
     /* padding:0.3rem */
+}
+
+.scroll{
+    height:60vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.scroll::-webkit-scrollbar{
+    display:none;
+}
+
+@media screen and (max-height:650px) {
+    .scroll{
+        height:55vh;
+    }
+}
+
+@media screen and (max-height:450px) {
+    .scroll{
+        height:50vh;
+    }
+}
+
+@media screen and (max-height:350px) {
+    .scroll{
+        height:40vh;
+    }
 }
 
 .addFriend{
@@ -50,16 +79,24 @@ li{
 }
 
 .friendList{
+    position:fixed;
     display:flex;
     align-items: center;
-    height:80vh;
+    height:74vh;
     border:1px solid gray;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    /* z-index: 2; */
+    z-index: 1;
+    
+}
+
+ul{
+    
+    height:100%
 }
 
 .hideFriend{
+    
     height:100%;
     background: rgb(4, 113, 255);
     color:white;
@@ -68,10 +105,23 @@ li{
 }
 
 .showFriend{
-    position:absolute;
-    margin-top: 20vh;
+    position:fixed;
+    margin-top: 0;
     height:3rem;
     background: rgb(4, 113, 255);
     color:white;
     border-radius: 0.5rem;
+}
+
+.radioButton input[type="radio"]{
+    display:none;
+}
+
+.radioButton label{
+    display:inline-block;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked+label{
+    background: rgb(162, 202, 255);
 }
