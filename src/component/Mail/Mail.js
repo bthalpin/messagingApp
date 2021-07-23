@@ -3,6 +3,7 @@ import Messagebox from '../Messages/Messagebox';
 import './Mail.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation}) => {
+
     const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
     let background=''
@@ -100,7 +101,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
 
     return (
         <div className = "mailbox">
-            <h1>{conversation.you}</h1>
+            <h1 className = "partner">{conversation.you}</h1>
             <div>
                 {/* <div>
                 <label name="to">To</label>
@@ -113,13 +114,23 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
             <button className = "buttons" type="submit" onClick ={()=>onSend(false)}>Send</button>
             <button className = "buttons" type="submit" onClick ={()=>onSend(true)}>Picture</button> */}
 
-                <input className = {"textarea "+hiddenMailStatus.picture} cols="40" rows="6" onChange = {onChanges} placeholder = "Enter Picture URL" value = {privateMessage.message}></input>
-                <input className = {"textarea "+hiddenMailStatus.message} cols="40" rows="6" onChange = {onChanges} value = {privateMessage.message}></input>
+                <input 
+                    className = {"textarea "+hiddenMailStatus.picture} cols="40" rows="6" 
+                    onChange = {onChanges} 
+                    placeholder = "Enter Picture URL" 
+                    value = {privateMessage.message}
+                ></input>
+                <input 
+                    className = {"textarea "+hiddenMailStatus.message} cols="40" rows="6" 
+                    onChange = {onChanges} 
+                    value = {privateMessage.message}
+                ></input>
                 
                 <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
                 <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
                 <button className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</button>
                 <button className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</button>
+
             </div>
             <div className = "messages">
                 {privateMessages.map((message,i)=>{
@@ -127,14 +138,27 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                     
                     console.log(conversation,privateMessages[currentMessage],'time')
                     // if ((privateMessages[currentMessage].recipientEmail === user.email||privateMessages[currentMessage].senderEmail===user.email)||(privateMessages[currentMessage].senderEmail===privateMessage.senderEmail||privateMessages[currentMessage].recipientEmail===privateMessage.recipientEmail)){
-                        if ((privateMessages[currentMessage].recipientEmail.toUpperCase() === conversation.you&&privateMessages[currentMessage].senderEmail===conversation.me)||(privateMessages[currentMessage].recipientEmail=== conversation.me.toUpperCase()&&privateMessages[currentMessage].senderEmail.toUpperCase() ===conversation.you)){    
-                            privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
-                            privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
-                            console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
-                            return <div className = {offset}><Messagebox username = {privateMessages[currentMessage].senderEmail} text ={privateMessages[currentMessage].message} time = {privateMessages[currentMessage].time} i = {i} deleteMail = {deleteMail} reply = {reply} background = {background} /></div>
-                    }
+                        if ((privateMessages[currentMessage].recipientEmail.toUpperCase() === conversation.you
+                                &&privateMessages[currentMessage].senderEmail===conversation.me)
+                            ||(privateMessages[currentMessage].recipientEmail=== conversation.me.toUpperCase()
+                                &&privateMessages[currentMessage].senderEmail.toUpperCase() ===conversation.you))
+                            {    
+                                privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
+                                privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
+                                console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
+                                return <div className = {offset}>
+                                            <Messagebox username = {privateMessages[currentMessage].senderEmail} 
+                                            text ={privateMessages[currentMessage].message} 
+                                            time = {privateMessages[currentMessage].time} 
+                                            i = {i} deleteMail = {deleteMail} 
+                                            reply = {reply} 
+                                            background = {background} 
+                                            />
+                                        </div>
+                            }
                     
-                })}
+                    })
+                }
             </div>
             
         </div>

@@ -53,7 +53,7 @@ function App() {
   }
   
   const deletePost = (currentIndex,publicStatus) => {
-    console.log(publicStatus,'error')
+    // console.log(publicStatus,'error')
     // const currentIndex = pastMessages.length-1-event.target.id
     // console.log(pastMessages[currentIndex].email)
     if (publicStatus){
@@ -81,7 +81,15 @@ function App() {
         ?
         <div className = "main">
         {/* {console.log(pastMessages)} */}
-        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}  />
+        <Friends 
+            user = {user} 
+            setUser = {setUser} 
+            route = {route} 
+            setRoute = {setRoute} 
+            setPrivateMessage = {setPrivateMessage} 
+            setConversation = {setConversation}  
+          />
+
         <div className = "mainMessage">
         <Messages 
             user = {user} 
@@ -102,9 +110,26 @@ function App() {
         </div>
         :
         <div className = "main">
-        <Friends user = {user} setUser = {setUser} route = {route} setRoute = {setRoute} setPrivateMessage = {setPrivateMessage} setConversation = {setConversation}  />
+        <Friends 
+            user = {user} 
+            setUser = {setUser} 
+            route = {route} 
+            setRoute = {setRoute} 
+            setPrivateMessage = {setPrivateMessage} 
+            setConversation = {setConversation}  
+          />
+
         <div className = "mainMessage">
-        <Mail user ={user} privateMessage = {privateMessage} setPrivateMessage = {setPrivateMessage} privateMessages = {privateMessages} setPrivateMessages = {setPrivateMessages} deletePost = {deletePost} conversation = {conversation} />
+        <Mail 
+            user ={user} 
+            privateMessage = {privateMessage} 
+            setPrivateMessage = {setPrivateMessage} 
+            privateMessages = {privateMessages} 
+            setPrivateMessages = {setPrivateMessages} 
+            deletePost = {deletePost} 
+            conversation = {conversation} 
+          />
+          
         </div>
         {console.log(privateMessages,privateMessage)}
         </div>)

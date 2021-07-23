@@ -243,7 +243,21 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             {pastPublicMessages.map((msg,i)=>{
                 const currentUser = pastPublicMessages.length-1-i
                 console.log('username',pastPublicMessages[currentUser])
-                return <div><Messagebox filteredMessages = {pastPublicMessages} currentUser = {user.email} username = {pastPublicMessages[currentUser].email} text ={pastPublicMessages[currentUser].message} time = {pastPublicMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {pastPublicMessages[currentUser].count} publicStatus = {publicStatus}/></div>
+                return <div>
+                            <Messagebox 
+                                filteredMessages = {pastPublicMessages} 
+                                currentUser = {user.email} 
+                                username = {pastPublicMessages[currentUser].email} 
+                                text ={pastPublicMessages[currentUser].message} 
+                                time = {pastPublicMessages[currentUser].time} 
+                                i = {currentUser} 
+                                deletePost = {deletePost} 
+                                route={route} 
+                                addLike = {addLike} 
+                                count = {pastPublicMessages[currentUser].count} 
+                                publicStatus = {publicStatus}
+                            />
+                        </div>
             
             })}
             </div>
@@ -257,13 +271,25 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             :
             <>
             <div className = "inputbox">
-            <input className = {"textarea "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentMessage.message}></input>
-                <input className = {"textarea "+hiddenStatus.message} cols="40" rows="6" onChange = {onInputChange} value = {currentMessage.message}></input>
+
+                <input 
+                    className = {"textarea "+hiddenStatus.picture} cols="40" rows="6" 
+                    onChange = {onInputChange} 
+                    placeholder = "Enter Picture URL"
+                    value = {currentMessage.message}
+                ></input>
+
+                <input 
+                    className = {"textarea "+hiddenStatus.message} cols="40" rows="6" 
+                    onChange = {onInputChange} 
+                    value = {currentMessage.message}
+                ></input>
                 
                 <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
                 <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
                 <button className = {"submitbutton "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</button>
                 <button className = {"submitbutton "+hiddenStatus.submit} onClick = {goBack}>Back</button>
+
             </div>
             <div className = "publicButton">
                 <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
@@ -276,12 +302,27 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 </div> */}
                 
                 <div className="bigbox">
-                {filteredMessages.map((msg,i)=>{
-                    const currentUser = filteredMessages.length-1-i
-                    console.log('current',publicStatus)
-                    return <div><Messagebox filteredMessages = {filteredMessages} currentUser = {user.email} username = {filteredMessages[currentUser].email} text ={filteredMessages[currentUser].message} time = {filteredMessages[currentUser].time} i = {currentUser} deletePost = {deletePost} route={route} addLike = {addLike} count = {filteredMessages[currentUser].count} /></div>
+
+                    {filteredMessages.map((msg,i)=>{
+                        const currentUser = filteredMessages.length-1-i
+                        console.log('current',publicStatus)
+                            return <div>
+                                    <Messagebox 
+                                        filteredMessages = {filteredMessages} 
+                                        currentUser = {user.email} 
+                                        username = {filteredMessages[currentUser].email} 
+                                        text ={filteredMessages[currentUser].message} 
+                                        time = {filteredMessages[currentUser].time} 
+                                        i = {currentUser} 
+                                        deletePost = {deletePost} 
+                                        route={route} 
+                                        addLike = {addLike} 
+                                        count = {filteredMessages[currentUser].count} 
+                                    />
+                                </div>
                 
-                })}
+                            })
+                    }
                 </div>
                 {console.log('message',pastMessages)}
                 

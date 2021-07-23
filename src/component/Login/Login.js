@@ -1,7 +1,13 @@
 import React from 'react';
 import Inputblock from './Inputblock';
 import './Login.css'
-const Login = ({user,route,errorMessage,setRoute,setUser, setErrorMessage,setIsSignedIn,onRouteChange, setCurrentMessage, pastMessages,setPrivateMessage, setCurrentPublicMessage,setPrivatePublicMessage}) => {
+const Login = ({
+                user,route,errorMessage,
+                setRoute,setUser, setErrorMessage,
+                setIsSignedIn,onRouteChange, 
+                setCurrentMessage, pastMessages,
+                setPrivateMessage, setCurrentPublicMessage,
+                setPrivatePublicMessage}) => {
     
     const {username,email,password} = user;
     
