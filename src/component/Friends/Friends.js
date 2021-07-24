@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Friend from './Friend';
 import './Friends.css';
+import '../../colors.css';
 import friendpicture from "../../images/friend.png";
 
 

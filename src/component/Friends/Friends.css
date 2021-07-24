@@ -15,11 +15,11 @@ li{
 
 .friendtitle{
     margin:0;
-    background: rgb(4, 113, 255);
+    /* background: rgb(4, 113, 255); */
     padding:0.5rem 0;
     font-size:1.5rem;
     /* border:1px solid gray; */
-    color:white;
+    /* color:white; */
     
     /* border-top-left-radius: 0.35rem;
     
@@ -35,8 +35,8 @@ li{
     /* position: fixed; */
     /* left:0; */
     height:74vh;
-    background:white;
-    border:1px solid gray;
+    /* background:white; */
+    /* border:1px solid gray; */
     
     /* border-bottom-left-radius: 0.5rem; */
     /* border-bottom-right-radius: 0.5rem; */
@@ -55,8 +55,8 @@ li{
 
 
 .addFriend{
-    background: rgb(4, 113, 255);
-    color:white;
+    /* background: rgb(4, 113, 255); */
+    /* color:white; */
     font-weight: bold;
     border-radius: 0.5rem;
 }
@@ -66,7 +66,7 @@ li{
     display:flex;
     align-items: center;
     height:74vh;
-    border:1px solid gray;
+    /* border:1px solid gray; */
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     z-index: 1;
@@ -82,8 +82,8 @@ ul{
 .hideFriend{
     
     height:100%;
-    background: rgb(4, 113, 255);
-    color:white;
+    /* background: rgb(4, 113, 255); */
+    /* color:white; */
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
@@ -95,8 +95,8 @@ ul{
     /* outline:none; */
     height:3rem;
     margin:0.5rem 1rem;
-    background: transparent;
-    color:white;
+    /* background: transparent; */
+    /* color:white; */
     border-radius: 0.5rem;
 }
 
@@ -110,7 +110,7 @@ ul{
 }
 
 input[type="radio"]:checked+label{
-    background: rgb(162, 202, 255);
+    /* background: rgb(162, 202, 255); */
 }
 
 

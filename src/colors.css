@@ -1,0 +1,149 @@
+html{
+    /* overflow-y:scroll; */
+    
+    background:#e6f6ff;
+    background-image: url('./images/mainbackground.png');
+      background-size: 20%;
+}
+
+.navElement{
+    color:white;
+    text-decoration: underline;
+    
+}
+
+.navElement:hover{
+    color:lightgray;
+}
+
+
+
+.title{
+    color:white;
+    text-shadow:2px 2px 4px black;
+    
+    
+}
+
+.navroot{
+    background:linear-gradient(to bottom,rgba(0, 4, 255, 0.8),rgba(8, 185, 255,0.8));
+    
+}
+
+.publicButtons{
+    background:#4d90b8;
+    color:rgb(170, 170, 170);
+    border:2px solid #4d90b8;
+    border-bottom:2px solid #4d90b8;
+    
+}
+.disabledButtons{
+    background:rgba(8, 185, 255,0.8);
+    color:white;
+}
+
+.commentsection{
+    background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    border:4px solid rgba(8, 185, 255,0.8);
+    
+}
+
+.messageArea{
+    background:white;
+    border:5px solid #00a2ff;
+}
+
+.deleteButton{
+    color:darkred;
+}
+
+.submitbutton{
+    background:#00a2ff;
+    color:white;
+}
+.user{
+    background:#00a2ff;
+    color:white;
+    border:3px solid #00a2ff;
+}
+
+.likeButton{
+    border:1px solid #00a2ff;
+}
+
+.senderbackground{
+    border:5px solid #83d1ff;
+}
+
+.user.senderbackground{
+    background:#83d1ff;
+}
+
+.mailbox{
+    background:linear-gradient(to bottom ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    border:2px solid black;
+}
+
+.buttons {
+    background:#00a2ff;
+    color:white;
+    
+}
+
+.partner{
+    color:white;
+    
+}
+
+.formWindow {
+    background:linear-gradient(to top,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    
+}
+
+.inputField {
+    border:0.1rem solid rgb(0, 0, 0);
+}
+
+.button{
+    background:transparent;
+    border:0.1rem solid rgb(0, 57, 95);
+}
+
+.button:hover { 
+    border:0.1rem solid rgb(1, 73, 121);
+    color:rgb(18, 46, 97);
+}
+
+.registerError{
+    color:rgb(255, 53, 53);
+}
+
+.friendtitle{
+    background: rgb(4, 113, 255);
+    color:white;
+}
+
+.mainfriend{
+    background:white;
+    border:1px solid gray;
+}
+
+.addFriend{
+    background: rgb(4, 113, 255);
+    color:white;
+}
+
+.friendList{
+    border:1px solid gray;
+    
+}
+
+.hideFriend{
+    background: rgb(4, 113, 255);
+    color:white;
+}
+
+.showFriend{
+    background: transparent;
+    color:white;
+}

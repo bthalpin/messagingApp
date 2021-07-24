@@ -69,21 +69,21 @@
 }
 
 .publicButtons{
-    background:#4d90b8;
-    color:rgb(170, 170, 170);
+    /* background:#4d90b8;
+    color:rgb(170, 170, 170); */
     
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
     font-weight: bold;
-    border:2px solid #4d90b8;
-    border-bottom:2px solid #4d90b8;
+    /* border:2px solid #4d90b8;
+    border-bottom:2px solid #4d90b8; */
     outline: none;
     padding:0.3rem 0.5rem;
 }
 
 .disabledButtons{
-    background:rgba(8, 185, 255,0.8);
-    color:white;
+    /* background:rgba(8, 185, 255,0.8);
+    color:white; */
     font-weight: bold;
     border:none;
     border-top-left-radius: 0.4rem;
@@ -96,7 +96,7 @@
 }
 .commentsection{
     display:block;
-    background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    /* background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8)); */
     /* background-image: url('../../images/mainbackground2.png'); */
     /* background-size: 40%; */
     /* background-repeat: no-repeat; */
@@ -105,7 +105,7 @@
     /* border-top-left-radius: 1rem;
     border-top-right-radius: 1rem; */
     border-radius: 1rem;
-    border:4px solid rgba(8, 185, 255,0.8);
+    /* border:4px solid rgba(8, 185, 255,0.8); */
     width: 35rem;
     overflow-y: scroll;
     /* border-top:4px dashed black; */
@@ -150,9 +150,9 @@
 
 .messageArea{
     display:flex;
-    background:white;
+    /* background:white; */
     justify-content: center;
-    border:5px solid #00a2ff;
+    /* border:5px solid #00a2ff; */
     border-bottom: none;
     border-top-right-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
@@ -169,7 +169,7 @@
     border:none;
     font-weight: bold;
     font-size:1rem;
-    color:darkred;
+    /* color:darkred; */
     padding:0;
 }
 
@@ -271,21 +271,21 @@
 }
 
 .submitbutton{
-    background:#00a2ff;
+    /* background:#00a2ff; */
     border-radius: 0.5rem;
-    color:white;
+    /* color:white; */
     font-weight: bold;
 }
 .user{
-    background:#00a2ff;
-    color:white;
+    /* background:#00a2ff; */
+    /* color:white; */
     display:flex;
     align-items: center;
     justify-content: space-between;
     padding:0.1rem 0.3rem;
     margin:0;
     font-size: 0.8rem;
-    border:3px solid #00a2ff;
+    /* border:3px solid #00a2ff; */
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
 }
@@ -313,16 +313,16 @@
 
 .likeButton{
     padding:0;
-    border:1px solid #00a2ff;
+    /* border:1px solid #00a2ff; */
     border-radius: 0.2rem;
 }
 
 .senderbackground{
-    border:5px solid #83d1ff;
+    /* border:5px solid #83d1ff; */
 }
 
 .user.senderbackground{
-    background:#83d1ff;
+    /* background:#83d1ff; */
 }
 
 .likedelete{

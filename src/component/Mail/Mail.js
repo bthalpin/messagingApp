@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Messagebox from '../Messages/Messagebox';
 import './Mail.css';
+import '../../colors.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation}) => {
 

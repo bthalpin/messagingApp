@@ -1,5 +1,6 @@
 import React from 'react';
 import './Navigation.css';
+import '../../colors.css';
 import Mail from "../../images/mail-outline.png";
 import Home from "../../images/home.png";
 import Friends from '../Friends/Friends';

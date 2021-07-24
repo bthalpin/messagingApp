@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Messagebox from './Messagebox';
 import './Message.css';
+import '../../colors.css';
 
 
 

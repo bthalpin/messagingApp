@@ -18,7 +18,7 @@
     
   } */
 .formWindow {
-    background:linear-gradient(to top,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    /* background:linear-gradient(to top,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8)); */
     width:20rem;
     max-height:40rem;
     /* max-width:25rem; */
@@ -54,7 +54,7 @@
     /* background: transparent; */
     width:18rem;
     /* min-width:17rem; */
-    border:0.1rem solid rgb(0, 0, 0);
+    /* border:0.1rem solid rgb(0, 0, 0); */
     border-radius:.3rem;
 }
 
@@ -68,20 +68,20 @@
 } */
 
 .button{
-    background:transparent;
+    /* background:transparent; */
     width:6rem;
     margin-top:1rem;
     padding: 0.5rem 0.75rem;
     border-radius:0.4rem;
-    border:0.1rem solid rgb(0, 57, 95);
+    /* border:0.1rem solid rgb(0, 57, 95); */
     transition:0.2s ease-in-out;
     font-weight: bold;
 }
 
 .button:hover {
     transform: scale(1.05);  
-    border:0.1rem solid rgb(1, 73, 121);
-    color:rgb(18, 46, 97);
+    /* border:0.1rem solid rgb(1, 73, 121); */
+    /* color:rgb(18, 46, 97); */
     cursor:pointer;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .registerError{
-    color:rgb(255, 53, 53);
+    /* color:rgb(255, 53, 53); */
     font-weight:bold;
 }
 
