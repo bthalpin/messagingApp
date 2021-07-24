@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/messagingApp/static/css/main.7e2f61b3.chunk.css",
-    "main.js": "/messagingApp/static/js/main.49161b64.chunk.js",
-    "main.js.map": "/messagingApp/static/js/main.49161b64.chunk.js.map",
-    "runtime-main.js": "/messagingApp/static/js/runtime-main.d0ab276c.js",
-    "runtime-main.js.map": "/messagingApp/static/js/runtime-main.d0ab276c.js.map",
-    "static/js/2.e315066e.chunk.js": "/messagingApp/static/js/2.e315066e.chunk.js",
-    "static/js/2.e315066e.chunk.js.map": "/messagingApp/static/js/2.e315066e.chunk.js.map",
-    "static/js/3.b1fa3313.chunk.js": "/messagingApp/static/js/3.b1fa3313.chunk.js",
-    "static/js/3.b1fa3313.chunk.js.map": "/messagingApp/static/js/3.b1fa3313.chunk.js.map",
+    "main.css": "/messagingApp/static/css/main.1d6362e7.chunk.css",
+    "main.js": "/messagingApp/static/js/main.c9b38652.chunk.js",
+    "main.js.map": "/messagingApp/static/js/main.c9b38652.chunk.js.map",
+    "runtime-main.js": "/messagingApp/static/js/runtime-main.3c09ec82.js",
+    "runtime-main.js.map": "/messagingApp/static/js/runtime-main.3c09ec82.js.map",
+    "static/js/2.847cd11e.chunk.js": "/messagingApp/static/js/2.847cd11e.chunk.js",
+    "static/js/2.847cd11e.chunk.js.map": "/messagingApp/static/js/2.847cd11e.chunk.js.map",
+    "static/js/3.08f26ab1.chunk.js": "/messagingApp/static/js/3.08f26ab1.chunk.js",
+    "static/js/3.08f26ab1.chunk.js.map": "/messagingApp/static/js/3.08f26ab1.chunk.js.map",
     "index.html": "/messagingApp/index.html",
-    "static/css/main.7e2f61b3.chunk.css.map": "/messagingApp/static/css/main.7e2f61b3.chunk.css.map",
-    "static/js/2.e315066e.chunk.js.LICENSE.txt": "/messagingApp/static/js/2.e315066e.chunk.js.LICENSE.txt",
+    "static/css/main.1d6362e7.chunk.css.map": "/messagingApp/static/css/main.1d6362e7.chunk.css.map",
+    "static/js/2.847cd11e.chunk.js.LICENSE.txt": "/messagingApp/static/js/2.847cd11e.chunk.js.LICENSE.txt",
     "static/media/friend.f4b364da.png": "/messagingApp/static/media/friend.f4b364da.png",
     "static/media/home.2ea0f12c.png": "/messagingApp/static/media/home.2ea0f12c.png",
     "static/media/like.1fe2cbbc.png": "/messagingApp/static/media/like.1fe2cbbc.png",
@@ -19,9 +19,9 @@
     "static/media/index.css": "/messagingApp/static/media/mainbackground.021c5f9d.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.d0ab276c.js",
-    "static/js/2.e315066e.chunk.js",
-    "static/css/main.7e2f61b3.chunk.css",
-    "static/js/main.49161b64.chunk.js"
+    "static/js/runtime-main.3c09ec82.js",
+    "static/js/2.847cd11e.chunk.js",
+    "static/css/main.1d6362e7.chunk.css",
+    "static/js/main.c9b38652.chunk.js"
   ]
 }
