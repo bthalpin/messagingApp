@@ -6,7 +6,7 @@ import './Message.css';
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route}) => {
+const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend}) => {
     const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
     const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
@@ -256,6 +256,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                 addLike = {addLike} 
                                 count = {pastPublicMessages[currentUser].count} 
                                 publicStatus = {publicStatus}
+                                addFriend = {addFriend}
                             />
                         </div>
             

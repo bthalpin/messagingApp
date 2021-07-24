@@ -10,7 +10,8 @@ const Navigation = ({onRouteChange, isSignedIn,route,
     setRoute , 
     setPrivateMessage,
     setConversation,
-    conversation
+    conversation,
+    addFriend
 })=>{
     if (isSignedIn){
         return (
@@ -26,6 +27,7 @@ const Navigation = ({onRouteChange, isSignedIn,route,
             setRoute = {setRoute} 
             setPrivateMessage = {setPrivateMessage} 
             setConversation = {setConversation}  
+            addFriend = {addFriend}
           />
                 </div>
                 :<div className = 'navLeft'> 

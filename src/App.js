@@ -72,6 +72,24 @@ function App() {
      
   }
 
+  const addFriend = (newFriend) => {
+    if (newFriend==="No Names"){
+      newFriend = prompt('Enter the email address of your friend ')
+    }
+    
+    if (newFriend){
+        const newFriends = [...user.friends,newFriend.toUpperCase()]
+        setUser((prevUser)=> {
+        return {...prevUser,friends:newFriends}
+        
+        })
+        // setMyFriends((prevMyFriends)=>{
+        //     return {...prevMyFriends,email:user.email,friends:newFriends}
+    alert(`Added ${newFriend} to your friends list`)
+    }
+    
+}
+
   return (
     <div className="App">
       {/* {console.log(pastMessages)} */}
@@ -90,7 +108,8 @@ function App() {
     setRoute = {setRoute} 
     setPrivateMessage = {setPrivateMessage} 
     setConversation = {setConversation}
-    conversation = {conversation} />
+    conversation = {conversation} 
+    addFriend = {addFriend}/>
     
      {isSignedIn
       ? (route==='home'
@@ -113,6 +132,7 @@ function App() {
             setCurrentPublicMessage = {setCurrentPublicMessage}
             pastPublicMessages = {pastPublicMessages}
             setPastPublicMessages = {setPastPublicMessages}
+            addFriend = {addFriend}
             />
             </div>
         </div>

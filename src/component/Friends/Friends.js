@@ -6,7 +6,7 @@ import friendpicture from "../../images/friend.png";
 
 const arrow = "<<";
 
-const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation}) => {
+const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend}) => {
     const [friendList,setFriendList] = useState(false)
 
     const converse = (friend) => {
@@ -21,20 +21,20 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
         console.log('add')
     }
 
-    const addFriend = () => {
-        const newFriend = prompt('Enter the email address of your friend ')
-        if (newFriend){
-            const newFriends = [...friends,newFriend.toUpperCase()]
-            setUser((prevUser)=> {
-            return {...prevUser,friends:newFriends}
+    // const addFriend = () => {
+    //     const newFriend = prompt('Enter the email address of your friend ')
+    //     if (newFriend){
+    //         const newFriends = [...friends,newFriend.toUpperCase()]
+    //         setUser((prevUser)=> {
+    //         return {...prevUser,friends:newFriends}
             
-            })
-            // setMyFriends((prevMyFriends)=>{
-            //     return {...prevMyFriends,email:user.email,friends:newFriends}
+    //         })
+    //         // setMyFriends((prevMyFriends)=>{
+    //         //     return {...prevMyFriends,email:user.email,friends:newFriends}
         
-        }
+    //     }
         
-    }
+    // }
 
     const toggleFriends = () => {
         friendList?(setFriendList(false)):(setFriendList(true))
@@ -65,7 +65,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
         
                         </div>
             
-                        <button className = "addFriend" onClick = {addFriend}>Add Friend</button>
+                        <button className = "addFriend" onClick = {()=>addFriend("No Names")}>Add Friend</button>
                     </div>
                 </div>
                 <button className = "hideFriend" onClick = {toggleFriends}>{arrow}</button>

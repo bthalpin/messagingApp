@@ -14,5 +14,5 @@
 
 .mainMessage{
   /* top:unset; */
-  margin:3rem auto;
+  margin:3rem auto -3rem auto;
 }

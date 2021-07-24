@@ -13,7 +13,7 @@ code {
 }
 
 html{
-  overflow-y:scroll;
+  /* overflow-y:scroll; */
   
   background:#e6f6ff;
   background-image: url('./images/mainbackground.png');

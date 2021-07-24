@@ -18,7 +18,7 @@
 }
 
 .messages{
-    height:65vh;
+    height:75vh;
     overflow-y: scroll;
     /* display:flex; */
 }
@@ -28,7 +28,7 @@
 }
 
 .recipient{
-    margin-left:-5rem;
+    margin-right:5rem;
 }
 
 .textarea{
@@ -40,6 +40,7 @@
     border-radius: 0.5rem;
     color:white;
     font-weight: bold;
+    margin:1rem 0.5rem;
 }
 
 .partner{
@@ -74,6 +75,29 @@
     }
     .messages{
         height:20vh;
+    }
+    
+}
+
+@media (max-width:200px) {
+    
+    .recipient{
+        margin:0;
+    }
+    .sender{
+        margin:0;
+    }
+    
+}
+
+@media (min-width:800px) {
+    
+    .recipient{
+        margin-right:10rem;
+        
+    }
+    .sender{
+        margin-left:10rem;
     }
     
 }
