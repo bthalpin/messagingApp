@@ -1,4 +1,5 @@
 .mailbox{
+    margin-top: 2.5rem;
     padding:1rem;
     background:linear-gradient(to bottom ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
     /* background-image: url('../../images/mailhome.png'); */
@@ -7,8 +8,9 @@
     /* background-position: center; */
     border:2px solid black;
     border-radius: 1rem;
-    min-height: 100vh;
-    min-width: 50vw;
+    height: 80vh;
+    width: 80vw;
+    
     /* display:block; */
     /* margin-right:20vw;
     margin-left:auto; */
@@ -16,6 +18,8 @@
 }
 
 .messages{
+    height:65vh;
+    overflow-y: scroll;
     /* display:flex; */
 }
 
@@ -41,4 +45,35 @@
 .partner{
     color:white;
     text-shadow: 0.1rem 0.1rem 0.5rem black;
+}
+
+@media (max-height:700px) {
+    .mailbox{
+        height:70vh;
+    }
+
+    .messages{
+        height:50vh;
+    }
+    
+}
+
+@media (max-height:500px) {
+    .mailbox{
+        height:60vh;
+    }
+    .messages{
+        height:35vh;
+    }
+    
+}
+
+@media (max-height:400px) {
+    .mailbox{
+        height:50vh;
+    }
+    .messages{
+        height:20vh;
+    }
+    
 }

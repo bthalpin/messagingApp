@@ -13,5 +13,6 @@
 }
 
 .mainMessage{
-  margin:0 auto;
+  /* top:unset; */
+  margin:3rem auto;
 }

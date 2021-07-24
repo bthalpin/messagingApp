@@ -98,13 +98,22 @@
     /* background-size: 40%; */
     /* background-repeat: no-repeat; */
     /* background-position: center; */
-    min-height: 80vh;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    min-width: 60vw;
+    height: 70vh;
+    /* border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem; */
+    border-radius: 1rem;
+    border:4px solid rgba(8, 185, 255,0.8);
+    width: 35rem;
+    overflow-y: scroll;
     /* border-top:4px dashed black; */
     /* background-attachment: scroll; */
     /* justify-content: center; */
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+
+.commentsection::-webkit-scrollbar{
+    display:none;
 }
 
 .box{
@@ -122,8 +131,8 @@
     /* border-top:2px solid black; */
     
     border-radius:0.5rem;
-    width:40vw;
-    min-width:400px;
+    width:30rem;
+    /* min-width:400px; */
     box-shadow: .05rem 0.05rem 0.3rem black;
     /* overflow-wrap: break-word; */
     /* word-wrap: break-word; */
@@ -172,42 +181,52 @@
     white-space: pre-wrap;
 }
 
-@media screen and (min-width:1200px) {
+@media screen and (min-height:750px) {
+    
+    .commentsection{
+        height: 80vh;
+    }
+    
+}
+
+@media screen and (min-width:950px) {
     .smallbox{
         max-width:30rem;
     }
-    .text{
-        /* max-width: 35rem; */
+    .commentsection{
+        max-width: 35rem;
     }
     .messageArea{
         /* max-width: 25rem; */
     }
 }
 @media screen and (max-width:700px){
-    .text{
-        min-width: 20vw;
+    .commentsection{
+        width:80vw;
+        /* min-width: 20vw; */
         /* padding:2rem 1rem; */
     }
     .smallbox{
-        min-width: 60vw;
+        width: 70vw;
     }
+    
     
 }
 
 
 @media screen and (max-width:500px){
     .commentsection{
-        min-width: 40vw;
+        width: 90vw;
     }
     .smallbox{
-        min-width: 50vw;
+        width: 80vw;
     }
     .box{
-        /* min-width: 40vw; */
+        /* width: 80vw; */
     }
     .text{
         padding:0.5rem;
-        margin:auto;
+        /* margin:auto; */
     }
     .deleteContainer{
         width:5vw;

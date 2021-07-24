@@ -81,34 +81,37 @@ const Login = ({
         <div>
         <div className="container">
             <article className="formWindow">
-    
+              <div className = "formcontainer">
+
+              
                 {(route==="Register"
                     ?
-                    <>
+                    <div>
                     <h1 className="legend">Register</h1>
                     <Inputblock inputType = {"Name"} value={username} onChanges ={onChanges}/>
                     <Inputblock inputType = {"Email"} value = {email} onChanges ={onChanges}/>
                     <Inputblock inputType = {"Password"} value={password} onChanges ={onChanges}/>
-                    </>
+                    </div>
                     :
-                    <>
+                    <div>
                     <h1 className="legend">Sign In</h1>
                     <Inputblock inputType = {"Email"} value={email} onChanges ={onChanges}/>
                     <Inputblock inputType = {"Password"} value={password} onChanges ={onChanges}/>
 
-                    </>
+                    </div>
                 )}
 
-                <div className="">
+                <div className="legend">
                     <button type = "submit" className = "button" onClick = {onSubmit}>Submit</button>
                     
             
                 </div>
-                <div className="">
+                <div className="legend">
                     {route==='Sign In'
                     ?<p onClick = {() => onRouteChange('Register')}className="loginLink">Register</p>
                     :<p onClick = {() => onRouteChange('Sign In')} className="loginLink">Sign In</p>
                     }
+                </div>
                 </div>
             </article>
     

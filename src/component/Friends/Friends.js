@@ -72,7 +72,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             </div>
             :
             <div className = "">
-                <button className = "showFriend" onClick = {toggleFriends}><img src={friendpicture} alt="Friends" width = "35rem;"></img></button>
+                <button className = "showFriend" onClick = {toggleFriends}><img className = "friendimg" src={friendpicture} alt="Friends" width = "35rem;"></img></button>
             </div>
             }
             

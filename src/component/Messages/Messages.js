@@ -209,7 +209,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
         return(
             <div className = "maincomment">
-                <h1>Message Board</h1>
+                {/* <h1>Message Board</h1> */}
             
             
             {publicStatus?

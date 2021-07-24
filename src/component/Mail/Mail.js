@@ -101,7 +101,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
 
     return (
         <div className = "mailbox">
-            <h1 className = "partner">{conversation.you}</h1>
+            
             <div>
                 {/* <div>
                 <label name="to">To</label>

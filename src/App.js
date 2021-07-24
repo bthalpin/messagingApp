@@ -74,21 +74,29 @@ function App() {
 
   return (
     <div className="App">
-    <Navigation onRouteChange = {onRouteChange} isSignedIn = {isSignedIn} route={route}/>
-    
-     {isSignedIn
-      ? (route==='home'
-        ?
-        <div className = "main">
-        {/* {console.log(pastMessages)} */}
-        <Friends 
+      {/* {console.log(pastMessages)} */}
+      {/* <Friends 
             user = {user} 
             setUser = {setUser} 
             route = {route} 
             setRoute = {setRoute} 
             setPrivateMessage = {setPrivateMessage} 
             setConversation = {setConversation}  
-          />
+          /> */}
+    <Navigation onRouteChange = {onRouteChange} isSignedIn = {isSignedIn} route={route}
+    user = {user} 
+    setUser = {setUser} 
+    route = {route} 
+    setRoute = {setRoute} 
+    setPrivateMessage = {setPrivateMessage} 
+    setConversation = {setConversation}
+    conversation = {conversation} />
+    
+     {isSignedIn
+      ? (route==='home'
+        ?
+        <div className = "main">
+        
 
         <div className = "mainMessage">
         <Messages 
@@ -110,14 +118,14 @@ function App() {
         </div>
         :
         <div className = "main">
-        <Friends 
+        {/* <Friends 
             user = {user} 
             setUser = {setUser} 
             route = {route} 
             setRoute = {setRoute} 
             setPrivateMessage = {setPrivateMessage} 
             setConversation = {setConversation}  
-          />
+          /> */}
 
         <div className = "mainMessage">
         <Mail 

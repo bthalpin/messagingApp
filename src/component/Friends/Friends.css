@@ -28,7 +28,7 @@ li{
 }
 
 .fixed{
-    
+    /* position:fixed; */
 }
 
 .mainfriend{
@@ -53,23 +53,6 @@ li{
     display:none;
 }
 
-@media screen and (max-height:650px) {
-    .scroll{
-        height:55vh;
-    }
-}
-
-@media screen and (max-height:450px) {
-    .scroll{
-        height:50vh;
-    }
-}
-
-@media screen and (max-height:350px) {
-    .scroll{
-        height:40vh;
-    }
-}
 
 .addFriend{
     background: rgb(4, 113, 255);
@@ -79,7 +62,7 @@ li{
 }
 
 .friendList{
-    position:fixed;
+    /* position:fixed; */
     display:flex;
     align-items: center;
     height:74vh;
@@ -87,6 +70,7 @@ li{
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     z-index: 1;
+    margin-left: 10rem;
     
 }
 
@@ -105,10 +89,13 @@ ul{
 }
 
 .showFriend{
-    position:fixed;
-    margin-top: 0;
+    /* position:fixed; */
+    /* margin-top: 0; */
+    border:none;
+    /* outline:none; */
     height:3rem;
-    background: rgb(4, 113, 255);
+    margin:0.5rem 1rem;
+    background: transparent;
     color:white;
     border-radius: 0.5rem;
 }
@@ -124,4 +111,61 @@ ul{
 
 input[type="radio"]:checked+label{
     background: rgb(162, 202, 255);
+}
+
+
+@media screen and (max-height:650px) {
+    .scroll{
+        height:55vh;
+    }
+}
+
+@media screen and (max-height:450px) {
+    .scroll{
+        height:50vh;
+    }
+    
+}
+
+@media screen and (max-height:350px) {
+    .scroll{
+        height:40vh;
+    }
+}
+
+@media screen and (max-width:900px) {
+    
+    /* .friendList{
+        margin-left:10rem;
+    } */
+
+    
+}
+
+@media screen and (max-width:450px) {
+    .showFriend{
+        margin:0;
+        
+    }
+    .friendimg{
+        width:2rem;
+    }
+    .friendList{
+        margin-left:50vw;
+    }
+
+    
+}
+
+
+@media screen and (max-width:350px) {
+    .showFriend{
+        margin-top:0.6rem;
+        
+    }
+    .friendimg{
+        width:2rem;
+    }
+
+    
 }
