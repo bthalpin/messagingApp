@@ -31,16 +31,64 @@
     margin-right:5rem;
 }
 
-.textarea{
+/* .textarea{
     height:1rem;
 }
 
-.buttons {
-    /* background:#00a2ff; */
+.textareas:focus{
+    tranform:translate(0%,70%)
+} */
+
+
+.mailtextarea{
+    
+    /* padding:1rem; */
+    /* resize:none; */
+    height:2rem;
+    /* transition:0.25s ease-in-out; */
     border-radius: 0.5rem;
-    /* color:white; */
+    margin:0rem 0.5rem;
+    width:20rem;
+    padding-left: 0.5rem;
+    resize: none;
+    z-index: 1;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%,-150%);
+    /* margin-left:-20%; */
+    /* overflow: hidden; */
+    
+}
+
+
+@media (max-width:700px) {
+    .mailtextarea{
+        width: 30vw;
+    }
+    
+}
+.mailtextarea:focus{
+    /* height:2rem; */
+    /* transform: translate(-50%,100%); */
+    /* border:none; */
+    /* border-radius: 1rem; */
+    outline:none;
+    
+    
+}
+
+
+.mailtextareahide{
+    display:none;
+}
+
+.buttons {
+    padding:0.3rem 0.2rem;
+    border:2px solid black;
+    border-radius: 0.5rem;
     font-weight: bold;
-    margin:1rem 0.5rem;
+    /* height:2rem; */
+    margin:0rem 0.5rem;
 }
 
 .partner{

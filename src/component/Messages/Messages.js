@@ -11,7 +11,7 @@ import '../../colors2.css';
 const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend}) => {
     const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
-    const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
+    const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
     // let hidePictureText = "textareahide";
     // let hideMessageText = "textareahide";
 
@@ -73,7 +73,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         :setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,time:Date().toLocaleString()}})
         // console.log('submit',pastPublicMessages)
-        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
+        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
             
         
         
@@ -191,9 +191,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     // }
     const changeHidden = (picture) => {
         if(picture){
-           setHiddenStatus({picture:"",message:"textareahide",button:"textareahide",submit:""})
+           setHiddenStatus({picture:"",message:"textareahide",button:"textareahide",submit:"",position:' right'})
         }else{
-            setHiddenStatus({picture:"textareahide",message:"",button:"textareahide",submit:""})
+            setHiddenStatus({picture:"textareahide",message:"",button:"textareahide",submit:"",position:' right'})
         }
         
         // console.log(hideMessageText,hidePictureText)
@@ -201,7 +201,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     }
 
     const goBack = () => {
-        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
+        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
             return {...prevCurrentPublicMessage,message:''}})
@@ -211,22 +211,25 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
         return(
             <div className = "maincomment">
+                
                 {/* <h1>Message Board</h1> */}
             
             
             {publicStatus?
             <>
+            
             <div className = "inputbox">
+            {/* inputbox */}
             <div>
-                <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
-                <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
-                <button className = {"submitbutton "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</button>
-                <button className = {"submitbutton "+hiddenStatus.submit} onClick = {goBack}>Back</button>
+                <input id = "pic" className = {"textareapic public "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentPublicMessage.message} autoFocus></input>
+                <textarea id="msg" className = {"textarea public "+hiddenStatus.message}  onChange = {onInputChange} value = {currentPublicMessage.message} autoFocus></textarea>
+             
+                 {/* <textarea className = {"textarea"}   onInput = {()=>fitToContent(this)} value = {currentPublicMessage.message} autoFocus></textarea> */}
+                {/* <textarea name="text" className = "textarea" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea> */}
+                {/* <p>test<span role="textbox" className="textarea" c></span></p> */}
                 </div>
-                <div>
-                <input className = {"textareapic "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentPublicMessage.message}></input>
-                <input className = {"textarea "+hiddenStatus.message} cols="40" rows="6" onChange = {onInputChange} value = {currentPublicMessage.message}></input>
-                </div>
+            
+                
                 
                 
                 
@@ -236,6 +239,15 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             </div>
             
             <div className="commentsection">
+            <div className = "inputbox">
+                
+                <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
+                <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
+                
+                <label for="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                <label for ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                
+                </div>
             {/* <div className="filter">
             <label name="filter" className = "filterLabel">Filter Messages</label>
             <input name = "filter" ></input>
@@ -269,29 +281,30 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             {/* {pastMessages.map((message,i)=>{
                 return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
             })} */}
+            
         </div>
+        
         </>
             :
             <>
             <div className = "inputbox">
 
                 <input 
-                    className = {"textarea "+hiddenStatus.picture} cols="40" rows="6" 
+                    id = "friendpic"
+                    className = {"textareapic friend "+hiddenStatus.picture}  
                     onChange = {onInputChange} 
                     placeholder = "Enter Picture URL"
                     value = {currentMessage.message}
                 ></input>
 
-                <input 
-                    className = {"textarea "+hiddenStatus.message} cols="40" rows="6" 
+                <textarea
+                    id = "friendmsg" 
+                    className = {"textarea friend "+hiddenStatus.message} 
                     onChange = {onInputChange} 
                     value = {currentMessage.message}
-                ></input>
+                ></textarea>
                 
-                <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
-                <button className = {"submitbutton "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
-                <button className = {"submitbutton "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</button>
-                <button className = {"submitbutton "+hiddenStatus.submit} onClick = {goBack}>Back</button>
+                
 
             </div>
             <div className = "publicButton">
@@ -299,6 +312,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             </div>
             
             <div className="commentsection">
+            <div className = "inputbox">
+                <label for ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                <label for = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
+                <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
+                </div>
                 {/* <div className="filter">
                 <label name="filter" className = "filterLabel">Filter Messages</label>
                 <input name = "filter" ></input>

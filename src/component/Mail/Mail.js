@@ -117,21 +117,23 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
             <button className = "buttons" type="submit" onClick ={()=>onSend(true)}>Picture</button> */}
 
                 <input 
-                    className = {"textarea "+hiddenMailStatus.picture} cols="40" rows="6" 
+                    id = "picture"
+                    className = {"mailtextarea "+hiddenMailStatus.picture} cols="40" rows="6" 
                     onChange = {onChanges} 
                     placeholder = "Enter Picture URL" 
                     value = {privateMessage.message}
                 ></input>
-                <input 
-                    className = {"textarea "+hiddenMailStatus.message} cols="40" rows="6" 
+                <textarea 
+                    id = "mail"
+                    className = {"mailtextarea "+hiddenMailStatus.message} cols="40" rows="6" 
                     onChange = {onChanges} 
                     value = {privateMessage.message}
-                ></input>
+                ></textarea>
                 
-                <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</button>
-                <button className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</button>
-                <button className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</button>
-                <button className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</button>
+                <label for = "mail" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                <label for = "picture" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                <label className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</label>
+                <label className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</label>
 
             </div>
             <div className = "messages">

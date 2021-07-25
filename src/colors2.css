@@ -110,21 +110,26 @@ input[type="radio"]:checked+label{
 
 
 .publicButtons{
-    background:var(--fadedColor);
-    color:rgb(170, 170, 170);
-    border:2px solid var(--fadedColor);
-    border-bottom:2px solid var(--fadedColor);
+    background:#00383d;
+    color:rgb(211, 211, 211);
+    border:2px solid #00383d;
+    /* border-bottom:2px solid var(--fadedColor); */
     
 }
 
 
 .disabledButtons{
-    background:var(--buttonColor);
+    background:#006D77;
     color:white;
 }
 
 
 .submitbutton{
+    background:var(--buttonColor);
+    color:white;
+}
+
+.msg{
     background:var(--buttonColor);
     color:white;
 }
