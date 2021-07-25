@@ -5,6 +5,9 @@ import Messages from './component/Messages/Messages';
 import Mail from './component/Mail/Mail';
 import Friends from './component/Friends/Friends';
 import './App.css';
+
+// import './colors.css';
+import './colors2.css';
 import Picture from './component/Messages/Picture';
 
 
@@ -25,6 +28,7 @@ function App() {
   const [privateMessages,setPrivateMessages] = useState([])
   const [privateMessage, setPrivateMessage] = useState({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
   const [conversation,setConversation] = useState({me:'',you:''})
+  
   
  
 

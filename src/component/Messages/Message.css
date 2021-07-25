@@ -241,10 +241,10 @@
 
 @media screen and (max-width:500px){
     .commentsection{
-        width: 90vw;
+        /* width: 90vw; */
     }
     .smallbox{
-        width: 80vw;
+        /* width: 80vw; */
     }
     .box{
         /* width: 80vw; */

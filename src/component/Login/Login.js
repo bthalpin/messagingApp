@@ -1,7 +1,8 @@
 import React from 'react';
 import Inputblock from './Inputblock';
 import './Login.css';
-import '../../colors.css';
+// import '../../colors.css';
+import '../../colors2.css';
 const Login = ({
                 user,route,errorMessage,
                 setRoute,setUser, setErrorMessage,

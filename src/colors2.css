@@ -1,57 +1,62 @@
+:root{
+    --backColor:linear-gradient(to bottom,#006D77,#83C5BE);
+    /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
+    --buttonColor:#fd5c21d0;
+    --fadedColor: #E29578;
+}
 html{
     /* overflow-y:scroll; */
     
-    background:#e6f6ff;
-    background-image: url('./images/mainbackground.png');
-      background-size: 20%;
+    background:#EDF6F9;
+    /* background-image: url('./images/mainbackground.png');
+      background-size: 20%; */
 }
 
 
 .navroot{
-    background:linear-gradient(to bottom,rgba(0, 4, 255, 0.8),rgba(8, 185, 255,0.8));
+    background:var(--backColor);
     
 }
 
 
 .commentsection{
-    background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
-    border:4px solid rgba(8, 185, 255,0.8);
+    background:var(--backColor);
+    border:4px solid black;
     
 }
 
 
 .messageArea{
-    background:white;
-    /* border:5px solid #00a2ff; */
+    background:#EDF6F9;
+    /* border:5px solid #EDF6F9; */
 }
 
 
 .user{
-    background:#00a2ff;
+    background:#83C5BE;
     color:white;
-    /* border:3px solid #00a2ff; */
 }
 
 .likeButton{
-    border:1px solid #00a2ff;
+    border:1px solid var(--buttonColor);
 }
 
 .senderbackground{
-    border:5px solid #83d1ff;
+    margin:0;
 }
 
 .user.senderbackground{
-    background:#83d1ff;
+    background:#83C5BE;
 }
 
 .mailbox{
-    background:linear-gradient(to bottom ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    background:var(--backColor);
     border:2px solid black;
 }
 
 
 .formWindow {
-    background:linear-gradient(to top,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
+    background:var(--backColor);
     
 }
 
@@ -61,7 +66,7 @@ html{
 
 
 .friendtitle{
-    background: rgb(4, 113, 255);
+    background: var(--buttonColor);
     color:white;
 }
 
@@ -71,7 +76,7 @@ html{
 }
 
 .addFriend{
-    background: rgb(4, 113, 255);
+    background: var(--buttonColor);
     color:white;
 }
 
@@ -81,7 +86,7 @@ html{
 }
 
 .hideFriend{
-    background: rgb(4, 113, 255);
+    background: var(--buttonColor);
     color:white;
 }
 
@@ -91,48 +96,48 @@ html{
 }
 
 input[type="radio"]:checked+label{
-    background: rgb(162, 202, 255);
+    background: var(--fadedColor);
 }
 
 
 
 
 .buttons {
-    background:#00a2ff;
+    background:var(--buttonColor);
     color:white;
     
 }
 
 
 .publicButtons{
-    background:#4d90b8;
+    background:var(--fadedColor);
     color:rgb(170, 170, 170);
-    border:2px solid #4d90b8;
-    border-bottom:2px solid #4d90b8;
+    border:2px solid var(--fadedColor);
+    border-bottom:2px solid var(--fadedColor);
     
 }
 
 
 .disabledButtons{
-    background:rgba(8, 185, 255,0.8);
+    background:var(--buttonColor);
     color:white;
 }
 
 
 .submitbutton{
-    background:#00a2ff;
+    background:var(--buttonColor);
     color:white;
 }
 
 
 .button{
     background:transparent;
-    border:0.1rem solid rgb(0, 57, 95);
+    border:0.1rem solid #006D77;
 }
 
 .button:hover { 
-    border:0.1rem solid rgb(1, 73, 121);
-    color:rgb(18, 46, 97);
+    border:0.1rem solid var(--buttonColor);
+    color:var(--buttonColor);
 }
 
 

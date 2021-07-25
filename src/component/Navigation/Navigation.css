@@ -37,13 +37,14 @@
 
 
 .title{
-    font-size:2rem;
+    font-size:1.5rem;
     font-weight:bold;
     padding:0.8rem;
     margin:0;
     /* color:white; */
     text-shadow:2px 2px 4px black;
     width:60vw;
+    height:2rem;
     
 }
 
@@ -58,6 +59,7 @@
   
     .title{
         padding:0.8rem 0rem;
+        
     }
     
   }

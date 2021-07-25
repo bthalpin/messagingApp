@@ -1,6 +1,7 @@
 import React from 'react';
 import './Navigation.css';
-import '../../colors.css';
+// import '../../colors.css';
+import '../../colors2.css';
 import Mail from "../../images/mail-outline.png";
 import Home from "../../images/home.png";
 import Friends from '../Friends/Friends';
@@ -39,7 +40,8 @@ const Navigation = ({onRouteChange, isSignedIn,route,
             route = {route} 
             setRoute = {setRoute} 
             setPrivateMessage = {setPrivateMessage} 
-            setConversation = {setConversation}  
+            setConversation = {setConversation} 
+            addFriend = {addFriend} 
           />
                 </div>
                 
