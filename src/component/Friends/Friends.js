@@ -7,12 +7,13 @@ import '../../colors3.css';
 import friendpicture from "../../images/friend.png";
 
 
-const arrow = "<<";
+const arrow = "x";
 
 const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend}) => {
     const [friendList,setFriendList] = useState(false)
 
     const converse = (friend) => {
+        toggleFriends()
         setConversation((prevConversation)=>{
             return {...prevConversation,you:friend,me:user.email}
         })
@@ -49,6 +50,10 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             <div className="fixed">
             {console.log(friends,"friendlsist",user)}
             {friendList?
+            <>
+            <div className = "">
+            <button className = "showFriend" onClick = {toggleFriends}><img className = "friendimg" src={friendpicture} alt="Friends" width = "35rem;"></img></button>
+        </div>
             <div className = "friendList">
                 <div  className="mainfriend">
                     <div >
@@ -73,6 +78,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 </div>
                 <button className = "hideFriend" onClick = {toggleFriends}>{arrow}</button>
             </div>
+            </>
             :
             <div className = "">
                 <button className = "showFriend" onClick = {toggleFriends}><img className = "friendimg" src={friendpicture} alt="Friends" width = "35rem;"></img></button>
