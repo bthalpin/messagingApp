@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import Friend from './Friend';
 import './Friends.css';
 // import '../../colors.css';
-import '../../colors2.css';
+// import '../../colors2.css';
+import '../../colors3.css';
 import friendpicture from "../../images/friend.png";
 
 

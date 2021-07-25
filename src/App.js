@@ -7,7 +7,8 @@ import Friends from './component/Friends/Friends';
 import './App.css';
 
 // import './colors.css';
-import './colors2.css';
+// import './colors2.css';
+import './colors3.css';
 import Picture from './component/Messages/Picture';
 
 
