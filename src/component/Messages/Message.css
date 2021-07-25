@@ -1,13 +1,18 @@
 .maincomment{
     display: block;
     margin:auto;
+    padding-top: .2rem;
 }
 .inputbox{
     padding:0.3rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left:auto;
+    
+    position:fixed;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* margin-left:auto; */
+    left:50%;
+    transform: translate(-50%,0);
 }
 
 .textarea, .textareapic{
@@ -32,10 +37,10 @@
 }
 
 .public{
-    transform: translate(-50%,-10%);
+    transform: translate(-50%,-20%);
 }
 .friend{
-    transform: translate(-50%,40%);
+    transform: translate(-50%,-20%);
 }
 
 
@@ -142,6 +147,9 @@
     display:none;
 }
 
+.bigbox{
+    padding-top:2.2rem;
+}
 .box{
     display:flex;
     justify-content: center;
