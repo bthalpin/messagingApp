@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import Friend from './Friend';
 import './Friends.css';
 // import '../../colors.css';
-// import '../../colors2.css';
-import '../../colors3.css';
+import '../../colors2.css';
+// import '../../colors3.css';
 import friendpicture from "../../images/friend.png";
 
 
@@ -15,7 +15,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     const converse = (friend) => {
         toggleFriends()
         setConversation((prevConversation)=>{
-            return {...prevConversation,you:friend,me:user.email}
+            return {...prevConversation,you:friend}
         })
         setPrivateMessage((prevPrivateMessage)=>{
             return {...prevPrivateMessage,recipientEmail:friend}

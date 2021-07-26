@@ -7,8 +7,8 @@ import Friends from './component/Friends/Friends';
 import './App.css';
 
 // import './colors.css';
-// import './colors2.css';
-import './colors3.css';
+import './colors2.css';
+// import './colors3.css';
 import Picture from './component/Messages/Picture';
 
 
@@ -138,6 +138,7 @@ function App() {
             pastPublicMessages = {pastPublicMessages}
             setPastPublicMessages = {setPastPublicMessages}
             addFriend = {addFriend}
+            conversation = {conversation}
             />
             </div>
         </div>
@@ -186,6 +187,7 @@ function App() {
             // setPastMessages = {setPastMessages}
             setCurrentPublicMessage = {setCurrentPublicMessage}
             // setPrivatePublicMessage = {setPrivatePublicMessage}
+            setConversation = {setConversation}
             
           
             />          

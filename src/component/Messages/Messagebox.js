@@ -1,8 +1,8 @@
 import React from 'react';
 import "./Message.css";
 // import '../../colors.css';
-// import '../../colors2.css';
-import '../../colors3.css';
+import '../../colors2.css';
+// import '../../colors3.css';
 import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
@@ -46,7 +46,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                     <div className = "likedelete">
                     
                     {route === 'home'
-                            ?<div>
+                            ?<div className = "liketext">
                                 {count.length>4
                                 ?`${count.length} Likes`
                                 :(count.length>1
@@ -63,7 +63,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
 
                         {route === "home"
                             ?<div>{filteredMessages[i].email===currentUser
-                                ?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus)}>x</button>
+                                ?<div className = "deleteBackground"><button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus)}>x</button></div>
                                 :<></>}
                             </div>
                     // publicStatus?(pastPublicMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus)}>x</button>:<></>):

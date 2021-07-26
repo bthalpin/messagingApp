@@ -2,19 +2,21 @@ import React, { useState,useEffect } from 'react';
 import Messagebox from './Messagebox';
 import './Message.css';
 // import '../../colors.css';
-// import '../../colors2.css';
-import '../../colors3.css';
+import '../../colors2.css';
+// import '../../colors3.css';
 
 
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend}) => {
+const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation}) => {
     const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
     const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
     // let hidePictureText = "textareahide";
     // let hideMessageText = "textareahide";
+    let offset = '';
+    let background = '';
 
     useEffect(()=>{
         if (currentMessage.message!==''){
@@ -118,7 +120,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             setPastPublicMessages(newArr)
             
         }}else{
-        const newArr = [...pastMessages]
+        const newArr = [...filteredMessages]
         // setPastMessages(pastMessages.map(object=>{
         //     return (object.count.includes(user)
         //     ?{...object,count:object.count.filter((username)=>username!==user)}
@@ -254,6 +256,18 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             <input name = "filter" ></input>
             </div> */}
             
+            
+
+
+
+
+
+
+
+
+
+
+
             <div className="bigbox">
             {pastPublicMessages.map((msg,i)=>{
                 const currentUser = pastPublicMessages.length-1-i
@@ -277,11 +291,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             
             })}
             </div>
-            {/* {console.log('message',pastMessages)} */}
             
-            {/* {pastMessages.map((message,i)=>{
-                return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
-            })} */}
             
         </div>
         
@@ -324,36 +334,87 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <input name = "filter" ></input>
                 </div> */}
                 
-                <div className="bigbox">
 
-                    {filteredMessages.map((msg,i)=>{
-                        const currentUser = filteredMessages.length-1-i
-                        console.log('current',publicStatus)
-                            return <div>
-                                    <Messagebox 
-                                        filteredMessages = {filteredMessages} 
-                                        currentUser = {user.email} 
-                                        username = {filteredMessages[currentUser].email} 
-                                        text ={filteredMessages[currentUser].message} 
-                                        time = {filteredMessages[currentUser].time} 
-                                        i = {currentUser} 
-                                        deletePost = {deletePost} 
-                                        route={route} 
-                                        addLike = {addLike} 
-                                        count = {filteredMessages[currentUser].count} 
-                                    />
-                                </div>
+
+
+                <div className="bigbox">
+                    {console.log('friend change',filteredMessages,conversation.me,)}
+            {filteredMessages.map((message,i)=>{
+                    const currentUser = filteredMessages.length-1-i
+            if (filteredMessages[currentUser].email.toUpperCase() === conversation.you
+                                ||filteredMessages[currentUser].email===conversation.me)
+                            // ||(filteredMessages[currentUser].recipientEmail=== conversation.me.toUpperCase()
+                            //     &&filteredMessages[currentUser].senderEmail.toUpperCase() ===conversation.you))
+                            {    
+                                filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
+                                filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
+                                // console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
+                                return <div className = {offset}>
+                                             <Messagebox 
+                                filteredMessages = {filteredMessages} 
+                                currentUser = {user.email} 
+                                username = {filteredMessages[currentUser].email} 
+                                text ={filteredMessages[currentUser].message} 
+                                time = {filteredMessages[currentUser].time} 
+                                i = {currentUser} 
+                                deletePost = {deletePost} 
+                                route={route} 
+                                addLike = {addLike} 
+                                count = {filteredMessages[currentUser].count} 
+                                publicStatus = {publicStatus}
+                                addFriend = {addFriend}
+                                background = {background}
+                            />
+                                        </div>
+                            }})}
+                            </div>
+                            {/* {console.log('message',pastMessages)} */}
+                            
+                            {/* {pastMessages.map((message,i)=>{
+                                return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
+                            })} */}
+                            
+                        </div>
+                        
+                        </>
+
+
+
+
+
+
+
+
+
+
+            //     <div className="bigbox">
+
+            //         {filteredMessages.map((msg,i)=>{
+            //             const currentUser = filteredMessages.length-1-i
+            //             console.log('current',publicStatus)
+            //                 return <div>
+            //                         <Messagebox 
+            //                             filteredMessages = {filteredMessages} 
+            //                             currentUser = {user.email} 
+            //                             username = {filteredMessages[currentUser].email} 
+            //                             text ={filteredMessages[currentUser].message} 
+            //                             time = {filteredMessages[currentUser].time} 
+            //                             i = {currentUser} 
+            //                             deletePost = {deletePost} 
+            //                             route={route} 
+            //                             addLike = {addLike} 
+            //                             count = {filteredMessages[currentUser].count} 
+            //                         />
+            //                     </div>
                 
-                            })
-                    }
-                </div>
-                {console.log('message',pastMessages)}
+            //                 })
+            //         }
+            //     </div>
+            //     {console.log('message',pastMessages)}
                 
-                {/* {pastMessages.map((message,i)=>{
-                    return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
-                })} */}
-            </div>
-            </>
+               
+            // </div>
+            // </>
             }
             
             </div>

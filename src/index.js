@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // import './colors.css';
-// import './colors2.css';
-import './colors3.css';
+import './colors2.css';
+// import './colors3.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

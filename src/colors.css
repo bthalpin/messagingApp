@@ -15,7 +15,7 @@ html{
 
 .commentsection{
     background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8));
-    border:4px solid rgba(8, 185, 255,0.8);
+    /* border:10px solid black; */
     
 }
 
@@ -159,6 +159,9 @@ input[type="radio"]:checked+label{
     color:darkred;
 }
 
+.deletecontainer{
+    background: black;
+}
 
 
 .partner{

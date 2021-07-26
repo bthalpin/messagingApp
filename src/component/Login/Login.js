@@ -2,15 +2,15 @@ import React from 'react';
 import Inputblock from './Inputblock';
 import './Login.css';
 // import '../../colors.css';
-// import '../../colors2.css';
-import '../../colors3.css';
+import '../../colors2.css';
+// import '../../colors3.css';
 const Login = ({
                 user,route,errorMessage,
                 setRoute,setUser, setErrorMessage,
                 setIsSignedIn,onRouteChange, 
                 setCurrentMessage, pastMessages,
                 setPrivateMessage, setCurrentPublicMessage,
-                setPrivatePublicMessage}) => {
+                setPrivatePublicMessage,setConversation}) => {
     
     const {username,email,password} = user;
     
@@ -48,6 +48,9 @@ const Login = ({
           return {...prevPrivateMessage,senderEmail:email}})
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
           return {...prevCurrentPublicMessage,email:email}})
+          setConversation((prevConversation)=>{
+            return {...prevConversation,me:user.email}
+        })
         // setPrivatePublicMessage((prevPrivatePublicMessage)=>{
         //   return {...prevPrivatePublicMessage,senderEmail:email}})
           // console.log('log',privateMessage)

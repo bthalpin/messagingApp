@@ -157,9 +157,6 @@ input[type="radio"]:checked+label{
     .friendimg{
         width:2rem;
     }
-    .friendList{
-        margin-left:50vw;
-    }
 
     
 }

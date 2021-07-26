@@ -4,15 +4,17 @@
     padding-top: .2rem;
 }
 .inputbox{
+    /* margin-top:1rem; */
     padding:0.3rem;
     display: flex;
-    
+    /* height:2rem; */
     position:fixed;
     /* justify-content: center; */
     /* align-items: center; */
     /* margin-left:auto; */
     left:50%;
     transform: translate(-50%,0);
+    
 }
 
 .textarea, .textareapic{
@@ -132,7 +134,7 @@
     height: 75vh;
     /* border-top-left-radius: 1rem;
     border-top-right-radius: 1rem; */
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     /* border:4px solid rgba(8, 185, 255,0.8); */
     width: 35rem;
     overflow-y: scroll;
@@ -165,7 +167,10 @@
     /* border-top:2px solid black; */
     
     border-radius:0.5rem;
-    width:30rem;
+    min-width:10rem;
+    max-width:60vw;
+
+
     /* min-width:400px; */
     box-shadow: .05rem 0.05rem 0.3rem black;
     /* overflow-wrap: break-word; */
@@ -182,14 +187,14 @@
 .messageArea{
     display:flex;
     /* background:white; */
-    justify-content: center;
+    justify-content: left;
     /* border:5px solid #00a2ff; */
     border-bottom: none;
-    border-top-right-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
 }
 .deleteContainer{
-    padding:0 0.5rem;
+    padding:0 0.2rem;
     /* display:flex;
     justify-content: flex-end; */
     /* max-width: 30%; */
@@ -206,10 +211,10 @@
 
 
 .text{
-    padding:1rem;
-    
-    width:70%;
-    min-height: 4rem;
+    padding:0.5rem 1rem;
+    text-align: start;
+    /* width:70%; */
+    /* min-height: 4rem; */
 }
 
 .textmessage{
@@ -284,17 +289,20 @@
         padding:0.5rem;
         /* margin:auto; */
     }
-    .deleteContainer{
-        width:5vw;
-    }
+    /* .deleteContainer{ */
+        /* width:5vw; */
+    /* } */
 
 }
 
 @media screen and (max-width:270px){
-    
-    .deleteContainer{
-        margin:0;
+    .smallbox{
+        max-width: 100%;
+        min-width: none;
     }
+    /* .deleteContainer{ */
+        /* margin:0; */
+    /* } */
     .text{
         font-size: 0.8rem;
         padding:0;
@@ -318,8 +326,8 @@
     margin:0;
     font-size: 0.8rem;
     /* border:3px solid #00a2ff; */
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
+    /* border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem; */
 }
 
 .user > p{
@@ -337,9 +345,12 @@
 .likes{
     display:flex;
     justify-content: space-between;
-    padding:0rem 0.5rem 0rem 0rem;
+    padding:0rem;
     font-size:0.75rem;
     height:1.3rem;
+    
+    border-bottom-left-radius: 0.2rem;
+    border-bottom-right-radius: 0.2rem;
     /* background:tra; */
 }
 
