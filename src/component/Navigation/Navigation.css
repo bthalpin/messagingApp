@@ -22,7 +22,7 @@
 
 .navElement{
     padding:1rem;
-    font-size:1rem;
+    font-size:1.1rem;
     font-weight:bold;
     /* color:white; */
     text-decoration: underline;
@@ -50,7 +50,8 @@
 
 @media screen and (max-width:600px) {
     .navElement{
-        font-size: 0.75rem;;
+        font-size: 1rem;
+        /* padding:0; */
     }
     .homemail{
         margin-left: 1.5rem;;
@@ -64,6 +65,12 @@
     
   }
 
+  @media screen and (max-width:550px) {
+    .navElement{
+        font-size: 0.7rem;
+        margin-top:0.3rem;
+    }
+  }
 .headcontainer{
     width:100vw;
    display:flex;
@@ -97,6 +104,7 @@
   }
 
 @media screen and (max-width:450px) {
+    
     .headcontainer{
       /* min-width: 100vw; */
       height:3rem;
@@ -104,9 +112,11 @@
     }
     .title{
         font-size: 1rem;
+        /* padding-bottom:0; */
     }
     .navElement{
-        font-size: 0.5rem;
+        font-size: 0.55rem;
+        margin-top:0;
     }
     .homemail{
         width:1.4rem;
@@ -120,9 +130,11 @@
   }
 
   @media screen and (max-width:350px) {
-   
+   .mainMessage{
+       margin-top:5rem;
+   }
     .navElement{
-        font-size: 0.35rem;
+        font-size: 0.5rem;
         margin-top:0.5rem;
     }
     .title{

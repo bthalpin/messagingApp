@@ -16,3 +16,17 @@
   /* top:unset; */
   margin:3rem auto -3rem auto;
 }
+
+@media (max-width:450px) {
+  .mainMessage{
+    margin-top:2.5rem;
+  }
+  
+}
+
+@media (max-width:350px) {
+  .mainMessage{
+    margin-top:3.5rem;
+  }
+  
+}
