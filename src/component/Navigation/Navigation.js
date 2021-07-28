@@ -17,6 +17,7 @@ const Navigation = ({onRouteChange, isSignedIn,route,
     conversation,
     addFriend
 })=>{
+    let display;
     if (isSignedIn){
         return (
             <div className = "navroot">
@@ -36,6 +37,7 @@ const Navigation = ({onRouteChange, isSignedIn,route,
                 </div>
                 :<div className = 'navLeft'> 
                 <p className="navhomemail" onClick = {() => onRouteChange('home')}><img className = "homemail" src = {Home} alt="Home" width = "30rem" ></img></p>
+                {conversation.you?display=false:display=true}
                 <Friends 
             user = {user} 
             setUser = {setUser} 
@@ -44,6 +46,8 @@ const Navigation = ({onRouteChange, isSignedIn,route,
             setPrivateMessage = {setPrivateMessage} 
             setConversation = {setConversation} 
             addFriend = {addFriend} 
+            display={display}
+            
           />
                 </div>
                 

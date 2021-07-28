@@ -162,4 +162,11 @@
         margin-left:20vw;
     }
   }
+
+  @media (max-height:400px) {
+      .formWindow{
+          height:18rem;
+      }
+      
+  }
   

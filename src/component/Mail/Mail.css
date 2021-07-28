@@ -97,6 +97,10 @@
     text-shadow: 0.1rem 0.1rem 0.5rem black;
 }
 
+.nocontact{
+    margin-top:20vh;
+    color:white;
+}
 @media (max-height:700px) {
     .mailbox{
         height:70vh;

@@ -9,8 +9,8 @@ import friendpicture from "../../images/friend.png";
 
 const arrow = "x";
 
-const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend}) => {
-    const [friendList,setFriendList] = useState(false)
+const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend,display}) => {
+    const [friendList,setFriendList] = useState(display)
 
     const converse = (friend) => {
         toggleFriends()
@@ -48,7 +48,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     const { friends } = user
     return(
             <div className="fixed">
-            {console.log(friends,"friendlsist",user)}
+            {/* {console.log(friends,"friendlsist",user)} */}
             {friendList?
             <>
             <div className = "">
@@ -57,7 +57,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             <div className = "friendList">
                 <div  className="mainfriend">
                     <div >
-                        {console.log(route,'route')}
+                        {/* {console.log(route,'route')} */}
                         <div className="friendtitlebox"><p className="friendtitle">{route==="home"?"Friends List":"Contacts"}</p></div>
                         <div className = "scroll">
                             <ul>

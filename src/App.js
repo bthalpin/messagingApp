@@ -23,25 +23,58 @@ function App() {
   // const [currentMessage,setCurrentMessage] = useState('')
   // const [pastMessages,setPastMessages] = useState([])
   const [pastMessages,setPastMessages] = useState([])
-  const [currentMessage, setCurrentMessage] = useState({username:'',email:'',message:'',time:'',count:[]})
+  const [currentMessage, setCurrentMessage] = useState({id:'',username:'',email:'',message:'',time:'',likes:[]})
   const [pastPublicMessages,setPastPublicMessages] = useState([])
-  const [currentPublicMessage, setCurrentPublicMessage] = useState({username:'',email:'',message:'',time:'',count:[]})
+  const [currentPublicMessage, setCurrentPublicMessage] = useState({id:'',username:'',email:'',message:'',time:'',likes:[]})
   const [privateMessages,setPrivateMessages] = useState([])
-  const [privateMessage, setPrivateMessage] = useState({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
+  const [privateMessage, setPrivateMessage] = useState({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
   const [conversation,setConversation] = useState({me:'',you:''})
+  const [filteredMessages,setFilteredMessages] = useState({})
   
-  
+  useEffect (()=>{
+    setFilteredMessages(()=>{
+      return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
+          
+  },[])
  
+  
+  // useEffect (()=>{
+  //   fetch('http://localhost:3000/friendmessageload',{
+  //                   method:'get',
+  //                   headers:{'Content-Type':'application/json'},
+                    
+  //                   })
+  //                   .then(res=>res.json())
+  //                   .then(res=>{
+  //                       console.log('FROM DB',res)
+  //                       setPastMessages(res)})
+  //                   .catch(err=>console.log(err))
+      
+    
+  // })
+
+  // useEffect(()=>{
+  //   fetch('http://localhost:3000/publicmessageload',{
+  //                     method:'get',
+  //                     headers:{'Content-Type':'application/json'},
+                      
+  //                     })
+  //                     .then(res=>res.json())
+  //                     .then(res=>{
+  //                         console.log('FROM DB',res)
+  //                         setPastPublicMessages(res)})
+  //                     .catch(err=>console.log(err))
+  // })
 
   const resetState = () => {
     console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
     setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
-    setErrorMessage('')
+    // setErrorMessage('')
     // console.log(pastMessages)
-    setCurrentMessage({username:'',email:'',message:'',time:'',count:[]})
-    setPrivateMessage({username:'',senderEmail:'',recipientEmail:'',message:'',time:''})
+    setCurrentMessage({id:'',username:'',email:'',message:'',time:'',likes:[]})
+    setPrivateMessage({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
     setConversation({me:'',you:''})
     
     // setMyOldFriends((prevMyOldFriends)=>{
@@ -57,37 +90,86 @@ function App() {
     // console.log(route)
   }
   
-  const deletePost = (currentIndex,publicStatus) => {
+  const deletePost = (currentIndex,publicStatus,currentId) => {
+    
+
+        // FETCH
+
+        
     // console.log(publicStatus,'error')
     // const currentIndex = pastMessages.length-1-event.target.id
     // console.log(pastMessages[currentIndex].email)
     if (publicStatus){
-      if (pastPublicMessages[currentIndex].email===user.email){
-        setPastPublicMessages(pastPublicMessages.filter((message)=>message!==pastPublicMessages[currentIndex]))
-      }else{
-        alert('You can only delete your own messages')
-      }    
+      fetch('http://localhost:3000/deletemessage',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        id:currentId,
+                        database:'publicmessages'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM DB',res)
+                        setPastPublicMessages(res)})
+                    .catch(err=>console.log(err))
+      // if (pastPublicMessages[currentIndex].email===user.email){
+      //   setPastPublicMessages(pastPublicMessages.filter((message)=>message!==pastPublicMessages[currentIndex]))
+      // }else{
+      //   alert('You can only delete your own messages')
+      // }    
     }else{
-      if (pastMessages[currentIndex].email===user.email){
-        setPastMessages(pastMessages.filter((message)=>message!==pastMessages[currentIndex]))
-      }else{
-        alert('You can only delete your own messages')
+      fetch('http://localhost:3000/deletemessage',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                      id:currentId,
+                      database:'friendmessage'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM DB',res)
+                        setPastMessages(res)})
+                    .catch(err=>console.log(err))
+      // if (pastMessages[currentIndex].email===user.email){
+      //   setPastMessages(pastMessages.filter((message)=>message!==pastMessages[currentIndex]))
+      // }else{
+      //   alert('You can only delete your own messages')
       }   
-    }
+    
      
   }
 
   const addFriend = (newFriend) => {
+    
+
+        // FETCH
+
+        
     if (newFriend==="No Names"){
       newFriend = prompt('Enter the email address of your friend ')
     }
     
     if (newFriend){
-        const newFriends = [...user.friends,newFriend.toUpperCase()]
-        setUser((prevUser)=> {
-        return {...prevUser,friends:newFriends}
+      fetch('http://localhost:3000/friends',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        email:user.email,
+                        newFriend:newFriend.toUpperCase()
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        // console.log('FROM DB',res)
+                        const newFriends = [...user.friends,newFriend.toUpperCase()]
+                        setUser((prevUser)=> {
+                        return {...prevUser,friends:newFriends}})
+                    
         
-        })
+        
+        }).catch(err=>console.log(err))
         // setMyFriends((prevMyFriends)=>{
         //     return {...prevMyFriends,email:user.email,friends:newFriends}
     alert(`Added ${newFriend} to your friends list`)
@@ -139,6 +221,8 @@ function App() {
             setPastPublicMessages = {setPastPublicMessages}
             addFriend = {addFriend}
             conversation = {conversation}
+            setFilteredMessages = {setFilteredMessages}
+            filteredMessages = {filteredMessages}
             />
             </div>
         </div>
@@ -183,11 +267,12 @@ function App() {
             // currentMessage = {currentMessage}
             setCurrentMessage = {setCurrentMessage}
             pastMessages = {pastMessages}
-            setPrivateMessage = {setPrivateMessage}
-            // setPastMessages = {setPastMessages}
+            setPrivateMessages = {setPrivateMessages}
+            setPastMessages = {setPastMessages}
             setCurrentPublicMessage = {setCurrentPublicMessage}
-            // setPrivatePublicMessage = {setPrivatePublicMessage}
+            setPastPublicMessages = {setPastPublicMessages}
             setConversation = {setConversation}
+            setFilteredMessages = {setFilteredMessages}
             
           
             />          

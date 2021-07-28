@@ -7,18 +7,18 @@ import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
-const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply, addLike, count, currentUser,filteredMessages,background,publicStatus,pastPublicMessages,addFriend}) => {
+const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
     return (
         <div className = "box">
             <div className = "smallbox">
                 {/* {console.log(publicStatus,'user')} */}
                 <div className = {"messageArea " +background}>
                     <div className = "text">
-                        <div className = "textmessage">{text.includes('#img#')?<Picture source = {text.substr(5,text.length-1)}/>:text}</div>
+                        <div className = "textmessage">{text.includes('#img#')? <Picture source = {text.substr(5,text.length-1)}/>:text}</div>
                         {/* {console.log(text.substr(3,text.length-1))} */}
                     </div>
                     
-                    
+                   
                     
                 </div>
                 
@@ -28,34 +28,35 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
                 </div>
                 <div className = {"user " + background}>
                     
-                    <p onClick={()=>addFriend(username)}>{username}</p>
-                    <p className='date'>{ time.substr(0,24) }</p>
+                    <p onClick={()=>addFriend(username)}>{username.toUpperCase()}</p>
+                    <p className='date'>time</p>
+
+                    {/* { time.substr(0,24) } */}
                     
                 </div>
                 <div className={"likes "}>
                         {route === 'home'
-                            // ?(count.includes(user)?<button onClick = {()=>addLike(i)}>Unlike</button>:<button onClick = {()=>addLike(i)}>Like</button>)
-                            ?<button className = "likeButton" onClick = {()=>addLike(i)}>
-                                {(count.includes(currentUser)
+                            // ?(likes.includes(username)?<button onClick = {()=>addLike(i,currentId)}>Unlike</button>:<button onClick = {()=>addLike(i)}>Like</button>)
+                            ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
+                                {likes?(likes.includes(currentUser)
                                     ?<img src = {Liked} alt="Unlike" width="20rem"></img>
-                                    :<img src = {Like} alt="like" width = "20rem"></img>)}
+                                    :<img src = {Like} alt="like" width = "20rem"></img>):<img src = {Like} alt="like" width = "20rem"></img>}
                             </button>
                             // :<button className = "likeButton" onClick = {()=>reply(username)}>Reply</button>
-                            :<></>
-                            }
+                            :<></>}
                     <div className = "likedelete">
                     
                     {route === 'home'
-                            ?<div className = "liketext">
-                                {count.length>4
-                                ?`${count.length} Likes`
-                                :(count.length>1
-                                    ?(count.length>2
-                                        ?count.join(', ')+' like this post'
-                                        :count.join(' and ')+' like this post')
-                                    :(count.length?count+' likes this post':''))}
+                            ?likes?(<div className = "liketext">
+                                {likes.length>4
+                                ?`${likes.length} Likes`
+                                :(likes.length>1
+                                    ?(likes.length>2
+                                        ?likes.join(', ')+' like this post'
+                                        :likes.join(' and ')+' like this post')
+                                    :(likes.length?likes+' likes this post':''))}
                             </div>
-                            :<></>
+                            ):<></>:<></>
                             
                         
                         }
@@ -63,12 +64,12 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail,reply
 
                         {route === "home"
                             ?<div>{filteredMessages[i].email===currentUser
-                                ?<div className = "deleteBackground"><button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus)}>x</button></div>
+                                ?<div className = "deleteBackground"><button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus,currentId)}>x</button></div>
                                 :<></>}
                             </div>
                     // publicStatus?(pastPublicMessages[i].email===currentUser?<button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus)}>x</button>:<></>):
                         
-                            :<div className = "deleteBackground"><button className = "deleteButton" id = {i} onClick = {deleteMail}>X</button></div>
+                            :<div className = "deleteBackground"><button className = "deleteButton" id = {i} onClick = {()=>deleteMail(currentId)}>X</button></div>
                             }
                     </div>
                     </div>

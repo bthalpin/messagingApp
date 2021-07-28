@@ -9,8 +9,9 @@ import '../../colors2.css';
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation}) => {
-    const [filteredMessages,setFilteredMessages] = useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
+const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation,setFilteredMessages,filteredMessages}) => {
+    
+    // useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
     const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
     // let hidePictureText = "textareahide";
@@ -19,8 +20,33 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     let background = '';
 
     useEffect(()=>{
+
+        const currentTime = currentMessage.time
+        
         if (currentMessage.message!==''){
-            setPastMessages([...pastMessages,currentMessage])
+            // console.log(currentMessage.time,'TIMETIME')
+            fetch('http://localhost:3000/friendmessage',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        name:user.username,
+                        email:user.email.toUpperCase(),
+                        message:currentMessage.message,
+                        time:'currentTime',
+                        likes:[]
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM DB',res)
+                        setPastMessages(res)})
+                    .catch(err=>console.log(err))
+
+        // FETCH
+
+        
+        // if (currentMessage.message!==''){
+        //     setPastMessages([...pastMessages,currentMessage])
         setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,message:''}})
         }
@@ -29,8 +55,31 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     },[currentMessage.time])
 
     useEffect(()=>{
+
+        
+
+        // FETCH
+        const currentTime = currentPublicMessage.time
+        
         if (currentPublicMessage.message!==''){
-            setPastPublicMessages([...pastPublicMessages,currentPublicMessage])
+            // console.log(currentPublicMessage.time,'TIMETIME')
+            fetch('http://localhost:3000/publicmessage',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        name:user.username,
+                        email:user.email.toUpperCase(),
+                        message:currentPublicMessage.message,
+                        time:'currentTime',
+                        likes:[]
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM DB',res)
+                        setPastPublicMessages(res)})
+                    .catch(err=>console.log(err))
+            // setPastPublicMessages([...pastPublicMessages,currentPublicMessage])
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
             return {...prevCurrentPublicMessage,message:''}})
         }
@@ -43,9 +92,24 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     // },[user.friends])
 
     useEffect(()=>{
+        
+
+        
         setFilteredMessages(()=>{
-            return pastMessages.filter((message)=>user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email)})
+            return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
+                console.log(filteredMessages);
+                // return user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email})})
     },[user.friends,pastMessages])
+
+    // useEffect(()=>{
+        
+
+        
+    //     setFilteredMessages(()=>{
+    //         return pastMessages.filter((message)=>message.email===user.email)})
+    //             console.log(filteredMessages);
+    //             // return user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email})})
+    // },[])
     // useEffect(()=>{
     //     console.log(pastMessages)
     //     setPastMessages(pastMessages)
@@ -60,20 +124,38 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     
     
     // let filteredMessages = 
-    console.log('filtered',filteredMessages,pastMessages,'user',user.email)
+    // console.log('filtered',filteredMessages,pastMessages,'user',user.email)
 
     const onSubmit = (picture) => {
         // console.log(currentObject)
+        // console.log(user,'HERE')
         if (picture && (currentPublicMessage.message!=="" || currentMessage.message !=="")){
-            publicStatus?setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+            publicStatus?
+                
+                
+            
+            
+            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
                 return {...prevCurrentPublicMessage,message:"#img#"+currentPublicMessage.message}})
-            :setCurrentMessage((prevCurrentMessage)=>{
+            :
+            
+            
+            
+            setCurrentMessage((prevCurrentMessage)=>{
                 return {...prevCurrentMessage,message:"#img#"+currentMessage.message}})
         }
-        console.log(currentPublicMessage,'public')
-        publicStatus?setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+        // console.log(currentPublicMessage,'public')
+        publicStatus?
+        
+        
+        
+        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
             return {...prevCurrentPublicMessage,time:Date().toLocaleString()}})
-        :setCurrentMessage((prevCurrentMessage)=>{
+        :
+        
+        
+        
+        setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,time:Date().toLocaleString()}})
         // console.log('submit',pastPublicMessages)
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
@@ -101,61 +183,102 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         
     }
     
-    const addLike = (i) => {
-        // let x = pastMessages[i].count
-        // x.push(user)
-        // console.log(x,pastMessages[i])
-        // setPastMessages([...pastMessages.slice,pastMessages[i].count=x])
+    const addLike = (i,currentId) => {
+
+        console.log('CURRENTID',currentId)
         if (publicStatus){
         const newArr = [...pastPublicMessages]
-        if (!newArr[i].count.includes(user.email)){
-            let counting = [...newArr[i].count,user.email]
-            newArr[i]={...newArr[i],count:counting}
-            console.log(counting)
-            setPastPublicMessages(newArr)
-        }else{
-            let counting = newArr[i].count.filter((currentuser)=>currentuser!==user.email)
-            newArr[i]={...newArr[i],count:counting}
-            // console.log(filteredArr)
-            setPastPublicMessages(newArr)
+        
+        if (!newArr[i].likes ||!newArr[i].likes.includes(user.email.toUpperCase())){
             
-        }}else{
+            
+
+            // MAKE FUNCTION
+
+
+            fetch('http://localhost:3000/likes',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        email:user.email,
+                        id:currentId,
+                        database:'publicmessages'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        // let liking = [...newArr[i].likes,user.email]
+                        // newArr[i]={...newArr[i],likes:liking}
+                        console.log('FROM DB',res)
+                        setPastPublicMessages(res)})
+                    .catch(err=>console.log(err))
+            // setPastPublicMessages(newArr)
+        }else{
+            // let liking = newArr[i].likes.filter((currentuser)=>currentuser!==user.email.toUpperCase())
+            // newArr[i]={...newArr[i],likes:liking}
+            // console.log(filteredArr)
+            fetch('http://localhost:3000/dislike',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        email:user.email,
+                        id:currentId,
+                        database:'publicmessages'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM DB',res)
+                        setPastPublicMessages(res)})
+                    .catch(err=>console.log(err))
+            // setPastPublicMessages(newArr)
+            
+        }}else if (!publicStatus){
         const newArr = [...filteredMessages]
-        // setPastMessages(pastMessages.map(object=>{
-        //     return (object.count.includes(user)
-        //     ?{...object,count:object.count.filter((username)=>username!==user)}
-        //     :{...object,count:object.count.push(user)})
-        // }))
-        // console.log(pastMessages)
-        // let newLike = newArr[i].count
-        // console.log(i,newArr[i].count,newArr,'before')
-        // if (newArr[i].count.includes(user)){
-        //     newArr[i].count.filter((currentUser)=>currentUser!==user)
-        // }else{
-            // newArr[i].count.push(user)
-        // }
-        // console.log(newArr[i].count,newArr,'during')
-        // newArr[i].count=newLike
-        // console.log(newLike,newArr,'after')
-        // newArr[i].assign()
-        // if (newArr[i].count.includes(user)){
-        //     newArr[i].count.filter((currentuser)=>currentuser!==user)
-            
-        // }else{
-            // newArr[i].count.Object.assign(user)
-        // }
+       
 
-
-        if (!newArr[i].count.includes(user.email)){
-            let counting = [...newArr[i].count,user.email]
-            newArr[i]={...newArr[i],count:counting}
-            console.log(counting)
-            setPastMessages(newArr)
+        if (!newArr[i].likes || !newArr[i].likes.includes(user.email.toUpperCase())){
+            fetch('http://localhost:3000/likes',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        email:user.email,
+                        id:currentId,
+                        database:'friendmessage'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        // let liking = [...newArr[i].likes,user.email]
+                        // newArr[i]={...newArr[i],likes:liking}
+                        console.log('FROM DB',res)
+                        setPastMessages(res)})
+                    .catch(err=>console.log(err))
+            // let liking = [...newArr[i].likes,user.email]
+            // newArr[i]={...newArr[i],likes:liking}
+            // console.log(liking)
+            // setPastMessages(newArr)
         }else{
-            let counting = newArr[i].count.filter((currentuser)=>currentuser!==user.email)
-            newArr[i]={...newArr[i],count:counting}
-            // console.log(filteredArr)
-            setPastMessages(newArr)
+            fetch('http://localhost:3000/dislike',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                        email:user.email,
+                        id:currentId,
+                        database:'friendmessage'
+                        })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        // let liking = [...newArr[i].likes,user.email]
+                        // newArr[i]={...newArr[i],likes:liking}
+                        console.log('FROM DB',res)
+                        setPastMessages(res)})
+                    .catch(err=>console.log(err))
+            // let liking = newArr[i].likes.filter((currentuser)=>currentuser!==user.email)
+            // newArr[i]={...newArr[i],likes:liking}
+            
+            // setPastMessages(newArr)
             
         }
         
@@ -163,7 +286,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         
         // console.log(newArr)
         // setPastMessages((prevPastMessages)=>{
-            // return [...prevPastMessages,{PastMessages[i].count:PastMessages[i].count++}]
+            // return [...prevPastMessages,{PastMessages[i].likes:PastMessages[i].likes++}]
     }
 }
 
@@ -247,8 +370,8 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
                 <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
                 
-                <label for="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                <label for ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                <label htmlFor="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                <label htmlFor ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
                 
                 </div>
             {/* <div className="filter">
@@ -270,8 +393,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
             <div className="bigbox">
             {pastPublicMessages.map((msg,i)=>{
-                const currentUser = pastPublicMessages.length-1-i
-                console.log('username',pastPublicMessages[currentUser])
+                const currentUser = pastPublicMessages.length - 1 -i
+                const currentId = pastPublicMessages[currentUser].id
+                // console.log('username',pastPublicMessages[currentUser])
                 return <div>
                             <Messagebox 
                                 filteredMessages = {pastPublicMessages} 
@@ -280,10 +404,11 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                 text ={pastPublicMessages[currentUser].message} 
                                 time = {pastPublicMessages[currentUser].time} 
                                 i = {currentUser} 
+                                currentId = {currentId}
                                 deletePost = {deletePost} 
                                 route={route} 
                                 addLike = {addLike} 
-                                count = {pastPublicMessages[currentUser].count} 
+                                likes = {pastPublicMessages[currentUser].likes} 
                                 publicStatus = {publicStatus}
                                 addFriend = {addFriend}
                             />
@@ -324,8 +449,8 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             
             <div className="commentsection">
             <div className = "inputbox">
-                <label for ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                <label for = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                <label htmlFor ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                <label htmlFor = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
                 <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
                 <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
                 </div>
@@ -340,12 +465,14 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <div className="bigbox">
                     {console.log('friend change',filteredMessages,conversation.me,)}
             {filteredMessages.map((message,i)=>{
-                    const currentUser = filteredMessages.length-1-i
-            if (filteredMessages[currentUser].email.toUpperCase() === conversation.you
-                                ||filteredMessages[currentUser].email===conversation.me)
+                
+                    const currentUser = filteredMessages.length -1-i
+                    const currentId = filteredMessages[currentUser].id
+            // if (filteredMessages[currentUser].email.toUpperCase() === conversation.you
+            //                     ||filteredMessages[currentUser].email===conversation.me)
                             // ||(filteredMessages[currentUser].recipientEmail=== conversation.me.toUpperCase()
                             //     &&filteredMessages[currentUser].senderEmail.toUpperCase() ===conversation.you))
-                            {    
+                                
                                 filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
                                 filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
                                 // console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
@@ -357,16 +484,17 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                 text ={filteredMessages[currentUser].message} 
                                 time = {filteredMessages[currentUser].time} 
                                 i = {currentUser} 
+                                currentId = {currentId}
                                 deletePost = {deletePost} 
                                 route={route} 
                                 addLike = {addLike} 
-                                count = {filteredMessages[currentUser].count} 
+                                likes = {filteredMessages[currentUser].likes} 
                                 publicStatus = {publicStatus}
                                 addFriend = {addFriend}
                                 background = {background}
                             />
                                         </div>
-                            }})}
+                            })}
                             </div>
                             {/* {console.log('message',pastMessages)} */}
                             
@@ -403,7 +531,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             //                             deletePost = {deletePost} 
             //                             route={route} 
             //                             addLike = {addLike} 
-            //                             count = {filteredMessages[currentUser].count} 
+            //                             likes = {filteredMessages[currentUser].likes} 
             //                         />
             //                     </div>
                 

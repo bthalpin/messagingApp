@@ -9,8 +9,10 @@ const Login = ({
                 setRoute,setUser, setErrorMessage,
                 setIsSignedIn,onRouteChange, 
                 setCurrentMessage, pastMessages,
-                setPrivateMessage, setCurrentPublicMessage,
-                setPrivatePublicMessage,setConversation}) => {
+                setPrivateMessages, setCurrentPublicMessage,
+                setPrivatePublicMessage,setConversation,
+              setPastMessages,setPastPublicMessages,
+              setFilteredMessages,filteredMessages}) => {
     
     const {username,email,password} = user;
     
@@ -34,23 +36,94 @@ const Login = ({
       }
     
       const verifyLogin = () => {
+        fetch('http://localhost:3000/signin',{
+            method:'post',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({
+              email:user.email.toUpperCase(),
+              password:user.password
+            })
+          })
+        .then(res=>res.json())
+        .then(res=>{
+            console.log(res,'response')
+            if (res.email===user.email){
+              setUser((prevUser)=>{
+                return {...prevUser,username:res.name,friends:res.friends}
+              })
+              setRoute('home')
+              setIsSignedIn(true)
+              setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,username:res.name,email:res.email}})
+                
+              setConversation({me:user.email,you:''})
+              // setCurrentMessage((prevCurrentMessage)=>{
+              //   return {...prevCurrentMessage,email:res.email}})
+
+            }else{
+              setErrorMessage('Invalid Login Information')
+              setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
+            }
+            // console.log(user)
+            
+        // console.log(user)
+        // setCurrentMessage((prevCurrentMessage)=>{
+        //   return {...prevCurrentMessage,email:email}})
+        // setPrivateMessage((prevPrivateMessage)=>{
+        //   return {...prevPrivateMessage,senderEmail:email}})
+        // setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+        //   return {...prevCurrentPublicMessage,email:email}})
+        //   setConversation((prevConversation)=>{
+        //     return {...prevConversation,me:user.email}
+        // })
+        })
+        .catch(err=>console.log(err))
+        fetch('http://localhost:3000/friendmessageload',{
+                    method:'post',
+                    headers:{'Content-Type':'application/json'},
+                    body:JSON.stringify({
+                      email:user.email,
+                      friends:user.friends
+                    })
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        console.log('FROM friend',res)
+                        setPastMessages(res)})
+                    .catch(err=>console.log(err))
+        fetch('http://localhost:3000/publicmessageload',{
+                              method:'post',
+                              headers:{'Content-Type':'application/json'},
+                              body:JSON.stringify({
+                                email:user.email,
+                                friends:user.friends
+                              })
+                              })
+                              .then(res=>res.json())
+                              .then(res=>{
+                                  console.log('FROM public',res)
+                                  setPastPublicMessages(res)})
+                              .catch(err=>console.log(err))
+                              
+        fetch('http://localhost:3000/privatemessageload',{
+          method:'post',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            email:user.email,
+            friends:user.friends
+          })
+          })
+          .then(res=>res.json())
+          .then(res=>{
+              console.log('FROM private',res)
+              setPrivateMessages(res)})
+          .catch(err=>console.log(err))
         // const oldFriends = Object.keys(myOldFriends).filter(key=>myOldFriends[key].email===user.email)
         // console.log(oldFriends)
         // const oldFriends = myOldFriends.filter((username)=>username.email===user.email);
         // if(oldFriends.length){setUser((prevUser)=>{
         //   return {...prevUser,friends:oldFriends.friends}})}
-        setRoute('home')
-        setIsSignedIn(true)
-        console.log(user)
-        setCurrentMessage((prevCurrentMessage)=>{
-          return {...prevCurrentMessage,email:email}})
-        setPrivateMessage((prevPrivateMessage)=>{
-          return {...prevPrivateMessage,senderEmail:email}})
-        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-          return {...prevCurrentPublicMessage,email:email}})
-          setConversation((prevConversation)=>{
-            return {...prevConversation,me:user.email}
-        })
+        
         // setPrivatePublicMessage((prevPrivatePublicMessage)=>{
         //   return {...prevPrivatePublicMessage,senderEmail:email}})
           // console.log('log',privateMessage)
@@ -59,22 +132,43 @@ const Login = ({
       const verifyRegistration = () => {
         const emailPattern = /\S+@\S+\.\S+/
             if (emailPattern.test(email) && password.length>=8){
-              setRoute('home')
-              setIsSignedIn(true)
-              setCurrentMessage((prevCurrentMessage)=>{
-                return {...prevCurrentMessage,username:username}})
+              fetch('http://localhost:3000/register',{
+                method:'post',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                  name:user.username,
+                  email:user.email.toUpperCase(),
+                  password:user.password,
+                  friends:user.friends
+                })
+              })
+              .then(res=>res.json())
+              .then(user=>{
+                setRoute('home')
+                setIsSignedIn(true)
+                
+                setCurrentMessage((prevCurrentMessage)=>{
+                  return {...prevCurrentMessage,username:user.name}})
             
-            setCurrentMessage((prevCurrentMessage)=>{
-              return {...prevCurrentMessage,email:email}})
-              console.log(pastMessages)
-          }
-            
-            if(password.length<8){
-              setErrorMessage('Password must be 8 characters long')
-            }else{
-              setErrorMessage('Enter a valid email address')
-            }
+                setCurrentMessage((prevCurrentMessage)=>{
+                  return {...prevCurrentMessage,email:user.email}})
+                  console.log(user)
+                })
+                .catch(err=>console.log(err))
+              }else if (password.length<8){
+                setErrorMessage('Password must be 8 characters long')
+              }else{
+                setErrorMessage('Enter a valid email address')
+              }
+
+
+
+
+
+         
       }
+        
+      
     
       const onSubmit = () => {
         route==='Sign In'?verifyLogin():verifyRegistration();
