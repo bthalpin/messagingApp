@@ -62,7 +62,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentPublicMessage.time
         
         if (currentPublicMessage.message!==''){
-            // console.log(currentPublicMessage.time,'TIMETIME')
+            console.log(currentPublicMessage.time,'MESSAGE')
             fetch('http://localhost:3000/publicmessage',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
@@ -70,7 +70,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                         name:user.username,
                         email:user.email.toUpperCase(),
                         message:currentPublicMessage.message,
-                        time:'currentTime',
+                        time:currentTime,
                         likes:[]
                         })
                     })
@@ -90,14 +90,16 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     // useEffect(()=>{
     //     setFilteredMessages(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     // },[user.friends])
+    
 
     useEffect(()=>{
         
 
-        
+        if (user.friends){
         setFilteredMessages(()=>{
             return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
                 console.log(filteredMessages);
+            }
                 // return user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email})})
     },[user.friends,pastMessages])
 
@@ -475,7 +477,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                 
                                 filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
                                 filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
-                                // console.log(privateMessages[currentMessage].senderEmail.toUpperCase()===conversation.me.toUpperCase())
+                                console.log(filteredMessages,'WHAT?')
                                 return <div className = {offset}>
                                              <Messagebox 
                                 filteredMessages = {filteredMessages} 

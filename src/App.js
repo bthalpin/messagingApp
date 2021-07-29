@@ -14,7 +14,7 @@ import Picture from './component/Messages/Picture';
 
 
 function App() {
-  const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
+  const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],request:[],pendingrequests:[]})
   // const [myFriends,setMyFriends] = useState({email:'',friends:[]})
   // const [myOldFriends, setMyOldFriends] = useState([])
   const [route,setRoute] = useState('Sign In')
@@ -32,8 +32,11 @@ function App() {
   const [filteredMessages,setFilteredMessages] = useState({})
   
   useEffect (()=>{
-    setFilteredMessages(()=>{
-      return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
+    if (user.friends){
+      setFilteredMessages(()=>{
+        return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
+    }
+    
           
   },[])
  
@@ -70,7 +73,7 @@ function App() {
     console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
-    setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
+    setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
     // setErrorMessage('')
     // console.log(pastMessages)
     setCurrentMessage({id:'',username:'',email:'',message:'',time:'',likes:[]})
@@ -142,17 +145,11 @@ function App() {
   }
 
   const addFriend = (newFriend) => {
-    
-
-        // FETCH
-
-        
     if (newFriend==="No Names"){
       newFriend = prompt('Enter the email address of your friend ')
     }
-    
-    if (newFriend){
-      fetch('http://localhost:3000/friends',{
+        if (!user.friends||!user.friends.includes(newFriend)){
+          fetch('http://localhost:3000/friendrequest',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -162,20 +159,22 @@ function App() {
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        // console.log('FROM DB',res)
-                        const newFriends = [...user.friends,newFriend.toUpperCase()]
-                        setUser((prevUser)=> {
-                        return {...prevUser,friends:newFriends}})
+                        console.log('FROM request',res)
+                        // const newFriends = [...user.friends,newFriend.toUpperCase()]
+                        if (res){
+                          setUser((prevUser)=> {
+                            return {...prevUser,pendingrequests:res.pendingrequests}})
+                        }
+                        
                     
         
         
         }).catch(err=>console.log(err))
-        // setMyFriends((prevMyFriends)=>{
-        //     return {...prevMyFriends,email:user.email,friends:newFriends}
-    alert(`Added ${newFriend} to your friends list`)
-    }
-    
-}
+        }
+      }
+        // FETCH
+
+  
 
   return (
     <div className="App">

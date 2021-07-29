@@ -24,7 +24,7 @@ const Login = ({
             break;
           case 'Email':
             setUser((prevUser)=>{
-                return {...prevUser,email:event.target.value}})
+                return {...prevUser,email:event.target.value.toUpperCase()}})
             break;
           case 'Password':
             setUser((prevUser)=>{
@@ -49,7 +49,7 @@ const Login = ({
             console.log(res,'response')
             if (res.email===user.email){
               setUser((prevUser)=>{
-                return {...prevUser,username:res.name,friends:res.friends}
+                return {...prevUser,username:res.name,friends:res.friends,requests:res.requests,pendingrequests:[]}
               })
               setRoute('home')
               setIsSignedIn(true)
@@ -62,7 +62,7 @@ const Login = ({
 
             }else{
               setErrorMessage('Invalid Login Information')
-              setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM']})
+              setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
             }
             // console.log(user)
             
@@ -82,7 +82,7 @@ const Login = ({
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
-                      email:user.email,
+                      email:user.email.toUpperCase(),
                       friends:user.friends
                     })
                     })
@@ -171,6 +171,8 @@ const Login = ({
       
     
       const onSubmit = () => {
+        // setUser((prevUser)=>{
+        //   return {...prevUser,email:user.email.toUpperCase()}})
         route==='Sign In'?verifyLogin():verifyRegistration();
     
       }

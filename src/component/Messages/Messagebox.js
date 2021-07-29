@@ -29,7 +29,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                 <div className = {"user " + background}>
                     
                     <p onClick={()=>addFriend(username)}>{username.toUpperCase()}</p>
-                    <p className='date'>time</p>
+                    <p className='date'>{time.substr(0,16)}</p>
 
                     {/* { time.substr(0,24) } */}
                     

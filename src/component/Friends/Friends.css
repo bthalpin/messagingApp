@@ -120,7 +120,16 @@ input[type="radio"]:checked+label{
     /* background: rgb(162, 202, 255); */
 }
 
+.friendButton{
+    border-radius:0.5rem;
+    margin-left:0.5rem;
+    margin-right:0.1rem
+}
 
+ul{
+    height:5rem;
+    overflow-y: scroll;
+}
 @media screen and (max-height:650px) {
     .scroll{
         /* height:55vh; */

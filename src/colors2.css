@@ -72,7 +72,7 @@ html{
     color:white;
 }
 .friendtitle{
-    background: var(--buttonColor);
+    background: var(--backColor);
     color:white;
 }
 
@@ -114,6 +114,10 @@ input[type="radio"]:checked+label{
     
 }
 
+.friendButton{
+    background: var(--buttonColor);
+    color:white;
+}
 
 .publicButtons{
     background:#00383d;
