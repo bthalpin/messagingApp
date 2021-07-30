@@ -11,11 +11,8 @@ import '../../colors2.css';
 
 const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation,setFilteredMessages,filteredMessages}) => {
     
-    // useState(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
     const [publicStatus,setPublicStatus] = useState(true);
     const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
-    // let hidePictureText = "textareahide";
-    // let hideMessageText = "textareahide";
     let offset = '';
     let background = '';
 
@@ -24,181 +21,109 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentMessage.time
         
         if (currentMessage.message!==''){
-            // console.log(currentMessage.time,'TIMETIME')
             fetch('http://localhost:3000/friendmessage',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
-                        email:user.email.toUpperCase(),
-                        message:currentMessage.message,
-                        time:'currentTime',
-                        likes:[]
-                        })
+                method:'post',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    name:user.username,
+                    email:user.email.toUpperCase(),
+                    message:currentMessage.message,
+                    time:'currentTime',
+                    likes:[]
                     })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        console.log('FROM DB',res)
-                        setPastMessages(res)})
-                    .catch(err=>console.log(err))
+                })
+                .then(res=>res.json())
+                .then(res=>{
+                    console.log('FROM DB',res)
+                    setPastMessages(res)})
+                .catch(err=>console.log(err))
 
-        // FETCH
-
-        
-        // if (currentMessage.message!==''){
-        //     setPastMessages([...pastMessages,currentMessage])
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,message:''}})
-        }
-        
-        // console.log(pastMessages)
+            return {...prevCurrentMessage,message:''}
+        })
+        }        
     },[currentMessage.time])
 
     useEffect(()=>{
-
-        
-
-        // FETCH
         const currentTime = currentPublicMessage.time
         
         if (currentPublicMessage.message!==''){
             console.log(currentPublicMessage.time,'MESSAGE')
             fetch('http://localhost:3000/publicmessage',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
-                        email:user.email.toUpperCase(),
-                        message:currentPublicMessage.message,
-                        time:currentTime,
-                        likes:[]
-                        })
+                method:'post',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({
+                    name:user.username,
+                    email:user.email.toUpperCase(),
+                    message:currentPublicMessage.message,
+                    time:currentTime,
+                    likes:[]
                     })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        console.log('FROM DB',res)
-                        setPastPublicMessages(res)})
-                    .catch(err=>console.log(err))
-            // setPastPublicMessages([...pastPublicMessages,currentPublicMessage])
-        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,message:''}})
-        }
-        
-        // console.log(pastMessages)
+                })
+                .then(res=>res.json())
+                .then(res=>{
+                    console.log('FROM DB',res)
+                    setPastPublicMessages(res)})
+                .catch(err=>console.log(err))
+            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                return {...prevCurrentPublicMessage,message:''}
+            })
+        }        
     },[currentPublicMessage.time])
 
-    // useEffect(()=>{
-    //     setFilteredMessages(pastMessages.filter((message)=>user.friends.includes(message.email)||user.email===message.email))
-    // },[user.friends])
-    
 
     useEffect(()=>{
-        
-
         if (user.friends){
         setFilteredMessages(()=>{
-            return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
-                console.log(filteredMessages);
-            }
-                // return user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email})})
+            return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))
+        })                
+        }
     },[user.friends,pastMessages])
 
-    // useEffect(()=>{
-        
-
-        
-    //     setFilteredMessages(()=>{
-    //         return pastMessages.filter((message)=>message.email===user.email)})
-    //             console.log(filteredMessages);
-    //             // return user.friends.indexOf(message.email.toUpperCase())>-1||user.email===message.email})})
-    // },[])
-    // useEffect(()=>{
-    //     console.log(pastMessages)
-    //     setPastMessages(pastMessages)
-        // const tempMessages = pastMessages
-        // console.log(tempMessages)
-        // console.log(pastMessages[pastMessages.length-1])
-        // pastMessages[pastMessages.length-1]==={username: "", email: "", message: "", time: ""}?
-        // setPastMessages([])
-        // :console.log(pastMessages)
-        // :setPastMessages(pastMessages)
-    // },[])
-    
-    
-    // let filteredMessages = 
-    // console.log('filtered',filteredMessages,pastMessages,'user',user.email)
-
+   
     const onSubmit = (picture) => {
-        // console.log(currentObject)
-        // console.log(user,'HERE')
         if (picture && (currentPublicMessage.message!=="" || currentMessage.message !=="")){
             publicStatus?
-                
-                
-            
-            
-            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-                return {...prevCurrentPublicMessage,message:"#img#"+currentPublicMessage.message}})
-            :
-            
-            
-            
-            setCurrentMessage((prevCurrentMessage)=>{
-                return {...prevCurrentMessage,message:"#img#"+currentMessage.message}})
+                setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                    return {...prevCurrentPublicMessage,message:"#img#"+currentPublicMessage.message}
+                })
+                :
+                setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,message:"#img#"+currentMessage.message}
+            })
         }
-        // console.log(currentPublicMessage,'public')
         publicStatus?
-        
-        
-        
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:Date().toLocaleString()}})
+            return {...prevCurrentPublicMessage,time:Date().toLocaleString()}
+        })
         :
-        
-        
-        
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:Date().toLocaleString()}})
-        // console.log('submit',pastPublicMessages)
-        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
-            
-        
-        
-                
-                
-            
-        
-        // console.log(pastObject[3].message)
-        // setPastMessages([...pastMessages,<Messagebox user = {username} text ={currentMessage} currentTime = {Date().toLocaleString()} />])
-        // setCurrentMessage('')
-        
+            return {...prevCurrentMessage,time:Date().toLocaleString()}
+        })       
+        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
     }
-    const onInputChange = (event) => {
-        // setCurrentMessage(event.target.value)
+
+    const onInputChange = (event) => {       
         publicStatus?
-        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,message:event.target.value}})
-        :setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,message:event.target.value}})
-            // setCurrentObject((prevCurrentObject)=>{
-            //     return {...prevCurrentObject,time:Date().toLocaleString()}})
-        
+            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                return {...prevCurrentPublicMessage,message:event.target.value}
+            })
+            :setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,message:event.target.value}
+            })            
     }
     
     const addLike = (i,currentId) => {
-
-        console.log('CURRENTID',currentId)
         if (publicStatus){
-        const newArr = [...pastPublicMessages]
-        
-        if (!newArr[i].likes ||!newArr[i].likes.includes(user.email.toUpperCase())){
+            const newArr = [...pastPublicMessages]        
+            if (!newArr[i].likes ||!newArr[i].likes.includes(user.email.toUpperCase())){
             
             
 
             // MAKE FUNCTION
 
 
-            fetch('http://localhost:3000/likes',{
+                fetch('http://localhost:3000/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -208,18 +133,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                         })
                     })
                     .then(res=>res.json())
-                    .then(res=>{
-                        // let liking = [...newArr[i].likes,user.email]
-                        // newArr[i]={...newArr[i],likes:liking}
-                        console.log('FROM DB',res)
+                    .then(res=>{ console.log('FROM DB',res)
                         setPastPublicMessages(res)})
                     .catch(err=>console.log(err))
-            // setPastPublicMessages(newArr)
-        }else{
-            // let liking = newArr[i].likes.filter((currentuser)=>currentuser!==user.email.toUpperCase())
-            // newArr[i]={...newArr[i],likes:liking}
-            // console.log(filteredArr)
-            fetch('http://localhost:3000/dislike',{
+            
+            }else{
+                fetch('http://localhost:3000/dislike',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -233,14 +152,13 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                         console.log('FROM DB',res)
                         setPastPublicMessages(res)})
                     .catch(err=>console.log(err))
-            // setPastPublicMessages(newArr)
             
-        }}else if (!publicStatus){
-        const newArr = [...filteredMessages]
-       
-
-        if (!newArr[i].likes || !newArr[i].likes.includes(user.email.toUpperCase())){
-            fetch('http://localhost:3000/likes',{
+            
+            }
+        }else if (!publicStatus){
+            const newArr = [...filteredMessages]
+            if (!newArr[i].likes || !newArr[i].likes.includes(user.email.toUpperCase())){
+                fetch('http://localhost:3000/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -251,17 +169,11 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        // let liking = [...newArr[i].likes,user.email]
-                        // newArr[i]={...newArr[i],likes:liking}
                         console.log('FROM DB',res)
                         setPastMessages(res)})
                     .catch(err=>console.log(err))
-            // let liking = [...newArr[i].likes,user.email]
-            // newArr[i]={...newArr[i],likes:liking}
-            // console.log(liking)
-            // setPastMessages(newArr)
-        }else{
-            fetch('http://localhost:3000/dislike',{
+            }else{
+                fetch('http://localhost:3000/dislike',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -272,282 +184,142 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        // let liking = [...newArr[i].likes,user.email]
-                        // newArr[i]={...newArr[i],likes:liking}
                         console.log('FROM DB',res)
                         setPastMessages(res)})
                     .catch(err=>console.log(err))
-            // let liking = newArr[i].likes.filter((currentuser)=>currentuser!==user.email)
-            // newArr[i]={...newArr[i],likes:liking}
-            
-            // setPastMessages(newArr)
-            
+            }        
         }
-        
-
-        
-        // console.log(newArr)
-        // setPastMessages((prevPastMessages)=>{
-            // return [...prevPastMessages,{PastMessages[i].likes:PastMessages[i].likes++}]
-    }
 }
 
-    // componentDidUpdate=()=>{
-    //     fetch('http:localhost:3000/',{
-    //         method:'get',
-    //         headers:{'Content-type':'application/json'}
-    //     })
-    //     .then(res=>res.json())
-    //     .then(response=>console.log(response))
-    //     // .then(res=>res.forEach((text)=>{
-    //     //     <Messagebox user = {text.user} text ={text.text} currentTime = {text.currentTime} />
-   
-    //     // })
-    //     // )
-    //     .catch(err=>console.log(err))
-    //      }
-
-    // render(){
     
     const changePublicStatus = () => {
         publicStatus?setPublicStatus(false):setPublicStatus(true)
     }
 
-    // const onChoice =(picture) =>{
-    //     picture?
-        
-    // }
     const changeHidden = (picture) => {
         if(picture){
            setHiddenStatus({picture:"",message:"textareahide",button:"textareahide",submit:"",position:' right'})
         }else{
             setHiddenStatus({picture:"textareahide",message:"",button:"textareahide",submit:"",position:' right'})
-        }
-        
-        // console.log(hideMessageText,hidePictureText)
-        
+        }        
     }
 
     const goBack = () => {
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
         publicStatus?
-        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,message:''}})
-        :setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,message:''}})
+            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                return {...prevCurrentPublicMessage,message:''}
+            })
+            :setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,message:''}
+            })
     }
 
-        return(
-            <div className = "maincomment">
-                
-                {/* <h1>Message Board</h1> */}
-            
-            
+    return(
+        <div className = "maincomment">                
             {publicStatus?
-            <>
-            
-            <div className = "inputbox">
-            {/* inputbox */}
-            <div>
-                <input id = "pic" className = {"textareapic public "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentPublicMessage.message} autoFocus></input>
-                <textarea id="msg" className = {"textarea public "+hiddenStatus.message}  onChange = {onInputChange} value = {currentPublicMessage.message} autoFocus></textarea>
-             
-                 {/* <textarea className = {"textarea"}   onInput = {()=>fitToContent(this)} value = {currentPublicMessage.message} autoFocus></textarea> */}
-                {/* <textarea name="text" className = "textarea" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea> */}
-                {/* <p>test<span role="textbox" className="textarea" c></span></p> */}
-                </div>
-            
-                
-                
-                
-                
-            </div>
-            <div className = "publicButton">
-                <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
-            </div>
-            
-            <div className="commentsection">
-            <div className = "inputbox">
-                
-                <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
-                <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
-                
-                <label htmlFor="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                <label htmlFor ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
-                
-                </div>
-            {/* <div className="filter">
-            <label name="filter" className = "filterLabel">Filter Messages</label>
-            <input name = "filter" ></input>
-            </div> */}
-            
-            
-
-
-
-
-
-
-
-
-
-
-
-            <div className="bigbox">
-            {pastPublicMessages.map((msg,i)=>{
-                const currentUser = pastPublicMessages.length - 1 -i
-                const currentId = pastPublicMessages[currentUser].id
-                // console.log('username',pastPublicMessages[currentUser])
-                return <div>
-                            <Messagebox 
-                                filteredMessages = {pastPublicMessages} 
-                                currentUser = {user.email} 
-                                username = {pastPublicMessages[currentUser].email} 
-                                text ={pastPublicMessages[currentUser].message} 
-                                time = {pastPublicMessages[currentUser].time} 
-                                i = {currentUser} 
-                                currentId = {currentId}
-                                deletePost = {deletePost} 
-                                route={route} 
-                                addLike = {addLike} 
-                                likes = {pastPublicMessages[currentUser].likes} 
-                                publicStatus = {publicStatus}
-                                addFriend = {addFriend}
-                            />
+                <>            
+                    <div className = "inputbox">          
+                        <div>
+                            <input id = "pic" className = {"textareapic public "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentPublicMessage.message} autoFocus></input>
+                            <textarea id="msg" className = {"textarea public "+hiddenStatus.message}  onChange = {onInputChange} value = {currentPublicMessage.message} autoFocus></textarea>
+                        </div>
+                    </div>
+                    <div className = "publicButton">
+                        <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
+                    </div>            
+                    <div className="commentsection">
+                        <div className = "inputbox">                
+                            <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
+                            <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>                            
+                            <label htmlFor="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                            <label htmlFor ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>                            
                         </div>
             
-            })}
-            </div>
-            
-            
-        </div>
-        
-        </>
-            :
-            <>
-            <div className = "inputbox">
-
-                <input 
-                    id = "friendpic"
-                    className = {"textareapic friend "+hiddenStatus.picture}  
-                    onChange = {onInputChange} 
-                    placeholder = "Enter Picture URL"
-                    value = {currentMessage.message}
-                ></input>
-
-                <textarea
-                    id = "friendmsg" 
-                    className = {"textarea friend "+hiddenStatus.message} 
-                    onChange = {onInputChange} 
-                    value = {currentMessage.message}
-                ></textarea>
-                
-                
-
-            </div>
-            <div className = "publicButton">
-                <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
-            </div>
-            
-            <div className="commentsection">
-            <div className = "inputbox">
-                <label htmlFor ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                <label htmlFor = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
-                <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
-                <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
-                </div>
-                {/* <div className="filter">
-                <label name="filter" className = "filterLabel">Filter Messages</label>
-                <input name = "filter" ></input>
-                </div> */}
-                
-
-
-
-                <div className="bigbox">
-                    {console.log('friend change',filteredMessages,conversation.me,)}
-            {filteredMessages.map((message,i)=>{
-                
-                    const currentUser = filteredMessages.length -1-i
-                    const currentId = filteredMessages[currentUser].id
-            // if (filteredMessages[currentUser].email.toUpperCase() === conversation.you
-            //                     ||filteredMessages[currentUser].email===conversation.me)
-                            // ||(filteredMessages[currentUser].recipientEmail=== conversation.me.toUpperCase()
-                            //     &&filteredMessages[currentUser].senderEmail.toUpperCase() ===conversation.you))
-                                
-                                filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?offset="sender":offset="recipient";
-                                filteredMessages[currentUser].email.toUpperCase()===conversation.me.toUpperCase()?background="senderbackground":background="";
-                                console.log(filteredMessages,'WHAT?')
-                                return <div className = {offset}>
-                                             <Messagebox 
-                                filteredMessages = {filteredMessages} 
-                                currentUser = {user.email} 
-                                username = {filteredMessages[currentUser].email} 
-                                text ={filteredMessages[currentUser].message} 
-                                time = {filteredMessages[currentUser].time} 
-                                i = {currentUser} 
-                                currentId = {currentId}
-                                deletePost = {deletePost} 
-                                route={route} 
-                                addLike = {addLike} 
-                                likes = {filteredMessages[currentUser].likes} 
-                                publicStatus = {publicStatus}
-                                addFriend = {addFriend}
-                                background = {background}
-                            />
+                        <div className="bigbox">
+                            {pastPublicMessages.map((msg,i)=>{
+                                const currentUser = pastPublicMessages.length - 1 -i
+                                const currentId = pastPublicMessages[currentUser].id                
+                                return <div key = {i}>
+                                    <Messagebox 
+                                        filteredMessages = {pastPublicMessages} 
+                                        currentUser = {user.email} 
+                                        username = {pastPublicMessages[currentUser].email} 
+                                        text ={pastPublicMessages[currentUser].message} 
+                                        time = {pastPublicMessages[currentUser].time} 
+                                        i = {currentUser} 
+                                        currentId = {currentId}
+                                        deletePost = {deletePost} 
+                                        route={route} 
+                                        addLike = {addLike} 
+                                        likes = {pastPublicMessages[currentUser].likes} 
+                                        publicStatus = {publicStatus}
+                                        addFriend = {addFriend}
+                                    />
+                                </div>            
+                                })
+                            }
+                        </div>            
+                    </div>        
+                </>
+                :
+                <>
+                    <div className = "inputbox">
+                        <input 
+                            id = "friendpic"
+                            className = {"textareapic friend "+hiddenStatus.picture}  
+                            onChange = {onInputChange} 
+                            placeholder = "Enter Picture URL"
+                            value = {currentMessage.message}
+                        ></input>
+                        <textarea
+                            id = "friendmsg" 
+                            className = {"textarea friend "+hiddenStatus.message} 
+                            onChange = {onInputChange} 
+                            value = {currentMessage.message}
+                        ></textarea>  
+                    </div>
+                    <div className = "publicButton">
+                        <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
+                    </div>            
+                    <div className="commentsection">
+                        <div className = "inputbox">
+                            <label htmlFor ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
+                            <label htmlFor = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
+                            <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
+                            <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
+                        </div>                
+                        <div className="bigbox">                    
+                            {filteredMessages.map((message,i)=>{                
+                                const currentUser = filteredMessages.length -1-i
+                                const currentId = filteredMessages[currentUser].id                    
+                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
+                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";                                
+                                return <div key ={i} className = {offset}>
+                                            <Messagebox 
+                                                filteredMessages = {filteredMessages} 
+                                                currentUser = {user.email} 
+                                                username = {filteredMessages[currentUser].email} 
+                                                text ={filteredMessages[currentUser].message} 
+                                                time = {filteredMessages[currentUser].time} 
+                                                i = {currentUser} 
+                                                currentId = {currentId}
+                                                deletePost = {deletePost} 
+                                                route={route} 
+                                                addLike = {addLike} 
+                                                likes = {filteredMessages[currentUser].likes} 
+                                                publicStatus = {publicStatus}
+                                                addFriend = {addFriend}
+                                                background = {background}
+                                            />
                                         </div>
-                            })}
-                            </div>
-                            {/* {console.log('message',pastMessages)} */}
-                            
-                            {/* {pastMessages.map((message,i)=>{
-                                return <div id ={i} key ={i}>{pastMessages[pastMessages.length-i-1]}<button id = {i} onClick = {deletePost}>Delete</button></div>
-                            })} */}
-                            
-                        </div>
-                        
-                        </>
-
-
-
-
-
-
-
-
-
-
-            //     <div className="bigbox">
-
-            //         {filteredMessages.map((msg,i)=>{
-            //             const currentUser = filteredMessages.length-1-i
-            //             console.log('current',publicStatus)
-            //                 return <div>
-            //                         <Messagebox 
-            //                             filteredMessages = {filteredMessages} 
-            //                             currentUser = {user.email} 
-            //                             username = {filteredMessages[currentUser].email} 
-            //                             text ={filteredMessages[currentUser].message} 
-            //                             time = {filteredMessages[currentUser].time} 
-            //                             i = {currentUser} 
-            //                             deletePost = {deletePost} 
-            //                             route={route} 
-            //                             addLike = {addLike} 
-            //                             likes = {filteredMessages[currentUser].likes} 
-            //                         />
-            //                     </div>
-                
-            //                 })
-            //         }
-            //     </div>
-            //     {console.log('message',pastMessages)}
-                
-               
-            // </div>
-            // </>
-            }
-            
-            </div>
+                                })
+                            }
+                        </div>  
+                    </div>
+                </>
+            }            
+        </div>
         )
     }
     

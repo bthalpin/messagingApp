@@ -15,13 +15,9 @@ import Picture from './component/Messages/Picture';
 
 function App() {
   const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],request:[],pendingrequests:[]})
-  // const [myFriends,setMyFriends] = useState({email:'',friends:[]})
-  // const [myOldFriends, setMyOldFriends] = useState([])
   const [route,setRoute] = useState('Sign In')
   const [isSignedIn,setIsSignedIn] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
-  // const [currentMessage,setCurrentMessage] = useState('')
-  // const [pastMessages,setPastMessages] = useState([])
   const [pastMessages,setPastMessages] = useState([])
   const [currentMessage, setCurrentMessage] = useState({id:'',username:'',email:'',message:'',time:'',likes:[]})
   const [pastPublicMessages,setPastPublicMessages] = useState([])
@@ -35,249 +31,164 @@ function App() {
     if (user.friends){
       setFilteredMessages(()=>{
         return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
-    }
-    
-          
+    } 
   },[])
  
-  
-  // useEffect (()=>{
-  //   fetch('http://localhost:3000/friendmessageload',{
-  //                   method:'get',
-  //                   headers:{'Content-Type':'application/json'},
-                    
-  //                   })
-  //                   .then(res=>res.json())
-  //                   .then(res=>{
-  //                       console.log('FROM DB',res)
-  //                       setPastMessages(res)})
-  //                   .catch(err=>console.log(err))
-      
-    
-  // })
-
-  // useEffect(()=>{
-  //   fetch('http://localhost:3000/publicmessageload',{
-  //                     method:'get',
-  //                     headers:{'Content-Type':'application/json'},
-                      
-  //                     })
-  //                     .then(res=>res.json())
-  //                     .then(res=>{
-  //                         console.log('FROM DB',res)
-  //                         setPastPublicMessages(res)})
-  //                     .catch(err=>console.log(err))
-  // })
-
   const resetState = () => {
     console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
     setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
-    // setErrorMessage('')
-    // console.log(pastMessages)
     setCurrentMessage({id:'',username:'',email:'',message:'',time:'',likes:[]})
     setPrivateMessage({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
     setConversation({me:'',you:''})
-    
-    // setMyOldFriends((prevMyOldFriends)=>{
-      // return {...prevMyOldFriends,}
-    // })
-    // console.log(myOldFriends,'logout')
   }
 
   const onRouteChange = (route) => {
-    
     (route === 'home' || route ==='mail')?setIsSignedIn(true):resetState();
     setRoute(route)
-    // console.log(route)
   }
   
   const deletePost = (currentIndex,publicStatus,currentId) => {
-    
-
-        // FETCH
-
-        
-    // console.log(publicStatus,'error')
-    // const currentIndex = pastMessages.length-1-event.target.id
-    // console.log(pastMessages[currentIndex].email)
     if (publicStatus){
       fetch('http://localhost:3000/deletemessage',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        id:currentId,
-                        database:'publicmessages'
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        console.log('FROM DB',res)
-                        setPastPublicMessages(res)})
-                    .catch(err=>console.log(err))
-      // if (pastPublicMessages[currentIndex].email===user.email){
-      //   setPastPublicMessages(pastPublicMessages.filter((message)=>message!==pastPublicMessages[currentIndex]))
-      // }else{
-      //   alert('You can only delete your own messages')
-      // }    
+          method:'post',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+              id:currentId,
+              database:'publicmessages'
+              })
+          })
+          .then(res=>res.json())
+          .then(res=>{
+              console.log('FROM DB',res)
+              setPastPublicMessages(res)})
+          .catch(err=>console.log(err))
     }else{
       fetch('http://localhost:3000/deletemessage',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                      id:currentId,
-                      database:'friendmessage'
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        console.log('FROM DB',res)
-                        setPastMessages(res)})
-                    .catch(err=>console.log(err))
-      // if (pastMessages[currentIndex].email===user.email){
-      //   setPastMessages(pastMessages.filter((message)=>message!==pastMessages[currentIndex]))
-      // }else{
-      //   alert('You can only delete your own messages')
-      }   
-    
-     
+          method:'post',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            id:currentId,
+            database:'friendmessage'
+              })
+          })
+          .then(res=>res.json())
+          .then(res=>{
+              console.log('FROM DB',res)
+              setPastMessages(res)})
+          .catch(err=>console.log(err))
+          }       
   }
 
   const addFriend = (newFriend) => {
     if (newFriend==="No Names"){
       newFriend = prompt('Enter the email address of your friend ')
     }
+    if (newFriend){
         if (!user.friends||!user.friends.includes(newFriend)){
           fetch('http://localhost:3000/friendrequest',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        email:user.email,
-                        newFriend:newFriend.toUpperCase()
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        console.log('FROM request',res)
-                        // const newFriends = [...user.friends,newFriend.toUpperCase()]
-                        if (res){
-                          setUser((prevUser)=> {
-                            return {...prevUser,pendingrequests:res.pendingrequests}})
-                        }
-                        
-                    
-        
-        
-        }).catch(err=>console.log(err))
-        }
-      }
-        // FETCH
-
+              method:'post',
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({
+                  email:user.email,
+                  newFriend:newFriend.toUpperCase()
+                  })
+              })
+              .then(res=>res.json())
+              .then(res=>{
+                  console.log('FROM request',res)                      
+                  if (res){
+                    setUser((prevUser)=> {
+                      return {...prevUser,pendingrequests:res.pendingrequests}})
+                  }
+            }).catch(err=>console.log(err))
+          }
+    }
+   
+  }
+       
   
 
   return (
-    <div className="App">
-      {/* {console.log(pastMessages)} */}
-      {/* <Friends 
+    <div className="App">      
+        <Navigation 
+            onRouteChange = {onRouteChange} 
+            isSignedIn = {isSignedIn}
+            route={route}
             user = {user} 
             setUser = {setUser} 
             route = {route} 
             setRoute = {setRoute} 
             setPrivateMessage = {setPrivateMessage} 
-            setConversation = {setConversation}  
-          /> */}
-    <Navigation onRouteChange = {onRouteChange} isSignedIn = {isSignedIn} route={route}
-    user = {user} 
-    setUser = {setUser} 
-    route = {route} 
-    setRoute = {setRoute} 
-    setPrivateMessage = {setPrivateMessage} 
-    setConversation = {setConversation}
-    conversation = {conversation} 
-    addFriend = {addFriend}/>
-    
-     {isSignedIn
-      ? (route==='home'
-        ?
-        <div className = "main">
-        
-
-        <div className = "mainMessage">
-        <Messages 
-            user = {user} 
-            // setCurrentMessage = {setCurrentMessage} 
-            // setPastMessages = {setPastMessages} 
-            route = {route}
-            deletePost = {deletePost}
-            currentMessage = {currentMessage}
-            setCurrentMessage = {setCurrentMessage}
-            pastMessages = {pastMessages}
-            setPastMessages = {setPastMessages}
-            currentPublicMessage = {currentPublicMessage}
-            setCurrentPublicMessage = {setCurrentPublicMessage}
-            pastPublicMessages = {pastPublicMessages}
-            setPastPublicMessages = {setPastPublicMessages}
-            addFriend = {addFriend}
-            conversation = {conversation}
-            setFilteredMessages = {setFilteredMessages}
-            filteredMessages = {filteredMessages}
-            />
-            </div>
-        </div>
-        :
-        <div className = "main">
-        {/* <Friends 
-            user = {user} 
-            setUser = {setUser} 
-            route = {route} 
-            setRoute = {setRoute} 
-            setPrivateMessage = {setPrivateMessage} 
-            setConversation = {setConversation}  
-          /> */}
-
-        <div className = "mainMessage">
-        <Mail 
-            user ={user} 
-            privateMessage = {privateMessage} 
-            setPrivateMessage = {setPrivateMessage} 
-            privateMessages = {privateMessages} 
-            setPrivateMessages = {setPrivateMessages} 
-            deletePost = {deletePost} 
-            conversation = {conversation} 
-          />
-          
-        </div>
-        {console.log(privateMessages,privateMessage)}
-        </div>)
-        
-      :(
-        <>
-        {console.log(privateMessages,privateMessage)}
-        <Login 
-            user = {user}
-            route = {route} 
-            errorMessage = {errorMessage}
-            setUser = {setUser}
-            setRoute = {setRoute}
-            setErrorMessage = {setErrorMessage}
-            setIsSignedIn = {setIsSignedIn}
-            onRouteChange = {onRouteChange}
-            // currentMessage = {currentMessage}
-            setCurrentMessage = {setCurrentMessage}
-            pastMessages = {pastMessages}
-            setPrivateMessages = {setPrivateMessages}
-            setPastMessages = {setPastMessages}
-            setCurrentPublicMessage = {setCurrentPublicMessage}
-            setPastPublicMessages = {setPastPublicMessages}
             setConversation = {setConversation}
-            setFilteredMessages = {setFilteredMessages}
-            
-          
-            />          
-        </>
-        )
-    }
+            conversation = {conversation} 
+            addFriend = {addFriend}
+        />
+    
+        {isSignedIn
+            ? (route==='home'
+                  ?<div className = "main">
+                        <div className = "mainMessage">
+                            <Messages 
+                                user = {user} 
+                                // setCurrentMessage = {setCurrentMessage} 
+                                // setPastMessages = {setPastMessages} 
+                                route = {route}
+                                deletePost = {deletePost}
+                                currentMessage = {currentMessage}
+                                setCurrentMessage = {setCurrentMessage}
+                                pastMessages = {pastMessages}
+                                setPastMessages = {setPastMessages}
+                                currentPublicMessage = {currentPublicMessage}
+                                setCurrentPublicMessage = {setCurrentPublicMessage}
+                                pastPublicMessages = {pastPublicMessages}
+                                setPastPublicMessages = {setPastPublicMessages}
+                                addFriend = {addFriend}
+                                conversation = {conversation}
+                                setFilteredMessages = {setFilteredMessages}
+                                filteredMessages = {filteredMessages}
+                              />
+                        </div>
+                  </div>
+                  :<div className = "main">
+                      <div className = "mainMessage">
+                          <Mail 
+                              user ={user} 
+                              privateMessage = {privateMessage} 
+                              setPrivateMessage = {setPrivateMessage} 
+                              privateMessages = {privateMessages} 
+                              setPrivateMessages = {setPrivateMessages} 
+                              deletePost = {deletePost} 
+                              conversation = {conversation} 
+                            /> 
+                      </div>
+                  </div>)
+        
+            :(<>
+                <Login 
+                    user = {user}
+                    route = {route} 
+                    errorMessage = {errorMessage}
+                    setUser = {setUser}
+                    setRoute = {setRoute}
+                    setErrorMessage = {setErrorMessage}
+                    setIsSignedIn = {setIsSignedIn}
+                    onRouteChange = {onRouteChange}            
+                    setCurrentMessage = {setCurrentMessage}
+                    pastMessages = {pastMessages}
+                    setPrivateMessages = {setPrivateMessages}
+                    setPastMessages = {setPastMessages}
+                    setCurrentPublicMessage = {setCurrentPublicMessage}
+                    setPastPublicMessages = {setPastPublicMessages}
+                    setConversation = {setConversation}
+                    setFilteredMessages = {setFilteredMessages}
+                    
+                  
+                    />          
+                </>
+              )
+        }
     
     </div>
   );

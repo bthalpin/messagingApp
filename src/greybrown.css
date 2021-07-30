@@ -1,18 +1,12 @@
 :root{
-    --backColor:linear-gradient(to bottom,#247BA0,#247BA0);
+    --backColor:linear-gradient(to bottom,#4F6D7A,#C0D6DF);
     /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
-    --buttonColor:#FB3640;
+    --buttonColor:#DD6E42;
     --fadedColor: #E8DAB2;
-    --gradient:linear-gradient(to bottom,#E2E2E2,#247BA0);
-    --firstColor:#E2E2E2;
-    --secondColor:#0A2463;
-    --thirdColor:#247BA0;
-    --fourthColor:#2da2d4;
-    --fifthColor:#605F5E;
 }
 html{
     /* overflow-y:scroll; */
-    background:var(--firstColor);
+    background:#EAEAEA;
     /* background:#EDF6F9; */
     /* background-image: url('./images/backgroundtext2.png');
       background-size: 30%;  */
@@ -26,8 +20,8 @@ html{
 
 
 .commentsection{
-    background:var(--gradient);
-    border:4px solid var(--fourthColor);
+    background:linear-gradient(to bottom,#E8DAB2,#DD6E42);
+    border:4px solid #DD6E42;
     
 }
 
@@ -39,7 +33,7 @@ html{
 
 
 .user{
-    background:var(--thirdColor);
+    background:#9fb1b8;
     color:white;
     border-radius: 0;
 }
@@ -53,17 +47,17 @@ html{
 }
 
 .user.senderbackground{
-    background:var(--fourthColor);
+    background:#c1dbe6;
 }
 
 .mailbox{
-    background:var(--gradient);
-    border:4px solid var(--secondColor);
+    background:linear-gradient(to bottom,#E8DAB2,#DD6E42);
+    border:4px solid #DD6E42;
 }
 
 
 .formWindow {
-    background:linear-gradient(to bottom,#E2E2E2,#2da2d4);
+    background:linear-gradient(to bottom,#E8DAB2,#DD6E42);
     
 }
 
@@ -72,13 +66,13 @@ html{
 }
 
 .likes{
-    background:var(--secondColor);
+    background:#4F6D7A;
 }
 .liketext{
     color:white;
 }
 .friendtitle{
-    background: var(--fifthColor);
+    background: var(--backColor);
     color:white;
 }
 
@@ -126,16 +120,16 @@ input[type="radio"]:checked+label{
 }
 
 .publicButtons{
-    background:var(--secondColor);
-    color:rgb(194, 194, 194);
-    border:2px solid var(--secondColor);
+    background:#afa486;
+    color:rgb(211, 211, 211);
+    border:2px solid #afa486;
     /* border-bottom:2px solid var(--fadedColor); */
     
 }
 
 
 .disabledButtons{
-    background:var(--fourthColor);
+    background:#DD6E42;
     color:white;
 }
 
@@ -153,7 +147,7 @@ input[type="radio"]:checked+label{
 
 .button{
     background:transparent;
-    border:0.1rem solid black;
+    border:0.1rem solid #006D77;
 }
 
 .button:hover { 
