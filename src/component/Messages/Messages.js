@@ -113,11 +113,24 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             })            
     }
     
+    const checkLiked = (like) =>{
+        return JSON.parse(like).email!==user.email
+        // for (let like in user.likes){
+        //    if (JSON.parse(user.likes[like]).email===user.email){
+        //        console.log(true)
+        //    }
+        // }
+    }
+
     const addLike = (i,currentId) => {
+        // console.log('pushed',i,currentId,pastPublicMessages[i].likes[0])
         if (publicStatus){
-            const newArr = [...pastPublicMessages]        
-            if (!newArr[i].likes ||!newArr[i].likes.includes(user.email.toUpperCase())){
-            
+            const newArr = [...pastPublicMessages]   
+            const contains =  newArr[i].likes.every(checkLiked)
+            console.log(contains)
+            // const contains =34true
+            if (!newArr[i].likes,contains ){
+            //  (!newArr[i].likes[0] &&!newArr[i].likes.includes(user.email.toUpperCase()))){
             
 
             // MAKE FUNCTION
@@ -127,6 +140,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
+                        name:user.username,
                         email:user.email,
                         id:currentId,
                         database:'publicmessages'
@@ -142,6 +156,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
+                        name:user.username,
                         email:user.email,
                         id:currentId,
                         database:'publicmessages'
@@ -157,11 +172,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             }
         }else if (!publicStatus){
             const newArr = [...filteredMessages]
-            if (!newArr[i].likes || !newArr[i].likes.includes(user.email.toUpperCase())){
+            if (!newArr[i].likes || !newArr[i].likes.filter((like)=>JSON.parse(like).email===user.email.toUpperCase())){
                 fetch('http://localhost:3000/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
+                        name:user.username,
                         email:user.email,
                         id:currentId,
                         database:'friendmessage'
@@ -177,6 +193,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
+                        name:user.username,
                         email:user.email,
                         id:currentId,
                         database:'friendmessage'
@@ -235,11 +252,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             <label htmlFor="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
                             <label htmlFor ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>                            
                         </div>
-            
+            {/* {checkLiked()} */}
                         <div className="bigbox">
                             {pastPublicMessages.map((msg,i)=>{
                                 const currentUser = pastPublicMessages.length - 1 -i
-                                const currentId = pastPublicMessages[currentUser].id                
+                                const currentId = pastPublicMessages[currentUser].id   
+                                // const likeStatus = msg.likes.every(checkLiked())             
                                 return <div key = {i}>
                                     <Messagebox 
                                         filteredMessages = {pastPublicMessages} 
@@ -255,6 +273,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                         likes = {pastPublicMessages[currentUser].likes} 
                                         publicStatus = {publicStatus}
                                         addFriend = {addFriend}
+                                        // likeStatus = {likeStatus}
                                     />
                                 </div>            
                                 })

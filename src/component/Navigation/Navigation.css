@@ -169,4 +169,19 @@
       }
       
   }
+
+
   
+  
+  
+  
+@media (max-height:225px) {
+    .title{
+        color:transparent;
+        text-shadow: none;
+    }
+    .navroot{
+        background: transparent;
+    }
+    
+}

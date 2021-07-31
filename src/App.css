@@ -30,3 +30,12 @@
   }
   
 }
+
+
+  
+@media (max-height:220px) {
+  .mainMessage{
+      margin-top:0.5rem;
+  }
+  
+}

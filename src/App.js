@@ -49,6 +49,21 @@ function App() {
     setRoute(route)
   }
   
+
+  const loadData = (location,info,infoUpdate) =>{
+    fetch(`http://localhost:3000/${location}`,{
+          method:'post',
+          headers:{'Content-Type':'application/json'},
+          body:info
+          })
+          .then(res=>res.json())
+          .then(res=>{
+              infoUpdate(res)})
+          .catch(err=>console.log(err))
+          
+  }
+
+
   const deletePost = (currentIndex,publicStatus,currentId) => {
     if (publicStatus){
       fetch('http://localhost:3000/deletemessage',{
@@ -132,6 +147,7 @@ function App() {
                         <div className = "mainMessage">
                             <Messages 
                                 user = {user} 
+                                loadData = {loadData}
                                 // setCurrentMessage = {setCurrentMessage} 
                                 // setPastMessages = {setPastMessages} 
                                 route = {route}
@@ -160,7 +176,8 @@ function App() {
                               privateMessages = {privateMessages} 
                               setPrivateMessages = {setPrivateMessages} 
                               deletePost = {deletePost} 
-                              conversation = {conversation} 
+                              conversation = {conversation}
+                              loadData = {loadData} 
                             /> 
                       </div>
                   </div>)
@@ -183,6 +200,7 @@ function App() {
                     setPastPublicMessages = {setPastPublicMessages}
                     setConversation = {setConversation}
                     setFilteredMessages = {setFilteredMessages}
+                    loadData = {loadData}
                     
                   
                     />          

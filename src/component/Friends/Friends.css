@@ -2,6 +2,9 @@ ul {
     list-style-type: none;
     margin:0;
     padding:0.5rem 0.3rem;
+    
+    height:3rem;
+    overflow-y: scroll;
 }
 
 li{
@@ -28,6 +31,11 @@ li{
     /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
 }
 
+.requesttitle,.pendingtitle{
+    margin-top:0.2rem;
+    margin-bottom:0;
+}
+
 .fixed{
     /* position:fixed; */
 }
@@ -45,7 +53,7 @@ li{
 }
 
 .scroll{
-    /* height:60vh; */
+    /* height:20vh; */
     overflow-y: scroll;
     -ms-overflow-style: none;  
     scrollbar-width: none; 
@@ -81,10 +89,10 @@ li{
     
 }
 
-ul{
+/* ul{
     
     height:100%
-}
+} */
 
 .hideFriend{
     text-align: center;
@@ -126,26 +134,46 @@ input[type="radio"]:checked+label{
     margin-right:0.1rem
 }
 
-ul{
-    height:5rem;
-    overflow-y: scroll;
-}
 @media screen and (max-height:650px) {
-    .scroll{
+    .mainfriend{
         /* height:55vh; */
+    }
+    
+    ul{
+        /* height:3rem; */
+        /* padding:0 0.3rem; */
     }
 }
 
-@media screen and (max-height:450px) {
-    .scroll{
-        /* height:50vh; */
+@media screen and (max-height:430px) {
+    .friendList{
+        top:1%;
+    }
+    ul{
+        height:2rem;
     }
     
 }
 
-@media screen and (max-height:350px) {
-    .scroll{
-        /* height:40vh; */
+@media screen and (max-height:325px) {
+    .friendList{
+        top:1%;
+        display:flex;
+        align-items: end;
+        border:none;
+    }
+    .mainfriend{
+        
+        height:90vh;
+        overflow-y: scroll;
+        border:none;
+    }
+    .hideFriend{
+        height:90vh;
+        border-bottom-left-radius:0rem;
+        border-top-right-radius:0.5rem;
+        overflow:hidden;
+        
     }
 }
 

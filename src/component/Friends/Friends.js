@@ -147,7 +147,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                         
                                 {uniqueRequests && uniqueRequests[0]?
                                     <div className = "scroll">  
-                                        <div className="friendtitlebox"><p className="friendtitle">Request</p></div>
+                                        <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
                                         <ul>
                                             {uniqueRequests.map((friend)=>{
                                                 return <Request friend = {friend} rejectFriend = {rejectFriend} pendOrReq ={'Request'} acceptFriend = {acceptFriend}/>
@@ -159,7 +159,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                 }
                                 {uniquePending&&uniquePending[0]?
                                     <div className = "scroll">
-                                        <div className="friendtitlebox"><p className="friendtitle">Pending Request</p></div>
+                                        <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
                                         <ul>
                                             {uniquePending.map((friend)=>{
                                                 return <Pending friend = {friend} rejectFriend = {rejectFriend} pendOrReq = {'Pending'}/>
@@ -172,7 +172,10 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                 }
                         
                             </div>
-                            <button className = "hideFriend" onClick = {toggleFriends}>{arrow}</button>
+                            <div>
+                                <button className = "hideFriend" onClick = {toggleFriends}>{arrow}</button>
+                            </div>
+                            
                         </div>
                     </>
                 :

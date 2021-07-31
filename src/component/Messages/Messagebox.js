@@ -8,6 +8,10 @@ import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
 const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
+    if (likes[0]){
+        console.log(likes[0].includes(currentUser),'if')
+        console.log(JSON.stringify(likes).includes(currentUser),'json')
+    }
     return (
         <div className = "box">
             <div className = "smallbox">
@@ -25,25 +29,27 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                     <p onClick={()=>addFriend(username)}>{username.toUpperCase().substr(0,username.indexOf('@'))}</p>
                     <p className='date'>{time.substr(0,16)}</p>
                 </div>
+                {console.log(likes.includes(currentUser),likes[0],currentUser)}
                 <div className={"likes "}>
                         {route === 'home'
                             ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
-                                {likes?(likes.includes(currentUser)
+                                {likes?JSON.stringify(likes).includes(currentUser)
                                     ?<img src = {Liked} alt="Unlike" width="20rem"></img>
-                                    :<img src = {Like} alt="like" width = "20rem"></img>):<img src = {Like} alt="like" width = "20rem"></img>}
+                                    :<img src = {Like} alt="like" width = "20rem"></img>:<img src = {Like} alt="like" width = "20rem"></img>}
                             </button>
+                            
                             :<></>}
                     <div className = "likedelete">                    
                         {route === 'home'
                             ?likes
                                 ?(<div className = "liketext">
-                                    {likes.length>4
+                                    {likes.length>=4
                                         ?`${likes.length} Likes`
                                         :(likes.length>1
                                             ?(likes.length>2
-                                                ?likes.join(', ')+' like this post'
-                                                :likes.join(' and ')+' like this post')
-                                            :(likes.length?likes+' likes this post':''))}
+                                                ?JSON.parse(likes[0]).name+', '+JSON.parse(likes[1]).name+', and '+JSON.parse(likes[2]).name+' like this post'
+                                                :JSON.parse(likes[0]).name+' and '+JSON.parse(likes[1]).name+' like this post')
+                                            :(likes.length?JSON.parse(likes).name+' likes this post':''))}
                                 </div>
                                  ):<></>
                             :<></>

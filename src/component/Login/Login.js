@@ -12,7 +12,8 @@ const Login = ({
     setPrivateMessages, setCurrentPublicMessage,
     setPrivatePublicMessage,setConversation,
     setPastMessages,setPastPublicMessages,
-    setFilteredMessages,filteredMessages
+    setFilteredMessages,filteredMessages,
+    loadData
   }) => {
     
     const {username,email,password} = user;
@@ -35,7 +36,8 @@ const Login = ({
               console.log(event.target.value)
         }
       }
-    
+  
+
     const verifyLogin = () => {
         fetch('http://localhost:3000/signin',{
             method:'post',
@@ -66,43 +68,64 @@ const Login = ({
             
         })
         .catch(err=>console.log(err))
-        fetch('http://localhost:3000/friendmessageload',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-              email:user.email.toUpperCase(),
-              friends:user.friends
-            })
-            })
-            .then(res=>res.json())
-            .then(res=>{
-                setPastMessages(res)})
-            .catch(err=>console.log(err))
-        fetch('http://localhost:3000/publicmessageload',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-              email:user.email,
-              friends:user.friends
-            })
-            })
-            .then(res=>res.json())
-            .then(res=>{
-                setPastPublicMessages(res)})
-            .catch(err=>console.log(err))
-                              
-        fetch('http://localhost:3000/privatemessageload',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-              email:user.email,
-              friends:user.friends
-            })
-            })
-            .then(res=>res.json())
-            .then(res=>{
-                setPrivateMessages(res)})
-            .catch(err=>console.log(err))
+        // fetch('http://localhost:3000/friendmessageload',{
+        //     method:'post',
+        //     headers:{'Content-Type':'application/json'},
+        //     body:JSON.stringify({
+        //       email:user.email.toUpperCase(),
+        //       friends:user.friends
+        //     })
+        //     })
+        //     .then(res=>res.json())
+        //     .then(res=>{
+        //         setPastMessages(res)})
+        //     .catch(err=>console.log(err))
+        loadData('friendmessageload',
+                  JSON.stringify({
+                    email:user.email.toUpperCase(),
+                    friends:user.friends
+                  }),
+                  setPastMessages
+                  )
+        loadData('publicmessageload',
+                  JSON.stringify({
+                      email:user.email,
+                      friends:user.friends
+                  }),
+                  setPastPublicMessages
+                  )
+
+        // fetch('http://localhost:3000/publicmessageload',{
+        //     method:'post',
+        //     headers:{'Content-Type':'application/json'},
+        //     body:JSON.stringify({
+        //       email:user.email,
+        //       friends:user.friends
+        //     })
+        //     })
+        //     .then(res=>res.json())
+        //     .then(res=>{
+        //         setPastPublicMessages(res)})
+        //     .catch(err=>console.log(err))
+        loadData('privatemessageload',
+                  JSON.stringify({
+                    email:user.email,
+                    friends:user.friends
+                  }),
+                  setPrivateMessages
+                  )        
+      //   fetch('http://localhost:3000/privatemessageload',{
+      //       method:'post',
+      //       headers:{'Content-Type':'application/json'},
+      //       body:JSON.stringify({
+      //         email:user.email,
+      //         friends:user.friends
+      //       })
+      //       })
+      //       .then(res=>res.json())
+      //       .then(res=>{
+      //           setPrivateMessages(res)})
+      //       .catch(err=>console.log(err))
         
       }
     
@@ -129,6 +152,13 @@ const Login = ({
             
                 })
                 .catch(err=>console.log(err))
+                loadData('publicmessageload',
+                  JSON.stringify({
+                      email:user.email,
+                      friends:user.friends
+                  }),
+                  setPastPublicMessages
+                  )
               }else if (password.length<8){
                 setErrorMessage('Password must be 8 characters long')
               }else{

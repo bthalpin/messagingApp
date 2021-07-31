@@ -110,12 +110,23 @@
     
 }
 
-
+@media (max-height:600px) {
+    .formWindow{
+        /* width:70vh; */
+        height:75vh;
+        margin-bottom:0;
+        padding-top:0;
+        padding-bottom:0;
+    }
+    .loginLink{
+        margin:0.5rem;
+    }
+}
 
 @media (max-height:500px) {
     .formWindow{
         /* width:70vh; */
-        height:80vh;
+        height:70vh;
         padding-top:0;
         padding-bottom:0;
         
@@ -136,6 +147,29 @@
     
 }
 
+@media (max-height:385px) {
+    .formWindow{
+        /* width:70vh; */
+        height:70vh;
+        margin-top:3.5rem;
+    }
+}
+
+@media (max-height:225px) {
+    .formWindow{
+        /* width:70vh; */
+        height:70vh;
+        margin-top:0.5rem;
+    }
+}
+
+@media (max-height:300px) {
+    .formWindow{
+        /* width:70vh; */
+        height:50vh;
+        /* margin-top:0.5rem; */
+    }
+}
 
 @media (max-width:500px) {
     .formWindow{

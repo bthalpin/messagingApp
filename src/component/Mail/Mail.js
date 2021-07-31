@@ -121,8 +121,11 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                 {privateMessages.map((message,i)=>{
                     const currentMessage = privateMessages.length-1-i
                     const currentId = privateMessages[currentMessage].id
-                    if ((privateMessages[currentMessage].recipientemail.toUpperCase() === conversation.you
-                            ||privateMessages[currentMessage].senderemail.toUpperCase() ===conversation.you))
+                    if (((privateMessages[currentMessage].recipientemail.toUpperCase() === conversation.you
+                        &&privateMessages[currentMessage].senderemail.toUpperCase() === user.email)
+                            ||(privateMessages[currentMessage].senderemail.toUpperCase() ===conversation.you
+                            &&privateMessages[currentMessage].recipientemail.toUpperCase() === user.email)
+                            ))
                             {    
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";

@@ -1,39 +1,54 @@
 :root{
-    --backColor:linear-gradient(to bottom,#006D77,#83C5BE);
+    --backColor:linear-gradient(to bottom,#247BA0,#247BA0);
     /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
-    --buttonColor:#fd5c21d0;
-    --fadedColor: #E29578;
+    --buttonColor:#FB3640;
+    --fadedColor: #E8DAB2;
+    --gradient:linear-gradient(to bottom,#E2E2E2,#247BA0);
+    --firstColor:#E2E2E2;
+    --secondColor:#0A2463;
+    --thirdColor:#247BA0;
+    --fourthColor:#2da2d4;
+    --fifthColor:#605F5E;
 }
 html{
     /* overflow-y:scroll; */
-    background:#d7dfe2;
+    background:var(--firstColor);
     /* background:#EDF6F9; */
-    /* background-image: url('./images/lightbackgroundtext.png'); */
-      /* background-size: 20%;  */
+    /* background-image: url('./images/backgroundtext2.png');
+      background-size: 30%;  */
 }
 
 
 .navroot{
-    background:#006D77;
+    background:var(--backColor);
+    
+}
+
+
+  
+@media (max-height:220px) {
+    .navroot{
+        background:transparent;
+    }
     
 }
 
 
 .commentsection{
-    background:linear-gradient(to top,#01a5b4,#90d6cf);
-    border:4px solid #006D77;
+    background:var(--gradient);
+    border:4px solid var(--fourthColor);
     
 }
 
 
 .messageArea{
-    background:#EDF6F9;
+    background:#f6fcfd;
     /* border:5px solid #EDF6F9; */
 }
 
 
 .user{
-    background:#018d81;
+    background:var(--thirdColor);
     color:white;
     border-radius: 0;
 }
@@ -47,17 +62,17 @@ html{
 }
 
 .user.senderbackground{
-    background:#48aca7;
+    background:var(--fourthColor);
 }
 
 .mailbox{
-    background:linear-gradient(to top,#01a5b4,#83C5BE);
-    border:4px solid #006D77;
+    background:var(--gradient);
+    border:4px solid var(--secondColor);
 }
 
 
 .formWindow {
-    background:linear-gradient(to top,#01a5b4,#83C5BE);
+    background:linear-gradient(to bottom,#E2E2E2,#2da2d4);
     
 }
 
@@ -66,29 +81,18 @@ html{
 }
 
 .likes{
-    background:#006d67;
+    background:var(--secondColor);
 }
 .liketext{
     color:white;
 }
 .friendtitle{
-    background: #006d67;
-    color:white;
-}
-
-.requesttitle{
-background:#006d67;
-color:white;
-
-}
-
-.pendingtitle{
-    background: #006d67;
+    background: var(--fifthColor);
     color:white;
 }
 
 .mainfriend{
-    background:#d7dfe2;
+    background:white;
     border:1px solid gray;
 }
 
@@ -131,16 +135,16 @@ input[type="radio"]:checked+label{
 }
 
 .publicButtons{
-    background:#00383d;
-    color:rgb(173, 173, 173);
-    border:2px solid #00383d;
+    background:var(--secondColor);
+    color:rgb(194, 194, 194);
+    border:2px solid var(--secondColor);
     /* border-bottom:2px solid var(--fadedColor); */
     
 }
 
 
 .disabledButtons{
-    background:#006D77;
+    background:var(--fourthColor);
     color:white;
 }
 
@@ -158,7 +162,7 @@ input[type="radio"]:checked+label{
 
 .button{
     background:transparent;
-    border:0.1rem solid #006D77;
+    border:0.1rem solid black;
 }
 
 .button:hover { 
@@ -191,10 +195,10 @@ input[type="radio"]:checked+label{
 }
 
 .deleteBackground{
-    background: #a1bbb8;
+    background: #c3cacc;
     margin:.1rem;
     padding:0rem 0.4rem;
-    border-radius: 0.2rem;
+    border-radius: 0.4rem;
     border:1px solid black;
 }
 
@@ -207,16 +211,4 @@ input[type="radio"]:checked+label{
 
 .registerError{
     color:rgb(255, 53, 53);
-}
-
-
-@media (max-height:225px) {
-    .title{
-        color:transparent;
-        text-shadow: none;
-    }
-    .navroot{
-        background: transparent;
-    }
-    
 }
