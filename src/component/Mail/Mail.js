@@ -130,6 +130,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";
                                 return <div className = {offset}>
+                                    {console.log(privateMessage)}
                                             <Messagebox username = {privateMessages[currentMessage].senderemail} 
                                             text ={privateMessages[currentMessage].message} 
                                             time = {privateMessages[currentMessage].time} 

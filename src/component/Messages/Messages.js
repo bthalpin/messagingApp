@@ -34,7 +34,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    console.log('FROM DB',res)
+                    // console.log('FROM DB',res)
                     setPastMessages(res)})
                 .catch(err=>console.log(err))
 
@@ -48,7 +48,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentPublicMessage.time
         
         if (currentPublicMessage.message!==''){
-            console.log(currentPublicMessage.time,'MESSAGE')
+            // console.log(currentPublicMessage.time,'MESSAGE')
             fetch('http://localhost:3000/publicmessage',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
@@ -62,7 +62,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    console.log('FROM DB',res)
+                    // console.log('FROM DB',res)
                     setPastPublicMessages(res)})
                 .catch(err=>console.log(err))
             setCurrentPublicMessage((prevCurrentPublicMessage)=>{
@@ -123,11 +123,15 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     }
 
     const addLike = (i,currentId) => {
+        let contains=true
+        
         // console.log('pushed',i,currentId,pastPublicMessages[i].likes[0])
         if (publicStatus){
             const newArr = [...pastPublicMessages]   
-            const contains =  newArr[i].likes.every(checkLiked)
-            console.log(contains)
+            if (newArr[i].likes){
+                contains =  newArr[i].likes.every(checkLiked)
+            }
+            // console.log(contains)
             // const contains =34true
             if (!newArr[i].likes,contains ){
             //  (!newArr[i].likes[0] &&!newArr[i].likes.includes(user.email.toUpperCase()))){
@@ -147,7 +151,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                         })
                     })
                     .then(res=>res.json())
-                    .then(res=>{ console.log('FROM DB',res)
+                    .then(res=>{ 
                         setPastPublicMessages(res)})
                     .catch(err=>console.log(err))
             
@@ -164,7 +168,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        console.log('FROM DB',res)
+                        // console.log('FROM DB',res)
                         setPastPublicMessages(res)})
                     .catch(err=>console.log(err))
             
@@ -172,7 +176,12 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             }
         }else if (!publicStatus){
             const newArr = [...filteredMessages]
-            if (!newArr[i].likes || !newArr[i].likes.filter((like)=>JSON.parse(like).email===user.email.toUpperCase())){
+            
+            if (newArr[i].likes){
+                contains =  newArr[i].likes.every(checkLiked)
+            }
+            // console.log(user,contains,'here')
+            if (!newArr[i].likes || contains){
                 fetch('http://localhost:3000/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
@@ -185,7 +194,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        console.log('FROM DB',res)
+                        // console.log('FROM DB',res)
                         setPastMessages(res)})
                     .catch(err=>console.log(err))
             }else{
@@ -201,7 +210,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     })
                     .then(res=>res.json())
                     .then(res=>{
-                        console.log('FROM DB',res)
+                        // console.log('FROM DB',res)
                         setPastMessages(res)})
                     .catch(err=>console.log(err))
             }        

@@ -103,7 +103,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    console.log('FROM pendingrequest',res[0])
+                    // console.log('FROM pendingrequest',res[0])
                     
                     if (res){
                         setUser(res[0])

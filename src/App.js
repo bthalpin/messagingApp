@@ -35,7 +35,7 @@ function App() {
   },[])
  
   const resetState = () => {
-    console.log(user)
+    // console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
     setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
@@ -76,7 +76,7 @@ function App() {
           })
           .then(res=>res.json())
           .then(res=>{
-              console.log('FROM DB',res)
+              // console.log('FROM DB',res)
               setPastPublicMessages(res)})
           .catch(err=>console.log(err))
     }else{
@@ -90,7 +90,7 @@ function App() {
           })
           .then(res=>res.json())
           .then(res=>{
-              console.log('FROM DB',res)
+              // console.log('FROM DB',res)
               setPastMessages(res)})
           .catch(err=>console.log(err))
           }       
@@ -112,7 +112,7 @@ function App() {
               })
               .then(res=>res.json())
               .then(res=>{
-                  console.log('FROM request',res)                      
+                  // console.log('FROM request',res)                      
                   if (res){
                     setUser((prevUser)=> {
                       return {...prevUser,pendingrequests:res.pendingrequests}})

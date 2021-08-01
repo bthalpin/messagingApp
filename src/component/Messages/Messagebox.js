@@ -8,10 +8,7 @@ import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
 const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
-    if (likes[0]){
-        console.log(likes[0].includes(currentUser),'if')
-        console.log(JSON.stringify(likes).includes(currentUser),'json')
-    }
+   
     return (
         <div className = "box">
             <div className = "smallbox">
@@ -29,7 +26,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                     <p onClick={()=>addFriend(username)}>{username.toUpperCase().substr(0,username.indexOf('@'))}</p>
                     <p className='date'>{time.substr(0,16)}</p>
                 </div>
-                {console.log(likes.includes(currentUser),likes[0],currentUser)}
+                {/* {console.log(likes.includes(currentUser),likes[0],currentUser)} */}
                 <div className={"likes "}>
                         {route === 'home'
                             ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
