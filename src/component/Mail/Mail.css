@@ -58,7 +58,9 @@
     transform: translate(-50%,-150%);
     /* margin-left:-20%; */
     /* overflow: hidden; */
-    
+    border:1px solid black;
+    /* margin-left:100rem; */
+    box-shadow:1px 1px 10px black;
 }
 
 
