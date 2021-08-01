@@ -15,7 +15,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
     useEffect(()=>{
 
         if (privateMessage.message!==''){
-            fetch('http://localhost:3000/privatemessage',{
+            fetch('https://socially-distanced-server.herokuapp.com/privatemessage',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -57,7 +57,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
       }
 
     const deleteMail = (currentId) => {        
-        fetch('http://localhost:3000/deletemail',{
+        fetch('https://socially-distanced-server.herokuapp.com/deletemail',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({

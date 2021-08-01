@@ -51,7 +51,7 @@ function App() {
   
 
   const loadData = (location,info,infoUpdate) =>{
-    fetch(`http://localhost:3000/${location}`,{
+    fetch(`https://socially-distanced-server.herokuapp.com/${location}`,{
           method:'post',
           headers:{'Content-Type':'application/json'},
           body:info
@@ -66,7 +66,7 @@ function App() {
 
   const deletePost = (currentIndex,publicStatus,currentId) => {
     if (publicStatus){
-      fetch('http://localhost:3000/deletemessage',{
+      fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
           method:'post',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify({
@@ -80,7 +80,7 @@ function App() {
               setPastPublicMessages(res)})
           .catch(err=>console.log(err))
     }else{
-      fetch('http://localhost:3000/deletemessage',{
+      fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
           method:'post',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify({
@@ -102,7 +102,7 @@ function App() {
     }
     if (newFriend){
         if (!user.friends||!user.friends.includes(newFriend)){
-          fetch('http://localhost:3000/friendrequest',{
+          fetch('https://socially-distanced-server.herokuapp.com/friendrequest',{
               method:'post',
               headers:{'Content-Type':'application/json'},
               body:JSON.stringify({

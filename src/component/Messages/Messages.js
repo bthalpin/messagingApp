@@ -21,7 +21,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentMessage.time
         
         if (currentMessage.message!==''){
-            fetch('http://localhost:3000/friendmessage',{
+            fetch('https://socially-distanced-server.herokuapp.com/friendmessage',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -49,7 +49,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         
         if (currentPublicMessage.message!==''){
             // console.log(currentPublicMessage.time,'MESSAGE')
-            fetch('http://localhost:3000/publicmessage',{
+            fetch('https://socially-distanced-server.herokuapp.com/publicmessage',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -140,7 +140,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             // MAKE FUNCTION
 
 
-                fetch('http://localhost:3000/likes',{
+                fetch('https://socially-distanced-server.herokuapp.com/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -156,7 +156,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                     .catch(err=>console.log(err))
             
             }else{
-                fetch('http://localhost:3000/dislike',{
+                fetch('https://socially-distanced-server.herokuapp.com/dislike',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -182,7 +182,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             }
             // console.log(user,contains,'here')
             if (!newArr[i].likes || contains){
-                fetch('http://localhost:3000/likes',{
+                fetch('https://socially-distanced-server.herokuapp.com/likes',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({
@@ -198,7 +198,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                         setPastMessages(res)})
                     .catch(err=>console.log(err))
             }else{
-                fetch('http://localhost:3000/dislike',{
+                fetch('https://socially-distanced-server.herokuapp.com/dislike',{
                     method:'post',
                     headers:{'Content-Type':'application/json'},
                     body:JSON.stringify({

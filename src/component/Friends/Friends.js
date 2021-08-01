@@ -39,7 +39,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     }
 
     const unFriend = (friend) =>{
-        fetch('http://localhost:3000/unfriend',{
+        fetch('https://socially-distanced-server.herokuapp.com/unfriend',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -56,7 +56,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     }
 
     const acceptFriend = (friend) =>{        
-        fetch('http://localhost:3000/acceptfriend',{
+        fetch('https://socially-distanced-server.herokuapp.com/acceptfriend',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -74,7 +74,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
 
     const rejectFriend = (friend,pendOrReq) =>{      
         if (pendOrReq==='Request'){
-            fetch('http://localhost:3000/reject',{
+            fetch('https://socially-distanced-server.herokuapp.com/reject',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -91,7 +91,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                     }
                 }).catch(err=>console.log(err))
         }else{
-            fetch('http://localhost:3000/reject',{
+            fetch('https://socially-distanced-server.herokuapp.com/reject',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({

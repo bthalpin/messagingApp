@@ -39,7 +39,7 @@ const Login = ({
   
 
     const verifyLogin = () => {
-        fetch('http://localhost:3000/signin',{
+        fetch('https://socially-distanced-server.herokuapp.com/signin',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
@@ -132,7 +132,7 @@ const Login = ({
       const verifyRegistration = () => {
         const emailPattern = /\S+@\S+\.\S+/
             if (emailPattern.test(email) && password.length>=8){
-              fetch('http://localhost:3000/register',{
+              fetch('https://socially-distanced-server.herokuapp.com/register',{
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
