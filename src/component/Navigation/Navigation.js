@@ -56,7 +56,9 @@ const Navigation = ({onRouteChange, isSignedIn,route,
                         />
                     </div>                
                 }
-              
+                <div className = "publicButton">
+                        <button onClick = {changePublicStatus} className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
+                    </div> 
                 <div className = "headcontainer">
                     <h1 className = "title">{route==="home"?"Message Board":conversation.you}</h1>
                 </div>

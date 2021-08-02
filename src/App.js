@@ -26,6 +26,7 @@ function App() {
   const [privateMessage, setPrivateMessage] = useState({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
   const [conversation,setConversation] = useState({me:'',you:''})
   const [filteredMessages,setFilteredMessages] = useState({})
+  const [publicStatus,setPublicStatus] = useState(true);
   
   useEffect (()=>{
     if (user.friends){
@@ -122,6 +123,11 @@ function App() {
     }
    
   }
+
+  
+  const changePublicStatus = () => {
+    publicStatus?setPublicStatus(false):setPublicStatus(true)
+}
        
   
 
@@ -139,6 +145,8 @@ function App() {
             setConversation = {setConversation}
             conversation = {conversation} 
             addFriend = {addFriend}
+            publicStatus = {publicStatus}
+            setPublicStatus = {setPublicStatus}
         />
     
         {isSignedIn
@@ -164,6 +172,8 @@ function App() {
                                 conversation = {conversation}
                                 setFilteredMessages = {setFilteredMessages}
                                 filteredMessages = {filteredMessages}
+                                publicStatus = {publicStatus}
+                                setPublicStatus = {setPublicStatus}
                               />
                         </div>
                   </div>

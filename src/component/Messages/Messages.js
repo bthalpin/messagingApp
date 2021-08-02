@@ -9,9 +9,9 @@ import '../../colors2.css';
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation,setFilteredMessages,filteredMessages}) => {
+const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation,setFilteredMessages,filteredMessages,publicStatus,setPublicStatus}) => {
     
-    const [publicStatus,setPublicStatus] = useState(true);
+    
     const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
     let offset = '';
     let background = '';
@@ -218,9 +218,6 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 }
 
     
-    const changePublicStatus = () => {
-        publicStatus?setPublicStatus(false):setPublicStatus(true)
-    }
 
     const changeHidden = (picture) => {
         if(picture){
@@ -251,9 +248,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             <textarea id="msg" className = {"textarea public "+hiddenStatus.message}  onChange = {onInputChange} value = {currentPublicMessage.message} autoFocus></textarea>
                         </div>
                     </div>
-                    <div className = "publicButton">
+                    {/* <div className = "publicButton">
                         <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
-                    </div>            
+                    </div>             */}
                     <div className="commentsection">
                         <div className = "inputbox">                
                             <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
@@ -307,9 +304,9 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             value = {currentMessage.message}
                         ></textarea>  
                     </div>
-                    <div className = "publicButton">
+                    {/* <div className = "publicButton">
                         <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
-                    </div>            
+                    </div>             */}
                     <div className="commentsection">
                         <div className = "inputbox">
                             <label htmlFor ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
