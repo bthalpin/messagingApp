@@ -147,6 +147,7 @@ function App() {
             addFriend = {addFriend}
             publicStatus = {publicStatus}
             setPublicStatus = {setPublicStatus}
+            changePublicStatus = {changePublicStatus}
         />
     
         {isSignedIn

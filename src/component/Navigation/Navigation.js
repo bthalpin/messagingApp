@@ -15,7 +15,10 @@ const Navigation = ({onRouteChange, isSignedIn,route,
     setPrivateMessage,
     setConversation,
     conversation,
-    addFriend
+    addFriend,
+    publicStatus,
+    setPublicStatus,
+    changePublicStatus
 })=>{
     let display;
     if (isSignedIn){
