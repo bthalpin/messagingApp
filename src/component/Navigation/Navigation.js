@@ -51,7 +51,7 @@ const Navigation = ({onRouteChange, isSignedIn,route,
                         </div>
                        
                         <div className = "">
-                            <p className = {"navButtons friends"+ route} onClick = {()=>onRouteChange('friends')}>Contacts{user.requests.length?<span className = "requests">{user.requests.length}</span>:<></>}</p>
+                            <p className = {"navButtons friends"+ route} onClick = {()=>onRouteChange('friends')}>Contacts{user?.requests?.length?<span className = "requests">{user.requests.length}</span>:<></>}</p>
                         </div>
                         <nav className = "">
                         <p onClick = {() => onRouteChange('Sign In')} className = {"navButtons "}>Sign Out</p>
