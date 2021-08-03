@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Messagebox from '../Messages/Messagebox';
+import Friend from '../Friends/Friend';
 import './Mail.css';
 // import '../../colors.css';
 import '../../colors2.css';
 // import '../../colors3.css';
 
-const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation}) => {
+const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation,setConversation,converse,route}) => {
 
     const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
@@ -86,10 +87,21 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
             return {...prevCurrentPrivateMessage,message:''}})        
     }
 
+    const mainMailWindow = ()=>{
+        setConversation(prevConversation=>{
+            return {...prevConversation,you:''}
+        })
+    }
+
     return (
         <div className = "mailbox">
             {conversation.you?
-                <div>            
+            <div>
+                <div>     
+                    <div className = "privateMessage">
+                        <button className = "backButton" onClick = {mainMailWindow}>&lt;</button>
+                        <p className = "contactName">{conversation.you}</p>
+                    </div>       
                     <input 
                         id = "picture"
                         className = {"mailtextarea "+hiddenMailStatus.picture} cols="40" rows="6" 
@@ -110,14 +122,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                     <label className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</label>
 
                 </div>
-                :
-                <div className = 'nocontactContainer'>
-                    <div>
-                        <h1 className = "nocontact">PLEASE SELECT SOMEONE TO MESSAGE</h1>
-                    </div>
-                </div>
-            }
-            <div className = "messages">               
+                <div className = "messages">               
                 {privateMessages.map((message,i)=>{
                     const currentMessage = privateMessages.length-1-i
                     const currentId = privateMessages[currentMessage].id
@@ -143,7 +148,24 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                     
                     })
                 }
-            </div>            
+            </div> 
+            </div>
+                :
+                <div className = 'nocontactContainer'>
+                    
+                    <p className = "contactName">Select a contact to message</p>
+                                            <ul className = "contactScroll">                            
+                                                {user.friends.map((friend)=>{
+                                                    return <Friend converse = {converse} friend = {friend} route={route} />
+                                                    })
+                                                }
+                                             </ul>
+    
+                                        
+                    
+                </div>
+            }
+                       
         </div>
     )
 }

@@ -1,75 +1,97 @@
-.nav{
-    /* display:flex;
-    justify-content: flex-end; */
-    /* background:linear-gradient(to bottom,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8)); */
-    width:15vw;
-    position:absolute;
-    right:0;
-    top:0;
+.navroot{
+    
+    display:flex;
+   
+    width:100vw;
+    justify-content: center;
+    
 }
 
-.navLeft{
+
+.mainNav{
+    width:80vw;
+display:flex;
+align-items: flex-end;
+justify-content: space-around;
+
+}
+
+
+
+.groupChat{
+    margin:0;
+    color:rgb(170, 170, 170);
+    font-size: 0.7rem;;
+    /* border:1px solid #48aca7; */
+    /* border-bottom:transparent; */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.navButtonContainer{
     display: flex;
     justify-content: space-around;
-    width:15vw;
-    position:absolute;
-    /* left:0; */
-    /* top:0; */
-    margin-left: 1rem;
-    cursor: pointer;
+    /* border:1px solid #48aca7; */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    /* border-bottom:1px solid #48aca7;
+    border-left:1px solid #48aca7;
+    border-right:1px solid #48aca7; */
+    width:10rem;
 }
 
-
-.navElement{
-    padding:1rem;
-    font-size:1.1rem;
-    font-weight:bold;
-    /* color:white; */
-    text-decoration: underline;
-    margin:0;
+.navButtons{
+    border-top-left-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+    /* font-weight: bold; */
+    outline: none;
+    padding:0 0.5rem;
+    margin:0.0rem 0.5rem;
+    border:none;
 }
 
-.navElement:hover{
-    /* color:lightgray; */
+/* .disabledButtons{
+    font-weight: bold;
+    border:none;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
+    padding:0.0rem 0.3rem;
+} */
+
+.navButtons:active{
+    /* border-style:outset; */
+}
+
+.navButtons:hover{
     cursor:pointer;
+    color:rgb(211, 211, 211);
+}
+
+.homehome{
+    background:#00383d;
+    border:5px rgb(11, 231, 11);
+}
+.friendfriend{
+    background:#00383d;
+    border-bottom:3px rgb(11, 231, 11);
+}
+.mailmail{
+    background:#00383d;
+    border-bottom:3px rgb(11, 231, 11);
+}
+.friendsfriends{
+    background:#00383d;
+    border-bottom:3px rgb(11, 231, 11);
+}
+
+.hideButton,.wideButton {
+    border-radius:0.2rem;
 }
 
 
-
-.title{
-    font-size:1.5rem;
-    font-weight:bold;
-    padding:0.8rem;
-    margin:0;
-    /* color:white; */
-    text-shadow:2px 2px 4px black;
-    width:60vw;
-    height:2rem;
-    
-}
-
-@media screen and (max-width:600px) {
-    .navElement{
-        font-size: 1rem;
-        /* padding:0; */
-    }
-    .homemail{
-        margin-left: 1.5rem;;
-    }
-    
-  
-    .title{
-        padding:0.8rem 0rem;
-        
-    }
-    
-  }
 
   @media screen and (max-width:550px) {
-    .navElement{
-        font-size: 0.7rem;
-        margin-top:0.3rem;
-    }
+   
   }
 .headcontainer{
     width:100vw;
@@ -78,89 +100,31 @@
     
 }
 
-.navroot{
-    position:fixed;
-    top:0;
-    /* background:linear-gradient(to bottom,rgba(0, 4, 255, 0.8),rgba(8, 185, 255,0.8)); */
-    width:100vw;
-    z-index: 1;
-}
 @media screen and (max-width:800px) {
-    .navElement{
-        padding:1rem 1rem 0rem 0rem;
-    }
-    
+   
   
-    .headcontainer{
-      /* min-width: 100vw; */
-      
-    }
-    .title{
-        font-size: 1.5rem;
-    }
-    .homemail{
-        width:1.7rem;
-    }
+  
   }
 
 @media screen and (max-width:450px) {
     
     .headcontainer{
-      /* min-width: 100vw; */
       height:3rem;
       
     }
-    .title{
-        font-size: 1rem;
-        /* padding-bottom:0; */
-    }
-    .navElement{
-        font-size: 0.55rem;
-        margin-top:0;
-    }
-    .homemail{
-        width:1.4rem;
-        
-    }
-    .navhomemail{
-        margin:0.6rem;
-    }
-    
     
   }
 
   @media screen and (max-width:350px) {
-   .mainMessage{
+   /* .mainMessage{
        margin-top:5rem;
-   }
-    .navElement{
-        font-size: 0.5rem;
-        margin-top:0.5rem;
-    }
-    .title{
-        /* font-size: 0.8rem; */
-        width:30vw;
-    }
+   } */
     .headcontainer{
         /* min-width: 100vw; */
         height:4rem;
         
       }
-      .navhomemail{
-        margin:1.4rem 1rem;
-    }
     
-  }
-
-  @media screen and (max-width:280px) {
-   
-    
-    
-    .title{
-        font-size: 0.8rem;
-        /* width:30vw; */
-        margin-left:20vw;
-    }
   }
 
   @media (max-height:400px) {
@@ -176,12 +140,87 @@
   
   
 @media (max-height:225px) {
-    .title{
-        color:transparent;
-        text-shadow: none;
-    }
-    .navroot{
+    
+    /* .navroot{
         background: transparent;
     }
+     */
+}
+
+@media (min-width:500px){
+    .hideButton{
+        display:none;
+    }
+    .wideButton{
+        display:none;
+    }
+    .mainNavHidden{
+        width:80vw;
+display:flex;
+align-items: flex-end;
+justify-content: space-around;
+        max-width: 35rem;
+    }
+    .mainNav{
+        max-width:35rem;
+    }
+}
+
+@media screen and (max-width:625px) {
+   
+    .navButtons{
+        margin:0;
+        font-size:0.8rem;
+    }
+    .groupChat{
+        font-size: 0.6rem;
+    }
+  
     
+}
+
+
+@media (max-width:500px) {
+    .mainNav{
+        position:absolute;
+        display:block;
+        width:5rem;
+        background: #006D77;
+        z-index: 1;
+    }
+    .navroot{
+        justify-content: flex-end;
+    }
+    .navButtonContainer{
+        display:block;
+    }
+    .dropDown{
+        display:block;
+    }
+    .mainNavHidden{
+        display:none;
+    }
+    .wideButton{
+        width:5rem;
+    }
+    .navButtonContainer{
+        /* border:1px solid white; */
+        border-radius:0;
+        width:100%;
+        margin:0;
+        padding:0;
+    }
+    .navButtons{
+        border-radius: 0;
+        width:100%;
+        border-bottom:1px solid #018d81;
+        margin:0;
+        padding:0;
+        /* font-size:0.8rem; */
+        /* border-top:1px solid white; */
+        /* border-bottom:1px solid white; */
+    }
+    .homehome,.homefriends,.homefriend,.homemail{
+        border-bottom:none;
+    }
 }

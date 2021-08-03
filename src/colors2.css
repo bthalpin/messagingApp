@@ -17,7 +17,10 @@ html{
     background:#006D77;
     
 }
-
+.hideButton, .wideButton{
+    background: var(--buttonColor);
+    color:white;
+}
 
 .commentsection{
     background:linear-gradient(to top,#01a5b4,#90d6cf);
@@ -139,7 +142,7 @@ input[type="radio"]:checked+label{
 }
 
 
-.disabledButtons{
+.navButtons{
     background:#006D77;
     color:white;
 }
@@ -169,7 +172,7 @@ input[type="radio"]:checked+label{
 
 .navElement{
     color:white;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     
 }
 
@@ -198,6 +201,10 @@ input[type="radio"]:checked+label{
     border:1px solid black;
 }
 
+.backButton{
+    background: #006d67;
+}
+
 
 .partner{
     color:white;
@@ -210,13 +217,10 @@ input[type="radio"]:checked+label{
 }
 
 
-@media (max-height:225px) {
+@media (max-height:225px) { 
     .title{
         color:transparent;
         text-shadow: none;
     }
-    .navroot{
-        background: transparent;
-    }
-    
-}
+  
+ } 

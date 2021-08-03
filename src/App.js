@@ -11,7 +11,7 @@ import './colors2.css';
 // import './colors3.css';
 import Picture from './component/Messages/Picture';
 
-
+// https://socially-distanced-server.herokuapp.com/
 
 function App() {
   const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],request:[],pendingrequests:[]})
@@ -46,7 +46,7 @@ function App() {
   }
 
   const onRouteChange = (route) => {
-    (route === 'home' || route ==='mail')?setIsSignedIn(true):resetState();
+    (route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )?setIsSignedIn(true):resetState();
     setRoute(route)
   }
   
@@ -125,8 +125,22 @@ function App() {
   }
 
   
-  const changePublicStatus = () => {
-    publicStatus?setPublicStatus(false):setPublicStatus(true)
+  const changePublicStatus = (route,publicState) => {
+    console.log(route,publicState)
+    setPublicStatus(publicState)
+    onRouteChange(route)
+    
+}
+
+const converse = (friend) => {
+  // toggleFriends()
+  setConversation((prevConversation)=>{
+      return {...prevConversation,you:friend}
+  })
+  setPrivateMessage((prevPrivateMessage)=>{
+      return {...prevPrivateMessage,recipientEmail:friend}
+  })
+  setRoute('mail')
 }
        
   
@@ -151,7 +165,7 @@ function App() {
         />
     
         {isSignedIn
-            ? (route==='home'
+            ? (route==='home'||route==='friend'
                   ?<div className = "main">
                         <div className = "mainMessage">
                             <Messages 
@@ -178,7 +192,8 @@ function App() {
                               />
                         </div>
                   </div>
-                  :<div className = "main">
+                  :route==='mail'?
+                  <div className = "main">
                       <div className = "mainMessage">
                           <Mail 
                               user ={user} 
@@ -189,9 +204,28 @@ function App() {
                               deletePost = {deletePost} 
                               conversation = {conversation}
                               loadData = {loadData} 
+                              setConversation = {setConversation}
+                              converse = {converse}
+                              route = {route}
                             /> 
                       </div>
-                  </div>)
+                  </div>
+                  :
+                  
+                        <Friends 
+                            user = {user} 
+                            setUser = {setUser} 
+                            route = {route} 
+                            setRoute = {setRoute} 
+                            setPrivateMessage = {setPrivateMessage} 
+                            setConversation = {setConversation} 
+                            addFriend = {addFriend}
+                            onRouteChange = {onRouteChange} 
+                            converse = {converse}
+                            // display={display}
+                            
+                        />
+                  )
         
             :(<>
                 <Login 

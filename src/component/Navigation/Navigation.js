@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState}from 'react';
 import './Navigation.css';
 // import '../../colors.css';
 
 // import '../../colors3.css';
 import '../../colors2.css';
-import Mail from "../../images/mail-outline.png";
+import Hamburger from "../../images/hamburger.png";
 import Home from "../../images/home.png";
 import Friends from '../Friends/Friends';
+import friendpicture from "../../images/friend.png";
 
 const Navigation = ({onRouteChange, isSignedIn,route,
     user, 
@@ -21,53 +22,39 @@ const Navigation = ({onRouteChange, isSignedIn,route,
     changePublicStatus
 })=>{
     let display;
+    const [hideStatus,setHideStatus] = useState('Hidden')
+
+    const hide = ()=>{
+        hideStatus==='Hidden'?setHideStatus(''):setHideStatus('Hidden')
+        // console.log(hideStatus)
+    }
     if (isSignedIn){
         return (
             <div className = "navroot">
-                {route==='home'
-                    ?<div className = 'navLeft'> 
-                        <p className="navhomemail" onClick = {() => onRouteChange('mail')}>
-                            <img className = "homemail" src = {Mail} alt="Mail" width = "30rem" ></img>
-                        </p>
-                    
-                        <Friends 
-                            user = {user} 
-                            setUser = {setUser} 
-                            route = {route} 
-                            setRoute = {setRoute} 
-                            setPrivateMessage = {setPrivateMessage} 
-                            setConversation = {setConversation}  
-                            addFriend = {addFriend}
-                        />
+                <button className = "hideButton" onClick = {hide}><img src = {Hamburger} alt = "=" width="10rem"></img></button>
+                    <div className = {'mainNav'+hideStatus}> 
+                    <button className = "wideButton" onClick = {hide}>&gt;</button>
+                        <div >
+                            <p className = "groupChat">Group Chat</p>
+                            <div className = "navButtonContainer " >
+                                <p onClick = {()=>changePublicStatus('home',true)} className = {"navButtons home"+ route}>Public</p><p className = {"navButtons friend"+ route} onClick = {()=>changePublicStatus('friend',false)}>Friends</p>
+                            </div>
+                        </div>
+                       
+                        <div>
+                            <p className = {"navButtons mail"+ route} onClick = {() => onRouteChange('mail')}>Private Message
+                
+                            </p>
+                        </div>
+                       
+                        <div className = "">
+                            <p className = {"navButtons friends"+ route} onClick = {()=>onRouteChange('friends')}>Contacts</p>
+                        </div>
+                        <nav className = "">
+                        <p onClick = {() => onRouteChange('Sign In')} className = {"navButtons "}>Sign Out</p>
+                    </nav>
                     </div>
-                    :
-                    <div className = 'navLeft'> 
-                        <p className="navhomemail" onClick = {() => onRouteChange('home')}>
-                            <img className = "homemail" src = {Home} alt="Home" width = "30rem" ></img>
-                        </p>
-                        {conversation.you?display=false:display=true}
-                        <Friends 
-                            user = {user} 
-                            setUser = {setUser} 
-                            route = {route} 
-                            setRoute = {setRoute} 
-                            setPrivateMessage = {setPrivateMessage} 
-                            setConversation = {setConversation} 
-                            addFriend = {addFriend} 
-                            display={display}
-                            
-                        />
-                    </div>                
-                }
-                <div className = "publicButton">
-                        <button onClick = {changePublicStatus} className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
-                    </div> 
-                <div className = "headcontainer">
-                    <h1 className = "title">{route==="home"?"Message Board":conversation.you}</h1>
-                </div>
-                <nav className = "nav">
-                    <p onClick = {() => onRouteChange('Sign In')} className = 'navElement'>Sign Out</p>
-                </nav>
+                
             </div>            
         )
     }else {

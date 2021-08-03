@@ -53,7 +53,7 @@ li{
 }
 
 .scroll{
-    /* height:20vh; */
+    height:40vh;
     overflow-y: scroll;
     -ms-overflow-style: none;  
     scrollbar-width: none; 
@@ -70,13 +70,13 @@ li{
     border-radius: 0.5rem;
 }
 
-.friendList{
-    position:fixed;
+ .friendList{
+    /* position:fixed;
     left:50%;
     top:10%;
-    transform:translate(-50%,0%);
+    transform:translate(-50%,0%); */ 
     /* display:flex; */
-    align-items: center;
+    /* align-items: center; */
     /* height:100%; */
     /* border:1px solid gray; */
     border-top-right-radius: 0.5rem;
@@ -84,8 +84,8 @@ li{
     
     border-bottom-left-radius: 0.5rem;
     border-top-left-radius: 0.5rem;
-    z-index: 1;
-    margin-left: ;
+    /* z-index: 1;
+    margin-left: ; */
     
 }
 
@@ -108,13 +108,17 @@ li{
     /* margin-top: 0; */
     border:none;
     /* outline:none; */
-    height:3rem;
-    margin:0.5rem 1rem;
+    /* height:3rem; */
+    /* margin:0.5rem 1rem; */
     /* background: transparent; */
     /* color:white; */
     border-radius: 0.5rem;
 }
 
+/* .radioButton{
+    justify-content: space-around;
+    display:flex;
+} */
 .radioButton input[type="radio"]{
     display:none;
 }
@@ -192,7 +196,7 @@ input[type="radio"]:checked+label{
         
     }
     .friendimg{
-        width:2rem;
+        /* width:2rem; */
     }
 
     
@@ -201,11 +205,11 @@ input[type="radio"]:checked+label{
 
 @media screen and (max-width:350px) {
     .showFriend{
-        margin-top:0.6rem;
+        /* margin-top:0.6rem; */
         
     }
     .friendimg{
-        width:2rem;
+        /* width:2rem; */
     }
 
     

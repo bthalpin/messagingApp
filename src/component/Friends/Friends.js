@@ -11,8 +11,8 @@ import friendpicture from "../../images/friend.png";
 
 const arrow = "x";
 
-const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend,display}) => {
-    const [friendList,setFriendList] = useState(display)
+const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend,onRouteChange,converse}) => {
+    // const [friendList,setFriendList] = useState(display)
     const [uniqueRequests,setUniqueRequests] = useState([...new Set(user.requests)])
     const [uniquePending,setUniquePending] = useState([...new Set(user.pendingrequests)])
    
@@ -21,22 +21,13 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
         setUniquePending([...new Set(user.pendingrequests)])
     },[user])
 
-    const converse = (friend) => {
-        toggleFriends()
-        setConversation((prevConversation)=>{
-            return {...prevConversation,you:friend}
-        })
-        setPrivateMessage((prevPrivateMessage)=>{
-            return {...prevPrivateMessage,recipientEmail:friend}
-        })
-        setRoute('mail')
-    }
+    
 
 
-    const toggleFriends = () => {
-        friendList?(setFriendList(false)):(setFriendList(true))
+    // const toggleFriends = () => {
+    //     friendList?(setFriendList(false)):(setFriendList(true))
        
-    }
+    // }
 
     const unFriend = (friend) =>{
         fetch('https://socially-distanced-server.herokuapp.com/unfriend',{
@@ -117,20 +108,23 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     const { friends } = user
     
     return(
-            <div className="fixed">            
-                {friendList?
-                    <>
-                        <div className = "">
-                            <button className = "showFriend" onClick = {toggleFriends}><img className = "friendimg" src={friendpicture} alt="Friends" width = "35rem;"></img></button>
-                        </div>
-                        <div className = "friendList">
-                            <div  className="mainfriend">
+            
+        <div className = "maincomment">                
+                
+                
+               
+                <div className="commentsection">
+                    
+        
+                    <div className="">
+                    <div className = "">
+                            <div  className="">
                                 <div >
                         
-                                    <div className="friendtitlebox"><p className="friendtitle">{route==="home"?"Friends List":"Contacts"}</p></div>
+                                    {/* <div className="friendtitlebox"><p className="friendtitle">{route==="home"?"Friends List":"Contacts"}</p></div> */}
                                     {friends?
-                                        <div className = "scroll">
-                                            <ul>                            
+                                        <div >
+                                            <ul className = "scroll">                            
                                                 {friends.map((friend)=>{
                                                     return <Friend converse = {converse} friend = {friend} unFriend = {unFriend} />
                                                     })
@@ -148,7 +142,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                 {uniqueRequests && uniqueRequests[0]?
                                     <div className = "scroll">  
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
-                                        <ul>
+                                        <ul className = "scroll">
                                             {uniqueRequests.map((friend)=>{
                                                 return <Request friend = {friend} rejectFriend = {rejectFriend} pendOrReq ={'Request'} acceptFriend = {acceptFriend}/>
                                                 })
@@ -160,7 +154,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                 {uniquePending&&uniquePending[0]?
                                     <div className = "scroll">
                                         <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
-                                        <ul>
+                                        <ul className = "scroll">
                                             {uniquePending.map((friend)=>{
                                                 return <Pending friend = {friend} rejectFriend = {rejectFriend} pendOrReq = {'Pending'}/>
                                                 })
@@ -172,20 +166,11 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                 }
                         
                             </div>
-                            <div>
-                                <button className = "hideFriend" onClick = {toggleFriends}>{arrow}</button>
-                            </div>
-                            
-                        </div>
-                    </>
-                :
-            <div className = "">
-                <button className = "showFriend" onClick = {toggleFriends}><img className = "friendimg" src={friendpicture} alt="Friends" width = "35rem;"></img></button>
-            </div>
-            }
-            
-        </div>
-        
+                          
+          
+    </div>
+    </div>
+    </div></div>
     )
 
 }
