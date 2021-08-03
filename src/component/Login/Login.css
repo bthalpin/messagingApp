@@ -7,7 +7,7 @@
 
     /* Change height if adding elements above (ie. Navigation Bar) */
     /* height:95vh; */
-    font-weight:bold;
+    /* font-weight:bold; */
    
 }
 
@@ -151,7 +151,7 @@
     .formWindow{
         /* width:70vh; */
         height:70vh;
-        margin-top:3.5rem;
+        margin-top:0.5rem;
     }
 }
 
@@ -159,7 +159,7 @@
     .formWindow{
         /* width:70vh; */
         height:70vh;
-        margin-top:0.5rem;
+        /* margin-top:0.5rem; */
     }
 }
 

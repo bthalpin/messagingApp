@@ -59,10 +59,7 @@ const Navigation = ({onRouteChange, isSignedIn,route,
         )
     }else {
         return (
-            <div className = "navroot">
-                <div className = "headcontainer">
-                    <h1 className = "title">SOCIALLY DISTANCED</h1>
-                </div>
+            <div >
             </div>            
             )   
         }
