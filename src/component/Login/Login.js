@@ -26,7 +26,7 @@ const Login = ({
             break;
           case 'Email':
             setUser((prevUser)=>{
-                return {...prevUser,email:event.target.value.toUpperCase()}})
+                return {...prevUser,email:event.target.value}})
             break;
           case 'Password':
             setUser((prevUser)=>{
@@ -38,27 +38,28 @@ const Login = ({
       }
   
 
-    const verifyLogin = () => {
+    const verifyLogin = (upperEmail) => {
         fetch('https://socially-distanced-server.herokuapp.com/signin',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
-              email:user.email.toUpperCase(),
+              email:upperEmail,
               password:user.password
             })
           })
         .then(res=>res.json())
         .then(res=>{
-            if (res.email===user.email){
+            if (res.email===upperEmail){
               setUser((prevUser)=>{
-                return {...prevUser,username:res.name,friends:res.friends,requests:res.requests,pendingrequests:res.pendingrequests}
+                return {...prevUser,username:res.name,email:res.email,friends:res.friends,requests:res.requests,pendingrequests:res.pendingrequests}
               })
               setRoute('home')
               setIsSignedIn(true)
+              setErrorMessage('')
               setCurrentMessage((prevCurrentMessage)=>{
                 return {...prevCurrentMessage,username:res.name,email:res.email}})
                 
-              setConversation({me:user.email,you:''})
+              setConversation({me:res.email,you:''})
               
 
             }else{
@@ -82,14 +83,14 @@ const Login = ({
         //     .catch(err=>console.log(err))
         loadData('friendmessageload',
                   JSON.stringify({
-                    email:user.email.toUpperCase(),
+                    email:upperEmail,
                     friends:user.friends
                   }),
                   setPastMessages
                   )
         loadData('publicmessageload',
                   JSON.stringify({
-                      email:user.email,
+                      email:upperEmail,
                       friends:user.friends
                   }),
                   setPastPublicMessages
@@ -109,7 +110,7 @@ const Login = ({
         //     .catch(err=>console.log(err))
         loadData('privatemessageload',
                   JSON.stringify({
-                    email:user.email,
+                    email: upperEmail,
                     friends:user.friends
                   }),
                   setPrivateMessages
@@ -129,7 +130,7 @@ const Login = ({
         
       }
     
-      const verifyRegistration = () => {
+      const verifyRegistration = (upperEmail) => {
         const emailPattern = /\S+@\S+\.\S+/
             if (emailPattern.test(email) && password.length>=8){
               fetch('https://socially-distanced-server.herokuapp.com/register',{
@@ -137,7 +138,7 @@ const Login = ({
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
                   name:user.username,
-                  email:user.email.toUpperCase(),
+                  email:upperEmail,
                   password:user.password,
                   friends:user.friends
                 })
@@ -146,7 +147,7 @@ const Login = ({
               .then(user=>{
                 setRoute('home')
                 setIsSignedIn(true)
-                
+                setErrorMessage('')
                 setCurrentMessage((prevCurrentMessage)=>{
                   return {...prevCurrentMessage,username:user.name,email:user.email}})
             
@@ -154,7 +155,7 @@ const Login = ({
                 .catch(err=>console.log(err))
                 loadData('publicmessageload',
                   JSON.stringify({
-                      email:user.email,
+                      email:upperEmail,
                       friends:user.friends
                   }),
                   setPastPublicMessages
@@ -167,7 +168,8 @@ const Login = ({
       }
 
       const onSubmit = () => {
-        route==='Sign In'?verifyLogin():verifyRegistration();
+        const upperEmail = user.email.toUpperCase()
+        route==='Sign In'?verifyLogin(upperEmail):verifyRegistration(upperEmail);
       }    
       
     return(        

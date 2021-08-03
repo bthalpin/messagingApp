@@ -1,8 +1,19 @@
 :root{
-    --backColor:linear-gradient(to bottom,#006D77,#83C5BE);
+    /* --backColor:linear-gradient(to bottom,#006D77,#83C5BE); */
     /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
-    --buttonColor:#fd5c21d0;
-    --fadedColor: #E29578;
+    /* --buttonColor:#fd5c21d0;
+    --fadedColor: #E29578; */
+    --backColor:linear-gradient(to top,var(--fifthColor),var(--fourthColor));
+    /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
+    --buttonColor:#fb3640d2;
+    --fadedColor: #E8DAB2;
+    --gradient:linear-gradient(to bottom,#E2E2E2,#247BA0);
+    --firstColor:#E2E2E2;
+    --secondColor:#0f4181;    
+    --secondColorOpacity:#0f408179;
+    --thirdColor:#1280af;
+    --fourthColor:#2da2d4;
+    --fifthColor:#1841c5;
 }
 html{
     /* overflow-y:scroll; */
@@ -14,17 +25,17 @@ html{
 
 
 .navroot{
-    background:#006D77;
+    background:var(--thirdColor);
     
 }
 .hideButton, .wideButton{
-    background: var(--buttonColor);
+    background: var(--secondColor);
     color:white;
 }
 
 .commentsection{
-    background:linear-gradient(to top,#01a5b4,#90d6cf);
-    border:4px solid #006D77;
+    background:var(--fourthColor);
+    border:4px solid var(--thirdColor);
     
 }
 
@@ -36,13 +47,13 @@ html{
 
 
 .user{
-    background:#018d81;
+    background:var(--thirdColor);
     color:white;
     border-radius: 0;
 }
 
 .likeButton{
-    border:1px solid var(--buttonColor);
+    border:1px solid var(--secondColor);
 }
 
 .senderbackground{
@@ -50,18 +61,18 @@ html{
 }
 
 .user.senderbackground{
-    background:#48aca7;
+    background:var(--fourthColor);
 }
 
 .mailbox{
-    background:linear-gradient(to top,#01a5b4,#83C5BE);
-    border:4px solid #006D77;
+    background:var(--fourthColor);
+    border:4px solid var(--thirdColor);
 }
 
 
 .formWindow {
-    background:linear-gradient(to top,#01a5b4,#83C5BE);
-    
+    background:var(--fourthColor);
+    border:4px solid var(--thirdColor);
 }
 
 .inputField {
@@ -69,7 +80,7 @@ html{
 }
 
 .likes{
-    background:#006d67;
+    background:var(--secondColor);
 }
 .liketext{
     color:white;
@@ -80,13 +91,13 @@ html{
 }
 
 .requesttitle{
-background:#006d67;
+background:var(--secondColorOpacity);
 color:white;
 
 }
 
 .pendingtitle{
-    background: #006d67;
+    background: var(--secondColorOpacity);
     color:white;
 }
 
@@ -128,13 +139,21 @@ input[type="radio"]:checked+label{
     
 }
 
+.groupChat{
+    /* border-radius:5rem; */
+    /* border-top-left-radius: 5rem; */
+    /* border-top-right-radius: 5rem; */
+    /* border:1px solid white; */
+    /* background: #379ac59c; */
+}
+
 .friendButton{
     background: var(--buttonColor);
     color:white;
 }
 
 .publicButtons{
-    background:#00383d;
+    background:var(--secondColor);
     color:rgb(173, 173, 173);
     border:2px solid #00383d;
     /* border-bottom:2px solid var(--fadedColor); */
@@ -143,11 +162,14 @@ input[type="radio"]:checked+label{
 
 
 .navButtons{
-    background:#006D77;
-    color:white;
+    background:var(--thirdColor);
+
+    color:rgba(255, 255, 255, 0.774);
 }
 
-
+.requests{
+    background: var(--buttonColor);
+}
 .submitbutton{
     background:var(--buttonColor);
     color:white;
@@ -161,7 +183,7 @@ input[type="radio"]:checked+label{
 
 .button{
     background:transparent;
-    border:0.1rem solid #006D77;
+    border:0.1rem solid var(--thirdColor);
     color:white;
 }
 
@@ -183,12 +205,12 @@ input[type="radio"]:checked+label{
 
 
 
-.title{
+/* .title{
     color:white;
     text-shadow:2px 2px 4px black;
     
     
-}
+} */
 
 .deleteButton{
     color:rgb(23, 41, 31);
@@ -203,7 +225,8 @@ input[type="radio"]:checked+label{
 }
 
 .backButton{
-    background: #006d67;
+    background: var(--secondColor);
+    border:none;
 }
 
 
@@ -218,10 +241,32 @@ input[type="radio"]:checked+label{
 }
 
 
-@media (max-height:225px) { 
-    .title{
-        color:transparent;
-        text-shadow: none;
+.homehome,.friendfriend,.mailmail,.friendsfriends{
+    background:var(--secondColorOpacity);
+    color:white;
+}
+
+
+.navButtons:hover{
+    color:white;
+}
+/* .homehome:hover,.friendfriend:hover,.mailmail:hover,.friendsfriends:hover{
+    color:white;
+} */
+
+@media (max-width:500px) {
+    .navButtonContainer{
+        border:1px solid var(--fourthColor);
     }
-  
- } 
+    .navButtons{
+        border-bottom:1px solid var(--fourthColor);
+    }
+    .mainNav{
+        background: var(--thirdColor);
+    }
+    .groupChat{
+        background: var(--fourthColor);
+        color:rgba(255, 255, 255, 0.329);
+    }
+    
+}

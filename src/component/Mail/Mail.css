@@ -1,9 +1,10 @@
 .mailbox{
     margin-top: 0.1rem;
     padding:1rem;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     height: 80vh;
     width: 80vw;
+    max-width:35rem;
     
     /* display:block; */
     /* margin-right:20vw;
@@ -13,19 +14,22 @@
 
 .privateMessage{
     display:flex;
-    margin-left:1rem;
+    margin-left:0.5rem;
     margin-bottom:0.5rem;
+    margin-top:0.8rem;
+    padding-top:1rem;
 }
 .backButton{
     border-radius:0.5rem ;
-    width:3rem;
+    width:2.5rem;
     color:white;
     font-size: 1.5rem;
+    font-weight: bold;
     padding:0 0.2rem;
+    margin:0.5rem;
 }
 .contactName{
-    margin:0.2rem 1rem;
-    font-weight: bold;
+    margin-left:1rem;
 }
 .nocontactContainer{
     height:60vh;
@@ -45,9 +49,12 @@
 
 .messages{
     margin-top:1rem;
-    height:75vh;
+    height:70vh;
     overflow-y: scroll;
     /* display:flex; */
+}
+.messages::-webkit-scrollbar{
+    display:none;
 }
 
 .sender{
@@ -66,7 +73,11 @@
     tranform:translate(0%,70%)
 } */
 
-
+.mailButtons{
+    position:fixed;
+    left:50%;
+    transform: translate(-50%,-90%);
+}
 .mailtextarea{
     
     /* padding:1rem; */
@@ -81,7 +92,7 @@
     z-index: 1;
     position: absolute;
     left:50%;
-    transform: translate(-50%,-150%);
+    transform: translate(-50%,-180%);
     /* margin-left:-20%; */
     /* overflow: hidden; */
     border:1px solid black;
@@ -129,9 +140,16 @@
     margin-top:20vh;
     color:white;
 }
+
+@media (max-height:900px) {
+    .messages{
+        height:65vh;
+    }
+    
+}
 @media (max-height:700px) {
     .mailbox{
-        height:70vh;
+        height:80vh;
     }
 
     .messages{
@@ -142,20 +160,51 @@
 
 @media (max-height:500px) {
     .mailbox{
-        height:60vh;
+        height:75vh;
     }
     .messages{
-        height:50vh;
+        height:55vh;
     }
-    
+    .backButton{
+        font-size: 0.8rem;
+        margin:0;
+        padding:0.3rem 0;
+    }
+    .contactName{
+        margin:0.1rem 0.5rem;
+    }
 }
 
 @media (max-height:400px) {
     .mailbox{
-        height:65vh;
+        height:70vh;
+        overflow-y: scroll;
+    }
+    .mailbox::-webkit-scrollbar{
+        display:none;
     }
     .messages{
-        height:40vh;
+        height:100vh;
+    }
+    
+}
+
+@media (max-height:280px) {
+    .mailbox{
+        height:60vh;
+    }
+    .messages{
+        /* height:30vh; */
+    }
+    
+}
+
+@media (max-height:200px) {
+    .mailbox{
+        height:50vh;
+    }
+    .messages{
+        /* height:40vh; */
     }
     
 }
@@ -167,6 +216,12 @@
     }
     .sender{
         margin:0;
+    }
+    .radioButton>li>label{
+        font-size: 0.8rem;
+    }
+    .contactName{
+        font-size:0.8rem;
     }
     
 }
@@ -181,6 +236,13 @@
         margin-left:8rem;
     }
     
+}
+
+@media (max-width:500px) {
+    .mailtextarea{
+        transform: translate(-50%,-169%);
+        width:70vw;
+    }
 }
 
 @media (max-width:370px) {
@@ -220,6 +282,8 @@
     .mailbox{
         padding:1rem 0;
         width:100vw;
+        border-left:none;
+        border-right:none;
     }
     
 }

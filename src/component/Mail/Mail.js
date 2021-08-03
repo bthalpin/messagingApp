@@ -97,11 +97,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
         <div className = "mailbox">
             {conversation.you?
             <div>
-                <div>     
-                    <div className = "privateMessage">
-                        <button className = "backButton" onClick = {mainMailWindow}>&lt;</button>
-                        <p className = "contactName">{conversation.you}</p>
-                    </div>       
+                <div>        
                     <input 
                         id = "picture"
                         className = {"mailtextarea "+hiddenMailStatus.picture} cols="40" rows="6" 
@@ -115,12 +111,16 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                         onChange = {onChanges} 
                         value = {privateMessage.message}
                     ></textarea>
-                
+                    <div className = "mailButtons">
                     <label htmlFor = "mail" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
                     <label htmlFor = "picture" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
                     <label className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</label>
                     <label className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</label>
-
+                    </div>
+                    <div className = "privateMessage">
+                        <button className = "backButton" onClick = {mainMailWindow}>&lt;</button>
+                        <p className = "contactName">{conversation.you}</p>
+                    </div>    
                 </div>
                 <div className = "messages">               
                 {privateMessages.map((message,i)=>{
@@ -156,7 +156,10 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                     <p className = "contactName">Select a contact to message</p>
                                             <ul className = "contactScroll">                            
                                                 {user.friends.map((friend)=>{
-                                                    return <Friend converse = {converse} friend = {friend} route={route} />
+                                                    return <div>
+                                                        <Friend converse = {converse} friend = {friend} route={route} />
+                                                        
+                                                        </div>
                                                     })
                                                 }
                                              </ul>

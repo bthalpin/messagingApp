@@ -197,21 +197,21 @@
 @media screen and (max-height:900px) {
     
     .commentsection{
-        height: 80vh;
+        height: 90vh;
     }
     
 }
 @media screen and (max-height:650px) {
     
     .commentsection{
-        height: 75vh;
+        height: 88vh;
     }
     
 }
 @media screen and (max-height:530px) {
     
     .commentsection{
-        height: 85vh;
+        height: 87vh;
     }
     
 }
@@ -233,7 +233,7 @@
 @media screen and (max-height:400px) {
     
     .commentsection{
-        height: 80vh;
+        height: 83vh;
     }
 }
 
@@ -248,6 +248,13 @@
 @media (max-height:220px) {
     .commentsection{
         height:70vh;
+    }
+    
+}
+
+@media (max-height:160px) {
+    .commentsection{
+        height:60vh;
     }
     
 }
@@ -320,8 +327,19 @@
         font-size: 0.8rem;
         padding:0;
     }
+    .user>p{
+        font-size: 0.5rem;
+    }
+    .liketext{
+        font-size: 0.5rem;
+    }
+    .likeButton,.deleteBackground{
+        transform: scale(0.8);
+    }
     .commentsection{
         width:100vw;
+        border-left:none;
+        border-right:none;
     }
     .bigbox{
         width:100%;
@@ -332,6 +350,11 @@
     .msg{
         padding:0;
     }
+}
+
+@media (max-width:170px) {
+    
+    
 }
 
 .submitbutton{
@@ -410,4 +433,10 @@
 
 .liketext{
     margin-left:1rem;
+    overflow-y:scroll;
+    font-size:0.6rem;
+}
+
+.liketext::-webkit-scrollbar{
+    display:none;
 }

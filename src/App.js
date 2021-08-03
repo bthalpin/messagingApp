@@ -162,6 +162,7 @@ const converse = (friend) => {
             publicStatus = {publicStatus}
             setPublicStatus = {setPublicStatus}
             changePublicStatus = {changePublicStatus}
+            privateMessages = {privateMessages}
         />
     
         {isSignedIn

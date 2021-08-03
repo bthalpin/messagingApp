@@ -19,8 +19,10 @@
   } */
 .formWindow {
     /* background:linear-gradient(to top,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8)); */
-    width:20rem;
+    /* max-width:15rem; */
+    width:15rem;
     max-height:40rem;
+
     /* max-width:25rem; */
     /* min-width:20rem;  */
     border-radius:0.5rem;
@@ -52,7 +54,7 @@
 .inputField {
     padding:0.4rem;
     /* background: transparent; */
-    width:18rem;
+    width:100%;
     /* min-width:17rem; */
     /* border:0.1rem solid rgb(0, 0, 0); */
     border-radius:.3rem;
@@ -86,7 +88,7 @@
 }
 
 .loginLink{
-    margin-top:2.5rem;
+    margin-top:0.5rem;
     margin-bottom:0;
     transition:0.1s ease-in-out;
 }
@@ -113,7 +115,7 @@
 @media (max-height:600px) {
     .formWindow{
         /* width:70vh; */
-        height:75vh;
+        /* height:75vh; */
         margin-bottom:0;
         padding-top:0;
         padding-bottom:0;
@@ -126,10 +128,10 @@
 @media (max-height:500px) {
     .formWindow{
         /* width:70vh; */
-        height:70vh;
+        /* height:70vh; */
         padding-top:0;
         padding-bottom:0;
-        
+        min-height:16rem;
         font-size:0.8rem;
     }
     .inputBlock{
@@ -150,7 +152,7 @@
 @media (max-height:385px) {
     .formWindow{
         /* width:70vh; */
-        height:70vh;
+        /* height:70vh; */
         margin-top:0.5rem;
     }
 }
@@ -158,37 +160,50 @@
 @media (max-height:225px) {
     .formWindow{
         /* width:70vh; */
-        height:70vh;
+        /* height:70vh; */
         /* margin-top:0.5rem; */
     }
 }
 
 @media (max-height:300px) {
     .formWindow{
+        /* min-height:5rem; */
         /* width:70vh; */
-        height:50vh;
+        /* height:50vh; */
         /* margin-top:0.5rem; */
     }
 }
 
 @media (max-width:500px) {
     .formWindow{
-        width:70vw;
+        /* width:60vw; */
         padding:0;
     }
     .inputField{
-        width:50vw;
+        width:90%;
     }
     
 }
 
 @media (max-width:350px) {
     .formWindow{
-        width:90vw;
+        /* width:90vw; */
         
     }
     .inputField{
-        width:75vw;
+        /* width:75vw; */
+    }
+    
+}
+
+@media (max-width:256px) {
+    .formWindow{
+        width:100vw;
+
+        
+    }
+    .inputField{
+        /* width:75vw; */
     }
     
 }

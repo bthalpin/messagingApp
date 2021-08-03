@@ -2,7 +2,9 @@
   text-align: center;
   
 }
-
+.App::-webkit-scrollbar{
+  display:none;
+}
 .main{
   display:flex;
   min-height: 40vh;
@@ -32,6 +34,11 @@
   
 }
 
+@media (max-width:270px){
+  .main{
+    margin-left:0;
+  }
+}
 
   
 @media (max-height:220px) {
