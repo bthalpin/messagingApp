@@ -13,8 +13,8 @@ const arrow = "x";
 
 const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend,onRouteChange,converse}) => {
     // const [friendList,setFriendList] = useState(display)
-    const [uniqueRequests,setUniqueRequests] = useState([...new Set(user.requests)])
-    const [uniquePending,setUniquePending] = useState([...new Set(user.pendingrequests)])
+    const [uniqueRequests,setUniqueRequests] = useState([...new Set(user?.requests)])
+    const [uniquePending,setUniquePending] = useState([...new Set(user?.pendingrequests)])
    
     useEffect(() =>{
         setUniqueRequests([...new Set(user.requests)])

@@ -237,11 +237,24 @@
     }
     
 }
-
+@media (max-width:625px){
+    .mailtextarea{
+        transform: translate(-50%,-170%);
+    }
+    .privateMessage{
+        margin-top:1rem;
+    }
+}
 @media (max-width:500px) {
     .mailtextarea{
-        transform: translate(-50%,-169%);
+        transform: translate(-50%,-140%);
         width:70vw;
+    }
+    .mailButtons{
+        margin-top:0.8rem;
+    }
+    .privateMessage{
+        padding-top:2rem;
     }
 }
 

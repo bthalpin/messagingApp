@@ -105,7 +105,7 @@
     height: 85vh;
     /* border-top-left-radius: 1rem;
     border-top-right-radius: 1rem; */
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     /* border:4px solid rgba(8, 185, 255,0.8); */
     width: 35rem;
     overflow-y: scroll;
@@ -306,11 +306,20 @@
         padding:0.5rem;
         /* margin:auto; */
     }
+    .textarea{
+        font-size: 0.8rem;
+    }
     .public{
-        transform: translate(-50%,-90%);
+        transform: translate(-50%,-95%);
     }
     .friend{
-        transform: translate(-50%,-90%);
+        transform: translate(-50%,-95%);
+    }
+    .inputbox{
+        margin-top:0.6rem;
+    }
+    .bigbox{
+        padding-top:3rem;
     }
     /* .deleteContainer{ */
         /* width:5vw; */
