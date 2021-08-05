@@ -290,7 +290,7 @@ socket.on('deletemail',data=>{
               .then(res=>{    
                 
                 alert(`Friend request sent to ${newFriend.toUpperCase()}.`)
-                // console.log(res)                
+                console.log(res)                
                   // if (res){
                   //   setUser((prevUser)=> {
                   //     return {...prevUser,pendingrequests:res.pendingrequests}})
