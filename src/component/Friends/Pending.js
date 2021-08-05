@@ -4,11 +4,11 @@ import './Friends.css';
 import '../../colors2.css';
 // import '../../colors3.css';
 
-const Pending = ({friend, rejectFriend}) => {
+const Pending = ({friend, rejectFriend,pendOrReq}) => {
     // console.log(friend)
     return(
         <div className = "radioButton">
-             <li><input type = "radio" name = "friend" id={friend} /><label htmlFor={friend}>{friend}</label><button className = "friendButton" onClick = {()=>rejectFriend(friend)}>X</button></li>
+             <li><input type = "radio" name = "friend" id={friend} /><label htmlFor={friend}>{friend}</label><button className = "friendButton" onClick = {()=>rejectFriend(friend,pendOrReq)}>X</button></li>
         </div>
     )
 }

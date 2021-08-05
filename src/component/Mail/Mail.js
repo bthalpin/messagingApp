@@ -4,6 +4,7 @@ import Friend from '../Friends/Friend';
 import './Mail.css';
 // import '../../colors.css';
 import '../../colors2.css';
+import socket from '../../socket';
 // import '../../colors3.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation,setConversation,converse,route}) => {
@@ -16,25 +17,32 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
     useEffect(()=>{
 
         if (privateMessage.message!==''){
-            fetch('https://socially-distanced-server.herokuapp.com/privatemessage',{
-                method:'post',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({
-                    name:user.username,
-                    senderemail:user.email,
-                    recipientemail:conversation.you,
-                    message:privateMessage.message,
-                    time:'currentTime'
-                    })
-                })
-                .then(res=>res.json())
-                .then(res=>{
-                    console.log('FROM DB',res)
-                    setPrivateMessages(res)})
-                .catch(err=>console.log(err))
+            // fetch('http://localhost:3005/privatemessage',{
+            //     method:'post',
+            //     headers:{'Content-Type':'application/json'},
+            //     body:JSON.stringify({
+            //         name:user.username,
+            //         senderemail:user.email,
+            //         recipientemail:conversation.you,
+            //         message:privateMessage.message,
+            //         time:'currentTime'
+            //         })
+            //     })
+            //     .then(res=>res.json())
+            //     .then(res=>{
+            //         console.log('FROM DB',res)
+            //         setPrivateMessages(res)})
+            //     .catch(err=>console.log(err))
+            socket.emit('privatemessage',{
+                        name:user.name,
+                        senderemail:user.email,
+                        recipientemail:conversation.you,
+                        message:privateMessage.message,
+                        time:'currentTime'
+                        })
             }
             setPrivateMessage((prevPrivateMessage)=>{
-                return {...prevPrivateMessage,username:'',message:'',time:''}})  
+                return {...prevPrivateMessage,name:'',message:'',time:''}})  
     },[privateMessage.time])
 
 
@@ -58,18 +66,22 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
       }
 
     const deleteMail = (currentId) => {        
-        fetch('https://socially-distanced-server.herokuapp.com/deletemail',{
-            method:'post',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({
-                id:currentId,
-                database:'privatemessage'
-                })
-            })
-            .then(res=>res.json())
-            .then(res=>{
-                setPrivateMessages(res)})
-            .catch(err=>console.log(err))
+        // fetch('http://localhost:3005/deletemail',{
+        //     method:'post',
+        //     headers:{'Content-Type':'application/json'},
+        //     body:JSON.stringify({
+        //         id:currentId,
+        //         database:'privatemessage'
+        //         })
+        //     })
+        //     .then(res=>res.json())
+        //     .then(res=>{
+        //         setPrivateMessages(res)})
+        //     .catch(err=>console.log(err))
+        socket.emit('deletemail',{
+                    id:currentId,
+                    database:'privatemessage'
+                    })
       }
 
     const changeHidden = (picture) => {
@@ -135,11 +147,12 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";
                                 return <div className = {offset}>
-                                    {console.log(privateMessage)}
-                                            <Messagebox username = {privateMessages[currentMessage].senderemail} 
+                                    {/* {console.log(privateMessage)} */}
+                                            <Messagebox email = {privateMessages[currentMessage].senderemail} 
                                             text ={privateMessages[currentMessage].message} 
                                             time = {privateMessages[currentMessage].time} 
-                                            i = {i} deleteMail = {deleteMail} 
+                                            i = {i}
+                                            deleteMail = {deleteMail} 
                                              currentId = {currentId}
                                             background = {background} 
                                             />

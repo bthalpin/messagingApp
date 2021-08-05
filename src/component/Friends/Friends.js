@@ -7,6 +7,7 @@ import './Friends.css';
 import '../../colors2.css';
 // import '../../colors3.css';
 import friendpicture from "../../images/friend.png";
+import socket from '../../socket';
 
 
 const arrow = "x";
@@ -30,6 +31,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
     // }
 
     const unFriend = (friend) =>{
+        console.log(friend,user.email)
         fetch('https://socially-distanced-server.herokuapp.com/unfriend',{
             method:'post',
             headers:{'Content-Type':'application/json'},
@@ -40,10 +42,15 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             })
             .then(res=>res.json())
             .then(res=>{
-                if (res){
-                    setUser(res[0])
-                }                   
+                // console.log(res)
+                // if (res){
+                //     setUser(res[0])
+                // }                   
             }).catch(err=>console.log(err))
+        // socket.emit('unfriend',{
+        //             email:user.email,
+        //             friend:friend.toUpperCase()
+        //             })
     }
 
     const acceptFriend = (friend) =>{        
@@ -57,9 +64,13 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             })
             .then(res=>res.json())
             .then(res=>{
-                setUser(res[0])
+                // console.log(res)
+                // setUser(res[0])
             }).catch(err=>console.log(err))
-        alert(`Added ${friend} to your friends list`)
+        // socket.emit('acceptfriend',{
+        //             email:user.email,
+        //             friend:friend
+        //             })
     }
 
 
@@ -77,10 +88,15 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    if (res){
-                        setUser(res[0])
-                    }
+                    // console.log('res',res,user)
+                    
                 }).catch(err=>console.log(err))
+            // socket.emit('reject',{
+            //             email:user.email,
+            //             friend:friend,
+            //             option:'request'
+            //         }
+                        // )
         }else{
             fetch('https://socially-distanced-server.herokuapp.com/reject',{
                 method:'post',
@@ -94,12 +110,15 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    // console.log('FROM pendingrequest',res[0])
-                    
-                    if (res){
-                        setUser(res[0])
-                    }
+                    // console.log('res',res,user)
+                   
                 }).catch(err=>console.log(err))
+            // socket.emit('reject',{
+            //             email:friend,
+            //             friend:user.email,
+            //             option:'pending'
+            //         }
+            //             )
             }
         
         

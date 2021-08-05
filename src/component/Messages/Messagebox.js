@@ -7,7 +7,7 @@ import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
-const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
+const Messagebox = ({ route,text, email, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
    
     return (
         <div className = "box">
@@ -23,12 +23,12 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                 </div>
                 
                 <div className = {"user " + background}>                    
-                    <p onClick={()=>addFriend(username)}>{username.toUpperCase().substr(0,username.indexOf('@'))}</p>
+                    <p onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
                     <p className='date'>{time.substr(0,16)}</p>
                 </div>
                 {/* {console.log(likes.includes(currentUser),likes[0],currentUser)} */}
                 <div className={"likes "}>
-                        {route === 'home'
+                        {route === 'home'||route==='friend'
                             ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
                                 {likes?JSON.stringify(likes).includes(currentUser)
                                     ?<img src = {Liked} alt="Unlike" width="20rem"></img>
@@ -37,7 +37,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                             
                             :<></>}
                     <div className = "likedelete">                    
-                        {route === 'home'
+                        {route === 'home'||route==='friend'
                             ?likes
                                 ?(<div className = "liketext">
                                     {likes.length>=4
@@ -52,7 +52,7 @@ const Messagebox = ({ route,text, username, time, i, deletePost,deleteMail, addL
                             :<></>
                         }
                         <div className = "deleteContainer">
-                            {route === "home"
+                            {route === "home"||route==='friend'
                                 ?<div>{filteredMessages[i].email===currentUser
                                     ?<div className = "deleteBackground">
                                         <button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus,currentId)}>x</button>

@@ -3,6 +3,7 @@ import Messagebox from './Messagebox';
 import './Message.css';
 // import '../../colors.css';
 import '../../colors2.css';
+import socket from '../../socket';
 // import '../../colors3.css';
 
 
@@ -21,26 +22,36 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentMessage.time
         
         if (currentMessage.message!==''){
-            fetch('https://socially-distanced-server.herokuapp.com/friendmessage',{
-                method:'post',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({
-                    name:user.username,
-                    email:user.email.toUpperCase(),
-                    message:currentMessage.message,
-                    time:'currentTime',
-                    likes:[]
-                    })
-                })
-                .then(res=>res.json())
-                .then(res=>{
-                    // console.log('FROM DB',res)
-                    setPastMessages(res)})
-                .catch(err=>console.log(err))
+        //     fetch('http://localhost:3005/friendmessage',{
+        //         method:'post',
+        //         headers:{'Content-Type':'application/json'},
+        //         body:JSON.stringify({
+        //             name:user.name,
+        //             email:user.email.toUpperCase(),
+        //             message:currentMessage.message,
+        //             time:'currentTime',
+        //             likes:[]
+        //             })
+        //         })
+        //         .then(res=>res.json())
+        //         .then(res=>{
+        //             setPastMessages(res)})
+        //         .catch(err=>console.log(err))
 
-        setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,message:''}
-        })
+        // setCurrentMessage((prevCurrentMessage)=>{
+        //     return {...prevCurrentMessage,message:''}
+        // })
+        // console.log('hello',user)
+        socket.emit('friendmessage',{
+                        name:user.name,
+                        email:user.email.toUpperCase(),
+                        message:currentMessage.message,
+                        time:'currentTime',
+                        likes:[]
+                        })
+                        setCurrentMessage((prevCurrentMessage)=>{
+                                return {...prevCurrentMessage,message:''}
+                            })
         }        
     },[currentMessage.time])
 
@@ -48,35 +59,45 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentPublicMessage.time
         
         if (currentPublicMessage.message!==''){
-            // console.log(currentPublicMessage.time,'MESSAGE')
-            fetch('https://socially-distanced-server.herokuapp.com/publicmessage',{
-                method:'post',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({
-                    name:user.username,
-                    email:user.email.toUpperCase(),
-                    message:currentPublicMessage.message,
-                    time:currentTime,
-                    likes:[]
-                    })
-                })
-                .then(res=>res.json())
-                .then(res=>{
-                    // console.log('FROM DB',res)
-                    setPastPublicMessages(res)})
-                .catch(err=>console.log(err))
-            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-                return {...prevCurrentPublicMessage,message:''}
-            })
+            // fetch('http://localhost:3005/publicmessage',{
+            //     method:'post',
+            //     headers:{'Content-Type':'application/json'},
+            //     body:JSON.stringify({
+            //         name:user.name,
+            //         email:user.email.toUpperCase(),
+            //         message:currentPublicMessage.message,
+            //         time:currentTime,
+            //         likes:[]
+            //         })
+            //     })
+            //     .then(res=>res.json())
+            //     .then(res=>{
+            //         setPastPublicMessages(res)})
+            //     .catch(err=>console.log(err))
+            // setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+            //     return {...prevCurrentPublicMessage,message:''}
+            // })
+            socket.emit('publicmessage',{
+                        name:user.name,
+                        email:user.email.toUpperCase(),
+                        message:currentPublicMessage.message,
+                        time:currentTime,
+                        likes:[]
+                        })
+                        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                                return {...prevCurrentPublicMessage,message:''}
+                            })
         }        
     },[currentPublicMessage.time])
 
 
     useEffect(()=>{
         if (user.friends){
+            // console.log('here')
         setFilteredMessages(()=>{
             return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))
-        })                
+        })          
+        console.log(filteredMessages)      
         }
     },[user.friends,pastMessages])
 
@@ -114,7 +135,8 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     }
     
     const checkLiked = (like) =>{
-        return JSON.parse(like).email!==user.email
+        console.log(like,user.email)
+        return JSON.parse(like).email!==user.email.toUpperCase()
         // for (let like in user.likes){
         //    if (JSON.parse(user.likes[like]).email===user.email){
         //        console.log(true)
@@ -131,47 +153,60 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             if (newArr[i].likes){
                 contains =  newArr[i].likes.every(checkLiked)
             }
-            // console.log(contains)
+            console.log(contains)
             // const contains =34true
             if (!newArr[i].likes,contains ){
-            //  (!newArr[i].likes[0] &&!newArr[i].likes.includes(user.email.toUpperCase()))){
             
 
-            // MAKE FUNCTION
 
-
-                fetch('https://socially-distanced-server.herokuapp.com/likes',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
-                        email:user.email,
-                        id:currentId,
-                        database:'publicmessages'
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{ 
-                        setPastPublicMessages(res)})
-                    .catch(err=>console.log(err))
+                // fetch('http://localhost:3005/likes',{
+                //     method:'post',
+                //     headers:{'Content-Type':'application/json'},
+                //     body:JSON.stringify({
+                //         name:user.name,
+                //         email:user.email,
+                //         id:currentId,
+                //         database:'publicmessages'
+                //         })
+                //     })
+                //     .then(res=>res.json())
+                //     .then(res=>{ 
+                //         setPastPublicMessages(res)})
+                //     .catch(err=>console.log(err))
+                // console.log({
+                //     name:user.name,
+                //     email:user.email,
+                //     id:currentId,
+                //     database:'publicmessages'
+                //     })
+                socket.emit('likes',{
+                            name:user.name,
+                            email:user.email,
+                            id:currentId,
+                            database:'publicmessages'
+                            })
             
             }else{
-                fetch('https://socially-distanced-server.herokuapp.com/dislike',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
+                // fetch('http://localhost:3005/dislike',{
+                //     method:'post',
+                //     headers:{'Content-Type':'application/json'},
+                //     body:JSON.stringify({
+                //         name:user.name,
+                //         email:user.email,
+                //         id:currentId,
+                //         database:'publicmessages'
+                //         })
+                //     })
+                //     .then(res=>res.json())
+                //     .then(res=>{
+                //         setPastPublicMessages(res)})
+                //     .catch(err=>console.log(err))
+            socket.emit('dislike',{
+                        name:user.name,
                         email:user.email,
                         id:currentId,
                         database:'publicmessages'
                         })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        // console.log('FROM DB',res)
-                        setPastPublicMessages(res)})
-                    .catch(err=>console.log(err))
-            
             
             }
         }else if (!publicStatus){
@@ -182,37 +217,47 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             }
             // console.log(user,contains,'here')
             if (!newArr[i].likes || contains){
-                fetch('https://socially-distanced-server.herokuapp.com/likes',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
-                        email:user.email,
-                        id:currentId,
-                        database:'friendmessage'
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        // console.log('FROM DB',res)
-                        setPastMessages(res)})
-                    .catch(err=>console.log(err))
+                // fetch('http://localhost:3005/likes',{
+                //     method:'post',
+                //     headers:{'Content-Type':'application/json'},
+                //     body:JSON.stringify({
+                //         name:user.name,
+                //         email:user.email,
+                //         id:currentId,
+                //         database:'friendmessage'
+                //         })
+                //     })
+                //     .then(res=>res.json())
+                //     .then(res=>{
+                //         setPastMessages(res)})
+                //     .catch(err=>console.log(err))
+                socket.emit('likes',{
+                            name:user.name,
+                            email:user.email,
+                            id:currentId,
+                            database:'friendmessage'
+                            })
             }else{
-                fetch('https://socially-distanced-server.herokuapp.com/dislike',{
-                    method:'post',
-                    headers:{'Content-Type':'application/json'},
-                    body:JSON.stringify({
-                        name:user.username,
-                        email:user.email,
-                        id:currentId,
-                        database:'friendmessage'
-                        })
-                    })
-                    .then(res=>res.json())
-                    .then(res=>{
-                        // console.log('FROM DB',res)
-                        setPastMessages(res)})
-                    .catch(err=>console.log(err))
+                // fetch('http://localhost:3005/dislike',{
+                //     method:'post',
+                //     headers:{'Content-Type':'application/json'},
+                //     body:JSON.stringify({
+                //         name:user.name,
+                //         email:user.email,
+                //         id:currentId,
+                //         database:'friendmessage'
+                //         })
+                //     })
+                //     .then(res=>res.json())
+                //     .then(res=>{
+                //         setPastMessages(res)})
+                //     .catch(err=>console.log(err))
+                socket.emit('dislike',{
+                            name:user.name,
+                            email:user.email,
+                            id:currentId,
+                            database:'friendmessage'
+                            })
             }        
         }
 }
@@ -268,7 +313,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                     <Messagebox 
                                         filteredMessages = {pastPublicMessages} 
                                         currentUser = {user.email} 
-                                        username = {pastPublicMessages[currentUser].email} 
+                                        email = {pastPublicMessages[currentUser].email} 
                                         text ={pastPublicMessages[currentUser].message} 
                                         time = {pastPublicMessages[currentUser].time} 
                                         i = {currentUser} 
@@ -315,7 +360,8 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
                         </div>                
                         <div className="bigbox">                    
-                            {filteredMessages.map((message,i)=>{                
+                            {filteredMessages.map((message,i)=>{    
+                                // console.log('here now',message)            
                                 const currentUser = filteredMessages.length -1-i
                                 const currentId = filteredMessages[currentUser].id                    
                                 filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
@@ -324,7 +370,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                             <Messagebox 
                                                 filteredMessages = {filteredMessages} 
                                                 currentUser = {user.email} 
-                                                username = {filteredMessages[currentUser].email} 
+                                                email = {filteredMessages[currentUser].email} 
                                                 text ={filteredMessages[currentUser].message} 
                                                 time = {filteredMessages[currentUser].time} 
                                                 i = {currentUser} 

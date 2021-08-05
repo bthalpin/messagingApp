@@ -14,16 +14,18 @@
     "react-scripts": "4.0.3",
     "save-dev": "0.0.1-security",
     "serve": "^12.0.0",
+    "socket.io": "^4.1.3",
+    "socket.io-client": "^4.1.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "startx": "serve -s start",
+    "start": "serve -s start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start":"react-scripts start"
+    "start:dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

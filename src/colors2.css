@@ -218,9 +218,7 @@ input[type="radio"]:checked+label{
 
 .deleteBackground{
     background: #a1bbb8;
-    margin:.1rem;
-    padding:0rem 0.4rem;
-    border-radius: 0.2rem;
+    
     border:1px solid black;
 }
 
@@ -236,8 +234,9 @@ input[type="radio"]:checked+label{
 }
 
 
-.registerError{
-    color:rgb(255, 53, 53);
+.error{
+    color:rgb(71, 12, 12);
+    font-weight:bold;
 }
 
 

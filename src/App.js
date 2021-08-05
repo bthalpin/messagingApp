@@ -4,6 +4,7 @@ import Navigation from './component/Navigation/Navigation';
 import Messages from './component/Messages/Messages';
 import Mail from './component/Mail/Mail';
 import Friends from './component/Friends/Friends';
+import socket from './socket'
 import './App.css';
 
 // import './colors.css';
@@ -13,21 +14,182 @@ import Picture from './component/Messages/Picture';
 
 // https://socially-distanced-server.herokuapp.com/
 
+
 function App() {
-  const [user,setUser] = useState({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],request:[],pendingrequests:[]})
+  const [user,setUser] = useState({name:'',email:'',friends:[],request:[],pendingrequests:[]})
+  const [password,setPassword] = useState('')
   const [route,setRoute] = useState('Sign In')
   const [isSignedIn,setIsSignedIn] = useState(false)
   const [errorMessage,setErrorMessage] = useState('')
   const [pastMessages,setPastMessages] = useState([])
-  const [currentMessage, setCurrentMessage] = useState({id:'',username:'',email:'',message:'',time:'',likes:[]})
+  const [currentMessage, setCurrentMessage] = useState({id:'',name:'',email:'',message:'',time:'',likes:[]})
   const [pastPublicMessages,setPastPublicMessages] = useState([])
-  const [currentPublicMessage, setCurrentPublicMessage] = useState({id:'',username:'',email:'',message:'',time:'',likes:[]})
+  const [currentPublicMessage, setCurrentPublicMessage] = useState({id:'',name:'',email:'',message:'',time:'',likes:[]})
   const [privateMessages,setPrivateMessages] = useState([])
-  const [privateMessage, setPrivateMessage] = useState({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
+  const [privateMessage, setPrivateMessage] = useState({id:'',name:'',senderemail:'',recipientemail:'',message:'',time:''})
   const [conversation,setConversation] = useState({me:'',you:''})
   const [filteredMessages,setFilteredMessages] = useState({})
   const [publicStatus,setPublicStatus] = useState(true);
   
+  useEffect(()=>{
+    socket.on('friendrequest',data=>{
+      console.log(data[0],user.email)
+      if (data[0].email===user.email){
+        setUser(data[0])
+        console.log('request',user)
+      }
+      return ()=>{
+
+        socket.off('friendrequest')
+      }
+    })
+  },[])
+
+  useEffect(()=>{
+    socket.on('unfriend',data=>{
+      // fetch('https://socially-distanced-server.herokuapp.com/update',{
+      //           method:'post',
+      //           headers:{'Content-Type':'application/json'},
+      //           body:JSON.stringify({
+      //             email:user.email
+      //           })
+      //         })
+      //       .then(res=>res.json())
+      //       .then(res=>{
+      //           if (res.email===user.email){
+      //             setUser(res)}})
+      //             .catch(err=>console.log(err))
+      // console.log(data,user)
+      if (data[0].email===user.email){
+        setUser(data[0])
+      }
+      // socket.emit('update',{email:user.email})
+    })
+    return ()=>{
+      socket.off('unfriend')
+    }
+  },[])
+  
+  useEffect(()=>{
+    socket.on('reject',data=>{
+      // console.log(data[0],user)
+      if (data[0].email===user.email){
+        console.log('setting user',data[0])
+        setUser(data[0])
+      }
+    })
+    return ()=>{
+      socket.off('reject')
+    }
+  },[])
+
+  useEffect(()=>{
+    socket.on('acceptfriend',data=>{
+      // console.log('accept',data,user)
+      if (data[0].email===user.email){
+        setUser(data[0])
+      }})
+      return ()=>{
+        socket.off('acceptfriend')
+      }
+  },[])
+
+
+  socket.on('privatemessage',(data)=>{
+    setPrivateMessages(data)
+  })
+  socket.on('publicmessage',(data)=>{
+    setPastPublicMessages(data)
+})
+socket.on('friendmessage',(data)=>{
+  // console.log('here',data)
+  setPastMessages(data)
+})
+socket.on('publiclikes',data=>{
+    setPastPublicMessages(data)
+})
+socket.on('friendlikes',data=>{
+  setPastMessages(data)
+})
+// socket.on('friends',data=>{
+//     friends.addFriends(data,db,io)
+// })
+socket.on('publicdislike',data=>{
+    setPastPublicMessages(data)
+})
+socket.on('frienddislike',data=>{
+  setPastMessages(data)
+})
+socket.on('publicdeletemessage',data=>{
+    setPastPublicMessages(data)
+})
+socket.on('frienddeletemessage',data=>{
+    setPastMessages(data)
+})
+socket.on('deletemail',data=>{
+    setPrivateMessages(data)
+})
+
+  // fetch('https://socially-distanced-server.herokuapp.com/update',{
+  //           method:'post',
+  //           headers:{'Content-Type':'application/json'},
+  //           body:JSON.stringify({
+  //             email:user.email
+  //           })
+  //         })
+  //       .then(res=>res.json())
+  //       .then(res=>{
+  //           if (res.email===user.email){
+  //             setUser(res)
+              // socket.emit('update',{email:user.email})
+              // .catch(err=>console.log(err))
+
+
+
+  // fetch('https://socially-distanced-server.herokuapp.com/update',{
+  //           method:'post',
+  //           headers:{'Content-Type':'application/json'},
+  //           body:JSON.stringify({
+  //             email:user.email
+  //           })
+  //         })
+  //       .then(res=>res.json())
+  //       .then(res=>{
+  //           if (res.email===user.email){
+  //             setUser(res)}})
+  //             .catch(err=>console.log(err))
+    // reject.rejectFriend(data,db,io)
+
+
+  // fetch('https://socially-distanced-server.herokuapp.com/update',{
+  //           method:'post',
+  //           headers:{'Content-Type':'application/json'},
+  //           body:JSON.stringify({
+  //             email:user.email
+  //           })
+  //         })
+  //       .then(res=>res.json())
+  //       .then(res=>{
+  //           if (res.email===user.email){
+  //             setUser(res)}})
+  //             .catch(err=>console.log(err))
+    // acceptfriend.addFriend(data,db,io)
+
+// socket.on('update',data=>{
+//   console.log(data)
+//   if (data[0].email===user.email){
+//     setUser(data)
+//   }
+  // data.map((current)=>{
+  //   if (current.email===user.email){
+  //     setUser(current)
+  //   }
+  // })
+  // console.log('here')
+  // setUser(data[0])
+// })
+
+
   useEffect (()=>{
     if (user.friends){
       setFilteredMessages(()=>{
@@ -39,10 +201,13 @@ function App() {
     // console.log(user)
     setRoute('Sign In')
     setIsSignedIn(false)
-    setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
-    setCurrentMessage({id:'',username:'',email:'',message:'',time:'',likes:[]})
-    setPrivateMessage({id:'',username:'',senderemail:'',recipientemail:'',message:'',time:''})
+    setUser({name:'',email:'',friends:[],requests:[],pendingrequests:[]})
+    setCurrentMessage({id:'',name:'',email:'',message:'',time:'',likes:[]})
+    setPrivateMessage({id:'',name:'',senderemail:'',recipientemail:'',message:'',time:''})
     setConversation({me:'',you:''})
+    setPublicStatus(true)
+    setErrorMessage('')
+    setPassword('')
   }
 
   const onRouteChange = (route) => {
@@ -61,48 +226,58 @@ function App() {
           .then(res=>{
               infoUpdate(res)})
           .catch(err=>console.log(err))
-          
+          // socket.emit(location,info)
   }
 
 
   const deletePost = (currentIndex,publicStatus,currentId) => {
     if (publicStatus){
-      fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
-          method:'post',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({
-              id:currentId,
-              database:'publicmessages'
-              })
-          })
-          .then(res=>res.json())
-          .then(res=>{
-              // console.log('FROM DB',res)
-              setPastPublicMessages(res)})
-          .catch(err=>console.log(err))
+      // fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
+      //     method:'post',
+      //     headers:{'Content-Type':'application/json'},
+      //     body:JSON.stringify({
+      //         id:currentId,
+      //         database:'publicmessages'
+      //         })
+      //     })
+      //     .then(res=>res.json())
+      //     .then(res=>{
+      //         // console.log('FROM DB',res)
+      //         setPastPublicMessages(res)})
+      //     .catch(err=>console.log(err))
+      socket.emit('deletemessage',{
+                id:currentId,
+                database:'publicmessages'
+                })
     }else{
-      fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
-          method:'post',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({
-            id:currentId,
-            database:'friendmessage'
-              })
-          })
-          .then(res=>res.json())
-          .then(res=>{
-              // console.log('FROM DB',res)
-              setPastMessages(res)})
-          .catch(err=>console.log(err))
-          }       
-  }
+      // fetch('https://socially-distanced-server.herokuapp.com/deletemessage',{
+      //     method:'post',
+      //     headers:{'Content-Type':'application/json'},
+      //     body:JSON.stringify({
+      //       id:currentId,
+      //       database:'friendmessage'
+      //         })
+      //     })
+      //     .then(res=>res.json())
+      //     .then(res=>{
+      //         // console.log('FROM DB',res)
+      //         setPastMessages(res)})
+      //     .catch(err=>console.log(err))
+      //     }      
+      socket.emit('deletemessage',{
+        id:currentId,
+        database:'friendmessage'
+        })
+  }}
 
   const addFriend = (newFriend) => {
+    console.log('friend',user)
     if (newFriend==="No Names"){
       newFriend = prompt('Enter the email address of your friend ')
     }
+    console.log(user.email)
     if (newFriend){
-        if (!user.friends||!user.friends.includes(newFriend)){
+        if (!user.friends||!user.friends.includes(newFriend)||!user.pendingrequests.includes(newFriend)||!user.request.includes(newFriend)){
           fetch('https://socially-distanced-server.herokuapp.com/friendrequest',{
               method:'post',
               headers:{'Content-Type':'application/json'},
@@ -112,13 +287,20 @@ function App() {
                   })
               })
               .then(res=>res.json())
-              .then(res=>{
-                  // console.log('FROM request',res)                      
-                  if (res){
-                    setUser((prevUser)=> {
-                      return {...prevUser,pendingrequests:res.pendingrequests}})
-                  }
+              .then(res=>{    
+                
+                alert(`Friend request sent to ${newFriend.toUpperCase()}.`)
+                // console.log(res)                
+                  // if (res){
+                  //   setUser((prevUser)=> {
+                  //     return {...prevUser,pendingrequests:res.pendingrequests}})
+                  
             }).catch(err=>console.log(err))
+            // console.log(user)
+            // socket.emit('friendrequest',{
+            //   email:user.email,
+            //   newFriend:newFriend.toUpperCase()
+            //   })
           }
     }
    
@@ -126,7 +308,7 @@ function App() {
 
   
   const changePublicStatus = (route,publicState) => {
-    console.log(route,publicState)
+    // console.log(route,publicState)
     setPublicStatus(publicState)
     onRouteChange(route)
     
@@ -143,7 +325,7 @@ const converse = (friend) => {
   setRoute('mail')
 }
        
-  
+ 
 
   return (
     <div className="App">      
@@ -247,6 +429,8 @@ const converse = (friend) => {
                     setConversation = {setConversation}
                     setFilteredMessages = {setFilteredMessages}
                     loadData = {loadData}
+                    password = {password}
+                    setPassword = {setPassword}
                     
                   
                     />          

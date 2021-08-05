@@ -3,6 +3,8 @@ import Inputblock from './Inputblock';
 import './Login.css';
 // import '../../colors.css';
 import '../../colors2.css';
+import socket from '../../socket';
+import { io } from 'socket.io-client';
 // import '../../colors3.css';
 const Login = ({
     user,route,errorMessage,
@@ -13,24 +15,24 @@ const Login = ({
     setPrivatePublicMessage,setConversation,
     setPastMessages,setPastPublicMessages,
     setFilteredMessages,filteredMessages,
-    loadData
+    loadData,password,setPassword
   }) => {
     
-    const {username,email,password} = user;
+    const {name,email} = user;
     
     const onChanges= (event) =>{
         switch (event.target.id){
           case 'Name':
             setUser((prevUser)=>{
-                return {...prevUser,username:event.target.value}})
+                return {...prevUser,name:event.target.value}})
+              console.log(user)
             break;
           case 'Email':
             setUser((prevUser)=>{
                 return {...prevUser,email:event.target.value}})
             break;
           case 'Password':
-            setUser((prevUser)=>{
-                return {...prevUser,password:event.target.value}})
+            setPassword(event.target.value)
             break;
           default:
               console.log(event.target.value)
@@ -44,43 +46,42 @@ const Login = ({
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({
               email:upperEmail,
-              password:user.password
+              password:password
             })
           })
         .then(res=>res.json())
         .then(res=>{
             if (res.email===upperEmail){
-              setUser((prevUser)=>{
-                return {...prevUser,username:res.name,email:res.email,friends:res.friends,requests:res.requests,pendingrequests:res.pendingrequests}
-              })
+              setUser(res)
+              // =>{
+              // =>{
+                // console.log(res)
+                // return {...prevUser,name:user.name,email:res.email,friends:res.friends,requests:res.requests,pendingrequests:res.pendingrequests}
+              // })
+              console.log('login',user,res)
               setRoute('home')
               setIsSignedIn(true)
               setErrorMessage('')
+              setPassword('')
               setCurrentMessage((prevCurrentMessage)=>{
-                return {...prevCurrentMessage,username:res.name,email:res.email}})
+                return {...prevCurrentMessage,name:res.name,email:upperEmail}})
                 
               setConversation({me:res.email,you:''})
               
 
             }else{
               setErrorMessage('Invalid Login Information')
-              setUser({username:'',email:'',password:'',friends:['BRIAN@GMAIL.COM'],requests:[],pendingrequests:[]})
+              setUser({name:'',email:'',friends:[],requests:[],pendingrequests:[]})
+              setPassword('')
             }
             
         })
         .catch(err=>console.log(err))
-        // fetch('http://localhost:3000/friendmessageload',{
-        //     method:'post',
-        //     headers:{'Content-Type':'application/json'},
-        //     body:JSON.stringify({
-        //       email:user.email.toUpperCase(),
-        //       friends:user.friends
-        //     })
-        //     })
-        //     .then(res=>res.json())
-        //     .then(res=>{
-        //         setPastMessages(res)})
-        //     .catch(err=>console.log(err))
+        // socket.emit('signin',JSON.stringify({
+        //         email:upperEmail,
+        //         password:user.password
+        //       }))
+
         loadData('friendmessageload',
                   JSON.stringify({
                     email:upperEmail,
@@ -96,37 +97,13 @@ const Login = ({
                   setPastPublicMessages
                   )
 
-        // fetch('http://localhost:3000/publicmessageload',{
-        //     method:'post',
-        //     headers:{'Content-Type':'application/json'},
-        //     body:JSON.stringify({
-        //       email:user.email,
-        //       friends:user.friends
-        //     })
-        //     })
-        //     .then(res=>res.json())
-        //     .then(res=>{
-        //         setPastPublicMessages(res)})
-        //     .catch(err=>console.log(err))
         loadData('privatemessageload',
                   JSON.stringify({
                     email: upperEmail,
                     friends:user.friends
                   }),
                   setPrivateMessages
-                  )        
-      //   fetch('http://localhost:3000/privatemessageload',{
-      //       method:'post',
-      //       headers:{'Content-Type':'application/json'},
-      //       body:JSON.stringify({
-      //         email:user.email,
-      //         friends:user.friends
-      //       })
-      //       })
-      //       .then(res=>res.json())
-      //       .then(res=>{
-      //           setPrivateMessages(res)})
-      //       .catch(err=>console.log(err))
+                  )    
         
       }
     
@@ -137,22 +114,36 @@ const Login = ({
                 method:'post',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
-                  name:user.username,
+                  name:user.name,
                   email:upperEmail,
-                  password:user.password,
+                  password:password,
                   friends:user.friends
                 })
               })
               .then(res=>res.json())
               .then(user=>{
-                setRoute('home')
-                setIsSignedIn(true)
-                setErrorMessage('')
-                setCurrentMessage((prevCurrentMessage)=>{
-                  return {...prevCurrentMessage,username:user.name,email:user.email}})
+                if (user==='TAKEN'){
+                  setErrorMessage('That email address is already registered.')
+                }else{
+                  setUser(user)
+                  setRoute('home')
+                  setIsSignedIn(true)
+                  setErrorMessage('')
+                  setPassword('')
+                  setCurrentMessage((prevCurrentMessage)=>{
+                    return {...prevCurrentMessage,name:user.name,email:user.email}})
+                }
+                
             
                 })
                 .catch(err=>console.log(err))
+              // socket.emit('register',JSON.stringify({
+              //       name:user.name,
+              //       email:upperEmail,
+              //       password:user.password,
+              //       friends:user.friends
+              //     }))
+
                 loadData('publicmessageload',
                   JSON.stringify({
                       email:upperEmail,
@@ -181,13 +172,15 @@ const Login = ({
                             ?
                             <div>
                                 <h1 className="legend">Register</h1>
-                                <Inputblock inputType = {"Name"} value={username} onChanges ={onChanges}/>
+                                <div className="error">{errorMessage}</div>   
+                                <Inputblock inputType = {"Name"} value={name} onChanges ={onChanges}/>
                                 <Inputblock inputType = {"Email"} value = {email} onChanges ={onChanges}/>
                                 <Inputblock inputType = {"Password"} value={password} onChanges ={onChanges}/>
                             </div>
                             :
                             <div>
                                 <h1 className="legend">Sign In</h1>
+                                <div className="error">{errorMessage}</div>   
                                 <Inputblock inputType = {"Email"} value={email} onChanges ={onChanges}/>
                                 <Inputblock inputType = {"Password"} value={password} onChanges ={onChanges}/>
 
@@ -207,7 +200,7 @@ const Login = ({
                 </article>
     
           </div>
-          <div>{errorMessage}</div>    
+           
       </div>
     )
 }

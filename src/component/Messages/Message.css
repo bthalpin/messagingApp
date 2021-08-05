@@ -165,11 +165,17 @@
     border-top-left-radius: 0.2rem;
 }
 .deleteContainer{
-    padding:0 0.2rem;
+    padding:0;
     /* display:flex;
     justify-content: flex-end; */
     /* max-width: 30%; */
     
+}
+
+.deleteBackground{
+    margin:.1rem;
+    /* padding:0rem 0.4rem; */
+    border-radius: 0.2rem;
 }
 .deleteButton{
     background:transparent;
@@ -177,7 +183,8 @@
     font-weight: bold;
     font-size:1rem;
     /* color:darkred; */
-    padding:0;
+    padding:0rem 0.35rem;
+    width:100%;
 }
 
 
