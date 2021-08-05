@@ -3,17 +3,13 @@ import Friend from './Friend';
 import Request from './Request';
 import Pending from './Pending';
 import './Friends.css';
-// import '../../colors.css';
 import '../../colors2.css';
-// import '../../colors3.css';
-import friendpicture from "../../images/friend.png";
-import socket from '../../socket';
 
 
 const arrow = "x";
 
-const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation,addFriend,onRouteChange,converse}) => {
-    // const [friendList,setFriendList] = useState(display)
+const Friends = ({user,addFriend,converse}) => {
+    
     const [uniqueRequests,setUniqueRequests] = useState([...new Set(user?.requests)])
     const [uniquePending,setUniquePending] = useState([...new Set(user?.pendingrequests)])
    
@@ -22,16 +18,9 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
         setUniquePending([...new Set(user.pendingrequests)])
     },[user])
 
-    
-
-
-    // const toggleFriends = () => {
-    //     friendList?(setFriendList(false)):(setFriendList(true))
-       
-    // }
 
     const unFriend = (friend) =>{
-        console.log(friend,user.email)
+        
         fetch('https://socially-distanced-server.herokuapp.com/unfriend',{
             method:'post',
             headers:{'Content-Type':'application/json'},
@@ -41,16 +30,8 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
             })
             .then(res=>res.json())
-            .then(res=>{
-                // console.log(res)
-                // if (res){
-                //     setUser(res[0])
-                // }                   
+            .then(res=>{                
             }).catch(err=>console.log(err))
-        // socket.emit('unfriend',{
-        //             email:user.email,
-        //             friend:friend.toUpperCase()
-        //             })
     }
 
     const acceptFriend = (friend) =>{        
@@ -64,13 +45,7 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
             })
             .then(res=>res.json())
             .then(res=>{
-                // console.log(res)
-                // setUser(res[0])
             }).catch(err=>console.log(err))
-        // socket.emit('acceptfriend',{
-        //             email:user.email,
-        //             friend:friend
-        //             })
     }
 
 
@@ -88,15 +63,8 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    // console.log('res',res,user)
                     
                 }).catch(err=>console.log(err))
-            // socket.emit('reject',{
-            //             email:user.email,
-            //             friend:friend,
-            //             option:'request'
-            //         }
-                        // )
         }else{
             fetch('https://socially-distanced-server.herokuapp.com/reject',{
                 method:'post',
@@ -110,15 +78,8 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                 })
                 .then(res=>res.json())
                 .then(res=>{
-                    // console.log('res',res,user)
                    
                 }).catch(err=>console.log(err))
-            // socket.emit('reject',{
-            //             email:friend,
-            //             friend:user.email,
-            //             option:'pending'
-            //         }
-            //             )
             }
         
         
@@ -140,12 +101,15 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                             <div  className="">
                                 <div >
                         
-                                    {/* <div className="friendtitlebox"><p className="friendtitle">{route==="home"?"Friends List":"Contacts"}</p></div> */}
                                     {friends?
                                         <div >
                                             <ul className = "scroll">                            
                                                 {friends.map((friend)=>{
-                                                    return <Friend converse = {converse} friend = {friend} unFriend = {unFriend} />
+                                                    return <Friend 
+                                                                converse = {converse} 
+                                                                friend = {friend} 
+                                                                unFriend = {unFriend} 
+                                                            />
                                                     })
                                                 }
                                              </ul>
@@ -163,7 +127,12 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
                                         <ul className = "scroll">
                                             {uniqueRequests.map((friend)=>{
-                                                return <Request friend = {friend} rejectFriend = {rejectFriend} pendOrReq ={'Request'} acceptFriend = {acceptFriend}/>
+                                                return <Request 
+                                                            friend = {friend} 
+                                                            rejectFriend = {rejectFriend} 
+                                                            pendOrReq ={'Request'} 
+                                                            acceptFriend = {acceptFriend}
+                                                        />
                                                 })
                                             }
                                         </ul>
@@ -175,7 +144,11 @@ const Friends = ({user,setUser,setPrivateMessage,route,setRoute, setConversation
                                         <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
                                         <ul className = "scroll">
                                             {uniquePending.map((friend)=>{
-                                                return <Pending friend = {friend} rejectFriend = {rejectFriend} pendOrReq = {'Pending'}/>
+                                                return <Pending 
+                                                            friend = {friend} 
+                                                            rejectFriend = {rejectFriend} 
+                                                            pendOrReq = {'Pending'}
+                                                        />
                                                 })
                                             }
                                         </ul>

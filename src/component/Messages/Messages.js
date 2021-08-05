@@ -1,19 +1,29 @@
 import React, { useState,useEffect } from 'react';
 import Messagebox from './Messagebox';
 import './Message.css';
-// import '../../colors.css';
 import '../../colors2.css';
 import socket from '../../socket';
-// import '../../colors3.css';
 
 
 
  
 
-const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentMessage,currentPublicMessage,pastPublicMessages,setPastPublicMessages,setCurrentPublicMessage,deletePost,route, addFriend, conversation,setFilteredMessages,filteredMessages,publicStatus,setPublicStatus}) => {
+const Messages = ({user, currentMessage,
+                    pastMessages,setCurrentMessage,
+                    currentPublicMessage,pastPublicMessages,
+                    setCurrentPublicMessage,deletePost,
+                    route, addFriend, 
+                    setFilteredMessages,filteredMessages,
+                    publicStatus}) => {
     
     
-    const [hiddenStatus,setHiddenStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
+    const [hiddenStatus,setHiddenStatus] = useState({
+                                                picture:"textareahide",
+                                                message:"textareahide",
+                                                button:"",
+                                                submit:"textareahide",
+                                                position:' middle'
+                                            })
     let offset = '';
     let background = '';
 
@@ -22,26 +32,6 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentMessage.time
         
         if (currentMessage.message!==''){
-        //     fetch('http://localhost:3005/friendmessage',{
-        //         method:'post',
-        //         headers:{'Content-Type':'application/json'},
-        //         body:JSON.stringify({
-        //             name:user.name,
-        //             email:user.email.toUpperCase(),
-        //             message:currentMessage.message,
-        //             time:'currentTime',
-        //             likes:[]
-        //             })
-        //         })
-        //         .then(res=>res.json())
-        //         .then(res=>{
-        //             setPastMessages(res)})
-        //         .catch(err=>console.log(err))
-
-        // setCurrentMessage((prevCurrentMessage)=>{
-        //     return {...prevCurrentMessage,message:''}
-        // })
-        // console.log('hello',user)
         socket.emit('friendmessage',{
                         name:user.name,
                         email:user.email.toUpperCase(),
@@ -59,24 +49,6 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
         const currentTime = currentPublicMessage.time
         
         if (currentPublicMessage.message!==''){
-            // fetch('http://localhost:3005/publicmessage',{
-            //     method:'post',
-            //     headers:{'Content-Type':'application/json'},
-            //     body:JSON.stringify({
-            //         name:user.name,
-            //         email:user.email.toUpperCase(),
-            //         message:currentPublicMessage.message,
-            //         time:currentTime,
-            //         likes:[]
-            //         })
-            //     })
-            //     .then(res=>res.json())
-            //     .then(res=>{
-            //         setPastPublicMessages(res)})
-            //     .catch(err=>console.log(err))
-            // setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            //     return {...prevCurrentPublicMessage,message:''}
-            // })
             socket.emit('publicmessage',{
                         name:user.name,
                         email:user.email.toUpperCase(),
@@ -93,11 +65,10 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
 
     useEffect(()=>{
         if (user.friends){
-            // console.log('here')
         setFilteredMessages(()=>{
             return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))
         })          
-        console.log(filteredMessages)      
+             
         }
     },[user.friends,pastMessages])
 
@@ -135,50 +106,20 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
     }
     
     const checkLiked = (like) =>{
-        console.log(like,user.email)
+        
         return JSON.parse(like).email!==user.email.toUpperCase()
-        // for (let like in user.likes){
-        //    if (JSON.parse(user.likes[like]).email===user.email){
-        //        console.log(true)
-        //    }
-        // }
     }
 
     const addLike = (i,currentId) => {
         let contains=true
         
-        // console.log('pushed',i,currentId,pastPublicMessages[i].likes[0])
         if (publicStatus){
             const newArr = [...pastPublicMessages]   
             if (newArr[i].likes){
                 contains =  newArr[i].likes.every(checkLiked)
             }
-            console.log(contains)
-            // const contains =34true
-            if (!newArr[i].likes,contains ){
             
-
-
-                // fetch('http://localhost:3005/likes',{
-                //     method:'post',
-                //     headers:{'Content-Type':'application/json'},
-                //     body:JSON.stringify({
-                //         name:user.name,
-                //         email:user.email,
-                //         id:currentId,
-                //         database:'publicmessages'
-                //         })
-                //     })
-                //     .then(res=>res.json())
-                //     .then(res=>{ 
-                //         setPastPublicMessages(res)})
-                //     .catch(err=>console.log(err))
-                // console.log({
-                //     name:user.name,
-                //     email:user.email,
-                //     id:currentId,
-                //     database:'publicmessages'
-                //     })
+            if (!newArr[i].likes,contains ){
                 socket.emit('likes',{
                             name:user.name,
                             email:user.email,
@@ -187,20 +128,6 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             })
             
             }else{
-                // fetch('http://localhost:3005/dislike',{
-                //     method:'post',
-                //     headers:{'Content-Type':'application/json'},
-                //     body:JSON.stringify({
-                //         name:user.name,
-                //         email:user.email,
-                //         id:currentId,
-                //         database:'publicmessages'
-                //         })
-                //     })
-                //     .then(res=>res.json())
-                //     .then(res=>{
-                //         setPastPublicMessages(res)})
-                //     .catch(err=>console.log(err))
             socket.emit('dislike',{
                         name:user.name,
                         email:user.email,
@@ -215,22 +142,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
             if (newArr[i].likes){
                 contains =  newArr[i].likes.every(checkLiked)
             }
-            // console.log(user,contains,'here')
             if (!newArr[i].likes || contains){
-                // fetch('http://localhost:3005/likes',{
-                //     method:'post',
-                //     headers:{'Content-Type':'application/json'},
-                //     body:JSON.stringify({
-                //         name:user.name,
-                //         email:user.email,
-                //         id:currentId,
-                //         database:'friendmessage'
-                //         })
-                //     })
-                //     .then(res=>res.json())
-                //     .then(res=>{
-                //         setPastMessages(res)})
-                //     .catch(err=>console.log(err))
                 socket.emit('likes',{
                             name:user.name,
                             email:user.email,
@@ -238,20 +150,6 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             database:'friendmessage'
                             })
             }else{
-                // fetch('http://localhost:3005/dislike',{
-                //     method:'post',
-                //     headers:{'Content-Type':'application/json'},
-                //     body:JSON.stringify({
-                //         name:user.name,
-                //         email:user.email,
-                //         id:currentId,
-                //         database:'friendmessage'
-                //         })
-                //     })
-                //     .then(res=>res.json())
-                //     .then(res=>{
-                //         setPastMessages(res)})
-                //     .catch(err=>console.log(err))
                 socket.emit('dislike',{
                             name:user.name,
                             email:user.email,
@@ -289,26 +187,60 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                 <>            
                     <div className = "inputbox">          
                         <div>
-                            <input id = "pic" className = {"textareapic public "+hiddenStatus.picture} cols="40" rows="6" onChange = {onInputChange} placeholder = "Enter Picture URL" value = {currentPublicMessage.message} autoFocus></input>
-                            <textarea id="msg" className = {"textarea public "+hiddenStatus.message}  onChange = {onInputChange} value = {currentPublicMessage.message} autoFocus></textarea>
+                            <input 
+                                id = "pic" 
+                                className = {"textareapic public "+hiddenStatus.picture} 
+                                cols="40" rows="6" 
+                                onChange = {onInputChange} 
+                                placeholder = "Enter Picture URL" 
+                                value = {currentPublicMessage.message} 
+                                autoFocus>
+                            </input>
+
+                            <textarea 
+                                id="msg" 
+                                className = {"textarea public "+hiddenStatus.message}  
+                                onChange = {onInputChange} 
+                                value = {currentPublicMessage.message} 
+                                autoFocus>                                    
+                            </textarea>
+
                         </div>
                     </div>
-                    {/* <div className = "publicButton">
-                        <button className = "disabledButtons">Public</button><button className = "publicButtons" onClick = {changePublicStatus}>Friends</button>
-                    </div>             */}
                     <div className="commentsection">
                         <div className = "inputbox">                
-                            <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
-                            <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>                            
-                            <label htmlFor="msg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                            <label htmlFor ="pic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>                            
+                            <label 
+                                className = {"msg "+hiddenStatus.submit} 
+                                onClick = {()=>onSubmit(hiddenStatus.picture==="")}>
+                                    Submit
+                            </label>
+
+                            <label 
+                                className = {"msg "+hiddenStatus.submit} 
+                                onClick = {goBack}>
+                                    Back
+                            </label>  
+
+                            <label 
+                                htmlFor="msg" 
+                                className = {"msg "+hiddenStatus.button} 
+                                onClick = {()=>changeHidden(false)}>
+                                    Message
+                            </label>
+
+                            <label 
+                                htmlFor ="pic" 
+                                className = {"msg "+hiddenStatus.button} 
+                                onClick = {()=>changeHidden(true)}>
+                                    Picture
+                            </label>                            
                         </div>
-            {/* {checkLiked()} */}
+           
                         <div className="bigbox">
                             {pastPublicMessages.map((msg,i)=>{
                                 const currentUser = pastPublicMessages.length - 1 -i
                                 const currentId = pastPublicMessages[currentUser].id   
-                                // const likeStatus = msg.likes.every(checkLiked())             
+                                          
                                 return <div key = {i}>
                                     <Messagebox 
                                         filteredMessages = {pastPublicMessages} 
@@ -324,7 +256,7 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                                         likes = {pastPublicMessages[currentUser].likes} 
                                         publicStatus = {publicStatus}
                                         addFriend = {addFriend}
-                                        // likeStatus = {likeStatus}
+                                       
                                     />
                                 </div>            
                                 })
@@ -349,23 +281,47 @@ const Messages = ({user, currentMessage,pastMessages,setPastMessages,setCurrentM
                             value = {currentMessage.message}
                         ></textarea>  
                     </div>
-                    {/* <div className = "publicButton">
-                        <button className = "publicButtons" onClick = {changePublicStatus}>Public</button><button className = "disabledButtons">Friends</button>
-                    </div>             */}
+                    
                     <div className="commentsection">
                         <div className = "inputbox">
-                            <label htmlFor ="friendmsg" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                            <label htmlFor = "friendpic" className = {"msg "+hiddenStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
-                            <label className = {"msg "+hiddenStatus.submit} onClick = {()=>onSubmit(hiddenStatus.picture==="")}>Submit</label>
-                            <label className = {"msg "+hiddenStatus.submit} onClick = {goBack}>Back</label>
+                            <label 
+                                htmlFor ="friendmsg" 
+                                className = {"msg "+hiddenStatus.button} 
+                                onClick = {()=>changeHidden(false)}>
+                                    Message
+                            </label>
+
+                            <label 
+                                htmlFor = "friendpic" 
+                                className = {"msg "+hiddenStatus.button}
+                                onClick = {()=>changeHidden(true)}>
+                                    Picture
+                            </label>
+
+                            <label 
+                                className = {"msg "+hiddenStatus.submit} 
+                                onClick = {()=>onSubmit(hiddenStatus.picture==="")}>
+                                    Submit
+                            </label>
+
+                            <label 
+                                className = {"msg "+hiddenStatus.submit} 
+                                onClick = {goBack}>
+                                    Back
+                            </label>
+
                         </div>                
                         <div className="bigbox">                    
                             {filteredMessages.map((message,i)=>{    
-                                // console.log('here now',message)            
+                                           
                                 const currentUser = filteredMessages.length -1-i
                                 const currentId = filteredMessages[currentUser].id                    
-                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
-                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";                                
+                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()
+                                        ?offset="sender"
+                                        :offset="recipient";
+                                filteredMessages[currentUser].email.toUpperCase()===user.email.toUpperCase()
+                                        ?background="senderbackground"
+                                        :background="";                                
                                 return <div key ={i} className = {offset}>
                                             <Messagebox 
                                                 filteredMessages = {filteredMessages} 

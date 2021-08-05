@@ -1,20 +1,28 @@
 import React from 'react';
 import "./Message.css";
-// import '../../colors.css';
 import '../../colors2.css';
-// import '../../colors3.css';
 import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
 
-const Messagebox = ({ route,text, email, time, i, deletePost,deleteMail, addLike, currentUser,currentId,filteredMessages,background,publicStatus,pastPublicMessages,addFriend,likes}) => {
+const Messagebox = ({ route,text, 
+                    email, time, i, 
+                    deletePost,deleteMail, 
+                    addLike, currentUser,
+                    currentId,filteredMessages,
+                    background,publicStatus,
+                    addFriend, likes}) => {
    
     return (
         <div className = "box">
             <div className = "smallbox">
                <div className = {"messageArea " +background}>
                     <div className = "text">
-                        <div className = "textmessage">{text.includes('#img#')? <Picture source = {text.substr(5,text.length-1)}/>:text}</div>
+                        <div className = "textmessage">
+                            {text.includes('#img#')
+                                ? <Picture source = {text.substr(5,text.length-1)}/>
+                                :text}
+                        </div>
                         
                     </div>
                     
@@ -26,13 +34,14 @@ const Messagebox = ({ route,text, email, time, i, deletePost,deleteMail, addLike
                     <p onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
                     <p className='date'>{time.substr(0,16)}</p>
                 </div>
-                {/* {console.log(likes.includes(currentUser),likes[0],currentUser)} */}
+               
                 <div className={"likes "}>
                         {route === 'home'||route==='friend'
                             ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
                                 {likes?JSON.stringify(likes).includes(currentUser)
-                                    ?<img src = {Liked} alt="Unlike" width="20rem"></img>
-                                    :<img src = {Like} alt="like" width = "20rem"></img>:<img src = {Like} alt="like" width = "20rem"></img>}
+                                        ?<img src = {Liked} alt="Unlike" width="20rem"></img>
+                                        :<img src = {Like} alt="like" width = "20rem"></img>
+                                        :<img src = {Like} alt="like" width = "20rem"></img>}
                             </button>
                             
                             :<></>}
@@ -55,12 +64,22 @@ const Messagebox = ({ route,text, email, time, i, deletePost,deleteMail, addLike
                             {route === "home"||route==='friend'
                                 ?<div>{filteredMessages[i].email===currentUser
                                     ?<div className = "deleteBackground">
-                                        <button className = "deleteButton" id = {i} onClick = {()=>deletePost(i,publicStatus,currentId)}>x</button>
+                                        <button 
+                                            className = "deleteButton" 
+                                            id = {i} 
+                                            onClick = {()=>deletePost(i,publicStatus,currentId)}>
+                                                x
+                                        </button>
                                     </div>
                                     :<></>}
                                 </div>                        
                                 :<div className = "deleteBackground">
-                                    <button className = "deleteButton" id = {i} onClick = {()=>deleteMail(currentId)}>X</button>
+                                    <button 
+                                        className = "deleteButton" 
+                                        id = {i} 
+                                        onClick = {()=>deleteMail(currentId)}>
+                                            X
+                                    </button>
                                 </div>
                             }
                         </div>

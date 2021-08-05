@@ -1,11 +1,10 @@
 import React from 'react';
 import Inputblock from './Inputblock';
 import './Login.css';
-// import '../../colors.css';
 import '../../colors2.css';
 import socket from '../../socket';
 import { io } from 'socket.io-client';
-// import '../../colors3.css';
+
 const Login = ({
     user,route,errorMessage,
     setRoute,setUser, setErrorMessage,
@@ -25,7 +24,7 @@ const Login = ({
           case 'Name':
             setUser((prevUser)=>{
                 return {...prevUser,name:event.target.value}})
-              console.log(user)
+             
             break;
           case 'Email':
             setUser((prevUser)=>{
@@ -53,12 +52,6 @@ const Login = ({
         .then(res=>{
             if (res.email===upperEmail){
               setUser(res)
-              // =>{
-              // =>{
-                // console.log(res)
-                // return {...prevUser,name:user.name,email:res.email,friends:res.friends,requests:res.requests,pendingrequests:res.pendingrequests}
-              // })
-              console.log('login',user,res)
               setRoute('home')
               setIsSignedIn(true)
               setErrorMessage('')
@@ -77,10 +70,6 @@ const Login = ({
             
         })
         .catch(err=>console.log(err))
-        // socket.emit('signin',JSON.stringify({
-        //         email:upperEmail,
-        //         password:user.password
-        //       }))
 
         loadData('friendmessageload',
                   JSON.stringify({
@@ -137,12 +126,6 @@ const Login = ({
             
                 })
                 .catch(err=>console.log(err))
-              // socket.emit('register',JSON.stringify({
-              //       name:user.name,
-              //       email:upperEmail,
-              //       password:user.password,
-              //       friends:user.friends
-              //     }))
 
                 loadData('publicmessageload',
                   JSON.stringify({

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Messagebox from '../Messages/Messagebox';
 import Friend from '../Friends/Friend';
 import './Mail.css';
-// import '../../colors.css';
 import '../../colors2.css';
 import socket from '../../socket';
-// import '../../colors3.css';
 
 const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation,setConversation,converse,route}) => {
 
@@ -17,22 +15,6 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
     useEffect(()=>{
 
         if (privateMessage.message!==''){
-            // fetch('http://localhost:3005/privatemessage',{
-            //     method:'post',
-            //     headers:{'Content-Type':'application/json'},
-            //     body:JSON.stringify({
-            //         name:user.username,
-            //         senderemail:user.email,
-            //         recipientemail:conversation.you,
-            //         message:privateMessage.message,
-            //         time:'currentTime'
-            //         })
-            //     })
-            //     .then(res=>res.json())
-            //     .then(res=>{
-            //         console.log('FROM DB',res)
-            //         setPrivateMessages(res)})
-            //     .catch(err=>console.log(err))
             socket.emit('privatemessage',{
                         name:user.name,
                         senderemail:user.email,
@@ -65,19 +47,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
           setHiddenMailStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
       }
 
-    const deleteMail = (currentId) => {        
-        // fetch('http://localhost:3005/deletemail',{
-        //     method:'post',
-        //     headers:{'Content-Type':'application/json'},
-        //     body:JSON.stringify({
-        //         id:currentId,
-        //         database:'privatemessage'
-        //         })
-        //     })
-        //     .then(res=>res.json())
-        //     .then(res=>{
-        //         setPrivateMessages(res)})
-        //     .catch(err=>console.log(err))
+    const deleteMail = (currentId) => {  
         socket.emit('deletemail',{
                     id:currentId,
                     database:'privatemessage'
@@ -147,7 +117,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";
                                 return <div className = {offset}>
-                                    {/* {console.log(privateMessage)} */}
+                                    
                                             <Messagebox email = {privateMessages[currentMessage].senderemail} 
                                             text ={privateMessages[currentMessage].message} 
                                             time = {privateMessages[currentMessage].time} 
