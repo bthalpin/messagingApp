@@ -30,11 +30,13 @@ function App() {
   const [conversation,setConversation] = useState({me:'',you:''})
   const [filteredMessages,setFilteredMessages] = useState({})
   const [publicStatus,setPublicStatus] = useState(true);
-  
+  const checkEmail = (email)=>{
+    return email===user.email
+  }
   useEffect(()=>{
     socket.on('friendrequest',data=>{
-      console.log(data[0],user.email)
-      if (data[0].email===user.email){
+      // console.log(data[0],user.email)
+      if (checkEmail(data[0].email)){
         setUser(data[0])
         console.log('request',user)
       }
@@ -60,7 +62,7 @@ function App() {
       //             setUser(res)}})
       //             .catch(err=>console.log(err))
       console.log(data,user)
-      if (data[0].email===user.email){
+      if (checkEmail(data[0].email)){
         setUser(data[0])
       }
       // socket.emit('update',{email:user.email})
@@ -73,7 +75,7 @@ function App() {
   useEffect(()=>{
     socket.on('reject',data=>{
       console.log(data[0],user)
-      if (data[0].email===user.email){
+      if (checkEmail(data[0].email)){
         console.log('setting user',data[0])
         setUser(data[0])
       }
@@ -86,7 +88,7 @@ function App() {
   useEffect(()=>{
     socket.on('acceptfriend',data=>{
       console.log('accept',data,user)
-      if (data[0].email===user.email){
+      if (checkEmail(data[0].email)){
         setUser(data[0])
       }})
       return ()=>{
