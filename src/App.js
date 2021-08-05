@@ -59,7 +59,7 @@ function App() {
       //           if (res.email===user.email){
       //             setUser(res)}})
       //             .catch(err=>console.log(err))
-      // console.log(data,user)
+      console.log(data,user)
       if (data[0].email===user.email){
         setUser(data[0])
       }
@@ -72,7 +72,7 @@ function App() {
   
   useEffect(()=>{
     socket.on('reject',data=>{
-      // console.log(data[0],user)
+      console.log(data[0],user)
       if (data[0].email===user.email){
         console.log('setting user',data[0])
         setUser(data[0])
@@ -85,7 +85,7 @@ function App() {
 
   useEffect(()=>{
     socket.on('acceptfriend',data=>{
-      // console.log('accept',data,user)
+      console.log('accept',data,user)
       if (data[0].email===user.email){
         setUser(data[0])
       }})
