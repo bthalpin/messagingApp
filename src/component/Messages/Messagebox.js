@@ -21,7 +21,7 @@ const Messagebox = ({ route,text,
                         <div className = "textmessage">
                             {text.includes('#img#')
                                 ? <Picture source = {text.substr(5,text.length-1)}/>
-                                :text}
+                                :<p>{text}</p>}
                         </div>
                         
                     </div>

@@ -33,30 +33,34 @@ const Navigation = ({onRouteChange, isSignedIn,
                         <button 
                             className = "hideButton" 
                             onClick = {hide}>
-                                <img src = {Hamburger} alt = "=" width="15rem"></img>
+                                <img src = {Hamburger} alt = "=" width="30rem"></img>
                         </button>
                     </div>
                 <div className = {'mainNav'+hideStatus}> 
                     <button className = "wideButton" onClick = {hide}>Close</button>
-                        <div className = "groupContainer">
-                            <p className = "groupChat">Group Chats</p>
+                        {/* <div className = "groupContainer"> */}
+                            {/* <p className = "groupChat">Group Chats</p> */}
                             <div className = "navButtonContainer " >
                                 <p 
                                     onClick = {()=>closeDropDown('home',true)} 
                                     className = {"navButtons home"+ route}>
-                                        Public
+                                        Public Chat
                                 </p>
+                                
+                                    
+                                </div>
+                                <div>
                                 <p 
                                     className = {"navButtons friend"+ route} 
                                     onClick = {()=>closeDropDown('friend',false)}>
-                                        Friends
+                                        Friends Chat
                                 </p>
                             </div>
-                        </div>
+                        {/* </div> */}
                        
                         <div>
                             <p 
-                                className = {"navButtons mail"+ route} 
+                                className = {"navButtons private mail"+ route} 
                                 onClick = {() => closeDropDown('mail')}>
                                     Private Message
                             </p>

@@ -40,16 +40,17 @@ justify-content: space-around;
     /* border-bottom:1px solid #48aca7;
     border-left:1px solid #48aca7;
     border-right:1px solid #48aca7; */
-    width:10rem;
+    /* width:10rem; */
 }
 
 .navButtons{
-    border-top-left-radius: 0.2rem;
-    border-top-right-radius: 0.2rem;
+    /* border-top-left-radius: 0.2rem; */
+    /* border-top-right-radius: 0.2rem; */
     /* font-weight: bold; */
     outline: none;
-    padding:0 0.5rem;
+    padding:0.5rem 0.5rem 0rem 0.5rem;
     margin:0.0rem 0.5rem;
+    width:13vw;
     /* border:1px solid black; */
 }
 
@@ -60,6 +61,9 @@ justify-content: space-around;
     border-top-right-radius: 0.4rem;
     padding:0.0rem 0.3rem;
 } */
+.private{
+    width:19vw;
+}
 
 .navButtons:active{
     /* border-style:outset; */
@@ -124,7 +128,7 @@ justify-content: space-around;
      */
 }
 
-@media (min-width:500px){
+@media (min-width:501px){
     .hideButton{
         display:none;
     }
@@ -134,25 +138,59 @@ justify-content: space-around;
     .mainNavHidden{
         width:80vw;
 display:flex;
-align-items: flex-end;
+/* align-items: flex-end; */
 justify-content: space-around;
-        max-width: 35rem;
+        /* max-width: 35rem; */
     }
     .mainNav{
         max-width:35rem;
     }
 }
+@media (min-width:700px) {
+    .mainNavHidden{
+        max-width:40rem;
+        /* width:80vw; */
+    }
+    
+    .navButtons{
+        width:5.5rem;
+    }
+    .private{
+        width:7.5rem;
+    }
+}
 
-@media screen and (max-width:625px) {
+@media screen and (max-width:676px) {
    
     .navButtons{
         margin:0;
-        font-size:0.8rem;
+        font-size:0.9rem;
     }
     .groupChat{
-        font-size: 0.6rem;
+        /* font-size: 0.6rem; */
     }
   
+    
+}
+@media (max-width:611px){
+    .mainNavHidden,.mainNav{
+        /* width:100vw; */
+    }
+    .navButtons,.private{
+        width:auto;
+    }
+ 
+    
+}
+
+@media (max-width:558px){
+    .mainNavHidden,.mainNav{
+        width:100vw;
+    }
+    .navButtons,.private{
+        /* width:auto; */
+    }
+ 
     
 }
 
@@ -172,8 +210,8 @@ justify-content: space-around;
         justify-content: flex-end;
     }
     .navroot>div{
-        margin:0;
-        padding:0;
+        /* margin:0;
+        padding:0; */
     }
     .dropDown{
         display:block;
@@ -184,9 +222,13 @@ justify-content: space-around;
     .hideButton{
         padding-top:0.35rem;
         border:none;
+        width:3.5rem;
+        height:2.5rem;
     }
     .wideButton{
         width:100%;
+        font-size: 1rem;
+        padding:0.3rem 0;
     }
     .navButtonContainer{
         display:block;
@@ -203,7 +245,7 @@ justify-content: space-around;
         margin:0;
         padding:0.5rem 0;
 
-        font-size:1.3rem;
+        font-size:1rem;
         /* border-top:1px solid white; */
         /* border-bottom:1px solid white; */
     }
@@ -212,11 +254,13 @@ justify-content: space-around;
     }
     .title{
         display:block;
-        position:absolute;
+        width:80vw;
+        padding-top:0.35rem;
+        /* position:absolute; */
         right:50%;
         /* top:0; */
-        font-size:0.7rem;
-        transform: translate(55%,12%);
+        font-size:1.2rem;
+        /* transform: translate(55%,12%); */
         text-shadow:2px 2px 4px black;
     
     }
@@ -225,7 +269,7 @@ justify-content: space-around;
 @media (max-width:500px) and (max-height:280px){
     .navButtons{
         padding:0.1rem 0;
-        font-size: 1rem;
+        /* font-size: 1rem; */
     }
 }
 
@@ -235,10 +279,29 @@ justify-content: space-around;
         font-size:0.8rem;
     }
 }
-@media (max-width:260px) {
+@media (max-width:270px) {
     .title{
-        font-size: 0.5rem;
-        transform: translate(55%,30%);
+        padding-top:0rem;
+        font-size: 0.9rem;
+        /* display:none; */
+        width:85vw;
+        margin-right:0.1rem;
+    }
+    .mainNav{
+        width:100vw;
+    }
+    .hideButton{
+        width:2rem;
+        height:auto;
+    }
+    .hideButton>img{
+        width:1rem;
     }
 }
- 
+@media (max-width:181px) {
+    .title{
+        /* padding-top:0.5rem; */
+        
+        display:none;
+    }
+}

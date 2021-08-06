@@ -21,7 +21,7 @@ const Friends = ({user,addFriend,converse}) => {
 
     const unFriend = (friend) =>{
         
-        fetch('https://socially-distanced-server.herokuapp.com/unfriend',{
+        fetch('http://localhost:3005/unfriend',{
             method:'post',
             headers:{'Content-Type':'application/json'},
             body:JSON.stringify({

@@ -13,7 +13,8 @@
     /* align-items: center; */
     /* margin-left:auto; */
     left:50%;
-    transform: translate(-50%,0);
+    top:0%;
+    transform: translate(-50%,100%);
     
 }
 
@@ -41,10 +42,10 @@
 }
 
 .public{
-    transform: translate(-50%,-120%);
+    transform: translate(-50%,-15%);
 }
 .friend{
-    transform: translate(-50%,-120%);
+    transform: translate(-50%,-15%);
 }
 
 
@@ -121,7 +122,7 @@
 }
 
 .bigbox{
-    padding-top:2.2rem;
+    padding-top:2.7rem;
 }
 .box{
     display:flex;
@@ -192,186 +193,16 @@
     padding:0.5rem 1rem;
     text-align: start;
     color:black;
-    /* width:70%; */
+    width:50vw;
     /* min-height: 4rem; */
 }
 
 .textmessage{
+    /* width:100%; */
     word-wrap:break-word;
     white-space: pre-wrap;
 }
 
-@media screen and (max-height:900px) {
-    
-    .commentsection{
-        height: 90vh;
-    }
-    
-}
-@media screen and (max-height:650px) {
-    
-    .commentsection{
-        height: 88vh;
-    }
-    
-}
-@media screen and (max-height:530px) {
-    
-    .commentsection{
-        height: 87vh;
-    }
-    
-}
-
-@media screen and (max-height:400px) {
-    
-    .commentsection{
-        /* height: 85vh; */
-    }
-    .inputbox{
-        padding-bottom:0.2rem;
-    }
-    .textarea{
-        margin:0.1rem;
-    }
-    
-}
-
-@media screen and (max-height:400px) {
-    
-    .commentsection{
-        height: 83vh;
-    }
-}
-
-@media screen and (max-height:280px) {
-    
-    .commentsection{
-        height: 75vh;
-    }
-}
-
-  
-@media (max-height:220px) {
-    .commentsection{
-        height:70vh;
-    }
-    
-}
-
-@media (max-height:160px) {
-    .commentsection{
-        height:60vh;
-    }
-    
-}
-@media screen and (min-width:950px) {
-    .smallbox{
-        max-width:30rem;
-    }
-    .commentsection{
-        max-width: 35rem;
-    }
-    .messageArea{
-        /* max-width: 25rem; */
-    }
-}
-@media screen and (max-width:700px){
-    .commentsection{
-        width:80vw;
-        /* min-width: 20vw; */
-        /* padding:2rem 1rem; */
-    }
-    .smallbox{
-        /* width: 70vw; */
-    }
-    
-    
-}
-
-@media (max-width:625px) {
-    .public{
-        transform: translate(-50%,-100%);
-    }
-    .friend{
-        transform: translate(-50%,-100%);
-    }
-    
-}
-
-@media screen and (max-width:500px){
-    .commentsection{
-        width: 90vw;
-    }
-    .smallbox{
-        width: 80vw;
-    }
-    .box{
-        /* width: 80vw; */
-    }
-    .text{
-        padding:0.5rem;
-        /* margin:auto; */
-    }
-    .textarea{
-        font-size: 0.8rem;
-    }
-    .public{
-        transform: translate(-50%,-95%);
-    }
-    .friend{
-        transform: translate(-50%,-95%);
-    }
-    .inputbox{
-        margin-top:0.6rem;
-    }
-    .bigbox{
-        padding-top:3rem;
-    }
-    /* .deleteContainer{ */
-        /* width:5vw; */
-    /* } */
-
-}
-
-@media screen and (max-width:270px){
-    .smallbox{
-        max-width: 100%;
-        min-width: none;
-    }
-    .text{
-        font-size: 0.8rem;
-        padding:0;
-    }
-    .user>p{
-        font-size: 0.5rem;
-    }
-    .liketext{
-        font-size: 0.5rem;
-    }
-    .likeButton,.deleteBackground{
-        transform: scale(0.8);
-    }
-    .commentsection{
-        width:100vw;
-        border-left:none;
-        border-right:none;
-    }
-    .bigbox{
-        width:100%;
-    }
-    .sender, .recipient{
-        margin:0;
-    }
-    .msg{
-        padding:0;
-    }
-}
-
-@media (max-width:170px) {
-    
-    
-}
 
 .submitbutton{
     /* background:#00a2ff; */
@@ -455,4 +286,211 @@
 
 .liketext::-webkit-scrollbar{
     display:none;
+}
+
+
+@media screen and (max-height:900px) {
+    
+    .commentsection{
+        height: 85vh;
+    }
+    
+}
+@media screen and (max-height:650px) {
+    
+    .commentsection{
+        height: 86vh;
+    }
+    
+}
+@media screen and (max-height:530px) {
+    
+    .commentsection{
+        height: 83vh;
+    }
+    
+}
+
+@media screen and (max-height:400px) {
+    
+    .commentsection{
+        /* height: 85vh; */
+    }
+    .inputbox{
+        padding-bottom:0.2rem;
+    }
+    .textarea{
+        margin:0.1rem;
+    }
+    
+}
+
+@media screen and (max-height:400px) {
+    
+    .commentsection{
+        height: 80vh;
+    }
+}
+
+@media screen and (max-height:280px) {
+    
+    .commentsection{
+        height: 73vh;
+    }
+}
+
+  
+@media (max-height:220px) {
+    .commentsection{
+        height:70vh;
+    }
+    
+}
+
+@media (max-height:160px) {
+    .commentsection{
+        height:60vh;
+    }
+    
+}
+@media screen and (min-width:950px) {
+    .smallbox{
+        max-width:30rem;
+    }
+    .commentsection{
+        max-width: 35rem;
+    }
+    .text{
+        max-width: 25rem;
+    }
+}
+@media screen and (max-width:700px){
+    .commentsection{
+        width:80vw;
+        /* min-width: 20vw; */
+        /* padding:2rem 1rem; */
+    }
+    .smallbox{
+        /* width: 70vw; */
+    }
+    
+    
+}
+
+/* @media (max-width:625px) {
+    .public{
+        transform: translate(-50%,-25%);
+    }
+    .friend{
+        transform: translate(-50%,-100%);
+    }
+    
+} */
+
+@media screen and (max-width:500px){
+    .commentsection{
+        width: 90vw;
+    }
+    .smallbox{
+        width: 80vw;
+    }
+    .box{
+        /* width: 80vw; */
+    }
+    .text{
+        padding:0.5rem;
+        width:55vw;
+        /* margin:auto; */
+    }
+    .textarea{
+        font-size: 0.8rem;
+    }
+    .public{
+        /* transform: translate(-50%,-95%); */
+    }
+    .friend{
+        /* transform: translate(-50%,-95%); */
+    }
+    .inputbox{
+        margin-top:0.6rem;
+    }
+    .bigbox{
+        padding-top:3rem;
+    }
+    /* .deleteContainer{ */
+        /* width:5vw; */
+    /* } */
+
+}
+
+@media screen and (max-width:270px){
+    .smallbox{
+        max-width: 100%;
+        min-width: none;
+    }
+    .text{
+        font-size: 0.8rem;
+        padding:0;
+        width:75vw;
+    }
+    .textmessage{
+        padding-left:0.5rem;
+    }
+    .user>p{
+        font-size: 0.5rem;
+    }
+    .liketext{
+        font-size: 0.5rem;
+    }
+    .likeButton,.deleteBackground{
+        transform: scale(0.8);
+    }
+    .commentsection{
+        width:100vw;
+        border-left:none;
+        border-right:none;
+    }
+    .bigbox{
+        width:100%;
+    }
+    .sender, .recipient{
+        margin:0;
+    }
+    .msg{
+        padding:0;
+    }
+    .public,.friend{
+        transform: translate(-50%,-45%);
+    }
+    
+}
+
+@media (max-width:170px) {
+    
+    .commentsection{
+        width:100vw;
+        
+    }
+    .smallbox{
+        min-width: 1px;
+    }
+    .textmessage>p{
+        font-size: 0.5rem;
+        text-align: center;
+    }
+    .messageArea,.text{
+        /* width:90vw; */
+    }
+    .user>p,.liketext{
+        font-size:0.3rem;
+        
+    }
+    label{
+        width:40vw;
+        font-size: 0.7rem;
+        }
+    .public,.friend{
+        transform: translate(-50%,-55%);
+    }
+    
 }

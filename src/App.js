@@ -27,6 +27,7 @@ function App() {
   const [filteredMessages,setFilteredMessages] = useState({})
   const [publicStatus,setPublicStatus] = useState(true);
   const myEmail = user.email
+  
   useEffect(()=>{
     socket.on('friendrequest',data=>{
       if (data[0].email===myEmail){

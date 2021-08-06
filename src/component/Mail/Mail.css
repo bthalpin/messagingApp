@@ -76,7 +76,7 @@
 .mailButtons{
     position:fixed;
     left:50%;
-    transform: translate(-50%,-90%);
+    transform: translate(-50%,-45%);
 }
 .mailtextarea{
     
@@ -92,7 +92,7 @@
     z-index: 1;
     position: absolute;
     left:50%;
-    transform: translate(-50%,-180%);
+    transform: translate(-50%,-155%);
     /* margin-left:-20%; */
     /* overflow: hidden; */
     border:1px solid black;
@@ -239,7 +239,7 @@
 }
 @media (max-width:625px){
     .mailtextarea{
-        transform: translate(-50%,-170%);
+        /* transform: translate(-50%,-140%); */
     }
     .privateMessage{
         margin-top:1rem;
@@ -247,7 +247,7 @@
 }
 @media (max-width:500px) {
     .mailtextarea{
-        transform: translate(-50%,-140%);
+        /* transform: translate(-50%,-140%); */
         width:70vw;
     }
     .mailButtons{
@@ -297,6 +297,10 @@
         width:100vw;
         border-left:none;
         border-right:none;
+    }
+    .mailtextarea{
+        transform: translate(-50%,-140%);
+        /* width:70vw; */
     }
     
 }
