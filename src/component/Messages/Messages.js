@@ -86,11 +86,11 @@ const Messages = ({user, currentMessage,
         }
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:new Date(dateString)}
+            return {...prevCurrentPublicMessage,time:Date()}
         })
         :
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:new Date(dateString)}
+            return {...prevCurrentMessage,time:Date()}
         })       
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
     }
