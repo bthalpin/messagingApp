@@ -17,7 +17,7 @@ const Navigation = ({onRouteChange, isSignedIn,
         if (hideStatus === ''){
             setHideStatus('Hidden')
         }
-        if (status){
+        if (status===true||status===false){
             changePublicStatus(route,status)
         
         }else{
