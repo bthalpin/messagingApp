@@ -53,7 +53,7 @@ const Messages = ({user, currentMessage,
                         name:user.name,
                         email:user.email.toUpperCase(),
                         message:currentPublicMessage.message,
-                        time:JSON.stringify(currentTime),
+                        time:currentTime,
                         likes:[]
                         })
                         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
