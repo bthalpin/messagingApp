@@ -4,6 +4,7 @@ import '../../colors2.css';
 import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';
+import Delete from '../../images/delete.png';
 
 const Messagebox = ({ route,text, 
                     email, time, i, 
@@ -59,17 +60,17 @@ const Messagebox = ({ route,text,
                                  ):<></>
                             :<></>
                         }
-                        <div className = "deleteContainer">
+                        <div className = "deletContainer">
                             {route === "home"||route==='friend'
                                 ?<div>{filteredMessages[i].email===currentUser
                                     ?
                                     // <div className = "deleteBackground">
-                                        <button 
+                                        <div 
                                             className = "deleteButton" 
                                             id = {i} 
                                             onClick = {()=>deletePost(i,publicStatus,currentId)}>
-                                                x
-                                        </button>
+                                                <img src={Delete} alt="delete" width="22rem"></img>
+                                        </div>
                                     // </div>
                                     
                                     :<></>}

@@ -188,13 +188,13 @@ button {
 .deleteButton{
     /* background:transparent; */
     border:none;
-    font-weight: bold;
-    font-size:1rem;
+    /* font-weight: bold; */
+    /* font-size:1rem; */
     /* color:darkred; */
-    padding:0rem 0.35rem;
+    /* padding:0rem 0.35rem; */
     width:100%;
     -webkit-appearance: none;
-    border-radius: 0.2rem;
+    /* border-radius: 0.2rem; */
 }
 
 
@@ -455,7 +455,7 @@ button {
     .liketext{
         font-size: 0.5rem;
     }
-    .likeButton,.deleteContainer{
+    .likeButton,.deleteButton{
         transform: scale(0.8);
     }
     .commentsection{
