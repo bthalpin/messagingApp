@@ -103,7 +103,7 @@
     /* background-size: 40%; */
     /* background-repeat: no-repeat; */
     /* background-position: center; */
-    height: 85vh;
+    height: 80vh;
     /* border-top-left-radius: 1rem;
     border-top-right-radius: 1rem; */
     border-radius: 0.2rem;
@@ -299,14 +299,14 @@
 @media screen and (max-height:650px) {
     
     .commentsection{
-        height: 86vh;
+        height: 83vh;
     }
     
 }
 @media screen and (max-height:530px) {
     
     .commentsection{
-        height: 83vh;
+        height: 80vh;
     }
     
 }
@@ -328,28 +328,28 @@
 @media screen and (max-height:400px) {
     
     .commentsection{
-        height: 80vh;
+        height: 78vh;
     }
 }
 
 @media screen and (max-height:280px) {
     
     .commentsection{
-        height: 73vh;
+        height: 70vh;
     }
 }
 
   
 @media (max-height:220px) {
     .commentsection{
-        height:70vh;
+        height:68vh;
     }
     
 }
 
 @media (max-height:160px) {
     .commentsection{
-        height:60vh;
+        height:58vh;
     }
     
 }
