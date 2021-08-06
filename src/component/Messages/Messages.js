@@ -46,7 +46,7 @@ const Messages = ({user, currentMessage,
     },[currentMessage.time])
 
     useEffect(()=>{
-        const currentTime = JSON.stringify(currentPublicMessage.time)
+        const currentTime = currentPublicMessage.time
         console.log(currentTime)
         if (currentPublicMessage.message!==''){
             socket.emit('publicmessage',{
