@@ -30,7 +30,7 @@ const Messages = ({user, currentMessage,
     useEffect(()=>{
 
         const currentTime = currentMessage.time
-        console.log(currentTime)
+        
         if (currentMessage.message!==''){
         socket.emit('friendmessage',{
                         name:user.name,
