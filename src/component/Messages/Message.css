@@ -193,7 +193,7 @@ button {
     /* color:darkred; */
     padding:0rem 0.35rem;
     width:100%;
-    
+    -webkit-appearance: none;
     border-radius: 0.2rem;
 }
 
