@@ -26,7 +26,7 @@ const Messagebox = ({ route,text,
                         
                     </div>
                     
-                   
+                   {console.log(time)}
                     
                 </div>
                 
