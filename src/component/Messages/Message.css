@@ -166,7 +166,9 @@
     border-top-left-radius: 0.2rem;
 }
 .deleteContainer{
-    padding:0;
+    border-radius: 0.2rem;
+    margin-right:0.2rem;
+    /* padding:0; */
     /* display:flex;
     justify-content: flex-end; */
     /* max-width: 30%; */
@@ -174,9 +176,11 @@
 }
 
 .deleteBackground{
-    margin:.1rem;
+    border:none;
+    /* margin:.1rem; */
     /* padding:0rem 0.4rem; */
     border-radius: 0.2rem;
+    margin-right:0.2rem;
 }
 .deleteButton{
     background:transparent;
@@ -252,6 +256,7 @@
 }
 
 .likeButton{
+    margin-left:0.1rem;
     padding:0;
     /* border:1px solid #00a2ff; */
     border-radius: 0.2rem;
@@ -442,7 +447,7 @@
     .liketext{
         font-size: 0.5rem;
     }
-    .likeButton,.deleteBackground{
+    .likeButton,.deleteContainer{
         transform: scale(0.8);
     }
     .commentsection{

@@ -81,6 +81,7 @@ html{
 
 .likes{
     background:var(--secondColor);
+    border-top:1px solid var(--secondColor);
 }
 .liketext{
     color:white;
@@ -216,8 +217,8 @@ input[type="radio"]:checked+label{
     color:rgb(23, 41, 31);
 }
 
-.deleteBackground{
-    background: #a1bbb8;
+.deleteContainer{
+    background: #9bacc4;
     
     border:1px solid black;
 }
