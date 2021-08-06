@@ -8,7 +8,7 @@ import socket from './socket'
 import './App.css';
 import './colors2.css';
 
-// https://socially-distanced-server.herokuapp.com/
+// http://localhost:3005/
 
 
 function App() {

@@ -1,7 +1,7 @@
 .mailbox{
     margin-top: 0.1rem;
     padding:1rem;
-    border-radius: 0.5rem;
+    border-radius: 0.2rem;
     height: 80vh;
     width: 80vw;
     max-width:35rem;
@@ -149,11 +149,11 @@
 }
 @media (max-height:700px) {
     .mailbox{
-        height:80vh;
+        height:76vh;
     }
 
     .messages{
-        height:60vh;
+        height:58vh;
     }
     
 }
