@@ -74,6 +74,10 @@ const Messages = ({user, currentMessage,
 
    
     const onSubmit = (picture) => {
+        let date = new Date
+        const timeNow =  date.toLocaleString("en-US", {
+            timeZone: `America/New_York`
+          });
         if (picture && (currentPublicMessage.message!=="" || currentMessage.message !=="")){
             publicStatus?
                 setCurrentPublicMessage((prevCurrentPublicMessage)=>{
@@ -86,12 +90,12 @@ const Messages = ({user, currentMessage,
         }
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
+            return {...prevCurrentPublicMessage,time:timeNow}
         })
         
         :
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
+            return {...prevCurrentMessage,time:timeNow}
         })       
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
     }
