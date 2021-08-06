@@ -36,7 +36,7 @@ const Messages = ({user, currentMessage,
                         name:user.name,
                         email:user.email.toUpperCase(),
                         message:currentMessage.message,
-                        time:'currentTime',
+                        time:currentMessage.time,
                         likes:[]
                         })
                         setCurrentMessage((prevCurrentMessage)=>{
@@ -86,11 +86,11 @@ const Messages = ({user, currentMessage,
         }
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:Date().toLocaleString()}
+            return {...prevCurrentPublicMessage,time:Date().toDateeString()}
         })
         :
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:Date().toLocaleString()}
+            return {...prevCurrentMessage,time:Date().toDateString()}
         })       
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
     }
