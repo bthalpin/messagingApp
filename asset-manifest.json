@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/messagingApp/static/css/main.2d54fe4d.chunk.css",
-    "main.js": "/messagingApp/static/js/main.102b05ba.chunk.js",
-    "main.js.map": "/messagingApp/static/js/main.102b05ba.chunk.js.map",
+    "main.js": "/messagingApp/static/js/main.c1e7503a.chunk.js",
+    "main.js.map": "/messagingApp/static/js/main.c1e7503a.chunk.js.map",
     "runtime-main.js": "/messagingApp/static/js/runtime-main.00430740.js",
     "runtime-main.js.map": "/messagingApp/static/js/runtime-main.00430740.js.map",
     "static/js/2.ba560351.chunk.js": "/messagingApp/static/js/2.ba560351.chunk.js",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.00430740.js",
     "static/js/2.ba560351.chunk.js",
     "static/css/main.2d54fe4d.chunk.css",
-    "static/js/main.102b05ba.chunk.js"
+    "static/js/main.c1e7503a.chunk.js"
   ]
 }
