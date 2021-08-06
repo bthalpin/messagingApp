@@ -15,7 +15,7 @@ const Navigation = ({onRouteChange, isSignedIn,
 
     const closeDropDown = (route,status) =>{
         if (hideStatus === ''){
-            setHideStatus('HIdden')
+            setHideStatus('Hidden')
         }
         if (status){
             changePublicStatus(route,status)
