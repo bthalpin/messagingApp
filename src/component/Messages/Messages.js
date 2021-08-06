@@ -86,7 +86,7 @@ const Messages = ({user, currentMessage,
         }
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:Date().toDateeString()}
+            return {...prevCurrentPublicMessage,time:Date().toDateString()}
         })
         :
         setCurrentMessage((prevCurrentMessage)=>{
