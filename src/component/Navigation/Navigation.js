@@ -12,6 +12,19 @@ const Navigation = ({onRouteChange, isSignedIn,
         hideStatus==='Hidden'?setHideStatus(''):setHideStatus('Hidden')
       
     }
+
+    const closeDropDown = (route,status) =>{
+        if (hideStatus === ''){
+            setHideStatus('HIdden')
+        }
+        if (status){
+            changePublicStatus(route,status)
+        
+        }else{
+            onRouteChange(route)
+        }
+    }
+
     if (isSignedIn){
         return (
             <div className = "navroot">
@@ -29,13 +42,13 @@ const Navigation = ({onRouteChange, isSignedIn,
                             <p className = "groupChat">Group Chats</p>
                             <div className = "navButtonContainer " >
                                 <p 
-                                    onClick = {()=>changePublicStatus('home',true)} 
+                                    onClick = {()=>closeDropDown('home',true)} 
                                     className = {"navButtons home"+ route}>
                                         Public
                                 </p>
                                 <p 
                                     className = {"navButtons friend"+ route} 
-                                    onClick = {()=>changePublicStatus('friend',false)}>
+                                    onClick = {()=>closeDropDown('friend',false)}>
                                         Friends
                                 </p>
                             </div>
@@ -44,7 +57,7 @@ const Navigation = ({onRouteChange, isSignedIn,
                         <div>
                             <p 
                                 className = {"navButtons mail"+ route} 
-                                onClick = {() => onRouteChange('mail')}>
+                                onClick = {() => closeDropDown('mail')}>
                                     Private Message
                             </p>
                         </div>
@@ -52,7 +65,7 @@ const Navigation = ({onRouteChange, isSignedIn,
                         <div className = "">
                             <p 
                                 className = {"navButtons friends"+ route} 
-                                onClick = {()=>onRouteChange('friends')}>
+                                onClick = {()=>closeDropDown('friends')}>
                                     Contacts
                                     {user?.requests?.length
                                         ?<span className = "requests">{user.requests.length}</span>

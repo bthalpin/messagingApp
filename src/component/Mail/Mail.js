@@ -5,7 +5,11 @@ import './Mail.css';
 import '../../colors2.css';
 import socket from '../../socket';
 
-const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMessages, user,deletePost,conversation,setConversation,converse,route}) => {
+const Mail = ({privateMessage, setPrivateMessage, 
+                privateMessages, setPrivateMessages, 
+                user,deletePost,conversation,
+                setConversation,converse,
+                route}) => {
 
     const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
@@ -94,10 +98,33 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                         value = {privateMessage.message}
                     ></textarea>
                     <div className = "mailButtons">
-                    <label htmlFor = "mail" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(false)}>Message</label>
-                    <label htmlFor = "picture" className = {"buttons "+hiddenMailStatus.button} onClick = {()=>changeHidden(true)}>Picture</label>
-                    <label className = {"buttons "+hiddenMailStatus.submit} onClick = {()=>onSend(hiddenMailStatus.picture==="")}>Submit</label>
-                    <label className = {"buttons "+hiddenMailStatus.submit} onClick = {goBack}>Back</label>
+
+                        <label 
+                            htmlFor = "mail" 
+                            className = {"buttons "+hiddenMailStatus.button} 
+                            onClick = {()=>changeHidden(false)}>
+                                Message
+                        </label>
+
+                        <label 
+                            htmlFor = "picture" 
+                            className = {"buttons "+hiddenMailStatus.button} 
+                            onClick = {()=>changeHidden(true)}>
+                                Picture
+                        </label>
+
+                        <label 
+                            className = {"buttons "+hiddenMailStatus.submit} 
+                            onClick = {()=>onSend(hiddenMailStatus.picture==="")}>
+                                Submit
+                        </label>
+
+                        <label 
+                            className = {"buttons "+hiddenMailStatus.submit} 
+                            onClick = {goBack}>
+                                Back
+                        </label>
+
                     </div>
                     <div className = "privateMessage">
                         <button className = "backButton" onClick = {mainMailWindow}>&lt;</button>
@@ -114,8 +141,12 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                             &&privateMessages[currentMessage].recipientemail.toUpperCase() === user.email)
                             ))
                             {    
-                                privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?offset="sender":offset="recipient";
-                                privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()?background="senderbackground":background="";
+                                privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()
+                                    ?offset="sender"
+                                    :offset="recipient";
+                                privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()
+                                    ?background="senderbackground" 
+                                    :background="";
                                 return <div className = {offset}>
                                     
                                             <Messagebox email = {privateMessages[currentMessage].senderemail} 
@@ -123,7 +154,7 @@ const Mail = ({privateMessage, setPrivateMessage, privateMessages, setPrivateMes
                                             time = {privateMessages[currentMessage].time} 
                                             i = {i}
                                             deleteMail = {deleteMail} 
-                                             currentId = {currentId}
+                                            currentId = {currentId}
                                             background = {background} 
                                             />
                                         </div>
