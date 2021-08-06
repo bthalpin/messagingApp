@@ -86,11 +86,11 @@ const Messages = ({user, currentMessage,
         }
         publicStatus?
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:Date()}
+            return {...prevCurrentPublicMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
         })
         :
         setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:Date()}
+            return {...prevCurrentMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
         })       
         setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
     }
