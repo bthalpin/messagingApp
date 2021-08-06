@@ -263,7 +263,7 @@ button {
 }
 
 .likeButton{
-    margin-left:0.1rem;
+    margin:0rem;
     padding:0;
     /* border:1px solid #00a2ff; */
     border-radius: 0.2rem;

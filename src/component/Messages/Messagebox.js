@@ -37,12 +37,12 @@ const Messagebox = ({ route,text,
                
                 <div className={"likes "}>
                         {route === 'home'||route==='friend'
-                            ?<button className = "likeButton" onClick = {()=>addLike(i,currentId)}>
+                            ?<div className = "likeButton" onClick = {()=>addLike(i,currentId)}>
                                 {likes?JSON.stringify(likes).includes(currentUser)
-                                        ?<img src = {Liked} alt="Unlike" width="20rem"></img>
-                                        :<img src = {Like} alt="like" width = "20rem"></img>
-                                        :<img src = {Like} alt="like" width = "20rem"></img>}
-                            </button>
+                                        ?<img src = {Liked} alt="Unlike" width="23rem"></img>
+                                        :<img src = {Like} alt="like" width = "23rem"></img>
+                                        :<img src = {Like} alt="like" width = "23rem"></img>}
+                            </div>
                             
                             :<></>}
                     <div className = "likedelete">                    
