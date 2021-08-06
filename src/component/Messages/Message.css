@@ -177,19 +177,21 @@
 
 .deleteBackground{
     border:none;
+    height:100%;
     /* margin:.1rem; */
     /* padding:0rem 0.4rem; */
-    border-radius: 0.2rem;
     margin-right:0.2rem;
 }
 .deleteButton{
-    background:transparent;
+    /* background:transparent; */
     border:none;
     font-weight: bold;
     font-size:1rem;
     /* color:darkred; */
     padding:0rem 0.35rem;
     width:100%;
+    
+    border-radius: 0.2rem;
 }
 
 
@@ -249,8 +251,8 @@
     padding:0rem;
     font-size:0.75rem;
     height:1.3rem;
-    margin-bottom:0.1rem;
-    margin-right:0.1rem;
+    /* margin-bottom:0.1rem; */
+    /* margin-right:0.1rem; */
     
     border-bottom-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
@@ -287,6 +289,7 @@
 
 .liketext{
     margin-left:1rem;
+    margin-right:0.2rem;
     overflow-y:scroll;
     font-size:0.6rem;
 }

@@ -63,14 +63,14 @@ const Messagebox = ({ route,text,
                             {route === "home"||route==='friend'
                                 ?<div>{filteredMessages[i].email===currentUser
                                     ?
-                                    <div className = "deleteBackground">
+                                    // <div className = "deleteBackground">
                                         <button 
                                             className = "deleteButton" 
                                             id = {i} 
                                             onClick = {()=>deletePost(i,publicStatus,currentId)}>
                                                 x
                                         </button>
-                                    </div>
+                                    // </div>
                                     
                                     :<></>}
                                 </div>                        
