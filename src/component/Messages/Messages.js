@@ -47,7 +47,7 @@ const Messages = ({user, currentMessage,
 
     useEffect(()=>{
         const currentTime = currentPublicMessage.time
-        
+        console.log(currentTime)
         if (currentPublicMessage.message!==''){
             socket.emit('publicmessage',{
                         name:user.name,
@@ -88,6 +88,7 @@ const Messages = ({user, currentMessage,
         setCurrentPublicMessage((prevCurrentPublicMessage)=>{
             return {...prevCurrentPublicMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
         })
+        
         :
         setCurrentMessage((prevCurrentMessage)=>{
             return {...prevCurrentMessage,time:new Date().toLocaleString("en-US", {timeZone: "America/New_York"})}
