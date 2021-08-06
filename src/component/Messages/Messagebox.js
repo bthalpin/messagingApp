@@ -75,14 +75,15 @@ const Messagebox = ({ route,text,
                                     
                                     :<></>}
                                 </div>                        
-                                :<div className = "deleteBackground">
-                                    <button 
+                                :
+                                // <div className = "deleteBackground">
+                                    <div 
                                         className = "deleteButton" 
                                         id = {i} 
                                         onClick = {()=>deleteMail(currentId)}>
-                                            X
-                                    </button>
-                                </div>
+                                            <img src={Delete} alt="delete" width="22rem"></img>
+                                    </div>
+                                // </div>
                             }
                         </div>
                     </div> 
