@@ -36,7 +36,7 @@ const Messages = ({user, currentMessage,
                         name:user.name,
                         email:user.email.toUpperCase(),
                         message:currentMessage.message,
-                        time:currentMessage.time,
+                        time:currentTime,
                         likes:[]
                         })
                         setCurrentMessage((prevCurrentMessage)=>{
@@ -47,7 +47,7 @@ const Messages = ({user, currentMessage,
 
     useEffect(()=>{
         const currentTime = currentPublicMessage.time
-        console.log(currentTime)
+       
         if (currentPublicMessage.message!==''){
             socket.emit('publicmessage',{
                         name:user.name,

@@ -17,6 +17,7 @@ const Mail = ({privateMessage, setPrivateMessage,
 
 
     useEffect(()=>{
+        const currentTime = privateMessage.time
 
         if (privateMessage.message!==''){
             socket.emit('privatemessage',{
@@ -24,7 +25,7 @@ const Mail = ({privateMessage, setPrivateMessage,
                         senderemail:user.email,
                         recipientemail:conversation.you,
                         message:privateMessage.message,
-                        time:'currentTime'
+                        time:currentTime
                         })
             }
             setPrivateMessage((prevPrivateMessage)=>{
@@ -40,13 +41,17 @@ const Mail = ({privateMessage, setPrivateMessage,
       
 
     const onSend = (picture) => {
+        let date = new Date
+        const timeNow =  date.toLocaleString("en-US", {
+            timeZone: `America/New_York`
+          });
         if(picture &&(privateMessage.message!=='')){
             setPrivateMessage((prevPrivateMessage)=>{
                 return {...prevPrivateMessage,message:'#img#'+privateMessage.message}
             })
           }
         setPrivateMessage((prevPrivateMessage)=>{
-            return {...prevPrivateMessage,time:Date().toLocaleString()}
+            return {...prevPrivateMessage,time:timeNow}
         })
           setHiddenMailStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
       }
