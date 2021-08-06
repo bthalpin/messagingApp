@@ -32,7 +32,7 @@ const Messagebox = ({ route,text,
                 
                 <div className = {"user " + background}>                    
                     <p onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
-                    <p className='date'>{time.substr(0,16)}</p>
+                    <p className='date'>{time.substr(0,24)}</p>
                 </div>
                
                 <div className={"likes "}>
