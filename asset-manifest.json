@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/messagingApp/static/css/main.048c5586.chunk.css",
-    "main.js": "/messagingApp/static/js/main.c6dc1451.chunk.js",
-    "main.js.map": "/messagingApp/static/js/main.c6dc1451.chunk.js.map",
+    "main.css": "/messagingApp/static/css/main.b5460a58.chunk.css",
+    "main.js": "/messagingApp/static/js/main.bb00171d.chunk.js",
+    "main.js.map": "/messagingApp/static/js/main.bb00171d.chunk.js.map",
     "runtime-main.js": "/messagingApp/static/js/runtime-main.00430740.js",
     "runtime-main.js.map": "/messagingApp/static/js/runtime-main.00430740.js.map",
     "static/js/2.ba560351.chunk.js": "/messagingApp/static/js/2.ba560351.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.2d527366.chunk.js": "/messagingApp/static/js/3.2d527366.chunk.js",
     "static/js/3.2d527366.chunk.js.map": "/messagingApp/static/js/3.2d527366.chunk.js.map",
     "index.html": "/messagingApp/index.html",
-    "static/css/main.048c5586.chunk.css.map": "/messagingApp/static/css/main.048c5586.chunk.css.map",
+    "static/css/main.b5460a58.chunk.css.map": "/messagingApp/static/css/main.b5460a58.chunk.css.map",
     "static/js/2.ba560351.chunk.js.LICENSE.txt": "/messagingApp/static/js/2.ba560351.chunk.js.LICENSE.txt",
     "static/media/hamburger.745580e9.png": "/messagingApp/static/media/hamburger.745580e9.png",
     "static/media/like.1fe2cbbc.png": "/messagingApp/static/media/like.1fe2cbbc.png",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.00430740.js",
     "static/js/2.ba560351.chunk.js",
-    "static/css/main.048c5586.chunk.css",
-    "static/js/main.c6dc1451.chunk.js"
+    "static/css/main.b5460a58.chunk.css",
+    "static/js/main.bb00171d.chunk.js"
   ]
 }
