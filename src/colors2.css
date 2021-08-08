@@ -34,7 +34,7 @@ html{
     color:white;
 }
 
-.commentsection,.mailbox,.mainFriend{
+.commentsection,.mailbox,.mainFriend,.formWindow{
     background:var(--sixthColor);
     border:4px solid var(--thirdColor);
     
@@ -75,10 +75,10 @@ html{
 } */
 
 
-.formWindow {
+/* .formWindow {
     background:var(--fourthColor);
     border:4px solid var(--thirdColor);
-}
+} */
 
 .inputField {
     border:0.1rem solid rgb(0, 0, 0);
