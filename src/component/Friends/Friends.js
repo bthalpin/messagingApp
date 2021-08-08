@@ -102,8 +102,9 @@ const Friends = ({user,addFriend,converse}) => {
                                 <div >
                         
                                     {friends?
-                                        <div >
-                                            <ul className = "scroll">                            
+                                    <div>
+                                        <div className="friendtitlebox"><p className="requesttitle">Contacts</p></div>
+                                            <ul className = "scroll ">                            
                                                 {friends.map((friend)=>{
                                                     return <Friend 
                                                                 converse = {converse} 
@@ -115,6 +116,7 @@ const Friends = ({user,addFriend,converse}) => {
                                              </ul>
     
                                         </div>
+                                       
                                         :<></>
                                      }
                         

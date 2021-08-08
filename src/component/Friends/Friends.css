@@ -32,7 +32,7 @@ li{
 }
 
 .requesttitle,.pendingtitle{
-    margin-top:0.2rem;
+    margin-top:0rem;
     margin-bottom:0;
 }
 
@@ -68,6 +68,7 @@ li{
     /* color:white; */
     font-weight: bold;
     border-radius: 0.5rem;
+    margin-bottom:0.2rem;
 }
 
  .friendList{
