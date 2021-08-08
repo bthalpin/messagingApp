@@ -121,7 +121,7 @@ const Friends = ({user,addFriend,converse}) => {
                                      }
                         
             
-                                    <button className = "addFriend" onClick = {()=>addFriend("No Names")}>Add Friend</button>
+                                    <button className = "addFriend" onClick = {()=>addFriend("No Names")}>Add Contact</button>
                                 </div>
                         
                                 {uniqueRequests && uniqueRequests[0]?
