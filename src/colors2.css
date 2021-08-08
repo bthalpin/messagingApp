@@ -252,13 +252,13 @@ input[type="radio"]:checked+label{
     color:white;
 }
 
-.radioButton>li>label{
+/* .radioButton>li>label{
     font-weight: bold;
 }
 
 .contactName{
     font-weight: bold;
-}
+} */
 /* .homehome:hover,.friendfriend:hover,.mailmail:hover,.friendsfriends:hover{
     color:white;
 } */
