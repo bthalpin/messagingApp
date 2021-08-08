@@ -93,7 +93,7 @@ const Friends = ({user,addFriend,converse}) => {
                 
                 
                
-                <div className="commentsection">
+                <div className="mainFriend">
                     
         
                     <div className="">
