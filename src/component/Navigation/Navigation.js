@@ -2,10 +2,12 @@ import React, {useState}from 'react';
 import './Navigation.css';
 import '../../colors2.css';
 import Hamburger from "../../images/hamburger.png";
+import Notificationicon from "../../images/notification.png";
 
 const Navigation = ({onRouteChange, isSignedIn,
                     route, user, 
-                    changePublicStatus})=>{
+                    changePublicStatus,
+                    totalMessages})=>{
     const [hideStatus,setHideStatus] = useState('Hidden')
 
     const hide = ()=>{
@@ -34,6 +36,10 @@ const Navigation = ({onRouteChange, isSignedIn,
                             className = "hideButton" 
                             onClick = {hide}>
                                 <img src = {Hamburger} alt = "=" width="30rem"></img>
+                                
+                        {user?.requests?.length||totalMessages>0
+                                        ?<img  className = "notificationIcon" src = {Notificationicon} alt = "=" width="30rem"></img>
+                                        :<></>}
                         </button>
                     </div>
                 <div className = {'mainNav'+hideStatus}> 
@@ -63,7 +69,11 @@ const Navigation = ({onRouteChange, isSignedIn,
                                 className = {"navButtons private mail"+ route} 
                                 onClick = {() => closeDropDown('mail')}>
                                     Private Message
+                                    {totalMessages>0?
+                            <span className = "message" >{totalMessages}</span>
+                            :<></>}
                             </p>
+                            
                         </div>
                        
                         <div className = "">

@@ -9,12 +9,12 @@ const Mail = ({privateMessage, setPrivateMessage,
                 privateMessages, setPrivateMessages, 
                 user,deletePost,conversation,
                 setConversation,converse,
-                route}) => {
+                route,unread}) => {
 
     const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
     let background=''
-
+    
 
     useEffect(()=>{
         const currentTime = privateMessage.time
@@ -79,13 +79,19 @@ const Mail = ({privateMessage, setPrivateMessage,
     }
 
     const mainMailWindow = ()=>{
+        setPrivateMessage(prevPrivateMessage=>{
+            return {...prevPrivateMessage,recipientEmail:''}
+        })
         setConversation(prevConversation=>{
             return {...prevConversation,you:''}
         })
     }
+    
 
     return (
         <div className = "mailbox">
+            
+            { console.log(privateMessage.recipientEmail)}
             {conversation.you?
             <div>
                 <div>        
@@ -171,13 +177,20 @@ const Mail = ({privateMessage, setPrivateMessage,
             </div>
                 :
                 <div className = 'nocontactContainer'>
-                    
+                    {/* {console.log(unread,'mailunread')} */}
                     <p className = "contactName">Select a contact to message</p>
                                             <ul className = "contactScroll">                            
-                                                {user.friends.map((friend)=>{
-                                                    return <div>
-                                                        <Friend converse = {converse} friend = {friend} route={route} />
-                                                        
+                                                {unread.map((friend)=>{
+                                                    return <div className = "unreadMessageContainer">
+                                                        <Friend converse = {converse} friend = {friend.senderemail} route={route} />
+                                                        {friend.total-friend.read>0?<span className = "unreadMessage">{friend.total-friend.read}</span>:<></>}
+                                                        {/* <span>{socket.emit('updateReadStatus',{
+                                                            recipientemail:user.email,
+                                                            senderemail:friend
+                                                        })
+                                                        }{socket.on('updateRead',data=>{
+                                                            return data[0].total-data[0].read
+                                                        })}</span> */}
                                                         </div>
                                                     })
                                                 }

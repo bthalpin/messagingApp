@@ -62,7 +62,7 @@ justify-content: space-around;
     padding:0.0rem 0.3rem;
 } */
 .private{
-    width:19vw;
+    width:20vw;
 }
 
 .navButtons:active{
@@ -82,8 +82,22 @@ justify-content: space-around;
 
 .requests{
     border-radius:5rem;
-    font-size: 0.4rem;
-    padding:0 0.18rem;
+    font-size: 0.6rem;
+    padding:0 0.3rem;
+    /* position:fixed;
+    top:1.4rem;
+    right:50%;
+    transform:translateX(4.5rem); */
+}
+.message{
+    border-radius:5rem;
+    font-size: 0.6rem;
+    padding:0 0.3rem;
+}
+.notificationIcon{
+    position:fixed;
+    right:-0.3rem;
+    top:1.5rem;
 }
 
 
@@ -156,7 +170,7 @@ justify-content: space-around;
         width:5.5rem;
     }
     .private{
-        width:7.5rem;
+        width:8.1rem;
     }
 }
 
@@ -166,17 +180,14 @@ justify-content: space-around;
         margin:0;
         font-size:0.9rem;
     }
-    .groupChat{
-        /* font-size: 0.6rem; */
-    }
   
     
 }
 @media (max-width:611px){
     .mainNavHidden,.mainNav{
-        /* width:100vw; */
+        width:100vw;
     }
-    .navButtons,.private{
+    .navButtons{
         width:auto;
     }
  
@@ -189,6 +200,9 @@ justify-content: space-around;
     }
     .navButtons,.private{
         /* width:auto; */
+    }
+    .notificationIcon{
+
     }
  
     
@@ -296,6 +310,10 @@ justify-content: space-around;
     }
     .hideButton>img{
         width:1rem;
+    }
+    .notificationIcon{
+        top:0.8rem;
+        right:-0.1rem;
     }
 }
 @media (max-width:181px) {

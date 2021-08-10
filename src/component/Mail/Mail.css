@@ -36,8 +36,8 @@
     height:60vh;
 }
 .contactScroll{
-    
-
+    /* margin:0 auto; */
+    /* width:15rem; */
     height:60vh;
     overflow-y: scroll;
     -ms-overflow-style: none;  
@@ -140,6 +140,23 @@
 .nocontact{
     margin-top:20vh;
     color:white;
+}
+.radioButton{
+    /* margin:0 4rem 0 auto; */
+}
+.unreadMessage{
+    margin-left:-1.1rem;
+    border-radius:5rem;
+    padding:0.2rem 0.5rem;
+    font-size:0.6rem;
+    transform:translate(0.5rem,0.5rem);
+    
+}
+.unreadMessageContainer{
+    display:flex;
+    justify-content: center;
+    margin:0.8rem 0;
+
 }
 
 @media (max-height:900px) {

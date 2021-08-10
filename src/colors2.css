@@ -173,7 +173,7 @@ input[type="radio"]:checked+label{
     color:rgba(255, 255, 255, 0.774);
 }
 
-.requests{
+.requests,.message,.unreadMessage{
     background: var(--buttonColor);
 }
 .submitbutton{

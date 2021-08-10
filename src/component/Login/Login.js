@@ -93,6 +93,7 @@ const Login = ({
                   }),
                   setPrivateMessages
                   )    
+        socket.emit('loadRead',{recipientemail:upperEmail})
         
       }
     

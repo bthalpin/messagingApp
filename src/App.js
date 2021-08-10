@@ -8,9 +8,9 @@ import socket from './socket'
 import './App.css';
 import './colors2.css';
 
-// http://localhost:3005/
+// https://socially-distanced-server.herokuapp.com/
 
-
+// let totalMessages=0;
 function App() {
   const [user,setUser] = useState({name:'',email:'',friends:[],request:[],pendingrequests:[]})
   const [password,setPassword] = useState('')
@@ -27,6 +27,22 @@ function App() {
   const [filteredMessages,setFilteredMessages] = useState({})
   const [publicStatus,setPublicStatus] = useState(true);
   const myEmail = user.email
+  const [unread,setUnread] = useState([])
+  const [totalMessages,setTotalMessages] = useState(0)
+  // const [privateContacts,setPrivateContacts] = useState([])
+    
+    // useEffect(()=>{
+    //     setPrivateContacts(unread);
+    // },[unread,privateContacts])
+    useEffect(()=>{
+      setTotalMessages(unread.reduce((acc,message)=>{
+        // console.log(message)
+        return acc+message.total-message.read
+      },0))
+      
+  // console.log('totalMessages',totalMessages)
+    },[unread])
+    // console.log(totalMessages)
   
   useEffect(()=>{
     socket.on('friendrequest',data=>{
@@ -68,19 +84,73 @@ function App() {
 
   useEffect(()=>{
     socket.on('acceptfriend',data=>{
-      
-      if (data[0].email===myEmail){
-        setUser(data[0])
+      // console.log(data.user[0],data.friend)
+      if (data.user[0].email===myEmail){
+        setUser(data.user[0])
+        // console.log(data)
+        setUnread((prevUnread)=>{
+          return [...prevUnread,{senderemail:data.friend,recipientemail:data.user[0].email,total:0,read:0}]})
+        // console.log(unread,'accept')
       }})
       return ()=>{
         socket.off('acceptfriend')
       }
   },[myEmail])
+useEffect(()=>{
+  socket.on('updateReadStatus',data=>{
+    // console.log(data,'before read',myEmail)
+    if (data[0].recipientemail===myEmail.toUpperCase()){
 
-
-  socket.on('privatemessage',(data)=>{
-    setPrivateMessages(data)
+      setUnread(data)
+      // console.log('read',unread)
+    }
   })
+  return ()=>{
+    socket.off('updateReadStatus')
+  }
+},[myEmail])
+useEffect(()=>{
+  socket.on('update',(data)=>{
+    // console.log('update',data)
+    if (data[0].recipientemail===myEmail.toUpperCase()){
+  
+      setUnread(data)
+      // console.log('read',unread)
+    }
+    // socket.emit('updateRead',{recipientemail:user.email})
+  })
+  return ()=>{
+
+    socket.off('update')
+  }
+},[myEmail])
+
+useEffect(()=>{
+  socket.on('privatemessage',(data)=>{
+    // console.log('now',data.recipientemail)
+    // if (data.senderemail===myEmail||data.recipientemail===myEmail){
+      loadData('privatemessageload',
+      JSON.stringify({
+        email: user.email.toUpperCase(),
+        friends:user.friends
+      }),
+      setPrivateMessages
+      )  
+      // setPrivateMessages(data.message)
+    // }
+    console.log('private',privateMessage.senderEmail,'data',data.message)
+    if (privateMessage.recipientEmail===data.senderemail){
+      socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
+    }else{
+
+      socket.emit('loadRead',{recipientemail:data.recipientemail})
+    }
+  })
+  return ()=>{
+    socket.off('privatemessage')
+  }
+},[privateMessages,privateMessage,user])
+  
   socket.on('publicmessage',(data)=>{
     setPastPublicMessages(data)
 })
@@ -112,6 +182,7 @@ socket.on('deletemail',data=>{
 
 
 
+
   useEffect (()=>{
     if (user.friends){
       setFilteredMessages(()=>{
@@ -132,6 +203,12 @@ socket.on('deletemail',data=>{
   }
 
   const onRouteChange = (route) => {
+    
+    if (route==='mail'){
+      setConversation(prevConversation=>{
+        return {...prevConversation,you:''}
+      })
+  }
     (route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )?setIsSignedIn(true):resetState();
     setRoute(route)
   }
@@ -208,6 +285,8 @@ const converse = (friend) => {
       return {...prevPrivateMessage,recipientEmail:friend}
   })
   setRoute('mail')
+  socket.emit('read',{senderemail:friend,recipientemail:user.email})
+ 
 }
        
  
@@ -220,6 +299,7 @@ const converse = (friend) => {
             route={route}
             user = {user} 
             changePublicStatus = {changePublicStatus}
+            totalMessages = {totalMessages}
         />
     
         {isSignedIn
@@ -263,6 +343,8 @@ const converse = (friend) => {
                               setConversation = {setConversation}
                               converse = {converse}
                               route = {route}
+                              unread = {unread}
+                              // privateContacts = {privateContacts}
                             /> 
                       </div>
                   </div>
