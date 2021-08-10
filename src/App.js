@@ -59,15 +59,25 @@ function App() {
 
   useEffect(()=>{
     socket.on('unfriend',data=>{
-      if (data[0].email===myEmail){
-        setUser(data[0])
+      console.log(data)
+      if (data.message[0].email===myEmail){
+        setUser(data.message[0])
       }
+      loadData('privatemessageload',
+      JSON.stringify({
+        email: myEmail,
+        friends:user.friends
+      }),
+      setPrivateMessages
+      ) 
+      socket.emit('loadRead',{recipientemail:data.email})
       
     })
     return ()=>{
       socket.off('unfriend')
+      
     }
-  },[myEmail])
+  },[myEmail,user])
   
   useEffect(()=>{
     socket.on('reject',data=>{
@@ -99,10 +109,10 @@ function App() {
 useEffect(()=>{
   socket.on('updateReadStatus',data=>{
     // console.log(data,'before read',myEmail)
-    if (data[0].recipientemail===myEmail.toUpperCase()){
+    if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){
 
       setUnread(data)
-      // console.log('read',unread)
+      console.log('sread',unread,data)
     }
   })
   return ()=>{
@@ -111,11 +121,11 @@ useEffect(()=>{
 },[myEmail])
 useEffect(()=>{
   socket.on('update',(data)=>{
-    // console.log('update',data)
-    if (data[0].recipientemail===myEmail.toUpperCase()){
+    console.log('update',data)
+    if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){
   
       setUnread(data)
-      // console.log('read',unread)
+      console.log('read',unread)
     }
     // socket.emit('updateRead',{recipientemail:user.email})
   })
@@ -138,12 +148,12 @@ useEffect(()=>{
       )  
       // setPrivateMessages(data.message)
     // }
-    console.log('private',privateMessage.senderEmail,'data',data.message)
-    if (privateMessage.recipientEmail===data.senderemail){
+    // console.log('private',privateMessage.senderEmail,'data',data.message)
+    if (privateMessage.recipientEmail===data?.senderemail){
       socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
     }else{
-
-      socket.emit('loadRead',{recipientemail:data.recipientemail})
+console.log('load')
+      socket.emit('loadRead',{recipientemail:user.email.toUpperCase()})
     }
   })
   return ()=>{

@@ -122,19 +122,20 @@ const Login = ({
                   setPassword('')
                   setCurrentMessage((prevCurrentMessage)=>{
                     return {...prevCurrentMessage,name:user.name,email:user.email}})
-                }
+                  loadData('publicmessageload',
+                    JSON.stringify({
+                        email:upperEmail,
+                        friends:user.friends
+                    }),
+                    setPastPublicMessages
+                    )
+                  }
                 
             
                 })
                 .catch(err=>console.log(err))
 
-                loadData('publicmessageload',
-                  JSON.stringify({
-                      email:upperEmail,
-                      friends:user.friends
-                  }),
-                  setPastPublicMessages
-                  )
+                
               }else if (password.length<8){
                 setErrorMessage('Password must be 8 characters long')
               }else{
