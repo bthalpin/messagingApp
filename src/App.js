@@ -208,6 +208,9 @@ socket.on('deletemail',data=>{
       setConversation(prevConversation=>{
         return {...prevConversation,you:''}
       })
+      setPrivateMessage(prevPrivateMessage=>{
+        return {...prevPrivateMessage,recipientEmail:''}
+    })
   }
     (route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )?setIsSignedIn(true):resetState();
     setRoute(route)
