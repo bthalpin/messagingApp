@@ -60,7 +60,29 @@ const Login = ({
                 return {...prevCurrentMessage,name:res.name,email:upperEmail}})
                 
               setConversation({me:res.email,you:''})
-              
+              loadData('friendmessageload',
+              JSON.stringify({
+                email:upperEmail,
+                friends:user.friends
+              }),
+              setPastMessages
+              )
+    loadData('publicmessageload',
+              JSON.stringify({
+                  email:upperEmail,
+                  friends:user.friends
+              }),
+              setPastPublicMessages
+              )
+
+    loadData('privatemessageload',
+              JSON.stringify({
+                email: upperEmail,
+                friends:user.friends
+              }),
+              setPrivateMessages
+              )    
+    socket.emit('loadRead',{recipientemail:upperEmail})
 
             }else{
               setErrorMessage('Invalid Login Information')
@@ -71,29 +93,7 @@ const Login = ({
         })
         .catch(err=>console.log(err))
 
-        loadData('friendmessageload',
-                  JSON.stringify({
-                    email:upperEmail,
-                    friends:user.friends
-                  }),
-                  setPastMessages
-                  )
-        loadData('publicmessageload',
-                  JSON.stringify({
-                      email:upperEmail,
-                      friends:user.friends
-                  }),
-                  setPastPublicMessages
-                  )
-
-        loadData('privatemessageload',
-                  JSON.stringify({
-                    email: upperEmail,
-                    friends:user.friends
-                  }),
-                  setPrivateMessages
-                  )    
-        socket.emit('loadRead',{recipientemail:upperEmail})
+       
         
       }
     
