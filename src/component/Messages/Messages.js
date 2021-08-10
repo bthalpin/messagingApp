@@ -316,7 +316,9 @@ const Messages = ({user, currentMessage,
                             </label>
 
                         </div>                
-                        <div className="bigbox">                    
+                        <div className="bigbox"> 
+                        {filteredMessages.length>0?
+                                          
                             {filteredMessages.map((message,i)=>{    
                                            
                                 const currentUser = filteredMessages.length -1-i
@@ -347,6 +349,8 @@ const Messages = ({user, currentMessage,
                                         </div>
                                 })
                             }
+                            :
+                            <h1>Write a message that only your friends can see</h1>}
                         </div>  
                     </div>
                 </>
