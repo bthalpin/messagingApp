@@ -60,7 +60,7 @@ function App() {
   useEffect(()=>{
     socket.on('unfriend',data=>{
       console.log(data)
-      if (data.message[0].email===myEmail){
+      if (data.email===myEmail){
         setUser(data.message[0])
       }
       loadData('privatemessageload',
