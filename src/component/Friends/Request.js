@@ -22,7 +22,7 @@ const Request = ({friend, rejectFriend,acceptFriend,pendOrReq}) => {
                 <button 
                     className = "friendButton" 
                     onClick = {()=>rejectFriend(friend,pendOrReq)}>
-                        X
+                        Decline
                 </button>
             </li>
         </div>

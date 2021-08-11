@@ -32,7 +32,7 @@ const Friend = ({friend,converse, route,unFriend,pendOrReq}) => {
                     <button 
                         className = "friendButton" 
                         onClick = {()=>unFriend(friend,pendOrReq)}>
-                            X
+                            Delete
                     </button>
                 </li>
        
