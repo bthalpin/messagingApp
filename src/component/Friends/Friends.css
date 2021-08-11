@@ -46,22 +46,27 @@ ul {
     overflow-y: scroll;
 }
 
-li{
+/* li:hover{
     cursor:pointer;
-}
+} */
 
 .addFriend{
     font-weight: bold;
     border-radius: 0.5rem;
     margin-bottom:0.2rem;
 }
+.addFriend:hover{
+    cursor: pointer;
+}
 
 .radioButton input[type="radio"]{
     display:none;
 }
 
-.radioButton label{
+.radioButton>label{
     display:inline-block;
+}
+.radioButton>label:hover{
     cursor: pointer;
 }
 
@@ -70,6 +75,9 @@ li{
     border-radius:0.5rem;
     margin-left:0.5rem;
     margin-right:0.1rem
+}
+.friendButton:hover{
+    cursor: pointer;
 }
 
 @media screen and (max-height:900px) {
