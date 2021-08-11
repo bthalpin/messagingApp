@@ -46,9 +46,9 @@ ul {
     overflow-y: scroll;
 }
 
-/* li:hover{
+li:hover{
     cursor:pointer;
-} */
+}
 
 .addFriend{
     font-weight: bold;
@@ -63,12 +63,12 @@ ul {
     display:none;
 }
 
-.radioButton>label{
+/* .radioButton>label{
     display:inline-block;
 }
 .radioButton>label:hover{
     cursor: pointer;
-}
+} */
 
 
 .friendButton{
