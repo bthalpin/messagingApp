@@ -15,7 +15,7 @@ const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
                         id={friend} 
                         onClick = {()=>converse(friend)}
                     />
-                    <label htmlFor={friend}>
+                    <label className="contact" htmlFor={friend}>
                         {friend}
                     </label>
                 </li>
@@ -28,7 +28,7 @@ const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
                         id={friend} 
                         onClick = {()=>converse(friend)}
                     />
-                    <label htmlFor={friend}>{friend}</label>
+                    <label className="contact" htmlFor={friend}>{friend}</label>
                     <button 
                         className = "friendButton" 
                         onClick = {()=>unFriend(friend,pendOrReq)}>

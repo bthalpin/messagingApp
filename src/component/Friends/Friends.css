@@ -46,7 +46,7 @@ ul {
     overflow-y: scroll;
 }
 
-li:hover{
+.contact:hover{
     cursor:pointer;
 }
 
