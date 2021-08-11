@@ -17,7 +17,7 @@ const Friends = ({user,addFriend,converse}) => {
     //     setUniqueRequests([...new Set(user.requests)])
     //     setUniquePending([...new Set(user.pendingrequests)])
     // },[user])
-
+    const { requests, pendingrequests } = user
 
     const unFriend = (friend) =>{
         
@@ -114,11 +114,11 @@ const Friends = ({user,addFriend,converse}) => {
                                 </div>
                         
                                 {/* {uniqueRequests && uniqueRequests[0]? */}
-                                {user?.requests[0]?
+                                {requests[0]?
                                     <div className = "scroll">  
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
                                         <ul className = "scroll">
-                                            {uniqueRequests.map((friend)=>{
+                                            {requests.map((friend)=>{
                                                 return <Request 
                                                             friend = {friend} 
                                                             rejectFriend = {rejectFriend} 
@@ -132,11 +132,11 @@ const Friends = ({user,addFriend,converse}) => {
                                     :<></>
                                 }
                                 {/* {uniquePending&&uniquePending[0]? */}
-                                {user?.pendingrequests[0]?
+                                {pendingrequests[0]?
                                     <div className = "scroll">
                                         <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
                                         <ul className = "scroll">
-                                            {uniquePending.map((friend)=>{
+                                            {pendingrequests.map((friend)=>{
                                                 return <Pending 
                                                             friend = {friend} 
                                                             rejectFriend = {rejectFriend} 
