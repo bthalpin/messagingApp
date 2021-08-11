@@ -6,10 +6,11 @@ import '../../colors2.css';
 import socket from '../../socket';
 
 const Mail = ({privateMessage, setPrivateMessage, 
-                privateMessages, setPrivateMessages, 
-                user,deletePost,conversation,
-                setConversation,converse,
-                route,unread}) => {
+                privateMessages, user,
+                conversation, setConversation,
+                converse, route, unread,
+                onRouteChange
+            }) => {
 
     const [hiddenMailStatus,setHiddenMailStatus] = useState({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide"})
     let offset=''
@@ -78,14 +79,14 @@ const Mail = ({privateMessage, setPrivateMessage,
             return {...prevCurrentPrivateMessage,message:''}})        
     }
 
-    const mainMailWindow = ()=>{
-        setPrivateMessage(prevPrivateMessage=>{
-            return {...prevPrivateMessage,recipientEmail:''}
-        })
-        setConversation(prevConversation=>{
-            return {...prevConversation,you:''}
-        })
-    }
+    // const mainMailWindow = ()=>{
+    //     setPrivateMessage(prevPrivateMessage=>{
+    //         return {...prevPrivateMessage,recipientEmail:''}
+    //     })
+    //     setConversation(prevConversation=>{
+    //         return {...prevConversation,you:''}
+    //     })
+    // }
     
 
     return (
@@ -138,7 +139,7 @@ const Mail = ({privateMessage, setPrivateMessage,
 
                     </div>
                     <div className = "privateMessage">
-                        <button className = "backButton" onClick = {mainMailWindow}>&lt;</button>
+                        <button className = "backButton" onClick = {()=>onRouteChange('mail')}>&lt;</button>
                         <p className = "contactName">{conversation.you}</p>
                     </div>    
                 </div>

@@ -357,6 +357,7 @@ const converse = (friend) => {
                               converse = {converse}
                               route = {route}
                               unread = {unread}
+                              onRouteChange = {onRouteChange}
                               // privateContacts = {privateContacts}
                             /> 
                       </div>

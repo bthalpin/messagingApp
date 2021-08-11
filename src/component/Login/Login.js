@@ -3,17 +3,14 @@ import Inputblock from './Inputblock';
 import './Login.css';
 import '../../colors2.css';
 import socket from '../../socket';
-import { io } from 'socket.io-client';
 
 const Login = ({
     user,route,errorMessage,
     setRoute,setUser, setErrorMessage,
     setIsSignedIn,onRouteChange, 
-    setCurrentMessage, pastMessages,
-    setPrivateMessages, setCurrentPublicMessage,
-    setPrivatePublicMessage,setConversation,
-    setPastMessages,setPastPublicMessages,
-    setFilteredMessages,filteredMessages,
+    setCurrentMessage, setPrivateMessages, 
+    setConversation, setPastMessages,
+    setPastPublicMessages,
     loadData,password,setPassword
   }) => {
     
@@ -61,28 +58,28 @@ const Login = ({
                 
               setConversation({me:res.email,you:''})
               loadData('friendmessageload',
-              JSON.stringify({
-                email:upperEmail,
-                friends:user.friends
-              }),
-              setPastMessages
-              )
-    loadData('publicmessageload',
-              JSON.stringify({
+                JSON.stringify({
                   email:upperEmail,
                   friends:user.friends
-              }),
-              setPastPublicMessages
+                }),
+                setPastMessages
+              )
+              loadData('publicmessageload',
+                JSON.stringify({
+                    email:upperEmail,
+                    friends:user.friends
+                }),
+                setPastPublicMessages
               )
 
-    loadData('privatemessageload',
-              JSON.stringify({
-                email: upperEmail,
-                friends:user.friends
-              }),
-              setPrivateMessages
+              loadData('privatemessageload',
+                JSON.stringify({
+                  email: upperEmail,
+                  friends:user.friends
+                }),
+                setPrivateMessages
               )    
-    socket.emit('loadRead',{recipientemail:upperEmail})
+              socket.emit('loadRead',{recipientemail:upperEmail})
 
             }else{
               setErrorMessage('Invalid Login Information')
@@ -92,9 +89,6 @@ const Login = ({
             
         })
         .catch(err=>console.log(err))
-
-       
-        
       }
     
       const verifyRegistration = (upperEmail) => {
@@ -183,9 +177,7 @@ const Login = ({
                         </div>
                     </div>
                 </article>
-    
           </div>
-           
       </div>
     )
 }
