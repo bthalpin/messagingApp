@@ -239,7 +239,11 @@ socket.on('deletemail',data=>{
     }
     
     if (newFriend){
-        if (!user.friends||!user.friends.includes(newFriend)||!user.pendingrequests.includes(newFriend)||!user.request.includes(newFriend)){
+        if (!user.friends
+            ||!user.friends.includes(newFriend)
+            ||!user.pendingrequests.includes(newFriend)
+            ||!user.request.includes(newFriend)
+            ){
           fetch('https://socially-distanced-server.herokuapp.com/friendrequest',{
               method:'post',
               headers:{'Content-Type':'application/json'},
@@ -299,23 +303,18 @@ const converse = (friend) => {
                         <div className = "mainMessage">
                             <Messages 
                                 user = {user} 
-                                loadData = {loadData}
                                 route = {route}
                                 deletePost = {deletePost}
                                 currentMessage = {currentMessage}
                                 setCurrentMessage = {setCurrentMessage}
                                 pastMessages = {pastMessages}
-                                setPastMessages = {setPastMessages}
                                 currentPublicMessage = {currentPublicMessage}
                                 setCurrentPublicMessage = {setCurrentPublicMessage}
                                 pastPublicMessages = {pastPublicMessages}
-                                setPastPublicMessages = {setPastPublicMessages}
                                 addFriend = {addFriend}
-                                conversation = {conversation}
                                 setFilteredMessages = {setFilteredMessages}
                                 filteredMessages = {filteredMessages}
                                 publicStatus = {publicStatus}
-                                setPublicStatus = {setPublicStatus}
                               />
                         </div>
                   </div>
@@ -327,16 +326,11 @@ const converse = (friend) => {
                               privateMessage = {privateMessage} 
                               setPrivateMessage = {setPrivateMessage} 
                               privateMessages = {privateMessages} 
-                              setPrivateMessages = {setPrivateMessages} 
-                              deletePost = {deletePost} 
                               conversation = {conversation}
-                              loadData = {loadData} 
-                              setConversation = {setConversation}
                               converse = {converse}
                               route = {route}
                               unread = {unread}
                               onRouteChange = {onRouteChange}
-                              // privateContacts = {privateContacts}
                             /> 
                       </div>
                   </div>
@@ -360,14 +354,11 @@ const converse = (friend) => {
                     setErrorMessage = {setErrorMessage}
                     setIsSignedIn = {setIsSignedIn}
                     onRouteChange = {onRouteChange}            
-                    setCurrentMessage = {setCurrentMessage}
-                    pastMessages = {pastMessages}
+                    setCurrentMessage = {setCurrentMessage}                    
                     setPrivateMessages = {setPrivateMessages}
-                    setPastMessages = {setPastMessages}
-                    setCurrentPublicMessage = {setCurrentPublicMessage}
+                    setPastMessages = {setPastMessages}                    
                     setPastPublicMessages = {setPastPublicMessages}
-                    setConversation = {setConversation}
-                    setFilteredMessages = {setFilteredMessages}
+                    setConversation = {setConversation}                   
                     loadData = {loadData}
                     password = {password}
                     setPassword = {setPassword}

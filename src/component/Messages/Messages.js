@@ -15,8 +15,7 @@ const Messages = ({user, currentMessage,
                     route, addFriend, 
                     setFilteredMessages,filteredMessages,
                     publicStatus}) => {
-    
-    
+
     const [hiddenStatus,setHiddenStatus] = useState({
                                                 picture:"textareahide",
                                                 message:"textareahide",
@@ -67,8 +66,7 @@ const Messages = ({user, currentMessage,
         if (user.friends){
         setFilteredMessages(()=>{
             return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))
-        })          
-             
+            })     
         }
     },[user.friends,pastMessages])
 
@@ -83,21 +81,27 @@ const Messages = ({user, currentMessage,
                 setCurrentPublicMessage((prevCurrentPublicMessage)=>{
                     return {...prevCurrentPublicMessage,message:"#img#"+currentPublicMessage.message}
                 })
-                :
+            :
                 setCurrentMessage((prevCurrentMessage)=>{
                 return {...prevCurrentMessage,message:"#img#"+currentMessage.message}
             })
         }
         publicStatus?
-        setCurrentPublicMessage((prevCurrentPublicMessage)=>{
-            return {...prevCurrentPublicMessage,time:timeNow}
-        })
+            setCurrentPublicMessage((prevCurrentPublicMessage)=>{
+                return {...prevCurrentPublicMessage,time:timeNow}
+            })
         
         :
-        setCurrentMessage((prevCurrentMessage)=>{
-            return {...prevCurrentMessage,time:timeNow}
-        })       
-        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})          
+            setCurrentMessage((prevCurrentMessage)=>{
+                return {...prevCurrentMessage,time:timeNow}
+            })       
+            setHiddenStatus({
+                                picture:"textareahide",
+                                message:"textareahide",
+                                button:"",
+                                submit:"textareahide",
+                                position:' middle'
+                            })          
     }
 
     const onInputChange = (event) => {       
@@ -105,7 +109,8 @@ const Messages = ({user, currentMessage,
             setCurrentPublicMessage((prevCurrentPublicMessage)=>{
                 return {...prevCurrentPublicMessage,message:event.target.value}
             })
-            :setCurrentMessage((prevCurrentMessage)=>{
+        :
+            setCurrentMessage((prevCurrentMessage)=>{
                 return {...prevCurrentMessage,message:event.target.value}
             })            
     }
@@ -124,7 +129,7 @@ const Messages = ({user, currentMessage,
                 contains =  newArr[i].likes.every(checkLiked)
             }
             
-            if (!newArr[i].likes,contains ){
+            if (!newArr[i].likes||contains ){
                 socket.emit('likes',{
                             name:user.name,
                             email:user.email,
@@ -133,7 +138,7 @@ const Messages = ({user, currentMessage,
                             })
             
             }else{
-            socket.emit('dislike',{
+                socket.emit('dislike',{
                         name:user.name,
                         email:user.email,
                         id:currentId,
@@ -161,27 +166,46 @@ const Messages = ({user, currentMessage,
                             id:currentId,
                             database:'friendmessage'
                             })
-            }        
-        }
-}
+                }           
+            }
+    }
 
     
 
     const changeHidden = (picture) => {
         if(picture){
-           setHiddenStatus({picture:"",message:"textareahide",button:"textareahide",submit:"",position:' right'})
+           setHiddenStatus({
+                            picture:"",
+                            message:"textareahide",
+                            button:"textareahide",
+                            submit:"",
+                            position:' right'
+                        })
         }else{
-            setHiddenStatus({picture:"textareahide",message:"",button:"textareahide",submit:"",position:' right'})
+            setHiddenStatus({
+                            picture:"textareahide",
+                            message:"",
+                            button:"textareahide",
+                            submit:"",
+                            position:' right'
+                        })
         }        
     }
 
     const goBack = () => {
-        setHiddenStatus({picture:"textareahide",message:"textareahide",button:"",submit:"textareahide",position:' middle'})
+        setHiddenStatus({
+                        picture:"textareahide",
+                        message:"textareahide",
+                        button:"",
+                        submit:"textareahide",
+                        position:' middle'
+                    })
         publicStatus?
             setCurrentPublicMessage((prevCurrentPublicMessage)=>{
                 return {...prevCurrentPublicMessage,message:''}
             })
-            :setCurrentMessage((prevCurrentMessage)=>{
+        :
+            setCurrentMessage((prevCurrentMessage)=>{
                 return {...prevCurrentMessage,message:''}
             })
     }
