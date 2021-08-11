@@ -12,7 +12,7 @@ const Pending = ({friend, rejectFriend,pendOrReq,i}) => {
                     name = "friend" 
                     id={friend} 
                 />
-                <label htmlFor={friend}>{friend}</label>
+                <label className="contact" htmlFor={friend}>{friend}</label>
                 <button 
                     className = "friendButton" 
                     onClick = {()=>rejectFriend(friend,pendOrReq)}>

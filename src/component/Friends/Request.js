@@ -13,6 +13,7 @@ const Request = ({friend, rejectFriend,acceptFriend,pendOrReq,i}) => {
                     id={friend} 
                 />
                 <label 
+                    className="contact"
                     htmlFor={friend}>{friend}</label>
                 <button 
                     className = "friendButton" 
