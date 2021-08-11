@@ -3,7 +3,7 @@ import Friend from './Friend';
 import Request from './Request';
 import Pending from './Pending';
 import './Friends.css';
-import '../../colors2.css';
+import './colorScheme.css';
 
 
 const Friends = ({user,addFriend,converse}) => {

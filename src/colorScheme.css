@@ -1,0 +1,304 @@
+:root{
+    /* --backColor:linear-gradient(to bottom,#006D77,#83C5BE); */
+    /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
+    /* --buttonColor:#fd5c21d0;
+    --fadedColor: #E29578; */
+    --backColor:linear-gradient(to top,var(--fifthColor),var(--fourthColor));
+    /* linear-gradient(to right,rgba(199, 198, 198, 0.8),rgba(94, 51, 175, 0.918)); */
+    --buttonColor:#fb3640d2;
+    --fadedColor: #E8DAB2;
+    --gradient:linear-gradient(to bottom,#E2E2E2,#247BA0);
+    --firstColor:#E2E2E2;
+    --secondColor:#235392;    
+    --secondColorOpacity:#0f408179;
+    --thirdColor:#1280af;
+    --fourthColor:#2da2d4;
+    --fifthColor:#1841c5;
+    --sixthColor:rgb(171, 182, 197);
+}
+html{
+    /* overflow-y:scroll; */
+    background:#d7dfe2;
+    /* background:#EDF6F9; */
+    /* background-image: url('./images/lightbackgroundtext.png'); */
+      /* background-size: 20%;  */
+}
+
+
+.navroot{
+    background:var(--thirdColor);
+    
+}
+.hideButton, .wideButton{
+    background: var(--secondColor);
+    color:white;
+}
+
+.commentsection,.mailbox,.mainFriend,.formWindow{
+    background:var(--sixthColor);
+    border:4px solid var(--thirdColor);
+    
+}
+/* .mainFriend{
+    background:var(--sixthColor);
+    border:4px solid var(--thirdColor);
+} */
+
+
+.messageArea{
+    background:#EDF6F9;
+    /* border:5px solid #EDF6F9; */
+}
+
+
+.user{
+    background:var(--thirdColor);
+    color:white;
+    border-radius: 0;
+}
+
+.likeButton{
+    border:1px solid var(--secondColor);
+}
+
+.senderbackground{
+    margin:0;
+}
+
+.user.senderbackground{
+    background:var(--fourthColor);
+}
+
+/* .mailbox{
+    background:var(--secondColorOpacity);
+    border:4px solid var(--secondColorOpacity);
+} */
+
+
+/* .formWindow {
+    background:var(--fourthColor);
+    border:4px solid var(--thirdColor);
+} */
+
+.inputField {
+    border:0.1rem solid rgb(0, 0, 0);
+}
+
+.likes{
+    background:var(--secondColor);
+    border-top:1px solid var(--secondColor);
+}
+.liketext{
+    color:white;
+}
+.friendtitle{
+    background: #006d67;
+    color:white;
+}
+
+.requesttitle{
+background:var(--secondColorOpacity);
+color:white;
+
+}
+
+.pendingtitle{
+    background: var(--secondColorOpacity);
+    color:white;
+}
+
+.mainfriend{
+    background:#d7dfe2;
+    border:1px solid gray;
+}
+
+.addFriend{
+    background: var(--buttonColor);
+    color:white;
+}
+
+.friendList{
+    border:1px solid gray;
+    
+}
+
+.hideFriend{
+    background: var(--buttonColor);
+    color:white;
+}
+
+.showFriend{
+    background: transparent;
+    color:white;
+}
+
+input[type="radio"]:checked+label{
+    background: var(--fadedColor);
+}
+
+
+
+
+.buttons {
+    background:var(--buttonColor);
+    color:white;
+    
+}
+
+.groupChat{
+    /* border-radius:5rem; */
+    /* border-top-left-radius: 5rem; */
+    /* border-top-right-radius: 5rem; */
+    /* border:1px solid white; */
+    /* background: #379ac59c; */
+}
+
+.friendButton{
+    background: var(--buttonColor);
+    color:white;
+}
+
+.publicButtons{
+    background:var(--secondColor);
+    color:rgb(173, 173, 173);
+    border:2px solid #00383d;
+    /* border-bottom:2px solid var(--fadedColor); */
+    
+}
+
+
+.navButtons{
+    background:var(--thirdColor);
+
+    color:rgba(255, 255, 255, 0.774);
+}
+
+.requests,.message,.unreadMessage{
+    background: var(--buttonColor);
+}
+.submitbutton{
+    background:var(--buttonColor);
+    color:white;
+}
+
+.msg{
+    background:var(--buttonColor);
+    color:white;
+}
+
+
+.button{
+    background:transparent;
+    border:0.1rem solid var(--thirdColor);
+    color:white;
+}
+
+.button:hover { 
+    border:0.1rem solid var(--buttonColor);
+    color:var(--buttonColor);
+}
+
+
+.navElement{
+    color:white;
+    /* text-decoration: underline; */
+    
+}
+
+.navElement:hover{
+    color:lightgray;
+}
+
+
+
+/* .title{
+    color:white;
+    text-shadow:2px 2px 4px black;
+    
+    
+} */
+
+.deleteButton{
+    color:rgb(23, 41, 31);
+}
+
+.deleteBackground{
+    background: #9bacc4;
+    
+    border:1px solid black;
+}
+
+.backButton{
+    background: var(--secondColor);
+    border:none;
+}
+
+
+.partner{
+    color:white;
+    
+}
+
+
+.error{
+    color:rgb(71, 12, 12);
+    font-weight:bold;
+}
+
+
+.homehome,.friendfriend,.mailmail,.friendsfriends{
+    background:var(--secondColorOpacity);
+    color:white;
+}
+
+
+.navButtons:hover{
+    color:white;
+}
+
+.radioButton>li>label{
+    background:var(--secondColorOpacity);
+    /* border-radius:0.3rem; */
+    /* padding:0 0.3rem; */
+    color:rgb(223, 223, 223);
+    
+    box-shadow:0.2rem 0.2rem 0.6rem rgb(92, 92, 92);
+    border-radius:0.2rem;
+    padding:0 0.3rem;
+}
+.radioButton>li>label:hover{
+    color:white;
+}
+.contactName{
+    background:var(--secondColorOpacity);
+    
+    box-shadow:0.2rem 0.2rem 0.6rem rgb(135, 142, 155);
+    border-radius:0.2rem;
+    padding:0 0.3rem;
+}
+
+
+/* .contactName{
+    font-weight: bold;
+} */
+/* .homehome:hover,.friendfriend:hover,.mailmail:hover,.friendsfriends:hover{
+    color:white;
+} */
+
+@media (max-width:500px) {
+    .navButtonContainer{
+        border:1px solid var(--fourthColor);
+    }
+    .navButtons{
+        border-bottom:1px solid var(--fourthColor);
+    }
+    .mainNav{
+        background: var(--thirdColor);
+    }
+    .groupChat{
+        background: var(--fourthColor);
+        color:rgba(255, 255, 255, 0.329);
+    }
+    
+}
+

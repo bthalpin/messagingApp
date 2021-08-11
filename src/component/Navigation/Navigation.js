@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import './Navigation.css';
-import '../../colors2.css';
+import './colorScheme.css';
 import Hamburger from "../../images/hamburger.png";
 import Notificationicon from "../../images/notification.png";
 
@@ -8,6 +8,7 @@ const Navigation = ({onRouteChange, isSignedIn,
                     route, user, 
                     changePublicStatus,
                     totalMessages})=>{
+
     const [hideStatus,setHideStatus] = useState('Hidden')
 
     const hide = ()=>{
@@ -44,8 +45,6 @@ const Navigation = ({onRouteChange, isSignedIn,
                     </div>
                 <div className = {'mainNav'+hideStatus}> 
                     <button className = "wideButton" onClick = {hide}>Close</button>
-                        {/* <div className = "groupContainer"> */}
-                            {/* <p className = "groupChat">Group Chats</p> */}
                             <div className = "navButtonContainer " >
                                 <p 
                                     onClick = {()=>closeDropDown('home',true)} 
@@ -62,7 +61,6 @@ const Navigation = ({onRouteChange, isSignedIn,
                                         Friends Chat
                                 </p>
                             </div>
-                        {/* </div> */}
                        
                         <div>
                             <p 
@@ -87,12 +85,12 @@ const Navigation = ({onRouteChange, isSignedIn,
                             </p>
                         </div>
                         <nav className = "">
-                        <p 
-                            onClick = {() => onRouteChange('Sign In')} 
-                            className = {"navButtons "}>
-                                Sign Out
-                        </p>
-                    </nav>
+                            <p 
+                                onClick = {() => onRouteChange('Sign In')} 
+                                className = {"navButtons "}>
+                                    Sign Out
+                            </p>
+                        </nav>
                     </div>
                 
             </div>            

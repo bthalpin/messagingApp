@@ -6,7 +6,7 @@ import Mail from './component/Mail/Mail';
 import Friends from './component/Friends/Friends';
 import socket from './socket'
 import './App.css';
-import './colors2.css';
+import './colorScheme.css';
 
 // https://socially-distanced-server.herokuapp.com/
 

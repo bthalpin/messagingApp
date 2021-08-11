@@ -1,6 +1,6 @@
 import React from 'react';
 import './Friends.css';
-import '../../colors2.css';
+import './colorScheme.css';
 
 const Pending = ({friend, rejectFriend,pendOrReq,i}) => {
     
