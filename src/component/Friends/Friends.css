@@ -1,143 +1,7 @@
-ul {
-    list-style-type: none;
-    margin:0;
-    padding:0.5rem 0.3rem;
-    
-    height:3rem;
-    overflow-y: scroll;
-}
-
-li{
-    cursor:pointer;
-}
-
-.friendtitlebox{
-    
-    font-size:1.5rem;
-}
-
-.friendtitle{
-    margin:0;
-    /* background: rgb(4, 113, 255); */
-    padding:0.5rem 0;
-    font-size:1.5rem;
-    /* border:1px solid gray; */
-    /* color:white; */
+/* .mainfriend{
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    /* border-top-left-radius: 0.35rem;
-    
-    border-top-right-radius: 0.35rem; */
-    /* text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; */
-}
-
-.requesttitle,.pendingtitle{
-    margin-top:0rem;
-    margin-bottom:0;
-}
-
-.fixed{
-    /* position:fixed; */
-}
-
-.mainfriend{
-    /* position: fixed; */
-    /* left:0; */
-    /* height:74vh; */
-    /* background:white; */
-    /* border:1px solid gray; */
-    
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    /* padding:0.3rem */
-}
-
-.scroll{
-    height:40vh;
-    overflow-y: scroll;
-    -ms-overflow-style: none;  
-    scrollbar-width: none; 
-}
-.scroll::-webkit-scrollbar{
-    display:none;
-}
-
-
-.addFriend{
-    /* background: rgb(4, 113, 255); */
-    /* color:white; */
-    font-weight: bold;
-    border-radius: 0.5rem;
-    margin-bottom:0.2rem;
-}
-
- .friendList{
-    /* position:fixed;
-    left:50%;
-    top:10%;
-    transform:translate(-50%,0%); */ 
-    /* display:flex; */
-    /* align-items: center; */
-    /* height:100%; */
-    /* border:1px solid gray; */
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    
-    border-bottom-left-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
-    /* z-index: 1;
-    margin-left: ; */
-    
-}
-
-/* ul{
-    
-    height:100%
 } */
-
-.hideFriend{
-    text-align: center;
-    width:100%;
-    /* background: rgb(4, 113, 255); */
-    /* color:white; */
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-}
-
-.showFriend{
-    /* position:fixed; */
-    /* margin-top: 0; */
-    border:none;
-    /* outline:none; */
-    /* height:3rem; */
-    /* margin:0.5rem 1rem; */
-    /* background: transparent; */
-    /* color:white; */
-    border-radius: 0.5rem;
-}
-
-/* .radioButton{
-    justify-content: space-around;
-    display:flex;
-} */
-.radioButton input[type="radio"]{
-    display:none;
-}
-
-.radioButton label{
-    display:inline-block;
-    cursor: pointer;
-}
-
-input[type="radio"]:checked+label{
-    /* background: rgb(162, 202, 255); */
-}
-
-.friendButton{
-    border-radius:0.5rem;
-    margin-left:0.5rem;
-    margin-right:0.1rem
-}
 .mainFriend{
     display:block;
     margin:auto;
@@ -152,6 +16,62 @@ input[type="radio"]:checked+label{
 .mainFriend::-webkit-scrollbar{
     display:none;
 }
+
+.friendtitlebox{
+    
+    font-size:1.5rem;
+}
+
+.scroll{
+    height:40vh;
+    overflow-y: scroll;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; 
+}
+.scroll::-webkit-scrollbar{
+    display:none;
+}
+
+.requesttitle,.pendingtitle{
+    margin-top:0rem;
+    margin-bottom:0;
+}
+
+ul {
+    list-style-type: none;
+    margin:0;
+    padding:0.5rem 0.3rem;
+    
+    height:3rem;
+    overflow-y: scroll;
+}
+
+li{
+    cursor:pointer;
+}
+
+.addFriend{
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin-bottom:0.2rem;
+}
+
+.radioButton input[type="radio"]{
+    display:none;
+}
+
+.radioButton label{
+    display:inline-block;
+    cursor: pointer;
+}
+
+
+.friendButton{
+    border-radius:0.5rem;
+    margin-left:0.5rem;
+    margin-right:0.1rem
+}
+
 @media screen and (max-height:900px) {
     
     .mainFriend{
@@ -173,45 +93,43 @@ input[type="radio"]:checked+label{
     }
     
 }
-
-@media screen and (max-height:400px) {
-    
-    .mainFriend{
-        /* height: 85vh; */
+@media screen and (max-height:430px) {
+    ul{
+        height:2rem;
     }
     
 }
-
 @media screen and (max-height:400px) {
-    
     .mainFriend{
         height: 78vh;
     }
 }
-
-@media screen and (max-height:280px) {
-    
+@media screen and (max-height:325px) {
+    .mainfriend{
+        
+        height:90vh;
+        overflow-y: scroll;
+        border:none;
+    }
+}
+@media screen and (max-height:280px) {    
     .mainFriend{
         height: 70vh;
     }
-}
-
-  
+}  
 @media (max-height:220px) {
     .mainFriend{
         height:68vh;
-    }
-    
+    }    
 }
-
 @media (max-height:160px) {
     .mainFriend{
         height:58vh;
-    }
-    
+    }    
 }
-@media screen and (min-width:950px) {
-    
+
+
+@media screen and (min-width:950px) {    
     .mainFriend{
         max-width: 35rem;
     }
@@ -219,124 +137,23 @@ input[type="radio"]:checked+label{
 @media screen and (max-width:700px){
     .mainFriend{
         width:80vw;
-        /* min-width: 20vw; */
-        /* padding:2rem 1rem; */
-    }
-    
-    
+    }    
 }
-
 @media screen and (max-width:500px){
     .mainFriend{
         width: 90vw;
     }
-    
-
 }
-
-@media screen and (max-width:270px){
-    
+@media screen and (max-width:270px){    
     .mainFriend{
         width:100vw;
         border-left:none;
         border-right:none;
-    }
-  
-    
+    }    
 }
-
-@media (max-width:170px) {
-    
+@media (max-width:170px) {    
     .mainFriend{
-        width:100vw;
-        
-    }
-   
-    
+        width:100vw;        
+    }    
 }
 
-
-
-
-
-
-
-
-
-
-@media screen and (max-height:650px) {
-    .mainfriend{
-        /* height:55vh; */
-    }
-    
-    ul{
-        /* height:3rem; */
-        /* padding:0 0.3rem; */
-    }
-}
-
-@media screen and (max-height:430px) {
-    .friendList{
-        top:1%;
-    }
-    ul{
-        height:2rem;
-    }
-    
-}
-
-@media screen and (max-height:325px) {
-    .friendList{
-        top:1%;
-        display:flex;
-        align-items: end;
-        border:none;
-    }
-    .mainfriend{
-        
-        height:90vh;
-        overflow-y: scroll;
-        border:none;
-    }
-    .hideFriend{
-        height:90vh;
-        border-bottom-left-radius:0rem;
-        border-top-right-radius:0.5rem;
-        overflow:hidden;
-        
-    }
-}
-
-@media screen and (max-width:900px) {
-    
-    /* .friendList{
-        margin-left:10rem;
-    } */
-
-    
-}
-
-@media screen and (max-width:450px) {
-    .showFriend{
-        margin:0;
-        
-    }
-    .friendimg{
-        /* width:2rem; */
-    }
-
-    
-}
-
-
-@media screen and (max-width:350px) {
-    .showFriend{
-        /* margin-top:0.6rem; */
-        
-    }
-    .friendimg{
-        /* width:2rem; */
-    }
-
-    
-}
