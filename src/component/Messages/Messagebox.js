@@ -23,15 +23,12 @@ const Messagebox = ({ route,text,
                             {text.includes('#img#')
                                 ? <Picture source = {text.substr(5,text.length-1)}/>
                                 :<p>{text}</p>}
-                        </div>
-                        
-                    </div>
-                    
-                    
+                        </div>                        
+                    </div>              
                 </div>
                 
                 <div className = {"user " + background}>                    
-                    <p onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
+                    <p className = "addFriend" onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
                     <p className='date'>{time}</p>
                 </div>
                
