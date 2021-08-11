@@ -1,6 +1,6 @@
 import React from 'react';
 import './Friends.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 
 const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
   

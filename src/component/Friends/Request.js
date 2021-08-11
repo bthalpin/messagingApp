@@ -1,6 +1,6 @@
 import React from 'react';
 import './Friends.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 
 const Request = ({friend, rejectFriend,acceptFriend,pendOrReq,i}) => {
  

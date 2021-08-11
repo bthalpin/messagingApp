@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import Messagebox from './Messagebox';
 import './Message.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 import socket from '../../socket';
 
 

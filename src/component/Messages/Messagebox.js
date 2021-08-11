@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Message.css";
-import './colorScheme.css';
+import '../../colorScheme.css';
 import Picture from './Picture';
 import Like from '../../images/like.png';
 import Liked from '../../images/liked.png';

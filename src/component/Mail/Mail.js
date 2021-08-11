@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Messagebox from '../Messages/Messagebox';
 import Friend from '../Friends/Friend';
 import './Mail.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 import socket from '../../socket';
 
 const Mail = ({privateMessage, setPrivateMessage, 

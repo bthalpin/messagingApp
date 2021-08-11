@@ -1,7 +1,7 @@
 import React from 'react';
 import Inputblock from './Inputblock';
 import './Login.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 import socket from '../../socket';
 
 const Login = ({

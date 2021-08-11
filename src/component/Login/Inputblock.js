@@ -1,6 +1,6 @@
 import React from 'react';
 import './Login.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 
 const Inputblock = ({inputType,onChanges,value}) => {
     return (

@@ -1,6 +1,6 @@
 import React, {useState}from 'react';
 import './Navigation.css';
-import './colorScheme.css';
+import '../../colorScheme.css';
 import Hamburger from "../../images/hamburger.png";
 import Notificationicon from "../../images/notification.png";
 
