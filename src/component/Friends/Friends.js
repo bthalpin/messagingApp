@@ -6,17 +6,9 @@ import './Friends.css';
 import '../../colors2.css';
 
 
-const arrow = "x";
-
 const Friends = ({user,addFriend,converse}) => {
     
-    // const [uniqueRequests,setUniqueRequests] = useState([...new Set(user?.requests)])
-    // const [uniquePending,setUniquePending] = useState([...new Set(user?.pendingrequests)])
    
-    // useEffect(() =>{
-    //     setUniqueRequests([...new Set(user.requests)])
-    //     setUniquePending([...new Set(user.pendingrequests)])
-    // },[user])
     const { requests, pendingrequests } = user
 
     const unFriend = (friend) =>{
@@ -78,15 +70,10 @@ const Friends = ({user,addFriend,converse}) => {
     
     return(
             
-        <div className = "maincomment">                
-                
-                
-               
+        <div className = "maincomment">    
                 <div className="mainFriend">
-                    
-        
-                    <div className="">
-                    <div className = "">
+                    {/* <div className=""> */}
+                        {/* <div className = ""> */}
                             <div  className="">
                                 <div >
                         
@@ -110,10 +97,15 @@ const Friends = ({user,addFriend,converse}) => {
                                      }
                         
             
-                                    <button className = "addFriend" onClick = {()=>addFriend("No Names")}>Add Contact</button>
+                                    <button 
+                                        className = "addFriend" 
+                                        onClick = {()=>addFriend("No Names")}>
+                                            Add Contact
+                                    </button>
+
                                 </div>
                         
-                                {/* {uniqueRequests && uniqueRequests[0]? */}
+                              
                                 {requests[0]?
                                     <div className = "scroll">  
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
@@ -131,7 +123,7 @@ const Friends = ({user,addFriend,converse}) => {
                                     </div>
                                     :<></>
                                 }
-                                {/* {uniquePending&&uniquePending[0]? */}
+                                
                                 {pendingrequests[0]?
                                     <div className = "scroll">
                                         <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
@@ -153,8 +145,8 @@ const Friends = ({user,addFriend,converse}) => {
                             </div>
                           
           
-    </div>
-    </div>
+    {/* </div> */}
+    {/* </div> */}
     </div></div>
     )
 
