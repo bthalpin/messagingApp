@@ -15,35 +15,11 @@
 }
 
 .mainMessage{
-  /* top:unset; */
-  /* margin:3rem auto -3rem auto; */
   margin:0rem auto;
-}
-
-@media (max-width:450px) {
-  .mainMessage{
-    /* margin-top:2.5rem; */
-  }
-  
-}
-
-@media (max-width:350px) {
-  .mainMessage{
-    /* margin-top:3.5rem; */
-  }
-  
 }
 
 @media (max-width:270px){
   .main{
     margin-left:0;
   }
-}
-
-  
-@media (max-height:220px) {
-  .mainMessage{
-      /* margin-top:0.5rem; */
-  }
-  
 }

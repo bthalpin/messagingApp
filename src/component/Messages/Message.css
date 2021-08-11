@@ -3,27 +3,17 @@
     margin:auto;
     padding-top: .2rem;
 }
+
 .inputbox{
-    /* margin-top:1rem; */
     padding:0.3rem;
     display: flex;
-    /* height:2rem; */
     position:fixed;
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* margin-left:auto; */
     left:50%;
     top:0%;
-    transform: translate(-50%,100%);
-    
+    transform: translate(-50%,100%);    
 }
 
 .textarea, .textareapic{
-    
-    /* padding:1rem; */
-    /* resize:none; */
-    /* height:1.5rem; */
-    /* transition:0.25s ease-in-out; */
     border:1px solid black;
     border-radius: 0.5rem;
     margin:0rem 0.5rem;
@@ -33,86 +23,37 @@
     z-index: 1;
     position: absolute;
     left:50%;
-    /* top:-20%; */
-    /* margin-left:100rem; */
-    box-shadow:1px 1px 10px black;
-    /* margin-left:-20%; */
-    /* overflow: hidden; */
-    
+    box-shadow:1px 1px 10px black;    
 }
 
-.public{
-    transform: translate(-50%,-15%);
-}
-.friend{
-    transform: translate(-50%,-15%);
-}
-
-
-
-.textspan{
-    background: blue;
-    /* height:100%; */
-}
-@media (max-width:700px) {
-    .textarea,.textareapic{
-        width: 70vw;
-    }
-    
-}
 .textarea:focus{
     height:2rem;
-    /* transform: translate(-50%,70%); */
-    /* border:none; */
-    /* border-radius: 1rem; */
-    outline:none;
-    
-    
+    outline:none;    
 }
 
 .textareapic:focus{
-    outline:none;
-    
+    outline:none;    
 }
 
 .textareahide{
     display:none;
 }
 
-.submitbutton{
-    /* position: relative; */
-    /* top:0; */
-    height:2rem;
-    margin:0rem 0.5rem;
+.public{
+    transform: translate(-50%,-15%);
 }
 
-/* .filter{ */
-    /* display: flex; */
-    /* width:20vw; */
-/* } */
-/* 
-.filterLabel{
-    padding:0.25rem;
-} */
+.friend{
+    transform: translate(-50%,-15%);
+}
 
 .commentsection{
     display:block;
     margin:auto;
-    /* background:linear-gradient(340deg ,rgba(31, 94, 150,0.1),rgba(8, 185, 255,0.8)); */
-    /* background-image: url('../../images/mainbackground2.png'); */
-    /* background-size: 40%; */
-    /* background-repeat: no-repeat; */
-    /* background-position: center; */
     height: 80vh;
-    /* border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem; */
     border-radius: 0.2rem;
-    /* border:4px solid rgba(8, 185, 255,0.8); */
     width: 35rem;
     overflow-y: scroll;
-    /* border-top:4px dashed black; */
-    /* background-attachment: scroll; */
-    /* justify-content: center; */
     -ms-overflow-style: none;  
     scrollbar-width: none; 
 }
@@ -121,125 +62,65 @@
     display:none;
 }
 
+.msg{
+    padding:0.3rem 0.2rem;
+    border:2px solid black;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    margin:0rem 0.5rem;
+}
+
 .bigbox{
     padding-top:2.7rem;
 }
+
 .box{
     display:flex;
     justify-content: center;
-    
-    /* height:5rem; */
-    /* width:40vw; */
-    margin:0;
-    
+    margin:0;    
 }
 
 .smallbox{
     margin:0.5rem;
-    /* border-top:2px solid black; */
-    
     border-radius:0.5rem;
     min-width:10rem;
     max-width:60vw;
-
-
-    /* min-width:400px; */
-    box-shadow: .05rem 0.05rem 0.3rem black;
-    /* overflow-wrap: break-word; */
-    /* word-wrap: break-word; */
-    
+    box-shadow: .05rem 0.05rem 0.3rem black;    
 }
-
-/* @media screen and (max-width:700px){
-    .smallbox{
-        min-width: 40vw;
-    }
-} */
 
 .messageArea{
     display:flex;
-    /* background:white; */
     justify-content: left;
-    /* border:5px solid #00a2ff; */
     border-bottom: none;
     border-top-right-radius: 0.2rem;
     border-top-left-radius: 0.2rem;
 }
-.deleteContainer{
-    /* border-radius: 0.2rem;
-    margin-right:0.2rem; */
-    /* padding:0; */
-    /* display:flex;
-    justify-content: flex-end; */
-    /* max-width: 30%; */
-    
-}
-button {
-    -webkit-appearance: none;
-    
-  }
-.deleteBackground{
-    border:none;
-    height:100%;
-    /* margin:.1rem; */
-    /* padding:0rem 0.4rem; */
-    margin-right:0.2rem;
-}
-.deleteButton{
-    /* background:transparent; */
-    border:none;
-    /* font-weight: bold; */
-    /* font-size:1rem; */
-    /* color:darkred; */
-    /* padding:0rem 0.35rem; */
-    width:100%;
-    -webkit-appearance: none;
-    /* border-radius: 0.2rem; */
-}
-
 
 .text{
     padding:0.5rem 1rem;
     text-align: start;
     color:black;
     width:50vw;
-    /* min-height: 4rem; */
 }
 
 .textmessage{
-    /* width:100%; */
     word-wrap:break-word;
     white-space: pre-wrap;
 }
 
-
-.submitbutton{
-    /* background:#00a2ff; */
-    border-radius: 0.5rem;
-    /* color:white; */
-    font-weight: bold;
-    font-size:1rem;
-}
 .user{
-    /* background:#00a2ff; */
-    /* color:white; */
     display:flex;
     align-items: center;
     justify-content: space-between;
     padding:0.1rem 0.3rem;
     margin:0;
     font-size: 0.8rem;
-    /* border:3px solid #00a2ff; */
-    /* border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem; */
 }
 
 .user > p{
     padding:0;
     margin-top:0;
-    margin-bottom:0;
-    
-    
+    margin-bottom:0;    
 }
 
 .friendName:hover{
@@ -257,40 +138,18 @@ button {
     padding:0rem;
     font-size:0.75rem;
     height:1.3rem;
-    /* margin-bottom:0.1rem; */
-    /* margin-right:0.1rem; */
-    
     border-bottom-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
-    /* background:tra; */
 }
 
 .likeButton{
     margin:0rem;
     padding:0;
-    /* border:1px solid #00a2ff; */
     border-radius: 0.2rem;
-}
-
-.senderbackground{
-    /* border:5px solid #83d1ff; */
-}
-
-.user.senderbackground{
-    /* background:#83d1ff; */
 }
 
 .likedelete{
     display:flex;
-}
-
-.msg{
-    padding:0.3rem 0.2rem;
-    border:2px solid black;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    /* height:2rem; */
-    margin:0rem 0.5rem;
 }
 
 .liketext{
@@ -304,71 +163,55 @@ button {
     display:none;
 }
 
+.deleteButton{
+    border:none;
+    width:100%;
+}
 
-@media screen and (max-height:900px) {
-    
+@media screen and (max-height:900px) {    
     .commentsection{
         height: 85vh;
-    }
-    
+    }    
 }
-@media screen and (max-height:650px) {
-    
+@media screen and (max-height:650px) {    
     .commentsection{
         height: 83vh;
-    }
-    
+    }    
 }
-@media screen and (max-height:530px) {
-    
+@media screen and (max-height:530px) {    
     .commentsection{
         height: 80vh;
-    }
-    
+    }    
 }
-
-@media screen and (max-height:400px) {
-    
-    .commentsection{
-        /* height: 85vh; */
-    }
+@media screen and (max-height:400px) {    
     .inputbox{
         padding-bottom:0.2rem;
     }
     .textarea{
         margin:0.1rem;
-    }
-    
+    }    
 }
-
-@media screen and (max-height:400px) {
-    
+@media screen and (max-height:400px) {    
     .commentsection{
         height: 78vh;
     }
 }
-
-@media screen and (max-height:280px) {
-    
+@media screen and (max-height:280px) {    
     .commentsection{
         height: 70vh;
     }
-}
-
-  
+}  
 @media (max-height:220px) {
     .commentsection{
         height:68vh;
-    }
-    
+    }    
 }
-
 @media (max-height:160px) {
     .commentsection{
         height:58vh;
-    }
-    
+    }    
 }
+
 @media screen and (min-width:950px) {
     .smallbox{
         max-width:30rem;
@@ -383,26 +226,11 @@ button {
 @media screen and (max-width:700px){
     .commentsection{
         width:80vw;
-        /* min-width: 20vw; */
-        /* padding:2rem 1rem; */
     }
-    .smallbox{
-        /* width: 70vw; */
-    }
-    
-    
+    .textarea,.textareapic{
+        width: 70vw;
+    }    
 }
-
-/* @media (max-width:625px) {
-    .public{
-        transform: translate(-50%,-25%);
-    }
-    .friend{
-        transform: translate(-50%,-100%);
-    }
-    
-} */
-
 @media screen and (max-width:500px){
     .commentsection{
         width: 90vw;
@@ -410,22 +238,12 @@ button {
     .smallbox{
         width: 80vw;
     }
-    .box{
-        /* width: 80vw; */
-    }
     .text{
         padding:0.5rem;
         width:55vw;
-        /* margin:auto; */
     }
     .textarea{
         font-size: 0.8rem;
-    }
-    .public{
-        /* transform: translate(-50%,-95%); */
-    }
-    .friend{
-        /* transform: translate(-50%,-95%); */
     }
     .inputbox{
         margin-top:0.6rem;
@@ -433,12 +251,7 @@ button {
     .bigbox{
         padding-top:3rem;
     }
-    /* .deleteContainer{ */
-        /* width:5vw; */
-    /* } */
-
 }
-
 @media screen and (max-width:270px){
     .smallbox{
         max-width: 100%;
@@ -477,15 +290,11 @@ button {
     }
     .public,.friend{
         transform: translate(-50%,-45%);
-    }
-    
+    }    
 }
-
-@media (max-width:170px) {
-    
+@media (max-width:170px) {    
     .commentsection{
-        width:100vw;
-        
+        width:100vw;        
     }
     .smallbox{
         min-width: 1px;
@@ -494,12 +303,8 @@ button {
         font-size: 0.5rem;
         text-align: center;
     }
-    .messageArea,.text{
-        /* width:90vw; */
-    }
     .user>p,.liketext{
-        font-size:0.3rem;
-        
+        font-size:0.3rem;        
     }
     label{
         width:40vw;
@@ -507,6 +312,5 @@ button {
         }
     .public,.friend{
         transform: translate(-50%,-55%);
-    }
-    
+    }    
 }
