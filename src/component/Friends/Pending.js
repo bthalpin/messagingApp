@@ -16,7 +16,7 @@ const Pending = ({friend, rejectFriend,pendOrReq}) => {
                 <button 
                     className = "friendButton" 
                     onClick = {()=>rejectFriend(friend,pendOrReq)}>
-                        X
+                        Undo
                 </button>
             </li>
         </div>
