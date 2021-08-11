@@ -72,8 +72,6 @@ const Friends = ({user,addFriend,converse}) => {
             
         <div className = "maincomment">    
                 <div className="mainFriend">
-                    {/* <div className=""> */}
-                        {/* <div className = ""> */}
                             <div  className="">
                                 <div >
                         
@@ -81,21 +79,19 @@ const Friends = ({user,addFriend,converse}) => {
                                     <div>
                                         <div className="friendtitlebox"><p className="requesttitle">Contacts</p></div>
                                             <ul className = "scroll ">                            
-                                                {friends.map((friend)=>{
+                                                {friends.map((friend,i)=>{
                                                     return <Friend 
                                                                 converse = {converse} 
                                                                 friend = {friend} 
-                                                                unFriend = {unFriend} 
+                                                                unFriend = {unFriend}
+                                                                i={i} 
                                                             />
                                                     })
                                                 }
-                                             </ul>
-    
-                                        </div>
-                                       
+                                             </ul>    
+                                        </div>                                       
                                         :<></>
-                                     }
-                        
+                                     }                        
             
                                     <button 
                                         className = "addFriend" 
@@ -103,19 +99,19 @@ const Friends = ({user,addFriend,converse}) => {
                                             Add Contact
                                     </button>
 
-                                </div>
-                        
+                                </div>                        
                               
                                 {requests[0]?
                                     <div className = "scroll">  
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
                                         <ul className = "scroll">
-                                            {requests.map((friend)=>{
+                                            {requests.map((friend,i)=>{
                                                 return <Request 
                                                             friend = {friend} 
                                                             rejectFriend = {rejectFriend} 
                                                             pendOrReq ={'Request'} 
                                                             acceptFriend = {acceptFriend}
+                                                            i={i}
                                                         />
                                                 })
                                             }
@@ -133,6 +129,7 @@ const Friends = ({user,addFriend,converse}) => {
                                                             friend = {friend} 
                                                             rejectFriend = {rejectFriend} 
                                                             pendOrReq = {'Pending'}
+                                                            i={i}
                                                         />
                                                 })
                                             }
@@ -143,11 +140,8 @@ const Friends = ({user,addFriend,converse}) => {
                                 }
                         
                             </div>
-                          
-          
-    {/* </div> */}
-    {/* </div> */}
-    </div></div>
+                </div>
+        </div>
     )
 
 }

@@ -10,7 +10,6 @@ import './colors2.css';
 
 // https://socially-distanced-server.herokuapp.com/
 
-// let totalMessages=0;
 function App() {
   const [user,setUser] = useState({name:'',email:'',friends:[],request:[],pendingrequests:[]})
   const [password,setPassword] = useState('')
@@ -29,20 +28,14 @@ function App() {
   const myEmail = user.email
   const [unread,setUnread] = useState([])
   const [totalMessages,setTotalMessages] = useState(0)
-  // const [privateContacts,setPrivateContacts] = useState([])
-    
-    // useEffect(()=>{
-    //     setPrivateContacts(unread);
-    // },[unread,privateContacts])
+
     useEffect(()=>{
       setTotalMessages(unread.reduce((acc,message)=>{
-        // console.log(message)
+   
         return acc+message.total-message.read
       },0))
       
-  // console.log('totalMessages',totalMessages)
     },[unread])
-    // console.log(totalMessages)
   
   useEffect(()=>{
     socket.on('friendrequest',data=>{
@@ -59,16 +52,16 @@ function App() {
 
   useEffect(()=>{
     socket.on('unfriend',data=>{
-      console.log(data)
+      
       if (data.email===myEmail){
         setUser(data.message[0])
       }
       loadData('privatemessageload',
-      JSON.stringify({
-        email: myEmail,
-        friends:user.friends
-      }),
-      setPrivateMessages
+        JSON.stringify({
+          email: myEmail,
+          friends:user.friends
+        }),
+        setPrivateMessages
       ) 
       socket.emit('loadRead',{recipientemail:data.email})
       
@@ -82,8 +75,7 @@ function App() {
   useEffect(()=>{
     socket.on('reject',data=>{
       
-      if (data[0].email===myEmail){
-        
+      if (data[0].email===myEmail){        
         setUser(data[0])
       }
     })
@@ -94,65 +86,52 @@ function App() {
 
   useEffect(()=>{
     socket.on('acceptfriend',data=>{
-      // console.log(data.user[0],data.friend)
       if (data.user[0].email===myEmail){
         setUser(data.user[0])
-        // console.log(data)
         setUnread((prevUnread)=>{
-          return [...prevUnread,{senderemail:data.friend,recipientemail:data.user[0].email,total:0,read:0}]})
-        // console.log(unread,'accept')
-      }})
+          return [...prevUnread,{senderemail:data.friend,recipientemail:data.user[0].email,total:0,read:0}]
+        })
+      }
+    })
       return ()=>{
         socket.off('acceptfriend')
       }
   },[myEmail])
+
 useEffect(()=>{
   socket.on('updateReadStatus',data=>{
-    // console.log(data,'before read',myEmail)
     if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){
-
       setUnread(data)
-      console.log('sread',unread,data)
     }
   })
   return ()=>{
     socket.off('updateReadStatus')
   }
 },[myEmail])
+
 useEffect(()=>{
   socket.on('update',(data)=>{
-    console.log('update',data)
-    if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){
-  
+    if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){  
       setUnread(data)
-      console.log('read',unread)
     }
-    // socket.emit('updateRead',{recipientemail:user.email})
   })
   return ()=>{
-
     socket.off('update')
   }
 },[myEmail])
 
 useEffect(()=>{
   socket.on('privatemessage',(data)=>{
-    // console.log('now',data.recipientemail)
-    // if (data.senderemail===myEmail||data.recipientemail===myEmail){
       loadData('privatemessageload',
-      JSON.stringify({
-        email: user.email.toUpperCase(),
-        friends:user.friends
-      }),
-      setPrivateMessages
+        JSON.stringify({
+          email: user.email.toUpperCase(),
+          friends:user.friends
+        }),
+        setPrivateMessages
       )  
-      // setPrivateMessages(data.message)
-    // }
-    // console.log('private',privateMessage.senderEmail,'data',data.message)
     if (privateMessage.recipientEmail===data?.senderemail){
       socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
     }else{
-console.log('load')
       socket.emit('loadRead',{recipientemail:user.email.toUpperCase()})
     }
   })
@@ -212,16 +191,15 @@ socket.on('deletemail',data=>{
     setPassword('')
   }
 
-  const onRouteChange = (route) => {
-    
+  const onRouteChange = (route) => {    
     if (route==='mail'){
       setConversation(prevConversation=>{
         return {...prevConversation,you:''}
       })
       setPrivateMessage(prevPrivateMessage=>{
         return {...prevPrivateMessage,recipientEmail:''}
-    })
-  }
+      })
+    }
     (route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )?setIsSignedIn(true):resetState();
     setRoute(route)
   }
@@ -241,7 +219,7 @@ socket.on('deletemail',data=>{
   }
 
 
-  const deletePost = (currentIndex,publicStatus,currentId) => {
+  const deletePost = (publicStatus,currentId) => {
     if (publicStatus){
       socket.emit('deletemessage',{
                 id:currentId,

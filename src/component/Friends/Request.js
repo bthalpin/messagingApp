@@ -2,10 +2,10 @@ import React from 'react';
 import './Friends.css';
 import '../../colors2.css';
 
-const Request = ({friend, rejectFriend,acceptFriend,pendOrReq}) => {
+const Request = ({friend, rejectFriend,acceptFriend,pendOrReq,i}) => {
  
     return(
-        <div className = "radioButton">
+        <div className = "radioButton" key={i}>
             <li>
                 <input 
                     type = "radio" 

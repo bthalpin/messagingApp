@@ -28,7 +28,7 @@ const Messagebox = ({ route,text,
                 </div>
                 
                 <div className = {"user " + background}>                    
-                    <p className = "addFriend" onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
+                    <p className = "friendName" onClick={()=>addFriend(email)}>{email.toUpperCase().substr(0,email.indexOf('@'))}</p>
                     <p className='date'>{time}</p>
                 </div>
                
@@ -49,7 +49,7 @@ const Messagebox = ({ route,text,
                                     {likes.length>=4
                                         ?`${likes.length} Likes`
                                         :(likes.length>1
-                                            ?(likes.length>2
+                                            ?(likes.length===3
                                                 ?JSON.parse(likes[0]).name+', '+JSON.parse(likes[1]).name+', and '+JSON.parse(likes[2]).name+' like this post'
                                                 :JSON.parse(likes[0]).name+' and '+JSON.parse(likes[1]).name+' like this post')
                                             :(likes.length?JSON.parse(likes).name+' likes this post':''))}
@@ -61,26 +61,21 @@ const Messagebox = ({ route,text,
                             {route === "home"||route==='friend'
                                 ?<div>{filteredMessages[i].email===currentUser
                                     ?
-                                    // <div className = "deleteBackground">
                                         <div 
                                             className = "deleteButton" 
                                             id = {i} 
-                                            onClick = {()=>deletePost(i,publicStatus,currentId)}>
+                                            onClick = {()=>deletePost(publicStatus,currentId)}>
                                                 <img src={Delete} alt="delete" width="22rem"></img>
-                                        </div>
-                                    // </div>
-                                    
+                                        </div>                                    
                                     :<></>}
                                 </div>                        
                                 :
-                                // <div className = "deleteBackground">
                                     <div 
                                         className = "deleteButton" 
                                         id = {i} 
                                         onClick = {()=>deleteMail(currentId)}>
                                             <img src={Delete} alt="delete" width="22rem"></img>
                                     </div>
-                                // </div>
                             }
                         </div>
                     </div> 

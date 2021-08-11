@@ -2,10 +2,10 @@ import React from 'react';
 import './Friends.css';
 import '../../colors2.css';
 
-const Pending = ({friend, rejectFriend,pendOrReq}) => {
+const Pending = ({friend, rejectFriend,pendOrReq,i}) => {
     
     return(
-        <div className = "radioButton">
+        <div className = "radioButton" key={i}>
              <li>
                  <input 
                     type = "radio" 

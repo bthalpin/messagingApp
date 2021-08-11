@@ -156,7 +156,7 @@ const Mail = ({privateMessage, setPrivateMessage,
                                 privateMessages[currentMessage].senderemail.toUpperCase()===user.email.toUpperCase()
                                     ?background="senderbackground" 
                                     :background="";
-                                return <div className = {offset}>
+                                return <div className = {offset} key={i}>
                                     
                                             <Messagebox email = {privateMessages[currentMessage].senderemail} 
                                             text ={privateMessages[currentMessage].message} 
@@ -177,8 +177,8 @@ const Mail = ({privateMessage, setPrivateMessage,
                 <div className = 'nocontactContainer'>
                     <p className = "contactName">Select a contact to message</p>
                                             <ul className = "contactScroll">                            
-                                                {unread.map((friend)=>{
-                                                    return <div className = "unreadMessageContainer">
+                                                {unread.map((friend,i)=>{
+                                                    return <div className = "unreadMessageContainer" key ={i}>
 
                                                         <Friend 
                                                             converse = {converse} 

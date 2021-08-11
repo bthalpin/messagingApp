@@ -2,11 +2,11 @@ import React from 'react';
 import './Friends.css';
 import '../../colors2.css';
 
-const Friend = ({friend,converse, route,unFriend,pendOrReq}) => {
+const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
   
     return(
         
-        <div className = "radioButton">
+        <div className = "radioButton" key={i}>
             {route==='mail'?
                 <li>
                     <input 
