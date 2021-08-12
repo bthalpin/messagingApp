@@ -110,7 +110,7 @@ color:white;
 
 .button{
     background:var(--buttonColor);
-    border:0.1rem solid var(--buttonColor);
+    border:0.1rem solid black;
     color:rgb(230, 230, 230);
 }
 
