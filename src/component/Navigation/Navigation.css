@@ -1,145 +1,63 @@
-.navroot{
-    
-    display:flex;
-   
+.navroot{    
+    display:flex;   
     width:100vw;
-    justify-content: center;
-    
-}
-
-
-.mainNav{
-    width:80vw;
-display:flex;
-align-items: flex-end;
-justify-content: space-around;
-
+    justify-content: center;    
 }
 
 .title{
     display:none;
-
-}
-
-.groupChat{
-    margin:0;
-    color:rgba(255, 255, 255, 0.486);
-    font-size: 0.7rem;;
-    /* border:1px solid #48aca7; */
-    /* border-bottom:transparent; */
-    /* border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem; */
-}
-
-.navButtonContainer{
-    display: flex;
-    justify-content: space-around;
-    /* border:1px solid #48aca7; */
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    /* border-bottom:1px solid #48aca7;
-    border-left:1px solid #48aca7;
-    border-right:1px solid #48aca7; */
-    /* width:10rem; */
-}
-
-.navButtons{
-    /* border-top-left-radius: 0.2rem; */
-    /* border-top-right-radius: 0.2rem; */
-    /* font-weight: bold; */
-    outline: none;
-    padding:0.5rem 0.5rem 0rem 0.5rem;
-    margin:0.0rem 0.5rem;
-    width:13vw;
-    /* border:1px solid black; */
-}
-
-/* .disabledButtons{
-    font-weight: bold;
-    border:none;
-    border-top-left-radius: 0.4rem;
-    border-top-right-radius: 0.4rem;
-    padding:0.0rem 0.3rem;
-} */
-.private{
-    width:20vw;
-}
-
-.navButtons:active{
-    /* border-style:outset; */
-}
-
-.navButtons:hover{
-    cursor:pointer;
-    /* color:rgb(211, 211, 211); */
 }
 
 .hideButton,.wideButton {
     border:none;
-    /* border-radius:0.2rem; */
-    /* height:100%; */
 }
 
-.requests{
-    border-radius:5rem;
-    font-size: 0.6rem;
-    padding:0 0.3rem;
-    /* position:fixed;
-    top:1.4rem;
-    right:50%;
-    transform:translateX(4.5rem); */
-}
-.message{
-    border-radius:5rem;
-    font-size: 0.6rem;
-    padding:0 0.3rem;
-}
+
 .notificationIcon{
     position:fixed;
     right:-0.3rem;
     top:1.5rem;
 }
 
-
-
-  @media screen and (max-width:550px) {
-   
-  }
-.headcontainer{
-    width:100vw;
-   display:flex;
-   justify-content: center;
-    
+.mainNav{
+    width:80vw;
+    display:flex;
+    align-items: flex-end;
+    justify-content: space-around;
 }
 
-@media screen and (max-width:800px) {
-   
-  
-  
-  }
+.navButtonContainer{
+    display: flex;
+    justify-content: space-around;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
 
-@media screen and (max-width:450px) {
-    
-    .headcontainer{
-      height:3rem;
-      
-    }
-    
-  }
+.navButtons{
+    outline: none;
+    padding:0.5rem 0.5rem 0rem 0.5rem;
+    margin:0.0rem 0.5rem;
+    width:13vw;
+}
 
+.navButtons:hover{
+    cursor:pointer;
+}
 
+.requests{
+    border-radius:5rem;
+    font-size: 0.6rem;
+    padding:0 0.3rem;
+}
 
+.private{
+    width:20vw;
+}
 
-  
-  
-  
-  
-@media (max-height:225px) {
-    
-    /* .navroot{
-        background: transparent;
-    }
-     */
+.message{
+    border-radius:5rem;
+    font-size: 0.6rem;
+    padding:0 0.3rem;
 }
 
 @media (min-width:501px){
@@ -151,10 +69,8 @@ justify-content: space-around;
     }
     .mainNavHidden{
         width:80vw;
-display:flex;
-/* align-items: flex-end; */
-justify-content: space-around;
-        /* max-width: 35rem; */
+        display:flex;
+        justify-content: space-around;
     }
     .mainNav{
         max-width:35rem;
@@ -163,9 +79,7 @@ justify-content: space-around;
 @media (min-width:700px) {
     .mainNavHidden{
         max-width:40rem;
-        /* width:80vw; */
-    }
-    
+    }    
     .navButtons{
         width:5.5rem;
     }
@@ -174,14 +88,11 @@ justify-content: space-around;
     }
 }
 
-@media screen and (max-width:676px) {
-   
+@media screen and (max-width:676px) {   
     .navButtons{
         margin:0;
         font-size:0.9rem;
     }
-  
-    
 }
 @media (max-width:611px){
     .mainNavHidden,.mainNav{
@@ -189,23 +100,13 @@ justify-content: space-around;
     }
     .navButtons{
         width:auto;
-    }
- 
-    
+    }    
 }
 
 @media (max-width:558px){
     .mainNavHidden,.mainNav{
         width:100vw;
-    }
-    .navButtons,.private{
-        /* width:auto; */
-    }
-    .notificationIcon{
-
-    }
- 
-    
+    }   
 }
 
 
@@ -214,18 +115,11 @@ justify-content: space-around;
         position:absolute;
         display:block;
         width:11rem;
-        /* height:50vh; */
-        
-        z-index: 1;
-        
+        z-index: 1;        
     }
     
     .navroot{
         justify-content: flex-end;
-    }
-    .navroot>div{
-        /* margin:0;
-        padding:0; */
     }
     .dropDown{
         display:block;
@@ -260,8 +154,6 @@ justify-content: space-around;
         padding:0.5rem 0;
 
         font-size:1rem;
-        /* border-top:1px solid white; */
-        /* border-bottom:1px solid white; */
     }
     .homehome,.homefriends,.homefriend,.homemail{
         border-bottom:none;
@@ -270,11 +162,8 @@ justify-content: space-around;
         display:block;
         width:80vw;
         padding-top:0.35rem;
-        /* position:absolute; */
         right:50%;
-        /* top:0; */
         font-size:1.2rem;
-        /* transform: translate(55%,12%); */
         text-shadow:2px 2px 4px black;
     
     }
@@ -283,7 +172,6 @@ justify-content: space-around;
 @media (max-width:500px) and (max-height:280px){
     .navButtons{
         padding:0.1rem 0;
-        /* font-size: 1rem; */
     }
 }
 
@@ -293,11 +181,12 @@ justify-content: space-around;
         font-size:0.8rem;
     }
 }
+
+
 @media (max-width:270px) {
     .title{
         padding-top:0rem;
         font-size: 0.9rem;
-        /* display:none; */
         width:85vw;
         margin-right:0.1rem;
     }
@@ -318,8 +207,6 @@ justify-content: space-around;
 }
 @media (max-width:181px) {
     .title{
-        /* padding-top:0.5rem; */
-        
         display:none;
     }
 }
