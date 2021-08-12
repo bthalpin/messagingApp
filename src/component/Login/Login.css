@@ -125,3 +125,11 @@
         width:100vw;
     }    
 }
+
+
+@media (max-width:150px) {
+    .formWindow{
+        border-left:none;
+        border-right: none;
+    }    
+}
