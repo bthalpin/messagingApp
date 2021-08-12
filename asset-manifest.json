@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/messagingApp/static/css/main.7bfe3b06.chunk.css",
+    "main.css": "/messagingApp/static/css/main.1f8052a6.chunk.css",
     "main.js": "/messagingApp/static/js/main.a296c0ee.chunk.js",
     "main.js.map": "/messagingApp/static/js/main.a296c0ee.chunk.js.map",
     "runtime-main.js": "/messagingApp/static/js/runtime-main.00430740.js",
@@ -10,7 +10,7 @@
     "static/js/3.2d527366.chunk.js": "/messagingApp/static/js/3.2d527366.chunk.js",
     "static/js/3.2d527366.chunk.js.map": "/messagingApp/static/js/3.2d527366.chunk.js.map",
     "index.html": "/messagingApp/index.html",
-    "static/css/main.7bfe3b06.chunk.css.map": "/messagingApp/static/css/main.7bfe3b06.chunk.css.map",
+    "static/css/main.1f8052a6.chunk.css.map": "/messagingApp/static/css/main.1f8052a6.chunk.css.map",
     "static/js/2.7fed85b8.chunk.js.LICENSE.txt": "/messagingApp/static/js/2.7fed85b8.chunk.js.LICENSE.txt",
     "static/media/delete.ea6c2f93.png": "/messagingApp/static/media/delete.ea6c2f93.png",
     "static/media/hamburger.745580e9.png": "/messagingApp/static/media/hamburger.745580e9.png",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.00430740.js",
     "static/js/2.7fed85b8.chunk.js",
-    "static/css/main.7bfe3b06.chunk.css",
+    "static/css/main.1f8052a6.chunk.css",
     "static/js/main.a296c0ee.chunk.js"
   ]
 }
