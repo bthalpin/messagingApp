@@ -139,35 +139,59 @@ useEffect(()=>{
     socket.off('privatemessage')
   }
 },[privateMessages,privateMessage,user])
+
+  useEffect(()=>{
+      socket.on('publicmessage',(data)=>{
+        setPastPublicMessages(data)
+      })
+      return ()=>{
+        socket.off('publicmessage')
+      }
+  },[])
+
+  useEffect(()=>{
+
+    socket.on('friendmessage',(data)=>{
   
-  socket.on('publicmessage',(data)=>{
-    setPastPublicMessages(data)
-})
-socket.on('friendmessage',(data)=>{
-  
-  setPastMessages(data)
-})
-socket.on('publiclikes',data=>{
-    setPastPublicMessages(data)
-})
-socket.on('friendlikes',data=>{
-  setPastMessages(data)
-})
-socket.on('publicdislike',data=>{
-    setPastPublicMessages(data)
-})
-socket.on('frienddislike',data=>{
-  setPastMessages(data)
-})
-socket.on('publicdeletemessage',data=>{
-    setPastPublicMessages(data)
-})
-socket.on('frienddeletemessage',data=>{
-    setPastMessages(data)
-})
-socket.on('deletemail',data=>{
-    setPrivateMessages(data)
-})
+      setPastMessages(data)
+    })
+    return ()=>{
+      socket.off('friendmessage')
+    }
+  },[])
+
+  useEffect(()=>{
+    socket.on('publiclikes',data=>{
+      setPastPublicMessages(data)
+    })
+    return ()=>{
+      socket.off('publiclikes')
+    }
+  },[])
+
+  useEffect(()=>{
+    socket.on('friendlikes',data=>{
+      setPastMessages(data)
+    })
+    return ()=>{
+      socket.off('friendlikes')
+    }
+  },[])
+// socket.on('publicdislike',data=>{
+//     setPastPublicMessages(data)
+// })
+// socket.on('frienddislike',data=>{
+//   setPastMessages(data)
+// })
+// socket.on('publicdeletemessage',data=>{
+//     setPastPublicMessages(data)
+// })
+// socket.on('frienddeletemessage',data=>{
+//     setPastMessages(data)
+// })
+// socket.on('deletemail',data=>{
+//     setPrivateMessages(data)
+// })
 
 
 
