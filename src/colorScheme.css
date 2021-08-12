@@ -110,7 +110,7 @@ color:white;
 
 .button{
     background:transparent;
-    border:0.1rem solid var(--thirdColor);
+    border:0.1rem solid var(--buttonColor);
     color:white;
 }
 
