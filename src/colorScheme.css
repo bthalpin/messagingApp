@@ -109,14 +109,14 @@ color:white;
 }
 
 .button{
-    background:transparent;
+    background:var(--buttonColor);
     border:0.1rem solid var(--buttonColor);
-    color:white;
+    color:rgb(230, 230, 230);
 }
 
 .button:hover { 
     border:0.1rem solid var(--buttonColor);
-    color:var(--buttonColor);
+    color:white;
 }
 
 .deleteButton{
