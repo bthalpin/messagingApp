@@ -109,7 +109,7 @@ color:white;
 }
 
 .button{
-    background:var(--thirdColor);
+    background:var(--fourthColor);
     border:0.1rem solid black;
     color:rgb(230, 230, 230);
 }
