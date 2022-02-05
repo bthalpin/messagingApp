@@ -218,10 +218,6 @@ useEffect(()=>{
   
   useEffect (()=>{
     window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
-
-  },[isSignedIn])
-
-  useEffect(()=>{
     if(isSignedIn){
       const initialRoute = window.localStorage.getItem('route')
       const loadedRoute = JSON.parse(initialRoute)
@@ -259,6 +255,7 @@ useEffect(()=>{
               )    
     }
   },[isSignedIn])
+
 
   useEffect (()=>{
     window.localStorage.setItem('user',JSON.stringify(user))
