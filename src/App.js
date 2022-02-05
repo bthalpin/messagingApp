@@ -208,6 +208,16 @@ useEffect(()=>{
     const signedInStatus = window.localStorage.getItem('isSignedIn')
     const loadedStatus = JSON.parse(signedInStatus)
     setIsSignedIn(loadedStatus)
+    
+  },[])
+
+  console.log(user)
+  useEffect (()=>{
+    window.localStorage.setItem('route',JSON.stringify(route))
+  },[route])
+  
+  useEffect (()=>{
+    window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
     if(isSignedIn){
       const initialRoute = window.localStorage.getItem('route')
       const loadedRoute = JSON.parse(initialRoute)
@@ -244,15 +254,6 @@ useEffect(()=>{
                 setPrivateMessages
               )    
     }
-  },[])
-
-  console.log(user)
-  useEffect (()=>{
-    window.localStorage.setItem('route',JSON.stringify(route))
-  },[route])
-  
-  useEffect (()=>{
-    window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
   },[isSignedIn])
 
   useEffect (()=>{
