@@ -207,6 +207,9 @@ useEffect(()=>{
     const initialRoute = window.localStorage.getItem('route')
     const loadedRoute = JSON.parse(initialRoute)
     setRoute(loadedRoute)
+    const signedInStatus = window.localStorage.getItem('isSignedIn')
+    const loadedStatus = JSON.parse(signedInStatus)
+    setRoute(loadedStatus)
   },[])
 
   useEffect (()=>{
