@@ -207,6 +207,7 @@ useEffect(()=>{
     
     const signedInStatus = window.localStorage.getItem('isSignedIn')
     const loadedStatus = JSON.parse(signedInStatus)
+    console.log(loadedStatus)
     setIsSignedIn(loadedStatus)
     
   },[])
