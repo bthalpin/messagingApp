@@ -140,7 +140,8 @@ const Mail = ({privateMessage, setPrivateMessage,
                         <p className = "contactName">{conversation.you}</p>
                     </div>    
                 </div>
-                <div className = "messages">               
+                <div className = "messages">  
+                {console.log(conversation,privateMessages)}             
                 {privateMessages.map((message,i)=>{
                     const currentMessage = privateMessages.length-1-i
                     const currentId = privateMessages[currentMessage].id

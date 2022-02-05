@@ -227,6 +227,12 @@ useEffect(()=>{
       const loadedUnread = JSON.parse(getUnread)
       setUnread(loadedUnread)
 
+      const getPublicStatus = window.localStorage.getItem('publicStatus')
+      const loadedPublicStatus = JSON.parse(getPublicStatus)
+      setPublicStatus(loadedPublicStatus)
+
+     
+
       loadData('friendmessageload',
                 JSON.stringify({
                   email:user.email.toUpperCase(),
@@ -267,7 +273,13 @@ useEffect(()=>{
   useEffect (()=>{
     window.localStorage.setItem('unread',JSON.stringify(unread))
   },[unread])
+
+  useEffect (()=>{
+    window.localStorage.setItem('publicStatus',JSON.stringify(publicStatus))
+  },[publicStatus])
   
+ 
+
   const resetState = () => {
     setRoute('Sign In')
     setIsSignedIn(false)
