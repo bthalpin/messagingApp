@@ -171,10 +171,10 @@ color:white;
 
 @media (max-width:500px) {
     .navButtonContainer{
-        border:1px solid var(--fourthColor);
+        border:1px solid var(--sixthColor);
     }
     .navButtons{
-        border-bottom:1px solid var(--fourthColor);
+        border-bottom:1px solid var(--sixthColor);
     }
     .mainNav{
         background: var(--thirdColor);
