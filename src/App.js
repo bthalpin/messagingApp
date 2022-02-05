@@ -223,6 +223,10 @@ useEffect(()=>{
       const loadedConversation = JSON.parse(getConversation)
       setConversation(loadedConversation)
 
+      const getUnread = window.localStorage.getItem('unread')
+      const loadedUnread = JSON.parse(getUnread)
+      setUnread(loadedUnread)
+
       loadData('friendmessageload',
                 JSON.stringify({
                   email:user.email.toUpperCase(),
@@ -259,6 +263,10 @@ useEffect(()=>{
   useEffect (()=>{
     window.localStorage.setItem('conversation',JSON.stringify(conversation))
   },[conversation])
+
+  useEffect (()=>{
+    window.localStorage.setItem('unread',JSON.stringify(unread))
+  },[unread])
   
   const resetState = () => {
     setRoute('Sign In')
