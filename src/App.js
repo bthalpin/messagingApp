@@ -202,6 +202,16 @@ useEffect(()=>{
         return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))})
     } 
   },[])
+
+  useEffect (()=>{
+    const initialRoute = window.localStorage.getItem('route')
+    const loadedRoute = JSON.parse(initialRoute)
+    setRoute(loadedRoute)
+  },[])
+
+  useEffect (()=>{
+    window.localStorage.setItem(JSON.stringify('route',route))
+  },[route])
  
   const resetState = () => {
     setRoute('Sign In')
