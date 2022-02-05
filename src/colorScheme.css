@@ -32,7 +32,7 @@ html{
 
 .hideButton, .wideButton{
     /* background: var(--secondColor); */
-    background:rgb(90, 95, 102)
+    background:rgb(90, 95, 102);
     color:white;
 }
 
