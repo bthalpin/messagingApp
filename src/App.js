@@ -229,7 +229,7 @@ useEffect(()=>{
 
       const getUser = window.localStorage.getItem('user')
       const loadedUser = JSON.parse(getUser)
-      setIsSignedIn(loadedUser)
+      setUser(loadedUser)
 
       const getConversation = window.localStorage.getItem('conversation')
       const loadedConversation = JSON.parse(getConversation)
