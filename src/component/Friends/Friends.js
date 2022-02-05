@@ -102,6 +102,7 @@ const Friends = ({user,addFriend,converse}) => {
                                 </div>                        
                               
                                 {requests?
+                                requests.length?
                                     <div className = "scroll">  
                                         <div className="friendtitlebox"><p className="requesttitle">Request</p></div>
                                         <ul className = "scroll">
@@ -117,10 +118,11 @@ const Friends = ({user,addFriend,converse}) => {
                                             }
                                         </ul>
                                     </div>
-                                    :<></>
+                                    :<></>:<></>
                                 }
                                 
                                 {pendingrequests?
+                                pendingrequests.length?
                                     <div className = "scroll">
                                         <div className="friendtitlebox"><p className="pendingtitle">Pending Request</p></div>
                                         <ul className = "scroll">
@@ -136,7 +138,7 @@ const Friends = ({user,addFriend,converse}) => {
                                         </ul>
         
                                     </div>
-                                    :<></>
+                                    :<></>:<></>
                                 }
                         
                             </div>
