@@ -246,6 +246,7 @@ useEffect(()=>{
     }
   },[])
 
+  console.log(user)
   useEffect (()=>{
     window.localStorage.setItem('route',JSON.stringify(route))
   },[route])
