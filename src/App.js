@@ -140,6 +140,25 @@ useEffect(()=>{
   }
 },[privateMessages,privateMessage,user])
 
+useEffect(()=>{
+  socket.on('privatemessage',(data)=>{
+      loadData('privatemessageload',
+        JSON.stringify({
+          email: user.email.toUpperCase(),
+          friends:user.friends
+        }),
+        setPrivateMessages
+      )  
+    if (privateMessage.recipientEmail===data?.senderemail){
+      socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
+    }else{
+      socket.emit('loadRead',{recipientemail:user.email.toUpperCase()})
+    }
+  })
+  return ()=>{
+    socket.off('privatemessage')
+  }
+},[])
   useEffect(()=>{
       socket.on('publicmessage',(data)=>{
         setPastPublicMessages(data)
