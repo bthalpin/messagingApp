@@ -215,6 +215,13 @@ useEffect(()=>{
   useEffect (()=>{
     window.localStorage.setItem('route',JSON.stringify(route))
   },[route])
+  useEffect (()=>{
+    window.localStorage.setItem('user',JSON.stringify(user))
+  },[user])
+
+  useEffect (()=>{
+    window.localStorage.setItem('conversation',JSON.stringify(conversation))
+  },[conversation])
   
   useEffect (()=>{
     window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
@@ -257,13 +264,7 @@ useEffect(()=>{
   },[isSignedIn])
 
 
-  useEffect (()=>{
-    window.localStorage.setItem('user',JSON.stringify(user))
-  },[user])
-
-  useEffect (()=>{
-    window.localStorage.setItem('conversation',JSON.stringify(conversation))
-  },[conversation])
+  
 
   const resetState = () => {
     setRoute('Sign In')
