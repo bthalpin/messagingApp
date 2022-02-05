@@ -18,7 +18,8 @@ html{
 
 
 .navroot{
-    background:var(--thirdColor);
+    background:rgb(113, 119, 128);
+    /* background:var(--thirdColor); */
     
 }
 
