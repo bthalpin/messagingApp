@@ -245,7 +245,7 @@ useEffect(()=>{
                 }),
                 setPrivateMessages
               )    
-    
+              }
   },[])
 
   // console.log(user)
