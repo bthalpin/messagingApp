@@ -177,7 +177,7 @@ const Mail = ({privateMessage, setPrivateMessage,
                 <div className = 'nocontactContainer'>
                     <p className = "contactName">Select a contact to message</p>
                                             <ul className = "contactScroll">                            
-                                                {unread.map((friend,i)=>{
+                                                {unread?.map((friend,i)=>{
                                                     return <div className = "unreadMessageContainer" key ={i}>
 
                                                         <Friend 
