@@ -216,6 +216,9 @@ useEffect(()=>{
     window.localStorage.setItem('route',JSON.stringify(route))
   },[route])
   
+  useEffect (()=>{
+    window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
+  },[isSignedIn])
 
   const resetState = () => {
     setRoute('Sign In')
