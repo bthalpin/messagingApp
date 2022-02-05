@@ -245,6 +245,7 @@ useEffect(()=>{
 
       const getUser = window.localStorage.getItem('user')
       const loadedUser = JSON.parse(getUser)
+      console.log(loadedUser)
       setUser(loadedUser)
 
       const getConversation = window.localStorage.getItem('conversation')
