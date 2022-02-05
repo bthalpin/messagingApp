@@ -214,11 +214,11 @@ useEffect(()=>{
       setRoute(loadedRoute)
 
       const getUser = window.localStorage.getItem('user')
-      const loadedUser = JSON.parse(user)
+      const loadedUser = JSON.parse(getUser)
       setIsSignedIn(loadedUser)
 
       const getConversation = window.localStorage.getItem('conversation')
-      const loadedConversation = JSON.parse(conversation)
+      const loadedConversation = JSON.parse(getConversation)
       setConversation(loadedConversation)
 
       loadData('friendmessageload',
