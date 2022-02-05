@@ -203,57 +203,62 @@ useEffect(()=>{
     } 
   },[])
 
-  // useEffect (()=>{
+  useEffect (()=>{
     
-  //   const signedInStatus = window.localStorage.getItem('isSignedIn')
-  //   const loadedStatus = JSON.parse(signedInStatus)
-  //   setIsSignedIn(loadedStatus)
-  //   if(isSignedIn){
-  //     const initialRoute = window.localStorage.getItem('route')
-  //     const loadedRoute = JSON.parse(initialRoute)
-  //     setRoute(loadedRoute)
-
-  //     const getUser = window.localStorage.getItem('user')
-  //     const loadedUser = JSON.parse(getUser)
-  //     setIsSignedIn(loadedUser)
-
-  //     const getConversation = window.localStorage.getItem('conversation')
-  //     const loadedConversation = JSON.parse(getConversation)
-  //     setConversation(loadedConversation)
-
-  //     loadData('friendmessageload',
-  //               JSON.stringify({
-  //                 email:user.email.toUpperCase(),
-  //                 friends:user.friends
-  //               }),
-  //               setPastMessages
-  //             )
-  //             loadData('publicmessageload',
-  //               JSON.stringify({
-  //                   email:user.email.toUpperCase(),
-  //                   friends:user.friends
-  //               }),
-  //               setPastPublicMessages
-  //             )
-
-  //             loadData('privatemessageload',
-  //               JSON.stringify({
-  //                 email: user.email.toUpperCase(),
-  //                 friends:user.friends
-  //               }),
-  //               setPrivateMessages
-  //             )    
-  //   }
-  // },[])
+    const signedInStatus = window.localStorage.getItem('isSignedIn')
+    const loadedStatus = JSON.parse(signedInStatus)
+    setIsSignedIn(loadedStatus)
+    
+  },[])
 
   console.log(user)
   useEffect (()=>{
     window.localStorage.setItem('route',JSON.stringify(route))
   },[route])
   
-  // useEffect (()=>{
-  //   window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
-  // },[isSignedIn])
+  useEffect (()=>{
+    window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
+
+  },[isSignedIn])
+
+  useEffect(()=>{
+    if(isSignedIn){
+      const initialRoute = window.localStorage.getItem('route')
+      const loadedRoute = JSON.parse(initialRoute)
+      setRoute(loadedRoute)
+
+      const getUser = window.localStorage.getItem('user')
+      const loadedUser = JSON.parse(getUser)
+      setIsSignedIn(loadedUser)
+
+      const getConversation = window.localStorage.getItem('conversation')
+      const loadedConversation = JSON.parse(getConversation)
+      setConversation(loadedConversation)
+
+      loadData('friendmessageload',
+                JSON.stringify({
+                  email:user.email.toUpperCase(),
+                  friends:user.friends
+                }),
+                setPastMessages
+              )
+              loadData('publicmessageload',
+                JSON.stringify({
+                    email:user.email.toUpperCase(),
+                    friends:user.friends
+                }),
+                setPastPublicMessages
+              )
+
+              loadData('privatemessageload',
+                JSON.stringify({
+                  email: user.email.toUpperCase(),
+                  friends:user.friends
+                }),
+                setPrivateMessages
+              )    
+    }
+  },[isSignedIn])
 
   useEffect (()=>{
     window.localStorage.setItem('user',JSON.stringify(user))
