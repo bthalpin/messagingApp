@@ -204,12 +204,46 @@ useEffect(()=>{
   },[])
 
   useEffect (()=>{
-    const initialRoute = window.localStorage.getItem('route')
-    const loadedRoute = JSON.parse(initialRoute)
-    setRoute(loadedRoute)
+    
     const signedInStatus = window.localStorage.getItem('isSignedIn')
     const loadedStatus = JSON.parse(signedInStatus)
     setIsSignedIn(loadedStatus)
+    if(isSignedIn){
+      const initialRoute = window.localStorage.getItem('route')
+      const loadedRoute = JSON.parse(initialRoute)
+      setRoute(loadedRoute)
+
+      const getUser = window.localStorage.getItem('user')
+      const loadedUser = JSON.parse(user)
+      setIsSignedIn(loadedUser)
+
+      const getConversation = window.localStorage.getItem('conversation')
+      const loadedConversation = JSON.parse(conversation)
+      setConversation(loadedConversation)
+
+      loadData('friendmessageload',
+                JSON.stringify({
+                  email:user.email.toUpperCase(),
+                  friends:user.friends
+                }),
+                setPastMessages
+              )
+              loadData('publicmessageload',
+                JSON.stringify({
+                    email:user.email.toUpperCase(),
+                    friends:user.friends
+                }),
+                setPastPublicMessages
+              )
+
+              loadData('privatemessageload',
+                JSON.stringify({
+                  email: user.email.toUpperCase(),
+                  friends:user.friends
+                }),
+                setPrivateMessages
+              )    
+    }
   },[])
 
   useEffect (()=>{
@@ -219,6 +253,14 @@ useEffect(()=>{
   useEffect (()=>{
     window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
   },[isSignedIn])
+
+  useEffect (()=>{
+    window.localStorage.setItem('user',JSON.stringify(user))
+  },[user])
+
+  useEffect (()=>{
+    window.localStorage.setItem('conversation',JSON.stringify(conversation))
+  },[conversation])
 
   const resetState = () => {
     setRoute('Sign In')
