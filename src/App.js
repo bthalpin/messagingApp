@@ -209,7 +209,7 @@ useEffect(()=>{
     setRoute(loadedRoute)
     const signedInStatus = window.localStorage.getItem('isSignedIn')
     const loadedStatus = JSON.parse(signedInStatus)
-    setRoute(loadedStatus)
+    setIsSignedIn(loadedStatus)
   },[])
 
   useEffect (()=>{
