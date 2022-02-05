@@ -18,7 +18,7 @@ html{
 
 
 .navroot{
-    background:rgb(174, 184, 197);
+    background:rgb(154, 162, 173);
     /* background:var(--thirdColor); */
     
 }
@@ -102,7 +102,7 @@ color:white;
 }
 
 .navButtons{
-    background:var(--thirdColor);
+    background:rgb(154, 162, 173);
     color:rgba(255, 255, 255, 0.774);
 }
 
