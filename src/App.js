@@ -223,6 +223,18 @@ useEffect(()=>{
     window.localStorage.setItem('conversation',JSON.stringify(conversation))
   },[conversation])
   
+  const resetState = () => {
+    setRoute('Sign In')
+    setIsSignedIn(false)
+    setUser({name:'',email:'',friends:[],requests:[],pendingrequests:[]})
+    setCurrentMessage({id:'',name:'',email:'',message:'',time:'',likes:[]})
+    setPrivateMessage({id:'',name:'',senderemail:'',recipientemail:'',message:'',time:''})
+    setConversation({me:'',you:''})
+    setPublicStatus(true)
+    setErrorMessage('')
+    setPassword('')
+  }
+
   useEffect (()=>{
     window.localStorage.setItem('isSignedIn',JSON.stringify(isSignedIn))
     console.log(isSignedIn)
@@ -261,23 +273,15 @@ useEffect(()=>{
                 }),
                 setPrivateMessages
               )    
+    }else{
+      resetState()
     }
   },[isSignedIn])
 
 
   
 
-  const resetState = () => {
-    setRoute('Sign In')
-    setIsSignedIn(false)
-    setUser({name:'',email:'',friends:[],requests:[],pendingrequests:[]})
-    setCurrentMessage({id:'',name:'',email:'',message:'',time:'',likes:[]})
-    setPrivateMessage({id:'',name:'',senderemail:'',recipientemail:'',message:'',time:''})
-    setConversation({me:'',you:''})
-    setPublicStatus(true)
-    setErrorMessage('')
-    setPassword('')
-  }
+  
 
   const onRouteChange = (route) => {    
     if (route==='mail'){
@@ -288,7 +292,7 @@ useEffect(()=>{
         return {...prevPrivateMessage,recipientEmail:''}
       })
     }
-    (route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )?setIsSignedIn(true):resetState();
+    if(route === 'home' || route ==='mail' || route ==='friends' || route==="friend" )setIsSignedIn(true);
     setRoute(route)
   }
   
