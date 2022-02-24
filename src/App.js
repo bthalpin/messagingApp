@@ -29,14 +29,20 @@ function App() {
   const [unread,setUnread] = useState([])
   const [totalMessages,setTotalMessages] = useState(0)
 
-    useEffect(()=>{
-      setTotalMessages(unread.reduce((acc,message)=>{
-   
-        return acc+message.total-message.read
-      },0))
-      
-    },[unread])
+  // 
+  //  Use Effects 
+  // 
+
+  // Sets the number of unread messages
+  useEffect(()=>{
+    setTotalMessages(unread.reduce((acc,message)=>{
   
+      return acc+message.total-message.read
+    },0))
+    
+  },[unread])
+  
+  // Updates when there is a friend request
   useEffect(()=>{
     socket.on('friendrequest',data=>{
       if (data[0].email===myEmail){
@@ -50,12 +56,15 @@ function App() {
     })
   },[myEmail])
 
+  // Updates friend list when unfriended
   useEffect(()=>{
     socket.on('unfriend',data=>{
       
       if (data.email===myEmail){
         setUser(data.message[0])
       }
+
+      // Updates private messages so you only see messages from your friends
       loadData('privatemessageload',
         JSON.stringify({
           email: myEmail,
@@ -68,10 +77,10 @@ function App() {
     })
     return ()=>{
       socket.off('unfriend')
-      
     }
   },[myEmail,user])
   
+  // Updates friend requests on rejection
   useEffect(()=>{
     socket.on('reject',data=>{
       
@@ -84,6 +93,7 @@ function App() {
     }
   },[myEmail])
 
+  // Updates friend lists on friend request being accepted  
   useEffect(()=>{
     socket.on('acceptfriend',data=>{
       if (data.user[0].email===myEmail){
@@ -98,7 +108,8 @@ function App() {
       }
   },[myEmail])
 
-useEffect(()=>{
+  // Updates unread messages
+  useEffect(()=>{
   socket.on('updateReadStatus',data=>{
     if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){
       setUnread(data)
@@ -107,40 +118,42 @@ useEffect(()=>{
   return ()=>{
     socket.off('updateReadStatus')
   }
-},[myEmail])
+  },[myEmail])
 
-useEffect(()=>{
-  socket.on('update',(data)=>{
-    if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){  
-      setUnread(data)
+  // 
+  useEffect(()=>{
+    socket.on('update',(data)=>{
+      if (data[0]?.recipientemail===myEmail.toUpperCase()||!data[0]){  
+        setUnread(data)
+      }
+    })
+    return ()=>{
+      socket.off('update')
     }
-  })
-  return ()=>{
-    socket.off('update')
-  }
-},[myEmail])
+  },[myEmail])
 
-useEffect(()=>{
-  socket.on('privatemessage',(data)=>{
-      loadData('privatemessageload',
-        JSON.stringify({
-          email: user.email.toUpperCase(),
-          friends:user.friends
-        }),
-        setPrivateMessages
-      )  
-    if (privateMessage.recipientEmail===data?.senderemail){
-      socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
-    }else{
-      socket.emit('loadRead',{recipientemail:user.email.toUpperCase()})
+  // Loads private message when a new message is sent
+  useEffect(()=>{
+    socket.on('privatemessage',(data)=>{
+        loadData('privatemessageload',
+          JSON.stringify({
+            email: user.email.toUpperCase(),
+            friends:user.friends
+          }),
+          setPrivateMessages
+        )  
+      if (privateMessage.recipientEmail===data?.senderemail){
+        socket.emit('read',{senderemail:data.senderemail ,recipientemail:data.recipientemail})
+      }else{
+        socket.emit('loadRead',{recipientemail:user.email.toUpperCase()})
+      }
+    })
+    return ()=>{
+      socket.off('privatemessage')
     }
-  })
-  return ()=>{
-    socket.off('privatemessage')
-  }
-},[privateMessages,privateMessage,user])
+  },[privateMessages,privateMessage,user])
 
-
+  // Loads public messages on page load
   useEffect(()=>{
       socket.on('publicmessage',(data)=>{
         setPastPublicMessages(data)
@@ -150,10 +163,11 @@ useEffect(()=>{
       }
   },[])
 
+  // Loads friend messages on page load
   useEffect(()=>{
 
     socket.on('friendmessage',(data)=>{
-  
+
       setPastMessages(data)
     })
     return ()=>{
@@ -161,6 +175,7 @@ useEffect(()=>{
     }
   },[])
 
+  // Loads like count on page load for public messages
   useEffect(()=>{
     socket.on('publiclikes',data=>{
       setPastPublicMessages(data)
@@ -170,6 +185,7 @@ useEffect(()=>{
     }
   },[])
 
+  // Loads like count on page load for friend messages
   useEffect(()=>{
     socket.on('friendlikes',data=>{
       setPastMessages(data)
@@ -196,7 +212,7 @@ useEffect(()=>{
 
 
 
-
+  // Loads privage messages on page load
   useEffect (()=>{
     if (user.friends){
       setFilteredMessages(()=>{
@@ -204,30 +220,36 @@ useEffect(()=>{
     } 
   },[])
 
+  // 
   const reloadMessages = (emailUpper)=>{
     loadData('friendmessageload',
-                JSON.stringify({
-                  email:emailUpper,
-                  friends:user.friends
-                }),
-                setPastMessages
-              )
-              loadData('publicmessageload',
-                JSON.stringify({
-                    email:emailUpper,
-                    friends:user.friends
-                }),
-                setPastPublicMessages
-              )
+        JSON.stringify({
+        email:emailUpper,
+        friends:user.friends
+      }),
+      setPastMessages
+      )
+    loadData('publicmessageload',
+        JSON.stringify({
+            email:emailUpper,
+            friends:user.friends
+        }),
+        setPastPublicMessages
+      )
 
-              loadData('privatemessageload',
-                JSON.stringify({
-                  email: emailUpper,
-                  friends:user.friends
-                }),
-                setPrivateMessages
-              )  
+    loadData('privatemessageload',
+        JSON.stringify({
+          email: emailUpper,
+          friends:user.friends
+        }),
+        setPrivateMessages
+      )  
+
+    setFilteredMessages(()=>{
+      return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))}
+    )
   }
+  
   useEffect (()=>{
     
     const signedInStatus = window.localStorage.getItem('isSignedIn')
