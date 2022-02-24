@@ -4,7 +4,8 @@ import '../../colorScheme.css';
 
 const Inputblock = ({inputType,onChanges,value}) => {
     return (
-                
+        
+        // Input component for each input field
         <div className="inputBlock">
             <label className="inputLabel" htmlFor={inputType}>{inputType}</label>
             <input 

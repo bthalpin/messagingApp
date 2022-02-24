@@ -245,11 +245,9 @@ function App() {
         setPrivateMessages
       )  
 
-    setFilteredMessages(()=>{
-      return pastMessages.filter((message)=>message.email===user.email||user.friends.includes(message.email))}
-    )
   }
-  
+
+  // Keeps user signed in on page refresh until they sign out
   useEffect (()=>{
     
     const signedInStatus = window.localStorage.getItem('isSignedIn')
@@ -305,7 +303,6 @@ function App() {
   },[publicStatus])
   
  
-
   const resetState = () => {
     setRoute('Sign In')
     setIsSignedIn(false)
@@ -342,7 +339,7 @@ function App() {
     setRoute(route)
   }
   
-
+  // Function used to load data based on the call back function passed in
   const loadData = (location,info,infoUpdate) =>{
     fetch(`https://socially-distanced-server.herokuapp.com/${location}`,{
           method:'post',
@@ -356,7 +353,7 @@ function App() {
           
   }
 
-
+  // Handles deleting a message
   const deletePost = (publicStatus,currentId) => {
     if (publicStatus){
       socket.emit('deletemessage',{
@@ -370,6 +367,7 @@ function App() {
         })
   }}
 
+  // Adds friend on friend accept
   const addFriend = (newFriend) => {
     
     if (newFriend==="No Names"){
@@ -394,10 +392,8 @@ function App() {
               .then(res=>{    
                 
                 alert(`Friend request sent to ${newFriend.toUpperCase()}.`)
-                
-                  
+                 
             }).catch(err=>console.log(err))
-            
           }
     }
    
@@ -410,6 +406,7 @@ function App() {
     
 }
 
+// Sets conversation partner
 const converse = (friend) => {
   setConversation((prevConversation)=>{
       return {...prevConversation,you:friend}
@@ -426,6 +423,7 @@ const converse = (friend) => {
 
   return (
     <div className="App">      
+        {/* Navigation bar always loaded */}
         <Navigation 
             onRouteChange = {onRouteChange} 
             isSignedIn = {isSignedIn}
@@ -434,9 +432,12 @@ const converse = (friend) => {
             changePublicStatus = {changePublicStatus}
             totalMessages = {totalMessages}
         />
-    
+
+        
         {isSignedIn
             ? (route==='home'||route==='friend'
+
+                  // If user is signed in and route is friend or home- loads main message area
                   ?<div className = "main">
                         <div className = "mainMessage">
                             <Messages 
@@ -456,7 +457,10 @@ const converse = (friend) => {
                               />
                         </div>
                   </div>
+
                   :route==='mail'?
+
+                  // If signed in and route is mail - loads private message area
                   <div className = "main">
                       <div className = "mainMessage">
                           <Mail 
@@ -473,15 +477,17 @@ const converse = (friend) => {
                       </div>
                   </div>
                   :
-                  
-                        <Friends 
-                            user = {user}                           
-                            addFriend = {addFriend}                            
-                            converse = {converse}
-                            
-                        />
+
+                    // If logged in but route is not home, friend, or mail - loads the contact section
+                    <Friends 
+                        user = {user}                           
+                        addFriend = {addFriend}                            
+                        converse = {converse}
+                        
+                    />
                   )
-        
+
+            // If not logged in - loads the login page
             :(<>
                 <Login 
                     user = {user}

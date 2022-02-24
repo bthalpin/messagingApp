@@ -76,6 +76,8 @@ const Friends = ({user,addFriend,converse}) => {
                                 <div >
                         
                                     {friends?
+
+                                    // If the user has friends - loads the friend component for each contact
                                     <div>
                                         <div className="friendtitlebox"><p className="requesttitle">Contacts</p></div>
                                             <ul className = "scroll ">                            
@@ -100,7 +102,8 @@ const Friends = ({user,addFriend,converse}) => {
                                     </button>
 
                                 </div>                        
-                              
+                                
+                                {/* If there are any friend requests - loads request component for each request */}
                                 {requests?
                                 requests.length?
                                     <div className = "scroll">  
@@ -121,6 +124,7 @@ const Friends = ({user,addFriend,converse}) => {
                                     :<></>:<></>
                                 }
                                 
+                                {/* If there are any pending requests - loads pending component for each pending request */}
                                 {pendingrequests?
                                 pendingrequests.length?
                                     <div className = "scroll">

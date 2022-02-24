@@ -7,6 +7,8 @@ const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
     return(
         
         <div className = "radioButton" key={i}>
+
+            {/* In mail component, lists contacts for each friend */}
             {route==='mail'?
                 <li>
                     <input 
@@ -21,6 +23,7 @@ const Friend = ({friend,converse, route,unFriend,pendOrReq,i}) => {
                 </li>
        
             :
+                // In contact page - lists contact for each friend and adds an unfriend button
                 <li>
                     <input 
                         type = "radio" 

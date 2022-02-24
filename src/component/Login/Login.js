@@ -35,7 +35,8 @@ const Login = ({
         }
       }
   
-
+    
+    // Verifies login information - loads user data, and all messages for the user
     const verifyLogin = (upperEmail) => {
         fetch('https://socially-distanced-server.herokuapp.com/signin',{
             method:'post',
@@ -90,7 +91,8 @@ const Login = ({
         })
         .catch(err=>console.log(err))
       }
-    
+      
+      // Verifies email pattern and password length - loads public messages
       const verifyRegistration = (upperEmail) => {
         const emailPattern = /\S+@\S+\.\S+/
             if (emailPattern.test(email) && password.length>=8){
@@ -149,6 +151,8 @@ const Login = ({
                     <div className = "formcontainer">
                         {(route==="Register"
                             ?
+
+                            // Form for registering
                             <div>
                                 <h1 className="legend">Register</h1>
                                 <div className="error">{errorMessage}</div>   
@@ -157,6 +161,8 @@ const Login = ({
                                 <Inputblock inputType = {"Password"} value={password} onChanges ={onChanges}/>
                             </div>
                             :
+
+                            // Form to sign in
                             <div>
                                 <h1 className="legend">Sign In</h1>
                                 <div className="error">{errorMessage}</div>   
